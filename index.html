@@ -392,93 +392,159 @@
       to { opacity: 0.6; }
     }
 
-    /* ============ FEATURES SECTION ============ */
-    .features {
-      padding: var(--section-padding) 0;
+    /* ============================================
+       NOVA VENN - Convergence Animation
+       ============================================ */
+
+    .nova-venn {
       position: relative;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--card-gap);
-    }
-
-    @media (min-width: 768px) {
-      .features-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 36px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      opacity: 0;
-      transform: translateY(24px);
-      animation: featureFadeIn var(--spring-stagger) forwards;
-    }
-
-    .feature-card:nth-child(1) { animation-delay: 0.1s; }
-    .feature-card:nth-child(2) { animation-delay: 0.2s; }
-    .feature-card:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes featureFadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .feature-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-bottom: 24px;
-      background: rgba(122, 43, 255, 0.12);
-      color: var(--icon-color, var(--uv-500));
-      transition: transform var(--spring-hover), box-shadow var(--transition-fast);
+      overflow: hidden;
+      background: transparent;
     }
 
-    .feature-card:hover .feature-icon {
-      transform: scale(1.08);
-      box-shadow: 0 0 20px rgba(var(--icon-color), 0.3);
+    .nova-venn-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .feature-card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--text-100);
+    /* Base Nova Orb */
+    .nova {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      will-change: transform, opacity;
+
+      /* Soft edge fade */
+      mask-image: radial-gradient(circle, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
     }
 
-    .feature-card p {
-      font-size: 15px;
-      color: var(--text-400);
-      line-height: 1.6;
+    /* Left Nova (UV/Violet - Computation) */
+    .nova-left {
+      background:
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at center, #B04BFF 0%, #7A2BFF 50%, transparent 70%);
+      box-shadow:
+        0 0 60px 20px rgba(176, 75, 255, 0.5),
+        0 0 120px 40px rgba(176, 75, 255, 0.3),
+        0 0 200px 80px rgba(122, 43, 255, 0.15);
+
+      /* Starting position - left side */
+      left: 10%;
+      opacity: 0.7;
+      animation: novaConvergeLeft linear forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
     }
 
-    /* Icon color variants */
-    .feature-icon.uv {
-      background: rgba(176, 75, 255, 0.12);
-      color: var(--uv-500);
+    /* Right Nova (Ice/Cyan - Creativity) */
+    .nova-right {
+      background:
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at center, #7DE7FF 0%, #4B9FFF 50%, transparent 70%);
+      box-shadow:
+        0 0 60px 20px rgba(125, 231, 255, 0.5),
+        0 0 120px 40px rgba(125, 231, 255, 0.3),
+        0 0 200px 80px rgba(75, 159, 255, 0.15);
+
+      /* Starting position - right side */
+      right: 10%;
+      opacity: 0.7;
+      animation: novaConvergeRight linear forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
     }
 
-    .feature-icon.ice {
-      background: rgba(125, 231, 255, 0.12);
-      color: var(--ice-400);
+    /* Convergence Keyframes */
+    @keyframes novaConvergeLeft {
+      0% {
+        transform: translateX(0);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateX(calc(50vw - 50% - 10vw));
+        opacity: 1;
+      }
     }
 
-    .feature-icon.gold {
-      background: rgba(255, 210, 106, 0.12);
-      color: var(--sun-400);
+    @keyframes novaConvergeRight {
+      0% {
+        transform: translateX(0);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateX(calc(-50vw + 50% + 10vw));
+        opacity: 1;
+      }
+    }
+
+    /* Breathing pulse for merged state (when fully converged) */
+    @keyframes novaBreathe {
+      0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.03);
+        filter: brightness(1.1);
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .nova {
+        width: 200px;
+        height: 200px;
+      }
+
+      .nova-left {
+        left: 5%;
+      }
+
+      .nova-right {
+        right: 5%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nova {
+        width: 150px;
+        height: 150px;
+      }
+
+      .nova-venn-container {
+        height: 300px;
+      }
+    }
+
+    /* Reduced motion - show novas already converged */
+    @media (prefers-reduced-motion: reduce) {
+      .nova-left,
+      .nova-right {
+        animation: none;
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .nova-left {
+        left: 35%;
+      }
+
+      .nova-right {
+        right: 35%;
+      }
     }
 
     /* ============ PROJECTS ============ */
@@ -885,8 +951,7 @@
 
       .hero-tagline,
       .hero-sub,
-      .btn,
-      .feature-card {
+      .btn {
         opacity: 1;
         transform: none;
         animation: none;
@@ -934,31 +999,11 @@
       <div class="scroll-indicator" aria-hidden="true">&#8595;</div>
     </section>
 
-    <!-- Features -->
-    <section class="features" id="features">
-      <div class="container">
-        <span class="section-label">// What We Do</span>
-        <div class="features-grid">
-
-          <article class="feature-card">
-            <div class="feature-icon uv">&#10022;</div>
-            <h3>Design</h3>
-            <p>Crafting visual systems that communicate with clarity and purpose.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon ice">&#10096;&#10097;</div>
-            <h3>Development</h3>
-            <p>Building performant, accessible digital experiences with modern tools.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon gold">&#9733;</div>
-            <h3>Experiments</h3>
-            <p>Exploring the edges of technology through creative prototyping.</p>
-          </article>
-
-        </div>
+    <!-- Nova Venn - Convergence Animation -->
+    <section class="nova-venn" aria-hidden="true">
+      <div class="nova-venn-container">
+        <div class="nova nova-left"></div>
+        <div class="nova nova-right"></div>
       </div>
     </section>
 
@@ -1146,6 +1191,76 @@
         ticking = true;
       }
     }, { passive: true });
+  </script>
+
+  <!-- Nova Venn scroll animation fallback -->
+  <script>
+    (function() {
+      // Check if scroll-timeline is supported
+      if (CSS.supports('animation-timeline', 'view()')) return;
+
+      const section = document.querySelector('.nova-venn');
+      const leftNova = document.querySelector('.nova-left');
+      const rightNova = document.querySelector('.nova-right');
+
+      if (!section || !leftNova || !rightNova) return;
+
+      // Remove CSS animations for fallback
+      leftNova.style.animation = 'none';
+      rightNova.style.animation = 'none';
+
+      function updateNovaPositions() {
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Calculate progress (0 to 1) based on section visibility
+        // Start when section enters viewport, complete when section is centered
+        const start = windowHeight;
+        const end = -rect.height * 0.5;
+        const current = rect.top;
+        const progress = Math.max(0, Math.min(1, (start - current) / (start - end)));
+
+        // Calculate translation - novas start apart and converge to center
+        // On desktop, they need to move roughly 35% of viewport width
+        const maxTranslate = Math.min(window.innerWidth * 0.35, 400);
+        const translateAmount = progress * maxTranslate;
+
+        // Apply transforms with smooth easing
+        leftNova.style.transform = `translateX(${translateAmount}px)`;
+        rightNova.style.transform = `translateX(-${translateAmount}px)`;
+
+        // Opacity increases as they converge (0.7 to 1)
+        const opacity = 0.7 + (progress * 0.3);
+        leftNova.style.opacity = opacity;
+        rightNova.style.opacity = opacity;
+      }
+
+      // Throttled scroll handler using requestAnimationFrame
+      let rafTicking = false;
+      window.addEventListener('scroll', function() {
+        if (!rafTicking) {
+          requestAnimationFrame(function() {
+            updateNovaPositions();
+            rafTicking = false;
+          });
+          rafTicking = true;
+        }
+      }, { passive: true });
+
+      // Handle resize
+      window.addEventListener('resize', function() {
+        if (!rafTicking) {
+          requestAnimationFrame(function() {
+            updateNovaPositions();
+            rafTicking = false;
+          });
+          rafTicking = true;
+        }
+      }, { passive: true });
+
+      // Initial position
+      updateNovaPositions();
+    })();
   </script>
 
 </body>
