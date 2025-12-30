@@ -185,7 +185,7 @@
 
     .nav-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
@@ -216,14 +216,6 @@
     .logo-plane {
       display: inline;
       transition: margin var(--spring-snap);
-    }
-
-    .nav-logo:hover .logo-third {
-      margin-right: 0.25em;
-    }
-
-    .nav-logo:hover .logo-plane {
-      margin-left: 0.08em;
     }
 
     .logo-studios {
@@ -408,6 +400,21 @@
     .void-section {
       background: var(--ink-950);
       padding: 140px 0 120px;
+      position: relative;
+    }
+
+    .void-section::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 160px;
+      background: linear-gradient(
+        to top,
+        rgba(122, 43, 255, 0.08),
+        transparent
+      );
+      pointer-events: none;
+      z-index: 0;
     }
 
     .void-canvas-wrap {
@@ -425,50 +432,6 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-    }
-
-    .void-frame {
-      position: absolute;
-      inset: 24px;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .void-corner {
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      opacity: 0.22;
-      color: rgba(214, 230, 255, 0.26); /* subtle ice tint, aligned to footer border tone */
-      border-color: currentColor;
-    }
-
-    .void-corner.tl {
-      top: 0;
-      left: 0;
-      border-top: 1px solid currentColor;
-      border-left: 1px solid currentColor;
-    }
-
-    .void-corner.tr {
-      top: 0;
-      right: 0;
-      border-top: 1px solid currentColor;
-      border-right: 1px solid currentColor;
-    }
-
-    .void-corner.bl {
-      bottom: 0;
-      left: 0;
-      border-bottom: 1px solid currentColor;
-      border-left: 1px solid currentColor;
-    }
-
-    .void-corner.br {
-      bottom: 0;
-      right: 0;
-      border-bottom: 1px solid currentColor;
-      border-right: 1px solid currentColor;
     }
 
     .statement-section {
@@ -1025,10 +988,6 @@
       <a href="#void" class="nav-logo">
         <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
       </a>
-      <div class="nav-links">
-        <a href="#void">Void</a>
-        <a href="#statement">Statement</a>
-      </div>
     </div>
   </nav>
 
@@ -1036,15 +995,10 @@
     <!-- Screen 1: The Void -->
     <section class="void-section" id="void">
       <div class="void-divider" aria-hidden="true"></div>
-      <div class="void-frame" aria-hidden="true">
-        <span class="void-corner tl"></span>
-        <span class="void-corner tr"></span>
-        <span class="void-corner bl"></span>
-        <span class="void-corner br"></span>
-      </div>
       <div class="void-canvas-wrap">
         <canvas class="nova-canvas" data-halo-preset="endpoint-a"></canvas>
       </div>
+      <a href="#statement" class="scroll-indicator" aria-label="Scroll to statement">&#8595;</a>
     </section>
 
     <!-- Screen 2: Statement -->
