@@ -438,8 +438,8 @@
       position: absolute;
       width: 64px;
       height: 64px;
-      opacity: 0.26;
-      color: rgba(125, 231, 255, 0.26);
+      opacity: 0.22;
+      color: rgba(214, 230, 255, 0.26); /* subtle ice tint, aligned to footer border tone */
       border-color: currentColor;
     }
 
@@ -483,6 +483,23 @@
       background: var(--gradient-soul);
       opacity: 1;
       pointer-events: none;
+    }
+
+    .void-divider {
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: -1px;
+      height: 2px;
+      background: linear-gradient(90deg,
+        rgba(214, 230, 255, 0),
+        rgba(214, 230, 255, 0.46),
+        rgba(214, 230, 255, 0)
+      );
+      pointer-events: none;
+      opacity: 1;
+      z-index: 3;
+      box-shadow: 0 0 18px rgba(214, 230, 255, 0.18);
     }
 
     .void-wordmark,
@@ -1018,6 +1035,7 @@
   <main>
     <!-- Screen 1: The Void -->
     <section class="void-section" id="void">
+      <div class="void-divider" aria-hidden="true"></div>
       <div class="void-frame" aria-hidden="true">
         <span class="void-corner tl"></span>
         <span class="void-corner tr"></span>
@@ -1510,7 +1528,7 @@
       const renderer = new HaloRenderer(canvas, picked ? picked.colors : palettePresets['endpoint-a']());
       if (!renderer.gl || prefersReducedMotion) return;
 
-      let activePresetName = picked ? picked.name : 'monochrome';
+      let activePresetName = picked ? picked.name : 'endpoint-a';
       let animationId = null;
       let startTime = performance.now();
       let running = false;
@@ -1544,7 +1562,7 @@
       ];
 
       function setPalette(name) {
-        const next = getPalette(name) || getPalette('monochrome');
+        const next = getPalette(name) || getPalette('endpoint-a');
         if (!next) return;
         renderer.colors = {
           a: [...next.colors.a],
@@ -1555,8 +1573,8 @@
       }
 
       function animatePalette(fromName, toName, duration = 1200) {
-        const from = getPalette(fromName) || getPalette('monochrome');
-        const to = getPalette(toName) || getPalette('monochrome');
+        const from = getPalette(fromName) || getPalette('endpoint-a');
+        const to = getPalette(toName) || getPalette('endpoint-a');
         if (!from || !to) return;
         const start = performance.now();
 
