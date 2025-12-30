@@ -447,9 +447,7 @@
       /* Starting position - left side */
       left: 10%;
       opacity: 0.7;
-      animation: novaConvergeLeft linear forwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 50%;
+      /* Animation handled by Motion library */
     }
 
     /* Right Nova (Ice/Cyan - Creativity) */
@@ -470,44 +468,7 @@
       /* Starting position - right side */
       right: 10%;
       opacity: 0.7;
-      animation: novaConvergeRight linear forwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 50%;
-    }
-
-    /* Convergence Keyframes */
-    @keyframes novaConvergeLeft {
-      0% {
-        transform: translateX(0);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateX(calc(50vw - 50% - 10vw));
-        opacity: 1;
-      }
-    }
-
-    @keyframes novaConvergeRight {
-      0% {
-        transform: translateX(0);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateX(calc(-50vw + 50% + 10vw));
-        opacity: 1;
-      }
-    }
-
-    /* Breathing pulse for merged state (when fully converged) */
-    @keyframes novaBreathe {
-      0%, 100% {
-        transform: scale(1);
-        filter: blur(40px) brightness(1);
-      }
-      50% {
-        transform: scale(1.03);
-        filter: blur(40px) brightness(1.1);
-      }
+      /* Animation handled by Motion library */
     }
 
     /* Mobile adjustments */
@@ -543,17 +504,17 @@
     @media (prefers-reduced-motion: reduce) {
       .nova-left,
       .nova-right {
-        animation: none;
-        transform: translateX(0);
         opacity: 1;
       }
 
       .nova-left {
         left: 35%;
+        transform: none;
       }
 
       .nova-right {
         right: 35%;
+        transform: none;
       }
     }
 
@@ -1203,11 +1164,13 @@
     }, { passive: true });
   </script>
 
-  <!-- Nova Venn scroll animation fallback -->
-  <script>
+  <!-- Nova Venn scroll animation with Motion library -->
+  <script type="module">
+    import { scroll, animate } from "https://cdn.jsdelivr.net/npm/motion@11/+esm";
+
     (function() {
-      // Check if scroll-timeline is supported
-      if (CSS.supports('animation-timeline', 'view()')) return;
+      // Respect reduced motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       const section = document.querySelector('.nova-venn');
       const leftNova = document.querySelector('.nova-left');
@@ -1215,61 +1178,121 @@
 
       if (!section || !leftNova || !rightNova) return;
 
-      // Remove CSS animations for fallback
-      leftNova.style.animation = 'none';
-      rightNova.style.animation = 'none';
+      // Calculate convergence distance based on viewport
+      // Orbs start at 10% from edges and need to meet near center with slight overlap
+      const getConvergenceDistance = () => {
+        const vw = window.innerWidth;
+        // Move ~35% of viewport width, capped for very large screens
+        return Math.min(vw * 0.35, 420);
+      };
 
-      function updateNovaPositions() {
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+      let convergenceDistance = getConvergenceDistance();
+      let breatheAnimation = null;
 
-        // Calculate progress (0 to 1) based on section visibility
-        // Start when section enters viewport, complete when section is centered
-        const start = windowHeight;
-        const end = -rect.height * 0.5;
-        const current = rect.top;
-        const progress = Math.max(0, Math.min(1, (start - current) / (start - end)));
+      // Spring-like easing for organic feel
+      // This cubic-bezier approximates spring({ damping: 25, stiffness: 80 })
+      // Smooth ease-out with slight acceleration at start
+      const organicEase = [0.22, 0.68, 0.35, 1.0];
 
-        // Calculate translation - novas start apart and converge to center
-        // On desktop, they need to move roughly 35% of viewport width
-        const maxTranslate = Math.min(window.innerWidth * 0.35, 400);
-        const translateAmount = progress * maxTranslate;
+      // Scroll-driven convergence for left nova
+      // Animation progress is tied directly to scroll position
+      scroll(
+        animate(
+          leftNova,
+          {
+            x: [0, convergenceDistance],
+            opacity: [0.7, 1]
+          },
+          { easing: organicEase }
+        ),
+        {
+          target: section,
+          offset: ["start 90%", "center center"]
+        }
+      );
 
-        // Apply transforms with smooth easing
-        leftNova.style.transform = `translateX(${translateAmount}px)`;
-        rightNova.style.transform = `translateX(-${translateAmount}px)`;
+      // Scroll-driven convergence for right nova
+      scroll(
+        animate(
+          rightNova,
+          {
+            x: [0, -convergenceDistance],
+            opacity: [0.7, 1]
+          },
+          { easing: organicEase }
+        ),
+        {
+          target: section,
+          offset: ["start 90%", "center center"]
+        }
+      );
 
-        // Opacity increases as they converge (0.7 to 1)
-        const opacity = 0.7 + (progress * 0.3);
-        leftNova.style.opacity = opacity;
-        rightNova.style.opacity = opacity;
+      // Track scroll progress to know when fully converged
+      let isFullyConverged = false;
+
+      scroll(
+        (progress) => {
+          // When scroll animation is complete, trigger breathing
+          if (progress >= 0.95 && !isFullyConverged) {
+            isFullyConverged = true;
+            startBreathing();
+          } else if (progress < 0.95 && isFullyConverged) {
+            isFullyConverged = false;
+            stopBreathing();
+          }
+        },
+        {
+          target: section,
+          offset: ["start 90%", "center center"]
+        }
+      );
+
+      // Subtle breathing animation for merged state
+      function startBreathing() {
+        if (breatheAnimation) return;
+
+        // Gentle pulse that makes the converged orbs feel alive
+        breatheAnimation = animate(
+          [leftNova, rightNova],
+          {
+            scale: [1, 1.03, 1],
+            filter: [
+              "blur(40px) brightness(1)",
+              "blur(42px) brightness(1.08)",
+              "blur(40px) brightness(1)"
+            ]
+          },
+          {
+            duration: 4,
+            repeat: Infinity,
+            easing: "ease-in-out"
+          }
+        );
       }
 
-      // Throttled scroll handler using requestAnimationFrame
-      let rafTicking = false;
-      window.addEventListener('scroll', function() {
-        if (!rafTicking) {
-          requestAnimationFrame(function() {
-            updateNovaPositions();
-            rafTicking = false;
-          });
-          rafTicking = true;
+      function stopBreathing() {
+        if (breatheAnimation) {
+          breatheAnimation.stop();
+          breatheAnimation = null;
+          // Reset to default filter
+          leftNova.style.filter = "blur(40px)";
+          rightNova.style.filter = "blur(40px)";
         }
+      }
+
+      // Handle window resize - recalculate distances
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          const newDistance = getConvergenceDistance();
+          if (Math.abs(newDistance - convergenceDistance) > 20) {
+            convergenceDistance = newDistance;
+            // Note: Motion handles scroll position restoration internally
+          }
+        }, 200);
       }, { passive: true });
 
-      // Handle resize
-      window.addEventListener('resize', function() {
-        if (!rafTicking) {
-          requestAnimationFrame(function() {
-            updateNovaPositions();
-            rafTicking = false;
-          });
-          rafTicking = true;
-        }
-      }, { passive: true });
-
-      // Initial position
-      updateNovaPositions();
     })();
   </script>
 
