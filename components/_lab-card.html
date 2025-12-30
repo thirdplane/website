@@ -1,0 +1,56 @@
+<!--
+  Lab Card Component
+
+  Features:
+  - Icon with colored background (uv/ice/gold variants)
+  - Title + description
+  - Tag pill (Tool, Open Source, etc.)
+  - Lift + ice glow on hover
+  - Icon scales on hover
+
+  Grid: Use inside .labs-grid (3-column)
+
+  Requires:
+  - CSS from NEON_NOIR_DESIGN_SYSTEM.md
+-->
+
+<article class="lab-card">
+  <div class="lab-icon ice">&#10024;</div>
+  <h3 class="lab-title">Lab Title</h3>
+  <p class="lab-description">Short description of what this experiment does.</p>
+  <span class="lab-tag">Tool</span>
+</article>
+
+<!--
+  Icon variants:
+
+  <div class="lab-icon uv">&#127912;</div>   - Purple background, UV accent
+  <div class="lab-icon ice">&#10024;</div>   - Cyan background, ice accent
+  <div class="lab-icon gold">&#128289;</div> - Gold background, sun accent
+
+  Common emoji icons:
+  &#127912; - Artist palette
+  &#10024;  - Sparkles
+  &#128289; - Link/chain
+  &#128187; - Laptop
+  &#9881;   - Gear
+  &#128640; - Rocket
+-->
+
+<!--
+  Grid wrapper:
+
+  <div class="labs-grid">
+    <article class="lab-card">...</article>
+    <article class="lab-card">...</article>
+    <article class="lab-card">...</article>
+  </div>
+-->
+
+<!--
+  Tag variants (same styling, different text):
+  <span class="lab-tag">Tool</span>
+  <span class="lab-tag">Open Source</span>
+  <span class="lab-tag">Experiment</span>
+  <span class="lab-tag">Beta</span>
+-->

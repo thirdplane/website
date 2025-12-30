@@ -1,0 +1,53 @@
+<!--
+  Navigation Component
+
+  Features:
+  - Fixed position, transparent until scrolled
+  - Logo with tension-snap hover effect
+  - Links with underline reveal on hover
+  - Add .active class to current page link
+
+  Requires:
+  - Nav scroll JS for .scrolled class
+  - CSS from NEON_NOIR_DESIGN_SYSTEM.md
+-->
+
+<nav class="nav" id="nav">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+    </a>
+    <div class="nav-links">
+      <a href="/projects/">Projects</a>
+      <a href="/writing/">Writing</a>
+      <a href="/labs/">Labs</a>
+    </div>
+  </div>
+</nav>
+
+<!--
+  Active state example (on projects page):
+  <a href="/projects/" class="active">Projects</a>
+
+  Add this CSS for active state:
+  .nav-links a.active {
+    color: var(--ice-400);
+  }
+  .nav-links a.active::after {
+    width: 100%;
+    opacity: 0.4;
+  }
+-->
+
+<!--
+  Scroll behavior JS:
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+-->
