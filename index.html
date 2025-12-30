@@ -4,56 +4,106 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Third Plane Studios</title>
-  <meta name="description" content="Third Plane Studios — Projects, writing, and experiments in design & development.">
-  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Third Plane Studios — The curation of latent space. Where computation and creativity converge.">
+  <meta name="theme-color" content="#05060A">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Third Plane Studios">
-  <meta property="og:description" content="Projects, writing, and experiments in design & development.">
+  <meta property="og:description" content="The curation of latent space. Where computation and creativity converge.">
   <meta property="og:url" content="https://www.thirdplane.io">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Third Plane Studios">
-  <meta name="twitter:description" content="Projects, writing, and experiments in design & development.">
+  <meta name="twitter:description" content="The curation of latent space. Where computation and creativity converge.">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --color-bg-white: #ffffff;
-      --color-bg-black: #000000;
-      --color-card-bg: #161616;
-      --color-accent: #0099ff;
-      --color-text-light: #ffffff;
-      --color-text-dark: #000000;
-      --color-muted: #707070;
-      --color-border: rgba(255, 255, 255, 0.12);
+    /* ============================================
+       NEON NOIR DESIGN SYSTEM
+       Third Plane Studios - 2025
+       ============================================ */
 
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.16);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+      --brand: var(--uv-600);
+      --link: var(--ice-400);
+
+      /* Gradient background */
+      --gradient-soul:
+        radial-gradient(55rem 55rem at 38% 26%, rgba(122, 43, 255, 0.35) 0%, rgba(122, 43, 255, 0.00) 60%),
+        radial-gradient(52rem 52rem at 60% 34%, rgba(176, 75, 255, 0.25) 0%, rgba(176, 75, 255, 0.00) 60%),
+        radial-gradient(58rem 58rem at 70% 62%, rgba(255, 42, 74, 0.20) 0%, rgba(255, 42, 74, 0.00) 60%),
+        radial-gradient(64rem 64rem at 28% 70%, rgba(255, 138, 61, 0.16) 0%, rgba(255, 138, 61, 0.00) 60%),
+        radial-gradient(70rem 70rem at 55% 8%, rgba(125, 231, 255, 0.14) 0%, rgba(125, 231, 255, 0.00) 60%),
+        linear-gradient(140deg, rgba(255, 210, 106, 0.00) 0%, rgba(255, 210, 106, 0.00) 28%, rgba(255, 210, 106, 0.22) 36%, rgba(255, 210, 106, 0.00) 55%, rgba(255, 210, 106, 0.00) 100%);
+
+      /* Glows */
+      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
+      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
+      --glow-red: 0 0 22px rgba(255, 42, 74, 0.22);
+      --glow-gold: 0 0 28px rgba(255, 210, 106, 0.18);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+      --scrim-strong: rgba(5, 6, 10, 0.86);
+
+      /* Typography */
       --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-      --letter-spacing-tight: -0.04em;
+      --letter-spacing-tight: -0.03em;
 
+      /* Spacing */
       --section-padding: 120px;
       --card-gap: 24px;
-      --radius-large: 56px;
-      --radius-xl: 84px;
 
+      /* Transitions */
       --transition-fast: 0.2s ease;
       --transition-medium: 0.35s ease;
 
-      /* Tension-Snap Logo Animation */
-      /* Spring easing for snap-back effect - bouncy, physical feel */
-      --spring-snap: linear(0, 0.1283, 0.4331, 0.7914, 1.1013, 1.3008, 1.3718, 1.3328, 1.2236, 1.0902, 0.9718, 0.8931, 0.8621, 0.8733, 0.9122, 0.9617, 1.0068, 1.0378, 1.051, 1.0481, 1.0344, 1.016, 0.9989, 0.9868, 0.9812, 0.9818, 0.9866, 0.9934, 0.9999, 1.0046, 1.0069, 1.0069, 1.0052, 1.0027, 1.0003, 0.9984, 0.9975, 1, 0.998, 0.9989, 0.9998, 1.0005, 1);
+      /* Spring Curves */
+      --spring-hero: 550ms linear(0, 0.2606, 0.7094, 1.0343, 1.158, 1.1389, 1.0674, 1.006, 0.977, 0.975, 0.9856, 0.9967, 1.003, 1, 1.0029, 1.001, 0.9997, 1);
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+      --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
     }
 
+    /* ============ RESET & BASE ============ */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -68,56 +118,43 @@
       font-family: var(--font-primary);
       font-weight: 400;
       line-height: 1.6;
-      color: var(--color-text-dark);
-      background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #fafafa 15%,
-        #e8e8e8 30%,
-        #a0a0a0 48%,
-        #606060 60%,
-        #303030 75%,
-        #161616 88%,
-        #000000 100%
-      );
-      background-attachment: fixed;
+      color: var(--text);
+      background: var(--bg);
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Container */
     .container {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     @media (min-width: 768px) {
-      .container { padding: 0 40px; }
+      .container { padding: 0 48px; }
     }
 
     /* Section Label */
     .section-label {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--color-muted);
-      margin-bottom: 40px;
+      letter-spacing: 0.08em;
+      color: var(--text-600);
+      margin-bottom: 48px;
       display: block;
-    }
-
-    .section-label--light {
-      color: rgba(255, 255, 255, 0.5);
     }
 
     /* Typography */
     h1, h2, h3 {
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: var(--letter-spacing-tight);
       line-height: 1.1;
+      color: var(--text-100);
     }
 
     /* Links */
@@ -125,69 +162,6 @@
       color: inherit;
       text-decoration: none;
       transition: color var(--transition-fast);
-    }
-
-    /* Text links with hover underline effect */
-    a.text-link {
-      position: relative;
-    }
-
-    a.text-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--color-accent);
-      transition: width var(--transition-fast);
-    }
-
-    a.text-link:hover::after {
-      width: 100%;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 32px;
-      font-family: var(--font-primary);
-      font-size: 15px;
-      font-weight: 500;
-      border-radius: 100px;
-      border: 1px solid var(--color-border);
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      color: var(--color-text-light);
-      cursor: pointer;
-      transition: all var(--transition-medium);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-primary {
-      background: var(--color-accent);
-      border-color: var(--color-accent);
-      color: var(--color-text-dark);
-      font-weight: 600;
-    }
-
-    .btn-primary:hover {
-      background: #00aaff;
-      border-color: #00aaff;
-      box-shadow: 0 12px 32px rgba(0, 153, 255, 0.35);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
     }
 
     /* ============ NAVIGATION ============ */
@@ -198,326 +172,311 @@
       right: 0;
       z-index: 1000;
       padding: 20px 0;
+      background: transparent;
       transition: background var(--transition-medium), backdrop-filter var(--transition-medium);
     }
 
-    /* Nav blur effect on scroll - uses animation trick for CSS-only scroll detection */
-    @supports (animation-timeline: scroll()) {
-      .nav {
-        animation: nav-blur linear both;
-        animation-timeline: scroll();
-        animation-range: 0px 100px;
-      }
-
-      @keyframes nav-blur {
-        from {
-          background: transparent;
-          backdrop-filter: blur(0px);
-          -webkit-backdrop-filter: blur(0px);
-        }
-        to {
-          background: rgba(255, 255, 255, 0.7);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-        }
-      }
-    }
-
-    /* Fallback for browsers without scroll timeline - subtle default blur */
-    @supports not (animation-timeline: scroll()) {
-      .nav {
-        background: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
+    .nav.scrolled {
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
+    @media (min-width: 768px) {
+      .nav-container { padding: 0 48px; }
+    }
+
+    /* Nav Logo with Tension-Snap Animation */
     .nav-logo {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: -0.01em;
-      color: var(--color-text-dark);
-      transition: transform 0.5s var(--spring-snap), color var(--transition-fast);
+      color: var(--text-200);
+      display: inline-flex;
+      align-items: baseline;
+      transition: text-shadow var(--spring-snap);
     }
 
     .nav-logo:hover {
-      transform: scale(1.02);
-      color: var(--color-accent);
+      text-shadow: var(--glow-ice);
+    }
+
+    .logo-third,
+    .logo-plane {
+      display: inline;
+      transition: margin var(--spring-snap);
+    }
+
+    .nav-logo:hover .logo-third {
+      margin-right: 0.25em;
+    }
+
+    .nav-logo:hover .logo-plane {
+      margin-left: 0.08em;
+    }
+
+    .logo-studios {
+      color: var(--text-600);
+      margin-left: 0.35em;
     }
 
     .nav-links {
       display: flex;
-      gap: 8px;
+      gap: 32px;
       align-items: center;
     }
 
-    .nav-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      color: var(--color-text-dark);
-      transition: all var(--transition-fast);
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-400);
+      position: relative;
+      transition: color var(--transition-fast);
     }
 
-    .nav-link:hover {
-      color: var(--color-accent);
-      background: rgba(0, 153, 255, 0.12);
-      transform: translateY(-2px);
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
     }
 
-    .nav-link svg {
-      width: 18px;
-      height: 18px;
+    .nav-links a:hover {
+      color: var(--ice-400);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 20px;
+      }
+      .nav-links a {
+        font-size: 13px;
+      }
     }
 
     /* ============ HERO ============ */
     .hero {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 140px 24px 120px;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-card {
-      background: rgba(22, 22, 22, 0.88);
-      backdrop-filter: blur(44px);
-      -webkit-backdrop-filter: blur(44px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-xl);
-      padding: 72px 56px;
+    /* Gradient Background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-soul);
+      animation: gradientPulse 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gradientPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      color: var(--color-text-light);
-      max-width: 780px;
-      width: 100%;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
-    }
-
-    .hero-label {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--color-accent);
-      margin-bottom: 32px;
-    }
-
-    .hero-title {
-      font-size: clamp(40px, 10vw, 90px);
-      font-weight: 700;
-      letter-spacing: var(--letter-spacing-tight);
-      line-height: 0.92;
-      margin-bottom: 28px;
-    }
-
-    /* ============ TENSION-SNAP LOGO ANIMATION ============ */
-    /*
-     * "Pixar lamp" inspired animation where THIRD and PLANE
-     * pull apart at the d|p junction like elastic tension,
-     * hold briefly, then SNAP back together with overshoot.
-     */
-
-    /* Container for animated logo - keeps spans inline */
-    .logo-animated {
-      display: block;
-    }
-
-    /* Both logo parts are inline to form one visual unit */
-    .logo-third,
-    .logo-plane {
-      display: inline;
-    }
-
-    /* THIRD span - animates the gap via margin-right */
-    .logo-third {
-      /* Animation plays once on page load with delay */
-      animation: tensionSnap 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
-    }
-
-    /* PLANE span - subtle scale pulse when snap happens */
-    .logo-plane {
-      display: inline-block; /* Required for transform */
-      transform-origin: left center;
-      animation: planePulse 1.8s ease 0.5s forwards;
-    }
-
-    /*
-     * Main tension-snap animation on THIRD
-     * - 0-20%: Ease out pull (tension building)
-     * - 20-42%: Max stretch with brief hold (peak tension)
-     * - 42-100%: Spring snap back with overshoot
-     */
-    @keyframes tensionSnap {
-      0% {
-        /* Rest position - tight together */
-        margin-right: 0;
-        text-shadow: none;
-      }
-      20% {
-        /* Start pulling - tension building */
-        margin-right: 0.15em;
-        text-shadow: 0 0 2px rgba(0, 153, 255, 0.1);
-      }
-      40% {
-        /* Max stretch - peak tension */
-        margin-right: 0.35em;
-        text-shadow: 0 0 8px rgba(0, 153, 255, 0.2);
-      }
-      42% {
-        /* Brief hold at peak - moment of suspense */
-        margin-right: 0.35em;
-        text-shadow: 0 0 8px rgba(0, 153, 255, 0.2);
-      }
-      45% {
-        /* Begin snap - still stretched */
-        margin-right: 0.3em;
-        text-shadow: 0 0 4px rgba(0, 153, 255, 0.15);
-      }
-      55% {
-        /* Overshoot past rest - spring bounce */
-        margin-right: -0.02em;
-        text-shadow: none;
-      }
-      65% {
-        /* Bounce back slightly */
-        margin-right: 0.01em;
-      }
-      75% {
-        /* Settle toward rest */
-        margin-right: -0.005em;
-      }
-      100% {
-        /* Final rest position */
-        margin-right: 0;
-        text-shadow: none;
-      }
-    }
-
-    /*
-     * Subtle scale pulse on PLANE during snap
-     * Creates impact feel when words collide
-     */
-    @keyframes planePulse {
-      0%, 42% {
-        /* Static during pull phase */
-        transform: scale(1);
-      }
-      50% {
-        /* Quick compression on impact */
-        transform: scale(0.98, 1.02);
-      }
-      55% {
-        /* Overshoot - slight expand */
-        transform: scale(1.02, 0.99);
-      }
-      65% {
-        /* Settle */
-        transform: scale(0.995);
-      }
-      100% {
-        /* Rest */
-        transform: scale(1);
-      }
-    }
-
-    /* Ensure animation doesn't break on mobile */
-    @media (max-width: 600px) {
-      .logo-third {
-        /* Slightly smaller gap on mobile for proportion */
-        animation: tensionSnapMobile 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
-      }
-    }
-
-    /* Mobile-optimized keyframes with smaller gap */
-    @keyframes tensionSnapMobile {
-      0% {
-        margin-right: 0;
-        text-shadow: none;
-      }
-      20% {
-        margin-right: 0.1em;
-        text-shadow: 0 0 2px rgba(0, 153, 255, 0.1);
-      }
-      40% {
-        margin-right: 0.25em;
-        text-shadow: 0 0 6px rgba(0, 153, 255, 0.15);
-      }
-      42% {
-        margin-right: 0.25em;
-        text-shadow: 0 0 6px rgba(0, 153, 255, 0.15);
-      }
-      45% {
-        margin-right: 0.2em;
-        text-shadow: 0 0 3px rgba(0, 153, 255, 0.1);
-      }
-      55% {
-        margin-right: -0.015em;
-        text-shadow: none;
-      }
-      65% {
-        margin-right: 0.008em;
-      }
-      75% {
-        margin-right: -0.004em;
-      }
-      100% {
-        margin-right: 0;
-        text-shadow: none;
-      }
-    }
-
-    /* Reduced motion preference - disable animation */
-    @media (prefers-reduced-motion: reduce) {
-      .logo-third,
-      .logo-plane {
-        animation: none;
-      }
+      max-width: 800px;
     }
 
     .hero-tagline {
-      font-size: 18px;
-      color: var(--color-muted);
-      line-height: 1.65;
-      margin-bottom: 44px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: clamp(48px, 10vw, 72px);
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      color: var(--text-100);
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroFadeUp var(--spring-hero) 0.2s forwards;
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 16px;
+    .hero-sub {
+      font-size: clamp(18px, 3vw, 20px);
+      color: var(--text-400);
+      margin-bottom: 40px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeUp var(--spring-hero) 0.35s forwards;
+    }
+
+    @keyframes heroFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Primary CTA Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px 32px;
+      font-family: var(--font-primary);
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--spring-hover);
+      opacity: 0;
+      transform: translateY(16px);
+      animation: heroFadeUp var(--spring-hero) 0.5s forwards;
     }
 
-    @media (max-width: 600px) {
-      .hero-card {
-        padding: 52px 32px;
-        border-radius: var(--radius-large);
+    .btn-primary {
+      background: var(--ice-400);
+      color: var(--ink-950);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--glow-ice);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: var(--text-600);
+      animation: scrollBounce 2s ease-in-out infinite;
+      opacity: 0;
+      animation: scrollBounce 2s ease-in-out infinite, fadeIn 1s ease 1s forwards;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(12px); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 0.6; }
+    }
+
+    /* ============ FEATURES SECTION ============ */
+    .features {
+      padding: var(--section-padding) 0;
+      position: relative;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--card-gap);
+    }
+
+    @media (min-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
-      .hero-cta {
-        flex-direction: column;
-        gap: 12px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(24px);
+      animation: featureFadeIn var(--spring-stagger) forwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes featureFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-      .hero-cta .btn {
-        width: 100%;
-      }
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 24px;
+      background: rgba(122, 43, 255, 0.12);
+      color: var(--icon-color, var(--uv-500));
+      transition: transform var(--spring-hover), box-shadow var(--transition-fast);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(var(--icon-color), 0.3);
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-100);
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: var(--text-400);
+      line-height: 1.6;
+    }
+
+    /* Icon color variants */
+    .feature-icon.uv {
+      background: rgba(176, 75, 255, 0.12);
+      color: var(--uv-500);
+    }
+
+    .feature-icon.ice {
+      background: rgba(125, 231, 255, 0.12);
+      color: var(--ice-400);
+    }
+
+    .feature-icon.gold {
+      background: rgba(255, 210, 106, 0.12);
+      color: var(--sun-400);
     }
 
     /* ============ PROJECTS ============ */
@@ -538,23 +497,23 @@
     }
 
     .project-card {
-      background: var(--color-card-bg);
-      border-radius: var(--radius-large);
+      background: var(--surface);
+      border-radius: 24px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
+      border: 1px solid var(--border);
+      transition: transform var(--spring-hover), box-shadow var(--spring-hover), border-color var(--transition-fast);
       cursor: pointer;
     }
 
     .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.45);
-      border-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-8px);
+      box-shadow: var(--glow-uv);
+      border-color: rgba(176, 75, 255, 0.3);
     }
 
     .project-image {
       aspect-ratio: 16 / 10;
-      background: #222;
+      background: var(--ink-850);
       overflow: hidden;
     }
 
@@ -562,7 +521,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
 
     .project-card:hover .project-image img {
@@ -574,10 +533,10 @@
     }
 
     .project-title {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 600;
-      color: var(--color-text-light);
-      margin-bottom: 10px;
+      color: var(--text-100);
+      margin-bottom: 12px;
       letter-spacing: var(--letter-spacing-tight);
     }
 
@@ -586,9 +545,9 @@
       justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--color-muted);
+      color: var(--text-600);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
     /* ============ WRITING ============ */
@@ -598,11 +557,11 @@
 
     .writing-list {
       list-style: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid var(--border);
     }
 
     .writing-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border);
     }
 
     .writing-link {
@@ -611,7 +570,7 @@
       align-items: center;
       padding: 28px 0;
       gap: 24px;
-      transition: padding var(--transition-fast), background var(--transition-fast);
+      transition: padding var(--transition-fast);
     }
 
     .writing-link:hover {
@@ -619,17 +578,17 @@
       padding-right: 8px;
     }
 
-    .writing-link:hover .writing-title {
-      color: var(--color-accent);
-    }
-
     .writing-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 500;
-      color: var(--color-text-light);
+      color: var(--text-200);
       letter-spacing: var(--letter-spacing-tight);
       transition: color var(--transition-fast);
       position: relative;
+    }
+
+    .writing-link:hover .writing-title {
+      color: var(--ice-400);
     }
 
     .writing-link:hover .writing-title::after {
@@ -639,17 +598,17 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: var(--color-accent);
-      opacity: 0.5;
+      background: var(--ice-400);
+      opacity: 0.6;
     }
 
     .writing-date {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--color-muted);
+      color: var(--text-600);
       white-space: nowrap;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
     @media (max-width: 500px) {
@@ -668,10 +627,10 @@
 
     .labs-intro {
       font-size: 16px;
-      color: var(--color-muted);
-      margin-bottom: 40px;
-      max-width: 380px;
-      line-height: 1.6;
+      color: var(--text-400);
+      margin-bottom: 48px;
+      max-width: 420px;
+      line-height: 1.65;
     }
 
     .labs-grid {
@@ -693,77 +652,87 @@
     }
 
     .lab-card {
-      background: rgba(22, 22, 22, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       padding: 32px;
-      transition: all var(--transition-medium);
+      transition: all var(--spring-hover);
       cursor: pointer;
     }
 
     .lab-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(0, 153, 255, 0.3);
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+      border-color: rgba(125, 231, 255, 0.25);
+      box-shadow: var(--glow-ice);
     }
 
     .lab-icon {
       width: 48px;
       height: 48px;
-      background: rgba(0, 153, 255, 0.12);
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
       font-size: 22px;
-      transition: transform var(--transition-fast);
+      transition: transform var(--spring-hover);
+    }
+
+    .lab-icon.uv {
+      background: rgba(176, 75, 255, 0.12);
+      color: var(--uv-500);
+    }
+
+    .lab-icon.ice {
+      background: rgba(125, 231, 255, 0.12);
+      color: var(--ice-400);
+    }
+
+    .lab-icon.gold {
+      background: rgba(255, 210, 106, 0.12);
+      color: var(--sun-400);
     }
 
     .lab-card:hover .lab-icon {
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
     .lab-title {
       font-size: 16px;
       font-weight: 600;
-      color: var(--color-text-light);
-      margin-bottom: 8px;
+      color: var(--text-100);
+      margin-bottom: 10px;
       letter-spacing: var(--letter-spacing-tight);
     }
 
     .lab-description {
       font-size: 14px;
-      color: var(--color-muted);
+      color: var(--text-400);
       margin-bottom: 16px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .lab-tag {
       display: inline-block;
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent);
-      background: rgba(0, 153, 255, 0.1);
-      padding: 5px 12px;
+      letter-spacing: 0.06em;
+      color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.1);
+      padding: 6px 14px;
       border-radius: 100px;
     }
 
     /* ============ FOOTER ============ */
     .footer {
-      background: var(--color-bg-black);
+      background: var(--ink-900);
       padding: 80px 0 48px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--border);
       position: relative;
-      overflow: hidden;
     }
 
-    /* Subtle gradient accent at top of footer */
     .footer::before {
       content: '';
       position: absolute;
@@ -772,7 +741,7 @@
       transform: translateX(-50%);
       width: 60%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0, 153, 255, 0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(125, 231, 255, 0.3), transparent);
     }
 
     .footer-content {
@@ -788,7 +757,7 @@
       font-family: var(--font-mono);
       font-size: 14px;
       font-weight: 500;
-      color: var(--color-text-light);
+      color: var(--text-200);
       display: block;
       margin-bottom: 12px;
       letter-spacing: -0.01em;
@@ -796,7 +765,7 @@
 
     .footer-tagline {
       font-size: 15px;
-      color: var(--color-muted);
+      color: var(--text-600);
       line-height: 1.5;
     }
 
@@ -807,10 +776,10 @@
     .footer-email {
       display: inline-block;
       font-size: 16px;
-      color: var(--color-text-light);
+      color: var(--text-200);
       margin-bottom: 16px;
       position: relative;
-      transition: color var(--transition-fast);
+      transition: color var(--transition-fast), text-shadow var(--transition-fast);
     }
 
     .footer-email::after {
@@ -820,12 +789,13 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: var(--color-accent);
+      background: var(--ice-400);
       transition: width var(--transition-fast);
     }
 
     .footer-email:hover {
-      color: var(--color-accent);
+      color: var(--ice-400);
+      text-shadow: var(--glow-ice);
     }
 
     .footer-email:hover::after {
@@ -842,35 +812,36 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      color: var(--color-muted);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all var(--transition-fast);
+      color: var(--text-600);
+      border: 1px solid var(--border);
+      transition: all var(--spring-hover);
     }
 
     .footer-social a:hover {
-      color: var(--color-accent);
-      border-color: var(--color-accent);
-      background: rgba(0, 153, 255, 0.12);
-      transform: translateY(-2px);
+      color: var(--ice-400);
+      border-color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      transform: translateY(-3px);
+      box-shadow: var(--glow-ice);
     }
 
     .footer-social svg {
-      width: 17px;
-      height: 17px;
+      width: 18px;
+      height: 18px;
     }
 
     .footer-bottom {
       padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid var(--border);
     }
 
     .footer-copyright {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--color-muted);
+      color: var(--text-600);
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
@@ -890,24 +861,62 @@
         justify-content: flex-start;
       }
     }
+
+    /* ============ ACCESSIBILITY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .hero::before {
+        animation: none;
+      }
+
+      .scroll-indicator {
+        animation: none;
+        opacity: 0.6;
+      }
+
+      .hero-tagline,
+      .hero-sub,
+      .btn,
+      .feature-card {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
+    /* Focus states for keyboard navigation */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    /* Selection styling */
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav class="nav">
+  <nav class="nav" id="nav">
     <div class="nav-container">
-      <a href="/" class="nav-logo">Third Plane</a>
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
       <div class="nav-links">
-        <a href="mailto:j@thirdplane.io" class="nav-link" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
-        <a href="https://github.com/thirdplane" target="_blank" rel="noopener" class="nav-link" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" class="nav-link" aria-label="Twitter">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#labs">Labs</a>
       </div>
     </div>
   </nav>
@@ -915,16 +924,38 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-card">
-        <span class="hero-label">// Studio</span>
-        <h1 class="hero-title logo-animated">
-          <span class="logo-third">THIRD</span><span class="logo-plane">PLANE</span>
-          <br>STUDIOS
-        </h1>
-        <p class="hero-tagline">Projects, writing, and experiments in design & development.</p>
-        <div class="hero-cta">
-          <a href="mailto:j@thirdplane.io" class="btn btn-primary">Get in touch</a>
-          <a href="#projects" class="btn btn-ghost">View work</a>
+      <div class="hero-content">
+        <h1 class="hero-tagline">The curation of<br>latent space</h1>
+        <p class="hero-sub">Where computation and creativity converge.</p>
+        <a href="#projects" class="btn btn-primary">View Work</a>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">&#8595;</div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+        <span class="section-label">// What We Do</span>
+        <div class="features-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon uv">&#10022;</div>
+            <h3>Design</h3>
+            <p>Crafting visual systems that communicate with clarity and purpose.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon ice">&#10096;&#10097;</div>
+            <h3>Development</h3>
+            <p>Building performant, accessible digital experiences with modern tools.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon gold">&#9733;</div>
+            <h3>Experiments</h3>
+            <p>Exploring the edges of technology through creative prototyping.</p>
+          </article>
+
         </div>
       </div>
     </section>
@@ -932,12 +963,12 @@
     <!-- Projects -->
     <section class="projects" id="projects">
       <div class="container">
-        <span class="section-label section-label--light">// Selected Work</span>
+        <span class="section-label">// Selected Work</span>
         <div class="projects-grid">
 
           <article class="project-card">
             <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23222' width='800' height='500'/%3E%3Ctext fill='%23444' font-family='monospace' font-size='16' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project 1" loading="lazy">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='400' cy='250' r='80' fill='%237A2BFF' opacity='0.3'/%3E%3Ccircle cx='350' cy='220' r='40' fill='%23B04BFF' opacity='0.4'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Alpha" loading="lazy">
             </div>
             <div class="project-info">
               <h3 class="project-title">Project Alpha</h3>
@@ -950,7 +981,7 @@
 
           <article class="project-card">
             <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23222' width='800' height='500'/%3E%3Ctext fill='%23444' font-family='monospace' font-size='16' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project 2" loading="lazy">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='450' cy='280' r='90' fill='%237DE7FF' opacity='0.2'/%3E%3Ccircle cx='380' cy='200' r='50' fill='%237DE7FF' opacity='0.3'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Beta" loading="lazy">
             </div>
             <div class="project-info">
               <h3 class="project-title">Project Beta</h3>
@@ -963,7 +994,7 @@
 
           <article class="project-card">
             <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23222' width='800' height='500'/%3E%3Ctext fill='%23444' font-family='monospace' font-size='16' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project 3" loading="lazy">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='380' cy='260' r='70' fill='%23FFD26A' opacity='0.25'/%3E%3Ccircle cx='450' cy='220' r='45' fill='%23FF8A3D' opacity='0.3'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Gamma" loading="lazy">
             </div>
             <div class="project-info">
               <h3 class="project-title">Project Gamma</h3>
@@ -976,7 +1007,7 @@
 
           <article class="project-card">
             <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23222' width='800' height='500'/%3E%3Ctext fill='%23444' font-family='monospace' font-size='16' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project 4" loading="lazy">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='420' cy='240' r='85' fill='%23FF2A4A' opacity='0.2'/%3E%3Ccircle cx='360' cy='280' r='55' fill='%23B04BFF' opacity='0.25'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Delta" loading="lazy">
             </div>
             <div class="project-info">
               <h3 class="project-title">Project Delta</h3>
@@ -994,7 +1025,7 @@
     <!-- Writing -->
     <section class="writing" id="writing">
       <div class="container">
-        <span class="section-label section-label--light">// Writing</span>
+        <span class="section-label">// Writing</span>
         <ul class="writing-list">
 
           <li class="writing-item">
@@ -1032,26 +1063,26 @@
     <!-- Labs -->
     <section class="labs" id="labs">
       <div class="container">
-        <span class="section-label section-label--light">// Labs</span>
-        <p class="labs-intro">Experimental projects, prototypes, and open-source tools.</p>
+        <span class="section-label">// Labs</span>
+        <p class="labs-intro">Experimental projects, prototypes, and open-source tools exploring the boundaries of what's possible.</p>
         <div class="labs-grid">
 
           <article class="lab-card">
-            <div class="lab-icon">🎨</div>
+            <div class="lab-icon uv">&#127912;</div>
             <h3 class="lab-title">Color System</h3>
             <p class="lab-description">Generate accessible color palettes for design systems.</p>
             <span class="lab-tag">Tool</span>
           </article>
 
           <article class="lab-card">
-            <div class="lab-icon">✨</div>
+            <div class="lab-icon ice">&#10024;</div>
             <h3 class="lab-title">Motion Kit</h3>
             <p class="lab-description">Lightweight animation primitives for the web.</p>
             <span class="lab-tag">Open Source</span>
           </article>
 
           <article class="lab-card">
-            <div class="lab-icon">🔤</div>
+            <div class="lab-icon gold">&#128289;</div>
             <h3 class="lab-title">Type Scale</h3>
             <p class="lab-description">Calculate perfect typography ratios.</p>
             <span class="lab-tag">Tool</span>
@@ -1067,8 +1098,8 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <span class="footer-logo">Third Plane Studios</span>
-          <p class="footer-tagline">Building digital experiences.</p>
+          <span class="footer-logo">thirdplane studios</span>
+          <p class="footer-tagline">The curation of latent space.</p>
         </div>
 
         <div class="footer-contact">
@@ -1077,7 +1108,7 @@
             <a href="https://github.com/thirdplane" target="_blank" rel="noopener" aria-label="GitHub">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             </a>
-            <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" aria-label="Twitter">
+            <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" aria-label="Twitter/X">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
           </div>
@@ -1089,6 +1120,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Minimal JavaScript for nav scroll effect -->
+  <script>
+    // Nav background on scroll
+    const nav = document.getElementById('nav');
+    let lastScrollY = 0;
+    let ticking = false;
+
+    function updateNav() {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    }, { passive: true });
+  </script>
 
 </body>
 </html>
