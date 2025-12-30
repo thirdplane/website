@@ -1,0 +1,19 @@
+# Temporary directories
+tmp_*/
+tmp/
+
+# Reference media (large files)
+*.mov
+*.mp4
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*~
+
+# Node (if added later)
+node_modules/
