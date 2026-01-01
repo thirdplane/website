@@ -1005,7 +1005,7 @@
     <section class="void-section" id="void">
       <div class="void-divider" aria-hidden="true"></div>
       <div class="void-canvas-wrap">
-        <canvas class="nova-canvas" data-halo-preset="endpoint-a"></canvas>
+        <canvas class="nova-canvas" data-halo-preset="void-green"></canvas>
       </div>
       <a href="#statement" class="scroll-indicator" aria-label="Scroll to statement">&#8595;</a>
     </section>
@@ -1369,6 +1369,15 @@
           b: [180, 200, 220],
           c: [20, 25, 35]
         }),
+        // Green / cyan prototype for void
+        'void-green': () => {
+          const ice = cssVarToRgb('--ice-400', '#7DE7FF');
+          const sun = cssVarToRgb('--sun-400', '#FFD26A');
+          const fresh = scaleRgb(mixRgb(sun, ice, 0.70), 0.96);   // bright green
+          const aqua = scaleRgb(mixRgb(ice, sun, 0.30), 0.98);    // aqua-cyan
+          const deep = [12, 34, 24];                             // dark teal anchor
+          return { a: fresh, b: aqua, c: deep };
+        },
         // Default hero: reference-like green ↔ blue (slightly thicker glow)
         'endpoint-a': () => {
           const ice = cssVarToRgb('--ice-400', '#7DE7FF');
@@ -1478,8 +1487,8 @@
         const hashPreset = normalizeKey(hashMatch ? decodeURIComponent(hashMatch[1]) : '');
         const dataPreset = normalizeKey(canvas && canvas.dataset ? canvas.dataset.haloPreset : '');
 
-        const desired = [paramPreset, hashPreset, dataPreset].find(Boolean) || 'endpoint-a';
-        const chosen = getPalette(desired) || getPalette('endpoint-a');
+        const desired = [paramPreset, hashPreset, dataPreset].find(Boolean) || 'void-green';
+        const chosen = getPalette(desired) || getPalette('void-green') || getPalette('endpoint-a');
         if (!paletteMap[normalizeKey(desired)]) {
           console.warn(`haloPreset "${desired}" not found. Available: ${Object.keys(palettePresets).join(', ')}`);
         }
