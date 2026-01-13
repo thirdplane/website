@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Page Header Variants — Mockup</title>
+  <meta name="description" content="Comparison mockup of header approaches for Writings, Works, and Vignettes detail pages.">
+  <meta name="theme-color" content="#05060A">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       NEON NOIR DESIGN SYSTEM
+       Third Plane Studios - 2025
+       ============================================ */
+
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.16);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+      --brand: var(--uv-600);
+      --link: var(--ice-400);
+
+      /* Glows */
+      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
+      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+
+      /* Typography */
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --letter-spacing-tight: -0.03em;
+
+      /* Spacing */
+      --section-padding: 120px;
+      --card-gap: 24px;
+      --page-padding: 24px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.35s ease;
+
+      /* Spring Curves */
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    }
+
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    .container--narrow {
+      max-width: 720px;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1.1;
+      color: var(--text-100);
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    /* ============ NAVIGATION ============ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: transparent;
+      transition: background var(--transition-medium), backdrop-filter var(--transition-medium);
+    }
+
+    .nav.scrolled {
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-200);
+      display: inline-flex;
+      align-items: baseline;
+      transition: text-shadow var(--spring-snap);
+    }
+
+    .nav-logo:hover {
+      text-shadow: var(--glow-ice);
+    }
+
+    .logo-third,
+    .logo-plane {
+      display: inline;
+      transition: margin var(--spring-snap);
+    }
+
+    .nav-logo:hover .logo-third {
+      margin-right: 0.25em;
+    }
+
+    .nav-logo:hover .logo-plane {
+      margin-left: 0.08em;
+    }
+
+    .logo-studios {
+      color: var(--text-600);
+      margin-left: 0.35em;
+    }
+
+    /* ============ MOCKUP PAGE STYLES ============ */
+    .mockup-hero {
+      padding: 140px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 600;
+      color: var(--text-100);
+      margin-bottom: 16px;
+    }
+
+    .mockup-hero__subtitle {
+      font-size: 18px;
+      color: var(--text-400);
+      max-width: 600px;
+    }
+
+    /* ============ VARIANT SECTIONS ============ */
+    .variant-section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .variant-section:last-child {
+      border-bottom: none;
+    }
+
+    .variant-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--uv-500);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(176, 75, 255, 0.2);
+    }
+
+    /* The actual header mockup area */
+    .variant-mockup {
+      background: var(--ink-900);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    /* ============ ARTICLE HEADER STYLES ============ */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-600);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-100);
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .section-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    /* Back link style */
+    .back-link {
+      font-size: 14px;
+      color: var(--text-400);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition-fast);
+      margin-bottom: 24px;
+    }
+
+    .back-link:hover {
+      color: var(--ice-400);
+    }
+
+    .back-link--right {
+      margin-bottom: 0;
+    }
+
+    /* Variant D spacing */
+    .section-label--spaced {
+      margin-bottom: 32px;
+    }
+
+    /* ============ HOVER-REVEAL NAVIGATION ============ */
+    .article-head--hover-reveal {
+      margin-bottom: 24px;
+    }
+
+    .article-head--hover-reveal .section-label {
+      margin-bottom: 8px;
+    }
+
+    .article-head--hover-reveal .back-link--reveal {
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform var(--spring-hover);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .article-head--hover-reveal:hover .back-link--reveal,
+    .article-head--hover-reveal:focus-within .back-link--reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hover-hint {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      font-style: italic;
+      margin-top: 16px;
+      opacity: 0.7;
+    }
+
+    /* ============ SLIDE-REPLACE NAVIGATION ============ */
+    .article-head--fade-replace {
+      margin-bottom: 24px;
+    }
+
+    .section-label-link {
+      display: inline-flex;
+      align-items: baseline;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-600);
+    }
+
+    .section-label-link__prefix {
+      color: var(--text-600);
+    }
+
+    .section-label-link__text {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-label-link__default,
+    .section-label-link__hover {
+      display: inline-block;
+      transition: transform 0.35s ease-out, opacity 0.3s ease-out;
+    }
+
+    .section-label-link__default {
+      color: var(--text-600);
+    }
+
+    .section-label-link__hover {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--ice-400);
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    /* Hover states */
+    .section-label-link:hover .section-label-link__default {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    .section-label-link:hover .section-label-link__hover {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* ============ WRITING PREVIEW CARD ============ */
+    .writing-preview {
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .writing-preview__header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .writing-preview__meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .writing-preview__date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-preview__reading-time {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-preview__title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 28px);
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+      line-height: 1.2;
+    }
+
+    .writing-preview__tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--ink-900);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-400);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .writing-preview__content {
+      padding: 32px;
+    }
+
+    .writing-preview__excerpt {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-200);
+    }
+
+    /* ============ SECTION DIVIDER ============ */
+    .section-divider {
+      padding: 64px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-divider__title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 600;
+      color: var(--text-100);
+      letter-spacing: var(--letter-spacing-tight);
+      margin-bottom: 12px;
+    }
+
+    .section-divider__subtitle {
+      font-size: 16px;
+      color: var(--text-400);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ============ WORK PREVIEW CARD ============ */
+    .work-preview {
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .work-preview__image {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, var(--ink-800) 0%, var(--ink-900) 50%, rgba(122, 43, 255, 0.15) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .work-preview__image svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.3;
+    }
+
+    .work-preview__content {
+      padding: 24px 32px;
+    }
+
+    .work-preview__type {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--uv-500);
+      margin-bottom: 8px;
+    }
+
+    .work-preview__title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .work-preview__description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-400);
+    }
+
+    /* ============ VIGNETTE PREVIEW CARD ============ */
+    .vignette-preview {
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .vignette-preview__image {
+      aspect-ratio: 1 / 1;
+      max-height: 320px;
+      background: linear-gradient(160deg, rgba(125, 231, 255, 0.08) 0%, var(--ink-900) 40%, rgba(255, 42, 74, 0.12) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vignette-preview__image svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.3;
+    }
+
+    .vignette-preview__content {
+      padding: 24px 32px;
+    }
+
+    .vignette-preview__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .vignette-preview__title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 3vw, 22px);
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+      line-height: 1.2;
+    }
+
+    .vignette-preview__model {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      background: rgba(125, 231, 255, 0.1);
+      border: 1px solid rgba(125, 231, 255, 0.2);
+      border-radius: 4px;
+      color: var(--ice-400);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .vignette-preview__prompt {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-600);
+      font-style: italic;
+      margin-top: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ============ RESPONSIVE FOR NEW CARDS ============ */
+    @media (max-width: 600px) {
+      .work-preview__content,
+      .vignette-preview__content {
+        padding: 20px 24px;
+      }
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--ink-900);
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+
+    .footer-copyright {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ============ ACCESSIBILITY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 600px) {
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .back-link--right {
+        margin-top: 8px;
+      }
+
+      .writing-preview__header {
+        padding: 20px 24px;
+      }
+
+      .writing-preview__content {
+        padding: 24px;
+      }
+
+      .variant-mockup {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Page Header -->
+    <section class="mockup-hero">
+      <div class="container container--narrow">
+        <h1 class="mockup-hero__title">Detail Page Header Variants</h1>
+        <p class="mockup-hero__subtitle">A comparison of header approaches for Writings, Works, and Vignettes detail pages. Each variant shows a different way to contextualize the reader above the content card.</p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         WRITINGS DETAIL PAGE HEADERS
+         ============================================ -->
+    <section class="section-divider">
+      <div class="container">
+        <h2 class="section-divider__title">Writings Detail Page Headers</h2>
+        <p class="section-divider__subtitle">7 different header approaches for article/essay detail pages.</p>
+      </div>
+    </section>
+
+    <!-- Variant A: Breadcrumb Navigation -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option A: Breadcrumb Navigation</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WRITINGS</span>
+          <a href="#" class="back-link">&larr; Back to all writings</a>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant B: Content Type Title -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option B: Content Type Title</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WRITINGS</span>
+          <div class="section-head">
+            <h1 class="section-title">Essay</h1>
+            <a href="#" class="back-link back-link--right">&larr; All Writings</a>
+          </div>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant C: Pull Primary Tag -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option C: Pull Primary Tag</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WRITINGS</span>
+          <div class="section-head">
+            <h1 class="section-title">Design</h1>
+            <span class="section-meta">Jan 15, 2025</span>
+          </div>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant D: Minimal — Label Only -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option D: Minimal — Label Only</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label section-label--spaced">// WRITINGS</span>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant E: Reading Context -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option E: Reading Context</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WRITINGS</span>
+          <div class="section-head">
+            <h1 class="section-title">Reading</h1>
+            <span class="section-meta">8 min</span>
+          </div>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant F: Hover-Reveal Navigation -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option F: Hover-Reveal Navigation</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <header class="article-head article-head--hover-reveal">
+            <span class="section-label">// WRITINGS</span>
+            <a href="#" class="back-link back-link--reveal">&larr; Back to all writings</a>
+          </header>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+
+          <p class="hover-hint">(Hover to reveal navigation)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant G: Slide-Replace Navigation -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Option G: Slide-Replace Navigation (Recommended)</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <header class="article-head article-head--fade-replace">
+            <a href="#" class="section-label-link">
+              <span class="section-label-link__prefix">//&nbsp;</span>
+              <span class="section-label-link__text">
+                <span class="section-label-link__default">WRITINGS</span>
+                <span class="section-label-link__hover">&larr; Back</span>
+              </span>
+            </a>
+          </header>
+
+          <!-- Card -->
+          <article class="writing-preview">
+            <header class="writing-preview__header">
+              <div class="writing-preview__meta">
+                <span class="writing-preview__date">January 15, 2025</span>
+                <span class="writing-preview__reading-time">8 min read</span>
+              </div>
+              <h2 class="writing-preview__title">Designing in the Void</h2>
+              <div class="writing-preview__tags">
+                <span class="tag">Design</span>
+                <span class="tag">Process</span>
+                <span class="tag">Philosophy</span>
+              </div>
+            </header>
+            <div class="writing-preview__content">
+              <p class="writing-preview__excerpt">There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is the void: not empty, but pregnant with potential...</p>
+            </div>
+          </article>
+
+          <p class="hover-hint">(Hover over label)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         WORKS DETAIL PAGE HEADERS
+         ============================================ -->
+    <section class="section-divider">
+      <div class="container">
+        <h2 class="section-divider__title">Works Detail Page Headers</h2>
+        <p class="section-divider__subtitle">Adapting the header patterns for individual project/case study pages.</p>
+      </div>
+    </section>
+
+    <!-- Works Option A: Content Type -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Works Option A: Content Type</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WORKS</span>
+          <div class="section-head">
+            <h1 class="section-title">Case Study</h1>
+            <a href="#" class="back-link back-link--right">&larr; All Works</a>
+          </div>
+
+          <!-- Card -->
+          <article class="work-preview">
+            <div class="work-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <circle cx="7" cy="6" r="1"/>
+                <circle cx="11" cy="6" r="1"/>
+              </svg>
+            </div>
+            <div class="work-preview__content">
+              <span class="work-preview__type">Brand Identity</span>
+              <h2 class="work-preview__title">Lumina</h2>
+              <p class="work-preview__description">A complete brand identity system for a next-generation sustainable lighting company.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Option B: Project Type -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Works Option B: Project Type</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WORKS</span>
+          <div class="section-head">
+            <h1 class="section-title">Brand Identity</h1>
+            <span class="section-meta">2025</span>
+          </div>
+
+          <!-- Card -->
+          <article class="work-preview">
+            <div class="work-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <circle cx="7" cy="6" r="1"/>
+                <circle cx="11" cy="6" r="1"/>
+              </svg>
+            </div>
+            <div class="work-preview__content">
+              <span class="work-preview__type">Brand Identity</span>
+              <h2 class="work-preview__title">Lumina</h2>
+              <p class="work-preview__description">A complete brand identity system for a next-generation sustainable lighting company.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Option C: Viewing Context -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Works Option C: Viewing Context</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// WORKS</span>
+          <div class="section-head">
+            <h1 class="section-title">Viewing</h1>
+            <span class="section-meta">01 / 15</span>
+          </div>
+
+          <!-- Card -->
+          <article class="work-preview">
+            <div class="work-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <circle cx="7" cy="6" r="1"/>
+                <circle cx="11" cy="6" r="1"/>
+              </svg>
+            </div>
+            <div class="work-preview__content">
+              <span class="work-preview__type">Brand Identity</span>
+              <h2 class="work-preview__title">Lumina</h2>
+              <p class="work-preview__description">A complete brand identity system for a next-generation sustainable lighting company.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Option D: Hover-Reveal Navigation -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Works Option D: Hover-Reveal Navigation</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <header class="article-head article-head--hover-reveal">
+            <span class="section-label">// WORKS</span>
+            <a href="#" class="back-link back-link--reveal">&larr; Back to all works</a>
+          </header>
+
+          <!-- Card -->
+          <article class="work-preview">
+            <div class="work-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <circle cx="7" cy="6" r="1"/>
+                <circle cx="11" cy="6" r="1"/>
+              </svg>
+            </div>
+            <div class="work-preview__content">
+              <span class="work-preview__type">Brand Identity</span>
+              <h2 class="work-preview__title">Lumina</h2>
+              <p class="work-preview__description">A complete brand identity system for a next-generation sustainable lighting company.</p>
+            </div>
+          </article>
+
+          <p class="hover-hint">(Hover to reveal navigation)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Option E: Slide-Replace Navigation -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Works Option E: Slide-Replace Navigation (Recommended)</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <header class="article-head article-head--fade-replace">
+            <a href="#" class="section-label-link">
+              <span class="section-label-link__prefix">//&nbsp;</span>
+              <span class="section-label-link__text">
+                <span class="section-label-link__default">WORKS</span>
+                <span class="section-label-link__hover">&larr; Back</span>
+              </span>
+            </a>
+          </header>
+
+          <!-- Card -->
+          <article class="work-preview">
+            <div class="work-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <circle cx="7" cy="6" r="1"/>
+                <circle cx="11" cy="6" r="1"/>
+              </svg>
+            </div>
+            <div class="work-preview__content">
+              <span class="work-preview__type">Brand Identity</span>
+              <h2 class="work-preview__title">Lumina</h2>
+              <p class="work-preview__description">A complete brand identity system for a next-generation sustainable lighting company.</p>
+            </div>
+          </article>
+
+          <p class="hover-hint">(Hover over label)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         VIGNETTES DETAIL PAGE HEADERS
+         ============================================ -->
+    <section class="section-divider">
+      <div class="container">
+        <h2 class="section-divider__title">Vignettes Detail Page Headers</h2>
+        <p class="section-divider__subtitle">Adapting the header patterns for individual AI-generated piece pages.</p>
+      </div>
+    </section>
+
+    <!-- Vignettes Option A: Content Type -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Vignettes Option A: Content Type</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// VIGNETTES</span>
+          <div class="section-head">
+            <h1 class="section-title">Image</h1>
+            <a href="#" class="back-link back-link--right">&larr; All Vignettes</a>
+          </div>
+
+          <!-- Card -->
+          <article class="vignette-preview">
+            <div class="vignette-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+            <div class="vignette-preview__content">
+              <div class="vignette-preview__meta">
+                <h2 class="vignette-preview__title">Neon City</h2>
+                <span class="vignette-preview__model">Midjourney v6</span>
+              </div>
+              <p class="vignette-preview__prompt">"A sprawling cyberpunk cityscape at night, neon signs reflecting in rain-slicked streets, atmospheric fog, cinematic lighting..."</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vignettes Option B: AI Model -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Vignettes Option B: AI Model</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// VIGNETTES</span>
+          <div class="section-head">
+            <h1 class="section-title">Midjourney v6</h1>
+            <span class="section-meta">Jan 10, 2025</span>
+          </div>
+
+          <!-- Card -->
+          <article class="vignette-preview">
+            <div class="vignette-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+            <div class="vignette-preview__content">
+              <div class="vignette-preview__meta">
+                <h2 class="vignette-preview__title">Neon City</h2>
+                <span class="vignette-preview__model">Midjourney v6</span>
+              </div>
+              <p class="vignette-preview__prompt">"A sprawling cyberpunk cityscape at night, neon signs reflecting in rain-slicked streets, atmospheric fog, cinematic lighting..."</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vignettes Option C: Viewing Context -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Vignettes Option C: Viewing Context</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <span class="section-label">// VIGNETTES</span>
+          <div class="section-head">
+            <h1 class="section-title">Viewing</h1>
+            <span class="section-meta">01 / 06</span>
+          </div>
+
+          <!-- Card -->
+          <article class="vignette-preview">
+            <div class="vignette-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+            <div class="vignette-preview__content">
+              <div class="vignette-preview__meta">
+                <h2 class="vignette-preview__title">Neon City</h2>
+                <span class="vignette-preview__model">Midjourney v6</span>
+              </div>
+              <p class="vignette-preview__prompt">"A sprawling cyberpunk cityscape at night, neon signs reflecting in rain-slicked streets, atmospheric fog, cinematic lighting..."</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vignettes Option D: Slide-Replace Navigation -->
+    <section class="variant-section">
+      <div class="container container--narrow">
+        <div class="variant-label">Vignettes Option D: Slide-Replace Navigation (Recommended)</div>
+        <div class="variant-mockup">
+          <!-- Header -->
+          <header class="article-head article-head--fade-replace">
+            <a href="#" class="section-label-link">
+              <span class="section-label-link__prefix">//&nbsp;</span>
+              <span class="section-label-link__text">
+                <span class="section-label-link__default">VIGNETTES</span>
+                <span class="section-label-link__hover">&larr; Back</span>
+              </span>
+            </a>
+          </header>
+
+          <!-- Card -->
+          <article class="vignette-preview">
+            <div class="vignette-preview__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+            <div class="vignette-preview__content">
+              <div class="vignette-preview__meta">
+                <h2 class="vignette-preview__title">Neon City</h2>
+                <span class="vignette-preview__model">Midjourney v6</span>
+              </div>
+              <p class="vignette-preview__prompt">"A sprawling cyberpunk cityscape at night, neon signs reflecting in rain-slicked streets, atmospheric fog, cinematic lighting..."</p>
+            </div>
+          </article>
+
+          <p class="hover-hint">(Hover over label)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-copyright">&copy; 2025 Third Plane Studios — Detail Page Headers Mockup</span>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // Nav Scroll State
+      const nav = document.getElementById('nav');
+      if (nav) {
+        const updateNavState = () => {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+        };
+
+        updateNavState();
+        window.addEventListener('scroll', updateNavState, { passive: true });
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Designing in the Void — Third Plane Studios</title>
+  <meta name="description" content="On the practice of creating from nothing — embracing uncertainty as a design methodology.">
+  <meta name="theme-color" content="#05060A">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Designing in the Void — Third Plane Studios">
+  <meta property="og:description" content="On the practice of creating from nothing — embracing uncertainty as a design methodology.">
+  <meta property="og:url" content="https://www.thirdplane.io/writings/designing-in-the-void">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       NEON NOIR DESIGN SYSTEM
+       Third Plane Studios - 2025
+       ============================================ */
+
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.16);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+      --brand: var(--uv-600);
+      --link: var(--ice-400);
+
+      /* Gradient background */
+      --gradient-soul:
+        radial-gradient(55rem 55rem at 38% 26%, rgba(122, 43, 255, 0.35) 0%, rgba(122, 43, 255, 0.00) 60%),
+        radial-gradient(52rem 52rem at 60% 34%, rgba(176, 75, 255, 0.25) 0%, rgba(176, 75, 255, 0.00) 60%),
+        radial-gradient(58rem 58rem at 70% 62%, rgba(255, 42, 74, 0.20) 0%, rgba(255, 42, 74, 0.00) 60%),
+        radial-gradient(64rem 64rem at 28% 70%, rgba(255, 138, 61, 0.16) 0%, rgba(255, 138, 61, 0.00) 60%),
+        radial-gradient(70rem 70rem at 55% 8%, rgba(125, 231, 255, 0.14) 0%, rgba(125, 231, 255, 0.00) 60%),
+        linear-gradient(140deg, rgba(255, 210, 106, 0.00) 0%, rgba(255, 210, 106, 0.00) 28%, rgba(255, 210, 106, 0.22) 36%, rgba(255, 210, 106, 0.00) 55%, rgba(255, 210, 106, 0.00) 100%);
+
+      /* Glows */
+      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
+      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
+      --glow-red: 0 0 22px rgba(255, 42, 74, 0.22);
+      --glow-gold: 0 0 28px rgba(255, 210, 106, 0.18);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+      --scrim-strong: rgba(5, 6, 10, 0.86);
+
+      /* Typography */
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --letter-spacing-tight: -0.03em;
+
+      /* Spacing */
+      --section-padding: 120px;
+      --card-gap: 24px;
+      --page-padding: 24px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.35s ease;
+
+      /* Spring Curves */
+      --spring-hero: 550ms linear(0, 0.2606, 0.7094, 1.0343, 1.158, 1.1389, 1.0674, 1.006, 0.977, 0.975, 0.9856, 0.9967, 1.003, 1, 1.0029, 1.001, 0.9997, 1);
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+      --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    }
+
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Page padding - shared by nav and content containers */
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    .container--narrow {
+      max-width: 720px;
+    }
+
+    /* Section Label */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-600);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1.1;
+      color: var(--text-100);
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    /* ============ NAVIGATION ============ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: transparent;
+      transition: background var(--transition-medium), backdrop-filter var(--transition-medium);
+    }
+
+    .nav.scrolled {
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    /* Nav Logo with Tension-Snap Animation */
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-200);
+      display: inline-flex;
+      align-items: baseline;
+      transition: text-shadow var(--spring-snap);
+    }
+
+    .nav-logo:hover {
+      text-shadow: var(--glow-ice);
+    }
+
+    .logo-third,
+    .logo-plane {
+      display: inline;
+      transition: margin var(--spring-snap);
+    }
+
+    /* Restore hover micro-shift animation on wordmark */
+    .nav-logo:hover .logo-third {
+      margin-right: 0.25em;
+    }
+
+    .nav-logo:hover .logo-plane {
+      margin-left: 0.08em;
+    }
+
+    .logo-studios {
+      color: var(--text-600);
+      margin-left: 0.35em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-400);
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--ice-400);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Nav Link Active State */
+    .nav-link--active {
+      color: var(--text-100);
+    }
+
+    .nav-link--active::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 20px;
+      }
+      .nav-links a {
+        font-size: 13px;
+      }
+    }
+
+    /* ============ ARTICLE SECTION ============ */
+    .article-section {
+      padding: 120px 0 var(--section-padding);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    /* ============ SLIDE-REPLACE NAVIGATION ============ */
+    .article-head {
+      margin-bottom: 32px;
+    }
+
+    .section-label-link {
+      display: inline-flex;
+      align-items: baseline;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-600);
+    }
+
+    .section-label-link__prefix {
+      color: var(--text-600);
+    }
+
+    .section-label-link__text {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-label-link__default,
+    .section-label-link__hover {
+      display: inline-block;
+      transition: transform 0.35s ease-out, opacity 0.3s ease-out;
+    }
+
+    .section-label-link__default {
+      color: var(--text-600);
+    }
+
+    .section-label-link__hover {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--ice-400);
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .section-label-link:hover .section-label-link__default {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    .section-label-link:hover .section-label-link__hover {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* ============ WRITING PREVIEW CARD ============ */
+    .writing-preview {
+      background: var(--ink-900);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .writing-preview__header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .writing-preview__meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .writing-preview__date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-preview__reading-time {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-preview__title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 28px);
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+      line-height: 1.2;
+    }
+
+    .writing-preview__tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-400);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .writing-preview__content {
+      padding: 32px;
+    }
+
+    /* ============ PROSE STYLES ============ */
+    .prose {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-200);
+    }
+
+    .prose > * + * {
+      margin-top: 1.5em;
+    }
+
+    .prose h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-100);
+      margin-top: 2.5em;
+      margin-bottom: 0.75em;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .prose h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-100);
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+
+    .prose p {
+      margin-top: 1.25em;
+    }
+
+    .prose p:first-child {
+      margin-top: 0;
+    }
+
+    .prose a {
+      color: var(--ice-400);
+      text-decoration: underline;
+      text-decoration-color: rgba(125, 231, 255, 0.3);
+      text-underline-offset: 2px;
+      transition: text-decoration-color var(--transition-fast);
+    }
+
+    .prose a:hover {
+      text-decoration-color: var(--ice-400);
+    }
+
+    .prose strong {
+      color: var(--text-100);
+      font-weight: 600;
+    }
+
+    .prose em {
+      font-style: italic;
+    }
+
+    .prose blockquote {
+      border-left: 3px solid var(--uv-600);
+      padding-left: 1.5em;
+      margin-left: 0;
+      color: var(--text-400);
+      font-style: italic;
+    }
+
+    .prose ul,
+    .prose ol {
+      padding-left: 1.5em;
+    }
+
+    .prose li {
+      margin-top: 0.5em;
+    }
+
+    .prose li::marker {
+      color: var(--text-600);
+    }
+
+    .prose code {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      background: var(--ink-850);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: var(--ice-400);
+    }
+
+    .prose pre {
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25em 1.5em;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .prose pre code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      color: var(--text-200);
+    }
+
+    .prose hr {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      margin: 3em 0;
+    }
+
+    .prose figure {
+      margin: 2em 0;
+    }
+
+    .prose figcaption {
+      font-size: 0.875rem;
+      color: var(--text-600);
+      margin-top: 0.75em;
+      text-align: center;
+    }
+
+    /* ============ WRITING NAV (Prev/Next) ============ */
+    .writing-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .writing-nav__link {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px 20px;
+      background: var(--ink-900);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--spring-hover);
+      flex: 1;
+      max-width: 45%;
+    }
+
+    .writing-nav__link:hover {
+      background: var(--ink-850);
+      border-color: rgba(125, 231, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .writing-nav__link--prev {
+      align-items: flex-start;
+    }
+
+    .writing-nav__link--next {
+      align-items: flex-end;
+      margin-left: auto;
+    }
+
+    .writing-nav__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .writing-nav__title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-200);
+      letter-spacing: var(--letter-spacing-tight);
+      transition: color var(--transition-fast);
+    }
+
+    .writing-nav__link:hover .writing-nav__title {
+      color: var(--ice-400);
+    }
+
+    @media (max-width: 600px) {
+      .writing-nav {
+        flex-direction: column;
+      }
+
+      .writing-nav__link {
+        max-width: 100%;
+      }
+
+      .writing-nav__link--next {
+        align-items: flex-start;
+      }
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--ink-900);
+      padding: 80px 0 48px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125, 231, 255, 0.3), transparent);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-200);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-tagline {
+      font-size: 15px;
+      color: var(--text-600);
+      line-height: 1.5;
+    }
+
+    .footer-contact {
+      text-align: right;
+    }
+
+    .footer-email {
+      display: inline-block;
+      font-size: 16px;
+      color: var(--text-200);
+      margin-bottom: 16px;
+      position: relative;
+      transition: color var(--transition-fast), text-shadow var(--transition-fast);
+    }
+
+    .footer-email::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .footer-email:hover {
+      color: var(--ice-400);
+      text-shadow: var(--glow-ice);
+    }
+
+    .footer-email:hover::after {
+      width: 100%;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: var(--text-600);
+      border: 1px solid var(--border);
+      transition: all var(--spring-hover);
+    }
+
+    .footer-social a:hover {
+      color: var(--ice-400);
+      border-color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      transform: translateY(-3px);
+      box-shadow: var(--glow-ice);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 600px) {
+      .footer {
+        padding: 64px 0 40px;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .footer-contact {
+        text-align: left;
+      }
+      .footer-social {
+        justify-content: flex-start;
+      }
+    }
+
+    /* ============ ACCESSIBILITY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus states for keyboard navigation */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    /* Selection styling */
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
+      <div class="nav-links">
+        <a href="/works.html">Works</a>
+        <a href="/writings.html" class="nav-link--active">Writings</a>
+        <a href="/vignettes.html">Vignettes</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="article-section">
+      <div class="container">
+        <!-- Slide-replace navigation header -->
+        <header class="article-head">
+          <a href="/writings.html" class="section-label-link">
+            <span class="section-label-link__prefix">//&nbsp;</span>
+            <span class="section-label-link__text">
+              <span class="section-label-link__default">WRITINGS</span>
+              <span class="section-label-link__hover">&larr; Back</span>
+            </span>
+          </a>
+        </header>
+
+        <article class="writing-preview">
+          <header class="writing-preview__header">
+            <div class="writing-preview__meta">
+              <span class="writing-preview__date">January 15, 2025</span>
+              <span class="writing-preview__reading-time">8 min read</span>
+            </div>
+            <h1 class="writing-preview__title">Designing in the Void</h1>
+            <div class="writing-preview__tags">
+              <span class="tag">Design</span>
+              <span class="tag">Process</span>
+              <span class="tag">Philosophy</span>
+            </div>
+          </header>
+          <div class="writing-preview__content">
+            <div class="prose">
+              <p>There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is <strong>the void</strong>: not empty, but pregnant with potential.</p>
+
+              <p>Most designers fear this space. They rush to fill it with references, precedents, familiar patterns. But what if we stayed here longer? What if we learned to <em>design from</em> the void rather than <em>away from</em> it?</p>
+
+              <h2>The Practice of Unknowing</h2>
+
+              <p>Traditional design education teaches us to accumulate — techniques, styles, tools, references. We build arsenals of solutions waiting for problems. But this accumulation can become armor, protecting us from the discomfort of genuine uncertainty.</p>
+
+              <blockquote>
+                "In the beginner's mind there are many possibilities, but in the expert's mind there are few."
+                <br>— Shunryu Suzuki
+              </blockquote>
+
+              <p>The practice I'm proposing isn't about forgetting what you know. It's about <a href="#">holding knowledge loosely</a> — available when needed, but not determining the shape of what hasn't yet emerged.</p>
+
+              <h3>Three Principles</h3>
+
+              <ul>
+                <li><strong>Resist premature clarity.</strong> The urge to "figure it out" is often the urge to escape discomfort. Stay in the question longer than feels comfortable.</li>
+                <li><strong>Document the negative space.</strong> What you choose <em>not</em> to do is as defining as what you create. Make those decisions visible.</li>
+                <li><strong>Trust emergence.</strong> The best work often arrives — it isn't forced. Create conditions for arrival.</li>
+              </ul>
+
+              <hr>
+
+              <p>This essay is an artifact of its own methodology. I began with only a title and a feeling. The structure emerged through writing — through staying in the void until shapes became visible.</p>
+
+              <p>What void are you avoiding?</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Previous/Next Navigation -->
+        <nav class="writing-nav" aria-label="More writings">
+          <a href="#" class="writing-nav__link writing-nav__link--prev">
+            <span class="writing-nav__label">Previous</span>
+            <span class="writing-nav__title">The Third Plane Manifesto</span>
+          </a>
+          <a href="#" class="writing-nav__link writing-nav__link--next">
+            <span class="writing-nav__label">Next</span>
+            <span class="writing-nav__title">Latent Space as Medium</span>
+          </a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">thirdplane studios</span>
+          <p class="footer-tagline">The curation of latent space.</p>
+        </div>
+
+        <div class="footer-contact">
+          <a href="mailto:j@thirdplane.io" class="footer-email">j@thirdplane.io</a>
+          <div class="footer-social">
+            <a href="https://github.com/thirdplane" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">&copy; 2025 Third Plane Studios</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ============ Nav Scroll State ============
+      const nav = document.getElementById('nav');
+      if (nav) {
+        const updateNavState = () => {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+        };
+
+        updateNavState();
+        window.addEventListener('scroll', updateNavState, { passive: true });
+      }
+    })();
+  </script>
+
+</body>
+</html>

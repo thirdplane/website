@@ -92,6 +92,7 @@
       /* Spacing */
       --section-padding: 120px;
       --card-gap: 24px;
+      --page-padding: 24px;
 
       /* Transitions */
       --transition-fast: 0.2s ease;
@@ -102,6 +103,10 @@
       --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
       --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
       --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    }
+
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
     }
 
     /* ============ RESET & BASE ============ */
@@ -132,11 +137,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    @media (min-width: 768px) {
-      .container { padding: 0 48px; }
+      padding: 0 var(--page-padding);
     }
 
     /* Section Label */
@@ -185,15 +186,11 @@
 
     .nav-container {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    @media (min-width: 768px) {
-      .nav-container { padding: 0 48px; }
+      padding: 0 var(--page-padding);
     }
 
     /* Nav Logo with Tension-Snap Animation */
@@ -994,9 +991,14 @@
   <!-- Navigation (sticky) -->
   <nav class="nav" id="nav">
     <div class="nav-container">
-      <a href="#void" class="nav-logo">
+      <a href="/" class="nav-logo">
         <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
       </a>
+      <div class="nav-links">
+        <a href="/works.html">Works</a>
+        <a href="/writings.html">Writings</a>
+        <a href="/vignettes.html">Vignettes</a>
+      </div>
     </div>
   </nav>
 
