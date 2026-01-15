@@ -1,0 +1,123 @@
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/prose.css" %}
+{% include "styles/vignette.css" %}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="vignette-page">
+
+  <!-- Back Link: Simple, beautiful text arrow -->
+  <div class="back-link-wrapper">
+    <a href="/vignettes/" class="back-link">
+      <svg class="back-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Vignettes
+    </a>
+  </div>
+
+  <!-- Vignette Surface: Wide elevated card with glass-morphism -->
+  <article class="vignette-surface">
+
+    <!-- Vignette Header -->
+    <header class="vignette-header">
+      <div class="vignette-meta">
+        {% if model %}
+        <span class="vignette-model">{{ model }}</span>
+        {% endif %}
+        <time datetime="{{ date | isoDate }}" class="vignette-date">{{ date | formatDate }}</time>
+        {% if duration %}
+        <span class="vignette-duration">{{ duration }}</span>
+        {% endif %}
+      </div>
+
+      <h1 class="vignette-title">{{ title }}</h1>
+
+      {% if series %}
+      <div class="vignette-series-wrapper">
+        <span class="vignette-series">{{ series }}</span>
+      </div>
+      {% endif %}
+    </header>
+
+    <!-- Vignette Video: Hero of the page -->
+    <div class="vignette-video-section">
+      <div class="vignette-video-wrapper">
+        <video
+          class="vignette-video"
+          controls
+          playsinline
+          preload="metadata"
+          {% if poster %}poster="{{ poster }}"{% endif %}
+        >
+          <source src="{{ video }}.mp4" type="video/mp4">
+          <source src="{{ video }}.webm" type="video/webm">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </div>
+
+    <!-- Vignette Prompt: Behind the scenes -->
+    {% if prompt %}
+    <div class="vignette-prompt-section">
+      <div class="vignette-prompt-label">
+        <svg class="vignette-prompt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+        Prompt
+      </div>
+      <blockquote class="vignette-prompt">
+        {{ prompt }}
+      </blockquote>
+    </div>
+    {% endif %}
+
+    <!-- Vignette Content: Markdown body content -->
+    {% if content | trim %}
+    <div class="vignette-content">
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Vignette End Marker -->
+    <footer class="vignette-end">
+      <div class="vignette-end-marker">
+        <span class="vignette-end-text">End</span>
+      </div>
+
+      <!-- Prev/Next Navigation -->
+      {% set previousVignette = collections.vignette | getPreviousCollectionItem(page) %}
+      {% set nextVignette = collections.vignette | getNextCollectionItem(page) %}
+
+      {# Only show nav items that have a video (are actual vignettes, not index) #}
+      {% set showPrev = previousVignette and previousVignette.data.video %}
+      {% set showNext = nextVignette and nextVignette.data.video %}
+
+      {% if showPrev or showNext %}
+      <nav class="vignette-nav" aria-label="More vignettes">
+        {% if showPrev %}
+        <a href="{{ previousVignette.url }}" class="vignette-nav__link vignette-nav__link--prev">
+          <span class="vignette-nav__label">Previous</span>
+          <span class="vignette-nav__title">{{ previousVignette.data.title }}</span>
+        </a>
+        {% endif %}
+
+        {% if showNext %}
+        <a href="{{ nextVignette.url }}" class="vignette-nav__link vignette-nav__link--next">
+          <span class="vignette-nav__label">Next</span>
+          <span class="vignette-nav__title">{{ nextVignette.data.title }}</span>
+        </a>
+        {% endif %}
+      </nav>
+      {% endif %}
+    </footer>
+
+  </article>
+</div>
+{% endblock %}

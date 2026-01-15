@@ -1,0 +1,128 @@
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+
+.footer {
+  background: var(--ink-900);
+  padding: 32px 0 24px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(125, 231, 255, 0.3), transparent);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-200);
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.footer-contact {
+  text-align: right;
+}
+
+.footer-email {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--text-200);
+  margin-bottom: 16px;
+  position: relative;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.footer-email::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ice-400);
+  transition: width var(--transition-fast);
+}
+
+.footer-email:hover {
+  color: var(--ice-400);
+  text-shadow: var(--glow-ice);
+}
+
+.footer-email:hover::after {
+  width: 100%;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--text-600);
+  border: 1px solid var(--border);
+  transition: all var(--spring-hover);
+}
+
+.footer-social a:hover {
+  color: var(--ice-400);
+  border-color: var(--ice-400);
+  background: rgba(125, 231, 255, 0.08);
+  transform: translateY(-3px);
+  box-shadow: var(--glow-ice);
+}
+
+.footer-social svg {
+  width: 14px;
+  height: 14px;
+}
+
+.footer-copyright {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 32px 0 24px;
+  }
+  .footer-content {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .footer-contact {
+    text-align: left;
+  }
+  .footer-social {
+    justify-content: flex-start;
+  }
+}

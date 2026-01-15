@@ -1,0 +1,44 @@
+---
+title: Writings
+description: Essays and explorations on design, technology, and creative process from Third Plane Studios.
+layout: false
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/writings-list.css" %}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="writings-section">
+  <div class="container">
+    <header class="writings-head">
+      <span class="section-label">// WRITINGS</span>
+      <span class="writings-count">{{ collections.writings | length | pad(2) }} Essays</span>
+    </header>
+
+    <div class="writings-list">
+      {% for writing in collections.writings %}
+      <a href="{{ writing.url }}" class="writing-item">
+        <div class="writing-item__content">
+          <h3 class="writing-item__title">{{ writing.data.title }}</h3>
+          {% if writing.data.description %}
+          <p class="writing-item__excerpt">{{ writing.data.description }}</p>
+          {% endif %}
+        </div>
+        <div class="writing-item__meta">
+          <time datetime="{{ writing.data.date | isoDate }}" class="writing-item__date">
+            {{ writing.data.date | formatDate }}
+          </time>
+          <span class="writing-item__reading-time">{{ writing.templateContent | readingTime }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+

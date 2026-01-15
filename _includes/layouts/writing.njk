@@ -1,0 +1,61 @@
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/prose.css" %}
+{% include "styles/writing.css" %}
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="writing-page">
+
+  <!-- Back Link: Simple, beautiful text arrow -->
+  <div class="back-link-wrapper">
+    <a href="/writings/" class="back-link">
+      <svg class="back-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Writings
+    </a>
+  </div>
+
+  <!-- Article Surface: Wide elevated card with glass-morphism -->
+  <article class="article-surface">
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="article-meta">
+        <time datetime="{{ date | isoDate }}" class="article-date">{{ date | formatDate }}</time>
+        <span class="article-reading-time">{{ content | readingTime }}</span>
+      </div>
+
+      <h1 class="article-title">{{ title }}</h1>
+
+      {% set displayTags = tags | reject("equalto", "writing") | reject("equalto", "writings") %}
+      {% if displayTags | length > 0 %}
+      <div class="article-tags">
+        {% for tag in displayTags %}
+        <span class="tag{% if loop.first %} tag--accent{% endif %}">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    <!-- Article Content: Readable prose column -->
+    <div class="article-content">
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+    </div>
+
+    <!-- Article End Marker -->
+    <footer class="article-end">
+      <div class="article-end-marker">
+        <span class="article-end-text">End</span>
+      </div>
+    </footer>
+
+  </article>
+</main>
+{% endblock %}

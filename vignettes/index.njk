@@ -1,0 +1,151 @@
+---
+title: Vignettes
+description: AI-generated videos — explorations in latent space
+layout: false
+permalink: /vignettes/
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/vignettes.css" %}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+{% endblock %}
+
+{% block content %}
+<section class="vignettes-section">
+  <div class="container">
+    <header class="vignettes-head">
+      <span class="section-label">// VIGNETTES</span>
+      <span class="vignettes-count">{{ collections.vignettes | length | pad(2) }} Pieces</span>
+    </header>
+
+    <div class="vignettes-grid">
+      {% for vignette in collections.vignettes %}
+      <a href="{{ vignette.data.video }}"
+         class="vignette-card glightbox"
+         data-reveal
+         data-index="{{ loop.index0 }}"
+         data-gallery="vignettes"
+         data-title="{{ vignette.data.title }}"
+         data-description="Prompt: {{ vignette.data.prompt }}<br>Model: {{ vignette.data.model }}{% if vignette.data.duration %}<br>Duration: {{ vignette.data.duration }}{% endif %}">
+        <figure class="vignette-media">
+          <video
+            src="{{ vignette.data.video }}"
+            poster="{{ vignette.data.poster | default(vignette.data.video | replace('.mp4', '.jpg') | replace('f_auto', 'so_0')) }}"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+        </figure>
+        <div class="vignette-content">
+          <h3 class="vignette-title">{{ vignette.data.title }}</h3>
+          <div class="vignette-tech">
+            <span class="tech-tag">{{ vignette.data.model }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+  // GLightbox initialization
+  const lightbox = GLightbox({
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: true,
+    openEffect: 'fade',
+    closeEffect: 'fade'
+  });
+
+  // Scroll reveal with center-out DIA-inspired timing
+  (function() {
+    'use strict';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cards = document.querySelectorAll('[data-reveal]');
+
+    if (prefersReducedMotion) {
+      cards.forEach(card => card.classList.add('revealed'));
+      return;
+    }
+
+    // DIA-inspired: center column reveals first, then sides
+    const getRevealOrder = (cols) => {
+      if (cols === 3) return [1, 0, 2];
+      if (cols === 2) return [0, 1];
+      return [0];
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = parseInt(card.dataset.index, 10) || 0;
+
+          const gridStyles = getComputedStyle(card.parentElement);
+          const columns = gridStyles.gridTemplateColumns.split(' ').length;
+
+          const row = Math.floor(index / columns);
+          const col = index % columns;
+          const revealOrder = getRevealOrder(columns);
+          const orderIndex = revealOrder[col] !== undefined ? revealOrder[col] : col;
+
+          const delay = (row * 250) + (orderIndex * 100);
+
+          card.style.transitionDelay = `${delay}ms`;
+          card.classList.add('revealed');
+
+          observer.unobserve(card);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  })();
+
+  // Hover autoplay functionality
+  (function() {
+    'use strict';
+
+    const cards = document.querySelectorAll('.vignette-card');
+
+    cards.forEach(card => {
+      const video = card.querySelector('video');
+      if (!video) return;
+
+      // Play on hover
+      card.addEventListener('mouseenter', () => {
+        video.play().catch(() => {
+          // Autoplay blocked — user hasn't interacted yet
+        });
+      });
+
+      // Pause and reset on leave
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+
+      // Prevent video click from interfering with lightbox
+      video.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.click();
+      });
+    });
+  })();
+</script>
+{% endblock %}

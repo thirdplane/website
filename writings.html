@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writings — Third Plane Studios</title>
+  <meta name="description" content="Essays and thoughts from Third Plane Studios. On design, process, and the curation of latent space.">
+  <meta name="theme-color" content="#05060A">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Writings — Third Plane Studios">
+  <meta property="og:description" content="Essays and thoughts from Third Plane Studios. On design, process, and the curation of latent space.">
+  <meta property="og:url" content="https://www.thirdplane.io/writings">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       NEON NOIR DESIGN SYSTEM
+       Third Plane Studios - 2025
+       ============================================ */
+
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.16);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+      --brand: var(--uv-600);
+      --link: var(--ice-400);
+
+      /* Gradient background */
+      --gradient-soul:
+        radial-gradient(55rem 55rem at 38% 26%, rgba(122, 43, 255, 0.35) 0%, rgba(122, 43, 255, 0.00) 60%),
+        radial-gradient(52rem 52rem at 60% 34%, rgba(176, 75, 255, 0.25) 0%, rgba(176, 75, 255, 0.00) 60%),
+        radial-gradient(58rem 58rem at 70% 62%, rgba(255, 42, 74, 0.20) 0%, rgba(255, 42, 74, 0.00) 60%),
+        radial-gradient(64rem 64rem at 28% 70%, rgba(255, 138, 61, 0.16) 0%, rgba(255, 138, 61, 0.00) 60%),
+        radial-gradient(70rem 70rem at 55% 8%, rgba(125, 231, 255, 0.14) 0%, rgba(125, 231, 255, 0.00) 60%),
+        linear-gradient(140deg, rgba(255, 210, 106, 0.00) 0%, rgba(255, 210, 106, 0.00) 28%, rgba(255, 210, 106, 0.22) 36%, rgba(255, 210, 106, 0.00) 55%, rgba(255, 210, 106, 0.00) 100%);
+
+      /* Glows */
+      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
+      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
+      --glow-red: 0 0 22px rgba(255, 42, 74, 0.22);
+      --glow-gold: 0 0 28px rgba(255, 210, 106, 0.18);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+      --scrim-strong: rgba(5, 6, 10, 0.86);
+
+      /* Typography */
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --letter-spacing-tight: -0.03em;
+
+      /* Spacing */
+      --section-padding: 120px;
+      --card-gap: 24px;
+      --page-padding: 24px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.35s ease;
+
+      /* Spring Curves */
+      --spring-hero: 550ms linear(0, 0.2606, 0.7094, 1.0343, 1.158, 1.1389, 1.0674, 1.006, 0.977, 0.975, 0.9856, 0.9967, 1.003, 1, 1.0029, 1.001, 0.9997, 1);
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+      --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    }
+
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Page padding - shared by nav and content containers */
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    /* Section Label */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-600);
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1.1;
+      color: var(--text-100);
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    /* ============ NAVIGATION ============ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: transparent;
+      transition: background var(--transition-medium), backdrop-filter var(--transition-medium);
+    }
+
+    .nav.scrolled {
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    /* Nav Logo with Tension-Snap Animation */
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-200);
+      display: inline-flex;
+      align-items: baseline;
+      transition: text-shadow var(--spring-snap);
+    }
+
+    .nav-logo:hover {
+      text-shadow: var(--glow-ice);
+    }
+
+    .logo-third,
+    .logo-plane {
+      display: inline;
+      transition: margin var(--spring-snap);
+    }
+
+    /* Restore hover micro-shift animation on wordmark */
+    .nav-logo:hover .logo-third {
+      margin-right: 0.25em;
+    }
+
+    .nav-logo:hover .logo-plane {
+      margin-left: 0.08em;
+    }
+
+    .logo-studios {
+      color: var(--text-600);
+      margin-left: 0.35em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-400);
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--ice-400);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Nav Link Active State */
+    .nav-link--active {
+      color: var(--text-100);
+    }
+
+    .nav-link--active::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 20px;
+      }
+      .nav-links a {
+        font-size: 13px;
+      }
+    }
+
+    /* ============ WRITINGS SECTION ============ */
+    .writings-section {
+      padding: 120px 0 var(--section-padding);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    .writings-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .writings-head .section-label {
+      margin-bottom: 0;
+    }
+
+    .writings-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============ WRITINGS LIST ============ */
+    .writings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .writing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      background: var(--ink-900);
+      transition: background var(--transition-fast);
+      gap: 24px;
+    }
+
+    .writing-item:hover {
+      background: var(--ink-850);
+    }
+
+    .writing-item__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .writing-item__title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-100);
+      margin-bottom: 4px;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .writing-item__excerpt {
+      font-size: 14px;
+      color: var(--text-400);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .writing-item__meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .writing-item__date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-item__reading-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--ink-900);
+      padding: 80px 0 48px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125, 231, 255, 0.3), transparent);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-200);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-tagline {
+      font-size: 15px;
+      color: var(--text-600);
+      line-height: 1.5;
+    }
+
+    .footer-contact {
+      text-align: right;
+    }
+
+    .footer-email {
+      display: inline-block;
+      font-size: 16px;
+      color: var(--text-200);
+      margin-bottom: 16px;
+      position: relative;
+      transition: color var(--transition-fast), text-shadow var(--transition-fast);
+    }
+
+    .footer-email::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .footer-email:hover {
+      color: var(--ice-400);
+      text-shadow: var(--glow-ice);
+    }
+
+    .footer-email:hover::after {
+      width: 100%;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: var(--text-600);
+      border: 1px solid var(--border);
+      transition: all var(--spring-hover);
+    }
+
+    .footer-social a:hover {
+      color: var(--ice-400);
+      border-color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      transform: translateY(-3px);
+      box-shadow: var(--glow-ice);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 600px) {
+      .footer {
+        padding: 64px 0 40px;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .footer-contact {
+        text-align: left;
+      }
+      .footer-social {
+        justify-content: flex-start;
+      }
+    }
+
+    /* ============ ACCESSIBILITY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus states for keyboard navigation */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    /* Selection styling */
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
+      <div class="nav-links">
+        <a href="/works.html">Works</a>
+        <a href="/writings.html" class="nav-link--active">Writings</a>
+        <a href="/vignettes.html">Vignettes</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="writings-section">
+      <div class="container">
+        <header class="writings-head">
+          <span class="section-label">// WRITINGS</span>
+          <span class="writings-count">03 Essays</span>
+        </header>
+
+        <div class="writings-list">
+          <a href="/writings/designing-in-the-void.html" class="writing-item">
+            <div class="writing-item__content">
+              <h3 class="writing-item__title">Designing in the Void</h3>
+              <p class="writing-item__excerpt">On the practice of creating from nothing — embracing uncertainty as a design methodology.</p>
+            </div>
+            <div class="writing-item__meta">
+              <span class="writing-item__date">Jan 15, 2025</span>
+              <span class="writing-item__reading-time">8 min read</span>
+            </div>
+          </a>
+          <a href="#" class="writing-item">
+            <div class="writing-item__content">
+              <h3 class="writing-item__title">Latent Space as Medium</h3>
+              <p class="writing-item__excerpt">Exploring the territory between prompt and output — where meaning emerges from probability.</p>
+            </div>
+            <div class="writing-item__meta">
+              <span class="writing-item__date">Jan 8, 2025</span>
+              <span class="writing-item__reading-time">12 min read</span>
+            </div>
+          </a>
+          <a href="#" class="writing-item">
+            <div class="writing-item__content">
+              <h3 class="writing-item__title">The Third Plane Manifesto</h3>
+              <p class="writing-item__excerpt">A declaration of intent — on the intersection of computation, creativity, and curation.</p>
+            </div>
+            <div class="writing-item__meta">
+              <span class="writing-item__date">Jan 1, 2025</span>
+              <span class="writing-item__reading-time">5 min read</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">thirdplane studios</span>
+          <p class="footer-tagline">The curation of latent space.</p>
+        </div>
+
+        <div class="footer-contact">
+          <a href="mailto:j@thirdplane.io" class="footer-email">j@thirdplane.io</a>
+          <div class="footer-social">
+            <a href="https://github.com/thirdplane" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">&copy; 2025 Third Plane Studios</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ============ Nav Scroll State ============
+      const nav = document.getElementById('nav');
+      if (nav) {
+        const updateNavState = () => {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+        };
+
+        updateNavState();
+        window.addEventListener('scroll', updateNavState, { passive: true });
+      }
+    })();
+  </script>
+
+</body>
+</html>

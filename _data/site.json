@@ -1,0 +1,21 @@
+{
+  "name": "Third Plane Studios",
+  "url": "https://www.thirdplane.io",
+  "tagline": "The curation of latent space.",
+  "description": "Third Plane Studios - Where computation and creativity converge.",
+  "themeColor": "#05060A",
+  "email": "j@thirdplane.io",
+  "social": {
+    "github": "https://github.com/thirdplane",
+    "twitter": "https://twitter.com/thirdplane"
+  },
+  "nav": [
+    { "title": "Works", "url": "/works/" },
+    { "title": "Writings", "url": "/writings/" },
+    { "title": "Vignettes", "url": "/vignettes/" }
+  ],
+  "copyright": {
+    "year": 2025,
+    "holder": "Third Plane Studios"
+  }
+}

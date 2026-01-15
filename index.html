@@ -50,6 +50,7 @@
       /* Accents */
       --uv-600: #7A2BFF;
       --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
       --ice-400: #7DE7FF;
       --strobe-500: #FF2A4A;
       --sun-400: #FFD26A;
@@ -89,9 +90,24 @@
       --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
       --letter-spacing-tight: -0.03em;
 
-      /* Spacing */
+      /* Spacing Scale */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+
+      /* Legacy spacing (for compatibility) */
       --section-padding: 120px;
       --card-gap: 24px;
+      --page-padding: 24px;
+
+      /* Layout: Navbar and Detail Page Spacing */
+      --nav-height: 60px;                  /* Approximate navbar height (14px font + 2*20px padding + borders) */
+      --detail-page-top: 100px;            /* Navbar height + breathing room (60px + 40px) */
+      --detail-back-link-margin: 28px;     /* Space between back link and card */
 
       /* Transitions */
       --transition-fast: 0.2s ease;
@@ -102,6 +118,10 @@
       --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
       --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
       --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    }
+
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
     }
 
     /* ============ RESET & BASE ============ */
@@ -132,11 +152,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    @media (min-width: 768px) {
-      .container { padding: 0 48px; }
+      padding: 0 var(--page-padding);
     }
 
     /* Section Label */
@@ -189,11 +205,7 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    @media (min-width: 768px) {
-      .nav-container { padding: 0 48px; }
+      padding: 0 var(--page-padding);
     }
 
     /* Nav Logo with Tension-Snap Animation */
@@ -218,6 +230,7 @@
       transition: margin var(--spring-snap);
     }
 
+    /* Restore hover micro-shift animation on wordmark */
     .nav-logo:hover .logo-third {
       margin-right: 0.25em;
     }
@@ -390,6 +403,138 @@
 
     @keyframes fadeIn {
       to { opacity: 0.6; }
+    }
+
+    /* ============================================
+       VOID / STATEMENT LAYOUT
+       ============================================ */
+    .void-section,
+    .statement-section {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .void-section {
+      background: var(--ink-950);
+      padding: 140px 0 120px;
+      position: relative;
+    }
+
+    .void-section::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 160px;
+      background: linear-gradient(
+        to top,
+        rgba(122, 43, 255, 0.08),
+        transparent
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .void-canvas-wrap {
+      position: relative;
+      width: clamp(300px, 64vw, 840px);
+      height: clamp(300px, 46vh, 420px);
+      max-height: 460px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    .void-canvas-wrap .nova-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .statement-section {
+      background: var(--ink-900);
+      padding: 200px 0 160px;
+    }
+
+    .statement-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-soul);
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    .void-divider {
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: -1px;
+      height: 2px;
+      background: linear-gradient(90deg,
+        rgba(214, 230, 255, 0),
+        rgba(214, 230, 255, 0.46),
+        rgba(214, 230, 255, 0)
+      );
+      pointer-events: none;
+      opacity: 1;
+      z-index: 3;
+      box-shadow: 0 0 18px rgba(214, 230, 255, 0.18);
+    }
+
+    .void-wordmark,
+    .statement-wordmark {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-200);
+      letter-spacing: -0.01em;
+      z-index: 1;
+    }
+
+    .statement-wordmark {
+      z-index: 2;
+    }
+
+    .statement-text {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--text-100);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .return-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: var(--text-600);
+      animation: returnBounce 2s ease-in-out infinite;
+      opacity: 0.6;
+      text-decoration: none;
+      transition: color var(--transition-fast), opacity var(--transition-fast);
+      z-index: 2;
+    }
+
+    .return-indicator:hover {
+      color: var(--ice-400);
+      opacity: 1;
+    }
+
+    @keyframes returnBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-12px); }
     }
 
     /* ============================================
@@ -858,168 +1003,34 @@
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navigation (sticky) -->
   <nav class="nav" id="nav">
     <div class="nav-container">
       <a href="/" class="nav-logo">
         <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
       </a>
       <div class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#writing">Writing</a>
-        <a href="#labs">Labs</a>
+        <a href="/works.html">Works</a>
+        <a href="/writings.html">Writings</a>
+        <a href="/vignettes.html">Vignettes</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1 class="hero-tagline">The curation of<br>latent space</h1>
-        <p class="hero-sub">Where computation and creativity converge.</p>
-        <a href="#projects" class="btn btn-primary">View Work</a>
+    <!-- Screen 1: The Void -->
+    <section class="void-section" id="void">
+      <div class="void-divider" aria-hidden="true"></div>
+      <div class="void-canvas-wrap">
+        <canvas class="nova-canvas" data-halo-preset="endpoint-a"></canvas>
       </div>
-      <div class="scroll-indicator" aria-hidden="true">&#8595;</div>
+      <a href="#statement" class="scroll-indicator" aria-label="Scroll to statement">&#8595;</a>
     </section>
 
-    <!-- Nova Halo -->
-    <section class="nova-venn" aria-hidden="true">
-      <div class="nova-venn-container">
-        <canvas class="nova-canvas"></canvas>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="projects" id="projects">
-      <div class="container">
-        <span class="section-label">// Selected Work</span>
-        <div class="projects-grid">
-
-          <article class="project-card">
-            <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='400' cy='250' r='80' fill='%237A2BFF' opacity='0.3'/%3E%3Ccircle cx='350' cy='220' r='40' fill='%23B04BFF' opacity='0.4'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Alpha" loading="lazy">
-            </div>
-            <div class="project-info">
-              <h3 class="project-title">Project Alpha</h3>
-              <div class="project-meta">
-                <span>Brand Identity</span>
-                <span>2026</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='450' cy='280' r='90' fill='%237DE7FF' opacity='0.2'/%3E%3Ccircle cx='380' cy='200' r='50' fill='%237DE7FF' opacity='0.3'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Beta" loading="lazy">
-            </div>
-            <div class="project-info">
-              <h3 class="project-title">Project Beta</h3>
-              <div class="project-meta">
-                <span>Web Development</span>
-                <span>2026</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='380' cy='260' r='70' fill='%23FFD26A' opacity='0.25'/%3E%3Ccircle cx='450' cy='220' r='45' fill='%23FF8A3D' opacity='0.3'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Gamma" loading="lazy">
-            </div>
-            <div class="project-info">
-              <h3 class="project-title">Project Gamma</h3>
-              <div class="project-meta">
-                <span>Product Design</span>
-                <span>2026</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-image">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='420' cy='240' r='85' fill='%23FF2A4A' opacity='0.2'/%3E%3Ccircle cx='360' cy='280' r='55' fill='%23B04BFF' opacity='0.25'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E" alt="Project Delta" loading="lazy">
-            </div>
-            <div class="project-info">
-              <h3 class="project-title">Project Delta</h3>
-              <div class="project-meta">
-                <span>Development</span>
-                <span>2023</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Writing -->
-    <section class="writing" id="writing">
-      <div class="container">
-        <span class="section-label">// Writing</span>
-        <ul class="writing-list">
-
-          <li class="writing-item">
-            <a href="#" class="writing-link">
-              <span class="writing-title">Building in Public: Notes from the First Year</span>
-              <span class="writing-date">Dec 2026</span>
-            </a>
-          </li>
-
-          <li class="writing-item">
-            <a href="#" class="writing-link">
-              <span class="writing-title">Why Design Systems Matter More Than Ever</span>
-              <span class="writing-date">Nov 2026</span>
-            </a>
-          </li>
-
-          <li class="writing-item">
-            <a href="#" class="writing-link">
-              <span class="writing-title">The Case for Simpler Tools</span>
-              <span class="writing-date">Oct 2026</span>
-            </a>
-          </li>
-
-          <li class="writing-item">
-            <a href="#" class="writing-link">
-              <span class="writing-title">Lessons from Shipping Fast</span>
-              <span class="writing-date">Sep 2026</span>
-            </a>
-          </li>
-
-        </ul>
-      </div>
-    </section>
-
-    <!-- Labs -->
-    <section class="labs" id="labs">
-      <div class="container">
-        <span class="section-label">// Labs</span>
-        <p class="labs-intro">Experimental projects, prototypes, and open-source tools exploring the boundaries of what's possible.</p>
-        <div class="labs-grid">
-
-          <article class="lab-card">
-            <div class="lab-icon uv">&#127912;</div>
-            <h3 class="lab-title">Color System</h3>
-            <p class="lab-description">Generate accessible color palettes for design systems.</p>
-            <span class="lab-tag">Tool</span>
-          </article>
-
-          <article class="lab-card">
-            <div class="lab-icon ice">&#10024;</div>
-            <h3 class="lab-title">Motion Kit</h3>
-            <p class="lab-description">Lightweight animation primitives for the web.</p>
-            <span class="lab-tag">Open Source</span>
-          </article>
-
-          <article class="lab-card">
-            <div class="lab-icon gold">&#128289;</div>
-            <h3 class="lab-title">Type Scale</h3>
-            <p class="lab-description">Calculate perfect typography ratios.</p>
-            <span class="lab-tag">Tool</span>
-          </article>
-
-        </div>
-      </div>
+    <!-- Screen 2: Statement -->
+    <section class="statement-section" id="statement">
+      <h1 class="statement-text">The curation of latent space.</h1>
+      <a href="#void" class="return-indicator" aria-label="Return to void">&#8593;</a>
     </section>
   </main>
 
@@ -1051,41 +1062,31 @@
     </div>
   </footer>
 
-  <!-- Minimal JavaScript for nav scroll effect -->
-  <script>
-    // Nav background on scroll
-    const nav = document.getElementById('nav');
-    let lastScrollY = 0;
-    let ticking = false;
-
-    function updateNav() {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      lastScrollY = window.scrollY;
-      if (!ticking) {
-        window.requestAnimationFrame(updateNav);
-        ticking = true;
-      }
-    }, { passive: true });
-  </script>
-
   <!-- Nova Halo WebGL Animation (single ring) -->
   <script>
     (function() {
       'use strict';
 
-      const section = document.querySelector('.nova-venn');
+      const nav = document.getElementById('nav');
+      const voidSection = document.querySelector('.void-section');
+      const statementSection = document.querySelector('.statement-section');
       const canvas = document.querySelector('.nova-canvas');
-      if (!section || !canvas) return;
+      if (!voidSection || !statementSection || !canvas) return;
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let statementInView = false;
+
+      const updateNavState = () => {
+        if (!nav) return;
+        if (statementInView) {
+          nav.classList.remove('scrolled');
+        } else {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+        }
+      };
+      updateNavState();
+      window.addEventListener('scroll', updateNavState, { passive: true });
 
       // ========== GLSL ==========
       const vertexShaderSource = `
@@ -1377,51 +1378,142 @@
       const mixRgb = (a,b,t)=>[a[0]*(1-t)+b[0]*t,a[1]*(1-t)+b[1]*t,a[2]*(1-t)+b[2]*t];
       const scaleRgb = (rgb,f)=>[Math.round(rgb[0]*f),Math.round(rgb[1]*f),Math.round(rgb[2]*f)];
 
+      // Palette presets (see NOVA_HALO_PALETTES.md)
       const palettePresets = {
-        // Default: reference-like green ↔ blue (thicker glow)
+        // Monochrome (default first-load void)
+        'monochrome': () => ({
+          a: [200, 200, 210],
+          b: [180, 200, 220],
+          c: [20, 25, 35]
+        }),
+        // Default hero: reference-like green ↔ blue (slightly thicker glow)
         'endpoint-a': () => {
           const ice = cssVarToRgb('--ice-400', '#7DE7FF');
           const sun = cssVarToRgb('--sun-400', '#FFD26A');
           const uv = cssVarToRgb('--uv-600', '#7A2BFF');
           return {
-            a: scaleRgb(mixRgb(ice, sun, 0.38), 0.94),  // neon green leaning, slightly darkened
-            b: scaleRgb(mixRgb(ice, uv, 0.30), 0.92),  // cobalt/uv weighted blue
-            c: scaleRgb(mixRgb(sun, uv, 0.44), 0.90)   // bridge accent for shimmer
+            a: scaleRgb(mixRgb(ice, sun, 0.38), 0.94),
+            b: scaleRgb(mixRgb(ice, uv, 0.30), 0.92),
+            c: scaleRgb(mixRgb(sun, uv, 0.44), 0.90)
           };
         },
-        // Alt: ultraviolet to sunset apricot
-        'violet-apricot': () => {
-          const uv = cssVarToRgb('--uv-600', '#7A2BFF');
-          const sun = cssVarToRgb('--sun-400', '#FFD26A');
-          const amber = cssVarToRgb('--amber-500', '#FF8A3D');
-          const ice = cssVarToRgb('--ice-400', '#7DE7FF');
-          const violet = scaleRgb(uv, 0.96);
-          const apricot = scaleRgb(mixRgb(sun, amber, 0.65), 0.78);
-          const bridge = scaleRgb(mixRgb(violet, ice, 0.14), 0.90);
-          return { a: violet, b: apricot, c: bridge };
-        },
-        // Framer reference palette (purple → cyan with deep blue depth)
+        // Site default (ice + UV)
+        'site-default': () => ({
+          a: [125, 231, 255],
+          b: [176, 75, 255],
+          c: [122, 43, 255]
+        }),
+        // Framer original reference
         'framer-spec': () => ({
-          a: [156, 67, 254],   // #9C43FE
-          b: [76, 194, 233],   // #4CC2E9
-          c: [16, 20, 153]     // #101499
+          a: [156, 67, 254],
+          b: [76, 194, 233],
+          c: [16, 20, 153]
+        }),
+        // Warm sets
+        'solar-flare': () => ({
+          a: [255, 210, 106],
+          b: [255, 138, 61],
+          c: [153, 31, 20]
+        }),
+        'magma': () => ({
+          a: [255, 42, 74],
+          b: [255, 138, 61],
+          c: [77, 13, 20]
+        }),
+        'sunset': () => ({
+          a: [255, 102, 153],
+          b: [255, 191, 77],
+          c: [77, 26, 102]
+        }),
+        // Cool sets
+        'arctic': () => ({
+          a: [125, 231, 255],
+          b: [204, 235, 255],
+          c: [10, 20, 51]
+        }),
+        'ocean-depths': () => ({
+          a: [0, 206, 209],
+          b: [76, 194, 233],
+          c: [5, 15, 38]
+        }),
+        'moonlight': () => ({
+          a: [199, 204, 224],
+          b: [179, 153, 230],
+          c: [20, 15, 38]
+        }),
+        // Electric/neon
+        'cyberpunk': () => ({
+          a: [255, 51, 153],
+          b: [0, 230, 255],
+          c: [13, 5, 26]
+        }),
+        'matrix': () => ({
+          a: [0, 255, 102],
+          b: [153, 255, 51],
+          c: [0, 38, 13]
+        }),
+        'synthwave': () => ({
+          a: [148, 0, 255],
+          b: [255, 105, 180],
+          c: [51, 0, 77]
+        }),
+        // Monochromatic
+        'uv-spectrum': () => ({
+          a: [204, 153, 255],
+          b: [176, 75, 255],
+          c: [51, 13, 102]
+        }),
+        'ice-spectrum': () => ({
+          a: [217, 247, 255],
+          b: [125, 231, 255],
+          c: [13, 51, 64]
+        }),
+        // Complementary splits
+        'teal-coral': () => ({
+          a: [0, 206, 209],
+          b: [255, 128, 102],
+          c: [26, 20, 31]
+        }),
+        'gold-purple': () => ({
+          a: [255, 215, 0],
+          b: [148, 0, 211],
+          c: [38, 13, 51]
         })
       };
 
-      const pickPalette = () => {
-        const params = new URLSearchParams(window.location.search);
-        const key = params.get('haloPreset');
-        const factory = (key && palettePresets[key]) ? palettePresets[key] : palettePresets['endpoint-a'];
-        return factory();
+      const normalizeKey = (k) => (k || '').trim().toLowerCase();
+      const paletteMap = Object.fromEntries(Object.keys(palettePresets).map(k => [normalizeKey(k), k]));
+
+      const getPalette = (key) => {
+        const found = paletteMap[normalizeKey(key)];
+        return found ? { name: found, colors: palettePresets[found]() } : null;
       };
 
-      const haloColors = pickPalette();
-      const renderer = new HaloRenderer(canvas, haloColors);
+      const pickPalette = () => {
+        const paramPreset = normalizeKey(new URLSearchParams(window.location.search).get('haloPreset'));
+        const hashMatch = window.location.hash.match(/haloPreset=([^&]+)/);
+        const hashPreset = normalizeKey(hashMatch ? decodeURIComponent(hashMatch[1]) : '');
+        const dataPreset = normalizeKey(canvas && canvas.dataset ? canvas.dataset.haloPreset : '');
+
+        const desired = [paramPreset, hashPreset, dataPreset].find(Boolean) || 'endpoint-a';
+        const chosen = getPalette(desired) || getPalette('endpoint-a');
+        if (!paletteMap[normalizeKey(desired)]) {
+          console.warn(`haloPreset "${desired}" not found. Available: ${Object.keys(palettePresets).join(', ')}`);
+        }
+        console.info(`haloPreset active: ${chosen ? chosen.name : 'endpoint-a'}`);
+        return chosen;
+      };
+
+      const picked = pickPalette();
+      const renderer = new HaloRenderer(canvas, picked ? picked.colors : palettePresets['endpoint-a']());
       if (!renderer.gl || prefersReducedMotion) return;
 
+      let activePresetName = picked ? picked.name : 'endpoint-a';
       let animationId = null;
       let startTime = performance.now();
       let running = false;
+      let hasVisitedStatement = false;
+      let hasTransformed = false;
 
       function animate() {
         if (!running) return;
@@ -1443,6 +1535,51 @@
         animationId = null;
       }
 
+      const lerpColor = (a, b, t) => [
+        a[0] + (b[0] - a[0]) * t,
+        a[1] + (b[1] - a[1]) * t,
+        a[2] + (b[2] - a[2]) * t
+      ];
+
+      function setPalette(name) {
+        const next = getPalette(name) || getPalette('endpoint-a');
+        if (!next) return;
+        renderer.colors = {
+          a: [...next.colors.a],
+          b: [...next.colors.b],
+          c: [...next.colors.c]
+        };
+        activePresetName = next.name;
+      }
+
+      function animatePalette(fromName, toName, duration = 1200) {
+        const from = getPalette(fromName) || getPalette('endpoint-a');
+        const to = getPalette(toName) || getPalette('endpoint-a');
+        if (!from || !to) return;
+        const start = performance.now();
+
+        function step() {
+          const t = Math.min((performance.now() - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          renderer.colors = {
+            a: lerpColor(from.colors.a, to.colors.a, eased),
+            b: lerpColor(from.colors.b, to.colors.b, eased),
+            c: lerpColor(from.colors.c, to.colors.c, eased)
+          };
+          if (t < 1) requestAnimationFrame(step);
+          else activePresetName = to.name;
+        }
+        requestAnimationFrame(step);
+      }
+
+      function transformVoid() {
+        if (hasTransformed) return;
+        hasTransformed = true;
+        const choices = ['cyberpunk', 'magma'];
+        const target = choices[Math.floor(Math.random() * choices.length)];
+        animatePalette(activePresetName, target, 1200);
+      }
+
       function handleResize() {
         renderer.resize();
       }
@@ -1457,11 +1594,33 @@
         renderer.setHover(dist < 0.8);
       }
 
-      section.addEventListener('mousemove', handleMove, { passive: true });
-      section.addEventListener('mouseleave', () => renderer.setHover(false), { passive: true });
+      const statementObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          statementInView = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            hasVisitedStatement = true;
+          }
+        });
+        updateNavState();
+      }, { threshold: 0.35 });
+
+      const voidObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && hasVisitedStatement) {
+            transformVoid();
+          }
+        });
+      }, { threshold: 0.5 });
+
+      statementObserver.observe(statementSection);
+      voidObserver.observe(voidSection);
+
+      voidSection.addEventListener('mousemove', handleMove, { passive: true });
+      voidSection.addEventListener('mouseleave', () => renderer.setHover(false), { passive: true });
       window.addEventListener('resize', handleResize, { passive: true });
       document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 
+      setPalette(activePresetName);
       renderer.resize();
       start();
     })();

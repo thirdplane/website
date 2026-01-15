@@ -1,0 +1,48 @@
+<!--
+  Project Card Component
+
+  Features:
+  - Image with zoom on hover
+  - Title + meta (category, year)
+  - Lift + UV glow on hover
+  - 16:10 aspect ratio image
+
+  Grid: Use inside .projects-grid (2-column)
+
+  Requires:
+  - CSS from NEON_NOIR_DESIGN_SYSTEM.md
+-->
+
+<article class="project-card">
+  <div class="project-image">
+    <img
+      src="path/to/image.jpg"
+      alt="Project Name"
+      loading="lazy"
+    >
+  </div>
+  <div class="project-info">
+    <h3 class="project-title">Project Name</h3>
+    <div class="project-meta">
+      <span>Category</span>
+      <span>2025</span>
+    </div>
+  </div>
+</article>
+
+<!--
+  Placeholder image (SVG data URI):
+
+  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect fill='%23121319' width='800' height='500'/%3E%3Ccircle cx='400' cy='250' r='80' fill='%237A2BFF' opacity='0.3'/%3E%3Ctext fill='%23676D81' font-family='monospace' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EProject Image%3C/text%3E%3C/svg%3E"
+-->
+
+<!--
+  Grid wrapper:
+
+  <div class="projects-grid">
+    <article class="project-card">...</article>
+    <article class="project-card">...</article>
+    <article class="project-card">...</article>
+    <article class="project-card">...</article>
+  </div>
+-->

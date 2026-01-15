@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option A: Full-Bleed Cinematic | Writing Article</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       OPTION A: FULL-BLEED CINEMATIC
+       Stripe-inspired, content floating on void
+       ============================================ */
+
+    /* Design Tokens */
+    :root {
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #1A1C24;
+
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      --ice-400: #7DE7FF;
+      --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
+
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spring animation for hover */
+      --spring-hover: 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--ink-950);
+      color: var(--text-200);
+      line-height: 1.6;
+      min-height: 100vh;
+
+      /* Subtle noise texture overlay */
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(125, 231, 255, 0.03) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 0%, rgba(176, 75, 255, 0.02) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(125, 231, 255, 0.2);
+      color: var(--text-100);
+    }
+
+    /* ============================================
+       LAYOUT: Full-Bleed Structure
+       ============================================ */
+
+    .page {
+      min-height: 100vh;
+      padding: 2rem 1.5rem 6rem;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 3rem 3rem 8rem;
+      }
+    }
+
+    /* Back Navigation - Subtle, floating */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-600);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color var(--spring-hover), transform var(--spring-hover);
+      margin-bottom: 4rem;
+    }
+
+    .back-link:hover {
+      color: var(--ice-400);
+      transform: translateX(-2px);
+    }
+
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--spring-hover);
+    }
+
+    .back-link:hover svg {
+      transform: translateX(-3px);
+    }
+
+    @media (min-width: 768px) {
+      .back-link {
+        margin-bottom: 6rem;
+      }
+    }
+
+    /* ============================================
+       HERO: Massive Typography, No Container
+       ============================================ */
+
+    .hero {
+      max-width: 900px;
+      margin: 0 auto 5rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        margin-bottom: 6rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero {
+        max-width: 1000px;
+        margin-bottom: 8rem;
+      }
+    }
+
+    /* Title: 48px-64px clamp */
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw + 1rem, 4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-100);
+      margin-bottom: 1.5rem;
+
+      /* Subtle text gradient for premium feel */
+      background: linear-gradient(
+        135deg,
+        var(--text-100) 0%,
+        var(--text-200) 50%,
+        rgba(125, 231, 255, 0.9) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Lede: Subtitle in lighter color */
+    .hero-lede {
+      font-family: var(--font-primary);
+      font-size: clamp(1.125rem, 2vw + 0.5rem, 1.375rem);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--text-400);
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    /* Meta Row: Date, Reading Time, Tags inline */
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 1rem 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text-600);
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta-item svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
+    }
+
+    /* Tags as hashtags - no borders, just text */
+    .hero-tags {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-600);
+      text-decoration: none;
+      transition: color var(--spring-hover);
+    }
+
+    .tag:hover {
+      color: var(--uv-400);
+    }
+
+    .tag::before {
+      content: '#';
+      opacity: 0.5;
+    }
+
+    /* ============================================
+       PROSE: Narrow Column, No Container
+       ============================================ */
+
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Subtle gradient transition into content */
+    .prose::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--text-600), transparent);
+      margin-bottom: 3rem;
+      opacity: 0.3;
+    }
+
+    .prose p {
+      font-size: clamp(1rem, 1vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+      color: var(--text-200);
+      margin-bottom: 1.75rem;
+    }
+
+    .prose p:first-of-type {
+      font-size: clamp(1.0625rem, 1vw + 0.9rem, 1.1875rem);
+      color: var(--text-100);
+    }
+
+    .prose h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 2vw + 0.75rem, 1.75rem);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text-100);
+      margin-top: 3.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .prose h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.375rem);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--text-100);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Inline code */
+    .prose code {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+
+    /* Links in prose */
+    .prose a {
+      color: var(--ice-400);
+      text-decoration: none;
+      background-image: linear-gradient(var(--ice-400), var(--ice-400));
+      background-size: 0% 1px;
+      background-position: 0% 100%;
+      background-repeat: no-repeat;
+      transition: background-size var(--spring-hover);
+    }
+
+    .prose a:hover {
+      background-size: 100% 1px;
+    }
+
+    /* Blockquote */
+    .prose blockquote {
+      margin: 2.5rem 0;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--uv-500);
+      font-style: italic;
+      color: var(--text-400);
+    }
+
+    .prose blockquote p {
+      margin-bottom: 0;
+    }
+
+    /* Lists */
+    .prose ul, .prose ol {
+      margin-bottom: 1.75rem;
+      padding-left: 1.5rem;
+    }
+
+    .prose li {
+      font-size: clamp(1rem, 1vw + 0.875rem, 1.125rem);
+      line-height: 1.75;
+      color: var(--text-200);
+      margin-bottom: 0.5rem;
+    }
+
+    .prose li::marker {
+      color: var(--text-600);
+    }
+
+    /* Horizontal rule - subtle divider */
+    .prose hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--text-600), transparent);
+      margin: 3rem 0;
+      opacity: 0.2;
+    }
+
+    /* ============================================
+       END SECTION
+       ============================================ */
+
+    .article-end {
+      max-width: 680px;
+      margin: 4rem auto 0;
+      padding-top: 3rem;
+      text-align: center;
+    }
+
+    .article-end::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 2rem;
+      background: radial-gradient(circle, var(--uv-500) 0%, transparent 70%);
+      opacity: 0.4;
+      border-radius: 50%;
+    }
+
+    .article-end-text {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-600);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- Back Link: Subtle, top-left -->
+    <a href="#" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Writings
+    </a>
+
+    <!-- Hero Section: Massive Typography -->
+    <header class="hero">
+      <h1 class="hero-title">Designing in the Void</h1>
+
+      <p class="hero-lede">
+        How embracing emptiness transformed my approach to interface design,
+        and why the spaces between elements matter more than the elements themselves.
+      </p>
+
+      <div class="hero-meta">
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Jan 12, 2026
+        </span>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          8 min read
+        </span>
+        <div class="hero-tags">
+          <a href="#" class="tag">design</a>
+          <a href="#" class="tag">process</a>
+          <a href="#" class="tag">philosophy</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Prose Content: Narrow Column -->
+    <article class="prose">
+      <p>
+        There is a moment in every design process when you realize that what you're
+        building isn't defined by what you add, but by what you choose to leave out.
+        The void isn't empty space waiting to be filled. It's the canvas that gives
+        meaning to everything that exists within it.
+      </p>
+
+      <p>
+        I spent years adding more: more features, more visual elements, more
+        interactions. Each addition felt like progress. But the interfaces grew
+        heavier, slower, more confusing. Users couldn't find what they needed
+        because there was too much competing for their attention.
+      </p>
+
+      <h2>The Negative Space Revelation</h2>
+
+      <p>
+        In traditional Japanese aesthetics, there's a concept called <code>ma</code>
+        (literally "gap" or "pause"). It's not merely empty space, but a conscious
+        pause that gives shape to what surrounds it. In music, it's the silence
+        between notes that creates rhythm. In architecture, it's the void that
+        makes a room feel spacious rather than cramped.
+      </p>
+
+      <blockquote>
+        <p>
+          "The space between things is just as important as the things themselves.
+          Design the absence with the same intention you design the presence."
+        </p>
+      </blockquote>
+
+      <p>
+        When I began applying this principle to interface design, everything
+        shifted. Instead of asking "what can I add here?", I started asking
+        "what can I remove while preserving meaning?" The results were
+        transformative. Interfaces that breathed. Content that commanded
+        attention without shouting. Interactions that felt effortless.
+      </p>
+
+      <h2>Practical Application</h2>
+
+      <p>
+        Designing with void requires discipline. Here's how I approach it:
+      </p>
+
+      <ul>
+        <li>Start with content, not containers. Let the text and images define their own boundaries before reaching for boxes and cards.</li>
+        <li>Use typography as architecture. Size, weight, and spacing can create hierarchy without any visual chrome.</li>
+        <li>Embrace asymmetry. Perfect balance often feels static; intentional imbalance creates movement and interest.</li>
+        <li>Test in grayscale. If the hierarchy doesn't work without color, color won't save it.</li>
+      </ul>
+
+      <h3>The Courage to Subtract</h3>
+
+      <p>
+        Perhaps the hardest part is having the courage to subtract. Every element
+        you remove feels like you're giving something up. But subtraction is
+        addition by another name: you're adding clarity, focus, and breathing room.
+      </p>
+
+      <p>
+        The next time you're stuck on a design, don't ask what's missing. Ask what's
+        unnecessary. The answer might surprise you. Often, the best interface is
+        the one that gets out of the way entirely, leaving only the essential
+        conversation between the user and their goal.
+      </p>
+
+      <hr>
+
+      <p>
+        This approach isn't minimalism for its own sake. It's not about making
+        things look sparse or trendy. It's about understanding that attention is
+        finite, that cognitive load is real, and that every pixel you place on
+        screen is competing for someone's limited mental resources.
+      </p>
+
+      <p>
+        Design in the void. Let your interfaces breathe. Your users will thank you
+        with something more valuable than praise: they'll actually use what you build.
+      </p>
+    </article>
+
+    <!-- Article End Marker -->
+    <footer class="article-end">
+      <span class="article-end-text">End of Article</span>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+---
+title: Works
+description: Portfolio of projects and case studies from Third Plane Studios.
+layout: false
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/works-grid.css" %}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="works-section">
+  <div class="container">
+    <header class="works-head">
+      <span class="section-label">Selected Work</span>
+      <span class="works-count">{{ collections.works | length }} Projects</span>
+    </header>
+
+    <div class="works-grid">
+      {% for work in collections.works %}
+      <a href="{{ work.url }}" class="work-card" data-reveal data-index="{{ loop.index0 }}">
+        <div class="work-media">
+          {% if work.data.cover %}
+          <img src="{{ work.data.cover }}" alt="View {{ work.data.title }}{% if work.data.description %} — {{ work.data.description }}{% endif %}" loading="{% if loop.index0 < 3 %}eager{% else %}lazy{% endif %}" decoding="async">
+          {% else %}
+          <div class="work-placeholder"></div>
+          {% endif %}
+        </div>
+        <div class="work-meta">
+          <span class="work-type">{{ work.data.type }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Staggered scroll reveal - ported from works.html canonical implementation
+(function() {
+  'use strict';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = document.querySelectorAll('.work-card');
+
+  if (prefersReducedMotion) {
+    cards.forEach(card => card.classList.add('revealed'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = parseInt(card.dataset.index, 10) || 0;
+
+          // Get current column count based on viewport
+          const gridStyles = getComputedStyle(card.parentElement);
+          const columns = gridStyles.gridTemplateColumns.split(' ').length;
+
+          // Center-out reveal order: middle column first, then sides
+          const getRevealOrder = (cols) => {
+            if (cols === 3) return [1, 0, 2];  // Center, left, right
+            if (cols === 2) return [0, 1];     // Left, right
+            return [0];                         // Single column
+          };
+
+          const row = Math.floor(index / columns);
+          const col = index % columns;
+          const revealOrder = getRevealOrder(columns);
+          const orderIndex = revealOrder[col] !== undefined ? revealOrder[col] : col;
+
+          // Stagger: row delay + reveal order delay
+          const delay = (row * 250) + (orderIndex * 100);
+
+          card.style.transitionDelay = `${delay}ms`;
+          card.classList.add('revealed');
+
+          observer.unobserve(card);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    cards.forEach((card, i) => {
+      card.dataset.index = i;
+      observer.observe(card);
+    });
+  }
+})();
+</script>
+{% endblock %}

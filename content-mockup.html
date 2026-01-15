@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content System Mockup — Third Plane Studios</title>
+  <meta name="description" content="Preview of Works, Writings, and Vignettes content types">
+  <meta name="theme-color" content="#05060A">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
+  <style>
+    /* ============================================
+       NEON NOIR DESIGN SYSTEM
+       ============================================ */
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.16);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+      --brand: var(--uv-600);
+      --link: var(--ice-400);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+      --scrim-strong: rgba(5, 6, 10, 0.86);
+
+      /* Typography */
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --letter-spacing-tight: -0.03em;
+
+      /* Spacing */
+      --section-padding: 120px;
+      --card-gap: 24px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.35s ease;
+
+      /* Spring Curves */
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+      --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
+    }
+
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (min-width: 768px) {
+      .container { padding: 0 48px; }
+    }
+
+    .container--narrow {
+      max-width: 720px;
+    }
+
+    /* Section Label */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-600);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    /* ============ NAVIGATION ============ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (min-width: 768px) {
+      .nav-container { padding: 0 48px; }
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text-100);
+    }
+
+    .logo-third { color: var(--text-100); }
+    .logo-plane { color: var(--text-400); }
+    .logo-studios { color: var(--text-600); font-size: 14px; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-400);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-100);
+    }
+
+    /* ============ MOCKUP HEADER ============ */
+    .mockup-header {
+      padding: 140px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+      margin-bottom: 12px;
+    }
+
+    .mockup-subtitle {
+      font-size: 16px;
+      color: var(--text-400);
+      max-width: 600px;
+    }
+
+    /* ============ SECTION DIVIDER ============ */
+    .content-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .content-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+    }
+
+    .section-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============ UNIFIED WORKS GRID ============ */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: min-content;
+      align-items: start;
+      gap: 40px 32px;
+    }
+
+    @media (max-width: 900px) {
+      .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .works-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* Initial hidden state for scroll reveal */
+    .work-card {
+      display: block;
+      background: var(--ink-900);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    /* Revealed state with transition */
+    .work-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.5s ease-out,
+        transform var(--spring-stagger),
+        border-color var(--transition-fast);
+    }
+
+    /* Hover only works after reveal */
+    .work-card.revealed:hover {
+      border-color: rgba(125, 231, 255, 0.3);
+      transform: translateY(-2px);
+      transition:
+        transform var(--spring-hover),
+        border-color var(--transition-fast);
+    }
+
+    .work-media {
+      aspect-ratio: 16/10;
+      background: var(--ink-850);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-media svg,
+    .work-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--spring-hover);
+    }
+
+    .work-card.revealed:hover .work-media svg,
+    .work-card.revealed:hover .work-media img {
+      transform: scale(1.03);
+    }
+
+    /* Live iframe cards */
+    .work-card--live .work-media {
+      position: relative;
+    }
+
+    .work-card--live iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none; /* Prevent interaction in grid */
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .work-live-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 4px 8px;
+      background: rgba(125, 231, 255, 0.15);
+      border: 1px solid rgba(125, 231, 255, 0.3);
+      border-radius: 4px;
+      color: var(--ice-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+
+    .work-content {
+      padding: 16px 20px;
+    }
+
+    .work-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-100);
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    /* Tech badges on hover */
+    .work-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .work-card.revealed:hover .work-tech {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      background: rgba(125, 231, 255, 0.1);
+      border: 1px solid rgba(125, 231, 255, 0.2);
+      border-radius: 4px;
+      color: var(--ice-400);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ============ WRITINGS / PROSE ============ */
+    .writing-preview {
+      background: var(--ink-900);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .writing-preview__header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .writing-preview__meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .writing-preview__date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-preview__reading-time {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-preview__title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-100);
+    }
+
+    .writing-preview__tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-400);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .writing-preview__content {
+      padding: 32px;
+    }
+
+    /* Prose styles */
+    .prose {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-200);
+    }
+
+    .prose > * + * {
+      margin-top: 1.5em;
+    }
+
+    .prose h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-100);
+      margin-top: 2.5em;
+      margin-bottom: 0.75em;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .prose h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-100);
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+
+    .prose p {
+      margin-top: 1.25em;
+    }
+
+    .prose p:first-child {
+      margin-top: 0;
+    }
+
+    .prose a {
+      color: var(--ice-400);
+      text-decoration: underline;
+      text-decoration-color: rgba(125, 231, 255, 0.3);
+      text-underline-offset: 2px;
+      transition: text-decoration-color var(--transition-fast);
+    }
+
+    .prose a:hover {
+      text-decoration-color: var(--ice-400);
+    }
+
+    .prose strong {
+      color: var(--text-100);
+      font-weight: 600;
+    }
+
+    .prose em {
+      font-style: italic;
+    }
+
+    .prose blockquote {
+      border-left: 3px solid var(--uv-600);
+      padding-left: 1.5em;
+      margin-left: 0;
+      color: var(--text-400);
+      font-style: italic;
+    }
+
+    .prose ul,
+    .prose ol {
+      padding-left: 1.5em;
+    }
+
+    .prose li {
+      margin-top: 0.5em;
+    }
+
+    .prose li::marker {
+      color: var(--text-600);
+    }
+
+    .prose code {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      background: var(--ink-850);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: var(--ice-400);
+    }
+
+    .prose pre {
+      background: var(--ink-850);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25em 1.5em;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .prose pre code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      color: var(--text-200);
+    }
+
+    .prose hr {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      margin: 3em 0;
+    }
+
+    /* ============ VIGNETTES ============ */
+    .vignettes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: min-content;
+      align-items: start;
+      gap: 24px 20px;
+    }
+
+    @media (max-width: 900px) {
+      .vignettes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .vignettes-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .vignette-card {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      background: var(--ink-850);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      /* Scroll reveal initial state */
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    /* Revealed state with spring transition */
+    .vignette-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.5s ease-out,
+        transform var(--spring-stagger),
+        border-color var(--transition-fast);
+    }
+
+    /* Hover lift effect (only after reveal animation completes) */
+    .vignette-card.revealed:hover {
+      border-color: rgba(125, 231, 255, 0.3);
+      transform: translateY(-4px);
+      transition:
+        transform var(--spring-hover),
+        border-color var(--transition-fast);
+    }
+
+    /* Focus state for accessibility */
+    .vignette-card:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 4px;
+    }
+
+
+    .vignette-media {
+      margin: 0;
+      position: relative;
+      aspect-ratio: 16/10;
+    }
+
+    .vignette-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--spring-hover);
+    }
+
+    .vignette-card.revealed:hover .vignette-media img {
+      transform: scale(1.04);
+    }
+
+    /* Vignette content section (below image) */
+    .vignette-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .vignette-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-200);
+      letter-spacing: -0.03em;
+      transition: color var(--transition-fast);
+    }
+
+    .vignette-card:hover .vignette-title {
+      color: var(--text-100);
+    }
+
+    .vignette-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .vignette-video-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--scrim);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-100);
+      z-index: 2;
+    }
+
+    /* ============ VIGNETTES PERFORMANCE ============ */
+    /* Defer rendering of off-screen vignette cards (row 2+, items 4+ in 3-col grid) */
+    .vignette-card:nth-child(n+4) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
+    }
+
+    /* GLightbox overrides for Neon Noir */
+    .glightbox-clean .gslide-description {
+      background: var(--scrim-strong) !important;
+      font-family: var(--font-primary);
+    }
+
+    .glightbox-clean .gdesc-inner {
+      padding: 16px 20px !important;
+    }
+
+    .glightbox-clean .gslide-title {
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      color: var(--text-100) !important;
+      margin-bottom: 8px !important;
+    }
+
+    .glightbox-clean .gslide-desc {
+      font-family: var(--font-mono) !important;
+      font-size: 12px !important;
+      color: var(--text-400) !important;
+      line-height: 1.6 !important;
+    }
+
+    .glightbox-clean .gnext,
+    .glightbox-clean .gprev,
+    .glightbox-clean .gclose {
+      background: var(--surface) !important;
+      border: 1px solid var(--border) !important;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-text {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    /* ============ WRITINGS INDEX PREVIEW ============ */
+    .writings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .writing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      background: var(--ink-900);
+      transition: background var(--transition-fast);
+      gap: 24px;
+    }
+
+    .writing-item:hover {
+      background: var(--ink-850);
+    }
+
+    .writing-item__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .writing-item__title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-100);
+      margin-bottom: 4px;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .writing-item__excerpt {
+      font-size: 14px;
+      color: var(--text-400);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .writing-item__meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .writing-item__date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+    }
+
+    .writing-item__reading-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+    }
+
+    /* ============ REDUCED MOTION ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .work-card,
+      .vignette-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .work-media img,
+      .vignette-media img {
+        transition: none;
+      }
+    }
+
+    /* Focus states for keyboard navigation */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    /* Selection styling */
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
+      <div class="nav-links">
+        <a href="#works">Works</a>
+        <a href="#writings">Writings</a>
+        <a href="#vignettes">Vignettes</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Mockup Header -->
+    <header class="mockup-header">
+      <div class="container">
+        <span class="section-label">// CONTENT SYSTEM MOCKUP</span>
+        <h1 class="mockup-title">Preview: Works, Writings, Vignettes</h1>
+        <p class="mockup-subtitle">Static HTML mockup to test content types before Eleventy implementation. Scroll to see each section.</p>
+      </div>
+    </header>
+
+    <!-- ============ WORKS SECTION (Reference Only) ============ -->
+    <!-- NOTE: The canonical Works page is works.html - this section is for mockup reference -->
+    <section id="works" class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">// WORKS (Reference Only)</span>
+            <h2 class="section-title">Grid View</h2>
+          </div>
+          <span class="section-count"><a href="works.html" style="color: var(--ice-400);">See works.html</a></span>
+        </div>
+
+        <p style="color: var(--text-400); margin-bottom: 32px; font-size: 14px;">
+          The Works section has been moved to <a href="works.html" style="color: var(--ice-400);">works.html</a> as a dedicated page.
+          Below is a simplified preview for reference. Scroll down for <strong>Writings</strong> and <strong>Vignettes</strong>.
+        </p>
+
+        <!-- Works Grid (Simplified preview) -->
+        <div class="works-grid">
+          <!-- Work 1 -->
+          <a href="works.html" class="work-card" data-index="0">
+            <div class="work-media">
+              <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7A2BFF"/>
+                    <stop offset="50%" stop-color="#121319"/>
+                    <stop offset="100%" stop-color="#FFD26A"/>
+                  </linearGradient>
+                </defs>
+                <rect width="320" height="200" fill="url(#wg1)"/>
+              </svg>
+            </div>
+            <div class="work-content">
+              <h3 class="work-title">Lumina</h3>
+              <div class="work-tech">
+                <span class="tech-tag">Branding</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Work 2 -->
+          <a href="works.html" class="work-card" data-index="1">
+            <div class="work-media">
+              <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <radialGradient id="wg2" cx="50%" cy="50%" r="70%">
+                    <stop offset="0%" stop-color="#121319"/>
+                    <stop offset="100%" stop-color="#05060A"/>
+                  </radialGradient>
+                  <radialGradient id="wg2b" cx="30%" cy="40%" r="50%">
+                    <stop offset="0%" stop-color="#7DE7FF" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#121319" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <rect width="320" height="200" fill="url(#wg2)"/>
+                <rect width="320" height="200" fill="url(#wg2b)"/>
+              </svg>
+            </div>
+            <div class="work-content">
+              <h3 class="work-title">Synthesis</h3>
+              <div class="work-tech">
+                <span class="tech-tag">WebGL</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Work 3 -->
+          <a href="works.html" class="work-card" data-index="2">
+            <div class="work-media">
+              <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="wg3" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#121319"/>
+                    <stop offset="50%" stop-color="#B04BFF" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#121319"/>
+                  </linearGradient>
+                </defs>
+                <rect width="320" height="200" fill="url(#wg3)"/>
+              </svg>
+            </div>
+            <div class="work-content">
+              <h3 class="work-title">Void Protocol</h3>
+              <div class="work-tech">
+                <span class="tech-tag">Design System</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WRITINGS SECTION ============ -->
+    <section id="writings" class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">// WRITINGS</span>
+            <h2 class="section-title">Index View</h2>
+          </div>
+          <span class="section-count">03 Essays</span>
+        </div>
+
+        <!-- Writings Index List -->
+        <div class="writings-list">
+          <a href="#" class="writing-item">
+            <div class="writing-item__content">
+              <h3 class="writing-item__title">Designing in the Void</h3>
+              <p class="writing-item__excerpt">On the practice of creating from nothing — embracing uncertainty as a design methodology.</p>
+            </div>
+            <div class="writing-item__meta">
+              <span class="writing-item__date">Jan 15, 2025</span>
+              <span class="writing-item__reading-time">8 min read</span>
+            </div>
+          </a>
+          <a href="#" class="writing-item">
+            <div class="writing-item__content">
+              <h3 class="writing-item__title">Latent Space as Medium</h3>
+              <p class="writing-item__excerpt">Exploring the territory between prompt and output — where meaning emerges from probability.</p>
+            </div>
+            <div class="writing-item__meta">
+              <span class="writing-item__date">Jan 8, 2025</span>
+              <span class="writing-item__reading-time">12 min read</span>
+            </div>
+          </a>
+          <a href="#" class="writing-item">
+            <div class="writing-item__content">
+              <h3 class="writing-item__title">The Third Plane Manifesto</h3>
+              <p class="writing-item__excerpt">A declaration of intent — on the intersection of computation, creativity, and curation.</p>
+            </div>
+            <div class="writing-item__meta">
+              <span class="writing-item__date">Jan 1, 2025</span>
+              <span class="writing-item__reading-time">5 min read</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WRITING ARTICLE VIEW ============ -->
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">// WRITINGS</span>
+            <h2 class="section-title">Article View</h2>
+          </div>
+        </div>
+
+        <div class="writing-preview">
+          <div class="writing-preview__header">
+            <div class="writing-preview__meta">
+              <span class="writing-preview__date">January 15, 2025</span>
+              <span class="writing-preview__reading-time">8 min read</span>
+            </div>
+            <h3 class="writing-preview__title">Designing in the Void</h3>
+            <div class="writing-preview__tags">
+              <span class="tag">Design</span>
+              <span class="tag">Process</span>
+              <span class="tag">Philosophy</span>
+            </div>
+          </div>
+          <div class="writing-preview__content">
+            <div class="prose">
+              <p>There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is <strong>the void</strong>: not empty, but pregnant with potential.</p>
+
+              <p>Most designers fear this space. They rush to fill it with references, precedents, familiar patterns. But what if we stayed here longer? What if we learned to <em>design from</em> the void rather than <em>away from</em> it?</p>
+
+              <h2>The Practice of Unknowing</h2>
+
+              <p>Traditional design education teaches us to accumulate — techniques, styles, tools, references. We build arsenals of solutions waiting for problems. But this accumulation can become armor, protecting us from the discomfort of genuine uncertainty.</p>
+
+              <blockquote>
+                "In the beginner's mind there are many possibilities, but in the expert's mind there are few."
+                <br>— Shunryu Suzuki
+              </blockquote>
+
+              <p>The practice I'm proposing isn't about forgetting what you know. It's about <a href="#">holding knowledge loosely</a> — available when needed, but not determining the shape of what hasn't yet emerged.</p>
+
+              <h3>Three Principles</h3>
+
+              <ul>
+                <li><strong>Resist premature clarity.</strong> The urge to "figure it out" is often the urge to escape discomfort. Stay in the question longer than feels comfortable.</li>
+                <li><strong>Document the negative space.</strong> What you choose <em>not</em> to do is as defining as what you create. Make those decisions visible.</li>
+                <li><strong>Trust emergence.</strong> The best work often arrives — it isn't forced. Create conditions for arrival.</li>
+              </ul>
+
+              <hr>
+
+              <p>This essay is an artifact of its own methodology. I began with only a title and a feeling. The structure emerged through writing — through staying in the void until shapes became visible.</p>
+
+              <p>What void are you avoiding?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIGNETTES SECTION ============ -->
+    <section id="vignettes" class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">// VIGNETTES</span>
+            <h2 class="section-title">Gallery View</h2>
+          </div>
+          <span class="section-count">06 Pieces</span>
+        </div>
+
+        <!-- Vignettes Grid -->
+        <div class="vignettes-grid">
+          <!-- Vignette 1 - 1:1 -->
+          <a href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='800' fill='url(%23g1)'/%3E%3C/svg%3E"
+             class="vignette-card glightbox"
+             data-index="0"
+             data-gallery="vignettes"
+             data-title="Neon City"
+             data-description="Prompt: Cyberpunk cityscape, rain-slicked streets, neon reflections, moody atmosphere<br>Model: Midjourney v6">
+            <figure class="vignette-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='800' fill='url(%23g1)'/%3E%3C/svg%3E"
+                alt="Neon City - AI generated cyberpunk cityscape"
+                loading="lazy"
+              >
+            </figure>
+            <div class="vignette-content">
+              <h3 class="vignette-title">Neon City</h3>
+              <div class="vignette-tech">
+                <span class="tech-tag">Midjourney v6</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Vignette 2 - 3:4 -->
+          <a href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='100%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FFD26A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23g2)'/%3E%3C/svg%3E"
+             class="vignette-card glightbox"
+             data-index="1"
+             data-gallery="vignettes"
+             data-title="Void Portrait"
+             data-description="Prompt: Abstract human form dissolving into void, particles and light<br>Model: DALL-E 3">
+            <figure class="vignette-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='100%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FFD26A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23g2)'/%3E%3C/svg%3E"
+                alt="Void Portrait - Abstract human form"
+                loading="lazy"
+              >
+            </figure>
+            <div class="vignette-content">
+              <h3 class="vignette-title">Void Portrait</h3>
+              <div class="vignette-tech">
+                <span class="tech-tag">DALL-E 3</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Vignette 3 - 16:9 (video) -->
+          <a href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='50%25' x2='100%25' y2='50%25'%3E%3Cstop offset='0%25' stop-color='%23B04BFF'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FF8A3D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='900' fill='url(%23g3)'/%3E%3C/svg%3E"
+             class="vignette-card glightbox"
+             data-index="2"
+             data-gallery="vignettes"
+             data-title="Emergence"
+             data-description="Prompt: Particle system coalescing into form, slow motion, abstract<br>Model: Runway Gen-2">
+            <figure class="vignette-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='50%25' x2='100%25' y2='50%25'%3E%3Cstop offset='0%25' stop-color='%23B04BFF'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FF8A3D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='900' fill='url(%23g3)'/%3E%3C/svg%3E"
+                alt="Emergence - Particle system video"
+                loading="lazy"
+              >
+              <span class="vignette-video-badge" aria-label="Video">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </span>
+            </figure>
+            <div class="vignette-content">
+              <h3 class="vignette-title">Emergence</h3>
+              <div class="vignette-tech">
+                <span class="tech-tag">Runway Gen-2</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Vignette 4 - 1:1 -->
+          <a href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cdefs%3E%3CradialGradient id='g4' cx='50%25' cy='50%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%237DE7FF'/%3E%3Cstop offset='100%25' stop-color='%23121319'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='800' height='800' fill='url(%23g4)'/%3E%3C/svg%3E"
+             class="vignette-card glightbox"
+             data-index="3"
+             data-gallery="vignettes"
+             data-title="Ice Ring"
+             data-description="Prompt: Frozen ring structure, bioluminescent, deep void background<br>Model: Midjourney v6">
+            <figure class="vignette-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cdefs%3E%3CradialGradient id='g4' cx='50%25' cy='50%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%237DE7FF'/%3E%3Cstop offset='100%25' stop-color='%23121319'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='800' height='800' fill='url(%23g4)'/%3E%3C/svg%3E"
+                alt="Ice Ring - Bioluminescent structure"
+                loading="lazy"
+              >
+            </figure>
+            <div class="vignette-content">
+              <h3 class="vignette-title">Ice Ring</h3>
+              <div class="vignette-tech">
+                <span class="tech-tag">Midjourney v6</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Vignette 5 - 4:3 -->
+          <a href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='50%25' y1='0%25' x2='50%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FFD26A'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237A2BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g5)'/%3E%3C/svg%3E"
+             class="vignette-card glightbox"
+             data-index="4"
+             data-gallery="vignettes"
+             data-title="Solar Flare"
+             data-description="Prompt: Sun surface eruption, magnetic field lines, plasma arcs<br>Model: DALL-E 3">
+            <figure class="vignette-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='50%25' y1='0%25' x2='50%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FFD26A'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237A2BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23g5)'/%3E%3C/svg%3E"
+                alt="Solar Flare - Plasma eruption"
+                loading="lazy"
+              >
+            </figure>
+            <div class="vignette-content">
+              <h3 class="vignette-title">Solar Flare</h3>
+              <div class="vignette-tech">
+                <span class="tech-tag">DALL-E 3</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Vignette 6 - 3:4 -->
+          <a href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23B04BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23g6)'/%3E%3C/svg%3E"
+             class="vignette-card glightbox"
+             data-index="5"
+             data-gallery="vignettes"
+             data-title="Strobe Memory"
+             data-description="Prompt: Fragmented memories, glitch aesthetic, red and purple haze<br>Model: Midjourney v6">
+            <figure class="vignette-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23B04BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23g6)'/%3E%3C/svg%3E"
+                alt="Strobe Memory - Glitch aesthetic"
+                loading="lazy"
+              >
+            </figure>
+            <div class="vignette-content">
+              <h3 class="vignette-title">Strobe Memory</h3>
+              <div class="vignette-tech">
+                <span class="tech-tag">Midjourney v6</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Content System Mockup — Third Plane Studios 2025</p>
+    </div>
+  </footer>
+
+  <!-- GLightbox -->
+  <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({
+      touchNavigation: true,
+      loop: true,
+      openEffect: 'fade',
+      closeEffect: 'fade',
+      cssEffects: {
+        fade: { in: 'fadeIn', out: 'fadeOut' }
+      }
+    });
+  </script>
+
+  <!-- Staggered Scroll Reveal (DIA-inspired) -->
+  <script>
+  (function() {
+    'use strict';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ============ Center-out Reveal Order ============
+    // DIA-inspired: middle column reveals first, then sides
+    const getRevealOrder = (cols) => {
+      if (cols === 3) return [1, 0, 2];  // Center, left, right
+      if (cols === 2) return [0, 1];     // Left, right
+      return [0];                         // Single column
+    };
+
+    // ============ Create Observer for a Grid ============
+    const createGridObserver = (selector, gridSelector) => {
+      const cards = document.querySelectorAll(selector);
+      const grid = document.querySelector(gridSelector);
+
+      if (!cards.length || !grid) return;
+
+      if (prefersReducedMotion) {
+        cards.forEach(card => card.classList.add('revealed'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const card = entry.target;
+            const index = parseInt(card.dataset.index, 10) || 0;
+
+            // Get current column count based on viewport
+            const gridStyles = getComputedStyle(card.parentElement);
+            const columns = gridStyles.gridTemplateColumns.split(' ').length;
+
+            const row = Math.floor(index / columns);
+            const col = index % columns;
+            const revealOrder = getRevealOrder(columns);
+            const orderIndex = revealOrder[col] !== undefined ? revealOrder[col] : col;
+
+            // Stagger: row delay + reveal order delay
+            const delay = (row * 250) + (orderIndex * 100);
+
+            card.style.transitionDelay = `${delay}ms`;
+            card.classList.add('revealed');
+
+            observer.unobserve(card);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      cards.forEach((card, i) => {
+        // Only set index if not already set in HTML
+        if (!card.dataset.index) {
+          card.dataset.index = i;
+        }
+        observer.observe(card);
+      });
+    };
+
+    // ============ Initialize Grid Observers ============
+    // Works grid
+    createGridObserver('.works-grid .work-card', '.works-grid');
+
+    // Vignettes grid
+    createGridObserver('.vignettes-grid .vignette-card', '.vignettes-grid');
+  })();
+  </script>
+
+</body>
+</html>

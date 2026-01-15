@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Works — Third Plane Studios</title>
+  <meta name="description" content="Selected works from Third Plane Studios. Brand identity, web experiences, generative art, and more.">
+  <meta name="theme-color" content="#05060A">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Works — Third Plane Studios">
+  <meta property="og:description" content="Selected works from Third Plane Studios.">
+  <meta property="og:url" content="https://www.thirdplane.io/works">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       NEON NOIR DESIGN SYSTEM
+       Third Plane Studios - 2025
+       ============================================ */
+
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.16);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+      --brand: var(--uv-600);
+      --link: var(--ice-400);
+
+      /* Gradient background */
+      --gradient-soul:
+        radial-gradient(55rem 55rem at 38% 26%, rgba(122, 43, 255, 0.35) 0%, rgba(122, 43, 255, 0.00) 60%),
+        radial-gradient(52rem 52rem at 60% 34%, rgba(176, 75, 255, 0.25) 0%, rgba(176, 75, 255, 0.00) 60%),
+        radial-gradient(58rem 58rem at 70% 62%, rgba(255, 42, 74, 0.20) 0%, rgba(255, 42, 74, 0.00) 60%),
+        radial-gradient(64rem 64rem at 28% 70%, rgba(255, 138, 61, 0.16) 0%, rgba(255, 138, 61, 0.00) 60%),
+        radial-gradient(70rem 70rem at 55% 8%, rgba(125, 231, 255, 0.14) 0%, rgba(125, 231, 255, 0.00) 60%),
+        linear-gradient(140deg, rgba(255, 210, 106, 0.00) 0%, rgba(255, 210, 106, 0.00) 28%, rgba(255, 210, 106, 0.22) 36%, rgba(255, 210, 106, 0.00) 55%, rgba(255, 210, 106, 0.00) 100%);
+
+      /* Glows */
+      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
+      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
+      --glow-red: 0 0 22px rgba(255, 42, 74, 0.22);
+      --glow-gold: 0 0 28px rgba(255, 210, 106, 0.18);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+      --scrim-strong: rgba(5, 6, 10, 0.86);
+
+      /* Typography */
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --letter-spacing-tight: -0.03em;
+
+      /* Spacing */
+      --section-padding: 120px;
+      --card-gap: 24px;
+      --page-padding: 24px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.35s ease;
+
+      /* Spring Curves */
+      --spring-hero: 550ms linear(0, 0.2606, 0.7094, 1.0343, 1.158, 1.1389, 1.0674, 1.006, 0.977, 0.975, 0.9856, 0.9967, 1.003, 1, 1.0029, 1.001, 0.9997, 1);
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+      --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    }
+
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Page padding - shared by nav and content containers */
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    /* Section Label */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-600);
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1.1;
+      color: var(--text-100);
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    /* ============ NAVIGATION ============ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: transparent;
+      transition: background var(--transition-medium), backdrop-filter var(--transition-medium);
+    }
+
+    .nav.scrolled {
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    /* Nav Logo with Tension-Snap Animation */
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-200);
+      display: inline-flex;
+      align-items: baseline;
+      transition: text-shadow var(--spring-snap);
+    }
+
+    .nav-logo:hover {
+      text-shadow: var(--glow-ice);
+    }
+
+    .logo-third,
+    .logo-plane {
+      display: inline;
+      transition: margin var(--spring-snap);
+    }
+
+    /* Restore hover micro-shift animation on wordmark */
+    .nav-logo:hover .logo-third {
+      margin-right: 0.25em;
+    }
+
+    .nav-logo:hover .logo-plane {
+      margin-left: 0.08em;
+    }
+
+    .logo-studios {
+      color: var(--text-600);
+      margin-left: 0.35em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-400);
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--ice-400);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Nav Link Active State */
+    .nav-link--active {
+      color: var(--text-100);
+    }
+
+    .nav-link--active::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 20px;
+      }
+      .nav-links a {
+        font-size: 13px;
+      }
+    }
+
+    /* ============ WORKS SECTION ============ */
+    .works-section {
+      padding: 120px 0 var(--section-padding);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    .works-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .works-head .section-label {
+      margin-bottom: 0;
+    }
+
+    .works-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============ WORKS GRID ============ */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: min-content;
+      align-items: start;
+      gap: 40px 32px;
+      max-width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .works-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ============ WORK CARD ============ */
+    .work-card {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;  /* Prevent grid blowout from content */
+      /* Scroll reveal initial state */
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .work-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.5s ease-out,
+        transform var(--spring-stagger);
+    }
+
+    /* Focus state for accessibility */
+    .work-card:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 4px;
+    }
+
+    /* Hover lift effect (only after reveal animation completes) */
+    .work-card.revealed:hover {
+      transform: translateY(-4px);
+      transition: transform var(--spring-hover);
+    }
+
+    /* ============ WORK MEDIA ============ */
+    .work-media {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink-850);
+      border-radius: 2px;
+    }
+
+    .work-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform var(--spring-hover);
+    }
+
+    .work-card:hover .work-media img {
+      transform: scale(1.04);
+    }
+
+    /* ============ WORK META ============ */
+    .work-meta {
+      margin-top: 16px;
+      padding-right: 4px;  /* Subtle breathing room for arrow */
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .work-type {
+      font-family: var(--font-mono);  /* JetBrains Mono */
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-200);  /* Softer white */
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .work-type::after {
+      content: '\2192';  /* Arrow symbol only */
+      opacity: 0.6;
+    }
+
+    /* ============ PERFORMANCE OPTIMIZATION ============ */
+    /* Defer rendering of off-screen cards (row 2+, items 4+ in 3-col grid) */
+    .work-card:nth-child(n+4) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 450px;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--ink-900);
+      padding: 80px 0 48px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125, 231, 255, 0.3), transparent);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-200);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-tagline {
+      font-size: 15px;
+      color: var(--text-600);
+      line-height: 1.5;
+    }
+
+    .footer-contact {
+      text-align: right;
+    }
+
+    .footer-email {
+      display: inline-block;
+      font-size: 16px;
+      color: var(--text-200);
+      margin-bottom: 16px;
+      position: relative;
+      transition: color var(--transition-fast), text-shadow var(--transition-fast);
+    }
+
+    .footer-email::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .footer-email:hover {
+      color: var(--ice-400);
+      text-shadow: var(--glow-ice);
+    }
+
+    .footer-email:hover::after {
+      width: 100%;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: var(--text-600);
+      border: 1px solid var(--border);
+      transition: all var(--spring-hover);
+    }
+
+    .footer-social a:hover {
+      color: var(--ice-400);
+      border-color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      transform: translateY(-3px);
+      box-shadow: var(--glow-ice);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 600px) {
+      .footer {
+        padding: 64px 0 40px;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .footer-contact {
+        text-align: left;
+      }
+      .footer-social {
+        justify-content: flex-start;
+      }
+    }
+
+    /* ============ ACCESSIBILITY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .work-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .work-media img {
+        transition: none;
+      }
+    }
+
+    /* Focus states for keyboard navigation */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    /* Selection styling */
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
+      <div class="nav-links">
+        <a href="/works.html" class="nav-link--active">Works</a>
+        <a href="/writings.html">Writings</a>
+        <a href="/vignettes.html">Vignettes</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="works-section">
+      <div class="container">
+        <header class="works-head">
+          <span class="section-label">Selected Work</span>
+          <span class="works-count">15 Projects</span>
+        </header>
+
+        <div class="works-grid">
+          <!-- #001 Lumina - Landscape 4:3 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='%23121319'/%3E%3Crect width='800' height='600' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Lumina — brand identity for an AI lighting startup"
+                width="800"
+                height="600"
+                loading="eager"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Brand Identity</span>
+            </div>
+          </a>
+
+          <!-- #002 Synthesis -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='%23121319'/%3E%3Crect width='600' height='800' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Synthesis — immersive web experience exploring digital consciousness"
+                width="600"
+                height="800"
+                loading="eager"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Web Experience</span>
+            </div>
+          </a>
+
+          <!-- #003 Void Protocol - Square 1:1 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 700'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50%25' y1='0%25' x2='50%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='700' height='700' fill='%23121319'/%3E%3Crect width='700' height='700' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Void Protocol — generative art series on entropy and emergence"
+                width="700"
+                height="700"
+                loading="eager"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Generative Art</span>
+            </div>
+          </a>
+
+          <!-- #004 Neural Garden - Wide 16:9 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='50%25' x2='100%25' y2='50%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Neural Garden — interactive installation mapping neural networks"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Installation</span>
+            </div>
+          </a>
+
+          <!-- #005 Chromatic -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='100%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='%23121319'/%3E%3Crect width='600' height='800' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Chromatic — motion design exploring color theory in motion"
+                width="600"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Motion Design</span>
+            </div>
+          </a>
+
+          <!-- #006 Lattice - Landscape 4:3 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='100%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='%23121319'/%3E%3Crect width='800' height='600' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Lattice — data visualization of interconnected systems"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Data Visualization</span>
+            </div>
+          </a>
+
+          <!-- #007 Resonance - Landscape 4:3 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FFD26A' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='%23121319'/%3E%3Crect width='800' height='600' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Resonance — audio-reactive motion design for live performances"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Motion Design</span>
+            </div>
+          </a>
+
+          <!-- #008 Axis - Square 1:1 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 700'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23B04BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FF8A3D' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='700' height='700' fill='%23121319'/%3E%3Crect width='700' height='700' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Axis — typographic exploration of spatial relationships"
+                width="700"
+                height="700"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Typography</span>
+            </div>
+          </a>
+
+          <!-- #009 Terraform - Tall Portrait 2:3 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 750'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50%25' y1='0%25' x2='50%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237DE7FF' stop-opacity='0.12'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23121319' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='750' fill='%23121319'/%3E%3Crect width='500' height='750' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Terraform — spatial design for immersive environments"
+                width="500"
+                height="750"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Spatial Design</span>
+            </div>
+          </a>
+
+          <!-- #010 Frequency - Wide 16:9 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='50%25' x2='100%25' y2='50%25'%3E%3Cstop offset='0%25' stop-color='%23FFD26A' stop-opacity='0.12'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237A2BFF' stop-opacity='0.10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Frequency — sound design for interactive installations"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Sound Design</span>
+            </div>
+          </a>
+
+          <!-- #011 Prism - Portrait 3:4 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A' stop-opacity='0.12'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FFD26A' stop-opacity='0.10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='%23121319'/%3E%3Crect width='600' height='800' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Prism — editorial design for art publications"
+                width="600"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Editorial</span>
+            </div>
+          </a>
+
+          <!-- #012 Catalyst - Square 1:1 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 700'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='100%25' y1='100%25' x2='0%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='700' height='700' fill='%23121319'/%3E%3Crect width='700' height='700' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Catalyst — product design for creative tools"
+                width="700"
+                height="700"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Product Design</span>
+            </div>
+          </a>
+
+          <!-- #013 Echo - Landscape 4:3 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50%25' y1='100%25' x2='50%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23B04BFF' stop-opacity='0.12'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FF8A3D' stop-opacity='0.10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='%23121319'/%3E%3Crect width='800' height='600' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Echo — interactive installation exploring memory and space"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Interactive Installation</span>
+            </div>
+          </a>
+
+          <!-- #014 Substrate - Tall Portrait 2:3 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 750'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FFD26A' stop-opacity='0.10'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237A2BFF' stop-opacity='0.12'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='750' fill='%23121319'/%3E%3Crect width='500' height='750' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Substrate — research into material futures and digital craft"
+                width="500"
+                height="750"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Research</span>
+            </div>
+          </a>
+
+          <!-- #015 Manifold - Wide 16:9 -->
+          <a href="#" class="work-card">
+            <div class="work-media">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='100%25' y1='50%25' x2='0%25' y2='50%25'%3E%3Cstop offset='0%25' stop-color='%237DE7FF' stop-opacity='0.10'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23121319' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g)'/%3E%3C/svg%3E"
+                alt="View Manifold — generative art exploring mathematical surfaces"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <div class="work-meta">
+              <span class="work-type">Generative Art</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">thirdplane studios</span>
+          <p class="footer-tagline">The curation of latent space.</p>
+        </div>
+
+        <div class="footer-contact">
+          <a href="mailto:j@thirdplane.io" class="footer-email">j@thirdplane.io</a>
+          <div class="footer-social">
+            <a href="https://github.com/thirdplane" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">&copy; 2025 Third Plane Studios</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ============ Nav Scroll State ============
+      const nav = document.getElementById('nav');
+      if (nav) {
+        const updateNavState = () => {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+        };
+
+        updateNavState();
+        window.addEventListener('scroll', updateNavState, { passive: true });
+      }
+
+      // ============ Staggered Scroll Reveal ============
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const cards = document.querySelectorAll('.work-card');
+
+      if (prefersReducedMotion) {
+        cards.forEach(card => card.classList.add('revealed'));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const card = entry.target;
+              const index = parseInt(card.dataset.index, 10) || 0;
+
+              // Get current column count based on viewport
+              const gridStyles = getComputedStyle(card.parentElement);
+              const columns = gridStyles.gridTemplateColumns.split(' ').length;
+
+              // Center-out reveal order: middle column first, then sides
+              const getRevealOrder = (cols) => {
+                if (cols === 3) return [1, 0, 2];  // Center, left, right
+                if (cols === 2) return [0, 1];     // Left, right
+                return [0];                         // Single column
+              };
+
+              const row = Math.floor(index / columns);
+              const col = index % columns;
+              const revealOrder = getRevealOrder(columns);
+              const orderIndex = revealOrder[col] !== undefined ? revealOrder[col] : col;
+
+              // Stagger: row delay + reveal order delay
+              const delay = (row * 250) + (orderIndex * 100);
+
+              card.style.transitionDelay = `${delay}ms`;
+              card.classList.add('revealed');
+
+              observer.unobserve(card);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        cards.forEach((card, i) => {
+          card.dataset.index = i;
+          observer.observe(card);
+        });
+      }
+
+      // ============ Lazy Image Loading (for future real images) ============
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const realSrc = img.dataset.src;
+
+            if (realSrc) {
+              const tempImg = new Image();
+              tempImg.onload = () => {
+                img.src = realSrc;
+                img.classList.add('loaded');
+              };
+              tempImg.src = realSrc;
+            }
+
+            imageObserver.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '100px'
+      });
+
+      document.querySelectorAll('.work-media img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    })();
+  </script>
+
+</body>
+</html>
