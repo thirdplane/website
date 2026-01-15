@@ -1,0 +1,230 @@
+/* Vignettes Grid Page Styles */
+/* Per content-mockup.html specifications */
+
+.vignettes-section {
+  padding: 120px 0 80px;
+}
+
+.vignettes-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.vignettes-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-600);
+  letter-spacing: 0.04em;
+}
+
+/* Grid: 3→2→1 columns per mockup */
+.vignettes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: min-content;
+  align-items: start;
+  gap: 24px 20px;
+}
+
+@media (max-width: 900px) {
+  .vignettes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .vignettes-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Vignette card - scroll reveal initial state */
+.vignette-card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-850);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Revealed state with spring transition */
+.vignette-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s ease-out,
+    transform var(--spring-stagger),
+    border-color var(--transition-fast);
+}
+
+/* Hover lift effect (only after reveal animation completes) */
+.vignette-card.revealed:hover {
+  border-color: rgba(125, 231, 255, 0.3);
+  transform: translateY(-4px);
+  transition:
+    transform var(--spring-hover),
+    border-color var(--transition-fast);
+}
+
+/* Focus state for accessibility */
+.vignette-card:focus-visible {
+  outline: 2px solid var(--ice-400);
+  outline-offset: 3px;
+}
+
+.vignette-media {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.vignette-media video,
+.vignette-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--spring-hover);
+}
+
+.vignette-card.revealed:hover .vignette-media video,
+.vignette-card.revealed:hover .vignette-media img {
+  transform: scale(1.04);
+}
+
+/* Video badge overlay */
+.vignette-video-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--scrim);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-100);
+  z-index: 2;
+}
+
+/* Vignette content section */
+.vignette-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vignette-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-200);
+  letter-spacing: -0.03em;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.vignette-card:hover .vignette-title {
+  color: var(--text-100);
+}
+
+.vignette-tech {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  background: rgba(125, 231, 255, 0.1);
+  border: 1px solid rgba(125, 231, 255, 0.2);
+  border-radius: 4px;
+  color: var(--ice-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Performance: defer off-screen cards */
+.vignette-card:nth-child(n+4) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+
+/* GLightbox overrides for Neon Noir */
+.glightbox-clean .gslide-description {
+  background: var(--scrim-strong) !important;
+  font-family: var(--font-primary);
+}
+
+.glightbox-clean .gdesc-inner {
+  padding: 16px 20px !important;
+}
+
+.glightbox-clean .gslide-title {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: var(--text-100) !important;
+  margin-bottom: 8px !important;
+}
+
+.glightbox-clean .gslide-desc {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  color: var(--text-400) !important;
+  line-height: 1.6 !important;
+}
+
+.glightbox-clean .gnext,
+.glightbox-clean .gprev,
+.glightbox-clean .gclose {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .vignettes-section {
+    padding: 80px 0 60px;
+  }
+
+  .vignettes-head {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .vignette-title {
+    font-size: 14px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .vignette-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .vignette-media video,
+  .vignette-media img {
+    transition: none;
+  }
+}

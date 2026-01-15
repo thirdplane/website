@@ -1,0 +1,28 @@
+<!-- Navigation (sticky) -->
+<nav class="nav" id="nav">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+    </a>
+    <div class="nav-links">
+      {% for item in site.nav %}
+        <a href="{{ item.url }}"{% if page.url == item.url or (page.url and page.url.startsWith(item.url | replace('.html', '/'))) %} class="nav-link--active"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Nav Scroll State
+  (function() {
+    'use strict';
+    const nav = document.getElementById('nav');
+    if (nav) {
+      const updateNavState = () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+      };
+      updateNavState();
+      window.addEventListener('scroll', updateNavState, { passive: true });
+    }
+  })();
+</script>

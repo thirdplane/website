@@ -15,5 +15,8 @@ Thumbs.db
 *.swp
 *~
 
-# Node (if added later)
+# Node
 node_modules/
+
+# Eleventy build output
+_site/

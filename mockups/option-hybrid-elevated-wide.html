@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hybrid: Elevated Surface + Wide Container | Writing Article</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================
+       HYBRID: Elevated Surface + Wide Container
+       Beautiful back link + Glass-morphism card
+       Full-width card with readable prose inside
+       ================================================ */
+
+    /* Design Tokens */
+    :root {
+      /* Ink (backgrounds) */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #1A1C24;
+
+      /* Text hierarchy */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --ice-400: #7DE7FF;
+      --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
+
+      /* Border */
+      --border: rgba(214, 230, 255, 0.16);
+
+      /* Fonts */
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+    }
+
+    /* Reset */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--ink-950);
+      color: var(--text-200);
+      line-height: 1.6;
+      min-height: 100vh;
+
+      /* Subtle ambient gradients */
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(176, 75, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(125, 231, 255, 0.03) 0%, transparent 50%),
+        var(--ink-950);
+      background-attachment: fixed;
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(125, 231, 255, 0.2);
+      color: var(--text-100);
+    }
+
+    /* ================================================
+       LAYOUT: Wide Container (matches nav)
+       ================================================ */
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: var(--space-2xl) var(--space-xl) var(--space-3xl);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .page {
+        padding: var(--space-2xl) var(--space-2xl) 6rem;
+      }
+    }
+
+    /* ================================================
+       BACK NAVIGATION: Simple & Beautiful
+       Arrow is text, not SVG icon
+       ================================================ */
+
+    .back-link-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    @media (min-width: 768px) {
+      .back-link-wrapper {
+        padding: 0 var(--space-2xl);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .back-link-wrapper {
+        padding: 0 var(--space-3xl);
+      }
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-600);
+      text-decoration: none;
+      margin-bottom: var(--space-lg);
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--ice-400);
+    }
+
+    /* ================================================
+       ELEVATED SURFACE: Glass-morphism Card
+       Spans full container width
+       ================================================ */
+
+    .article-surface {
+      background: linear-gradient(180deg, rgba(13, 15, 20, 0.9) 0%, rgba(13, 15, 20, 0.7) 100%);
+      border-radius: 12px;
+      box-shadow:
+        0 0 0 1px rgba(214, 230, 255, 0.08),
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle gradient accent line at top */
+    .article-surface::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(176, 75, 255, 0.15) 25%,
+        rgba(125, 231, 255, 0.12) 75%,
+        transparent 100%
+      );
+    }
+
+    @media (min-width: 768px) {
+      .article-surface {
+        border-radius: 16px;
+      }
+    }
+
+    /* ================================================
+       ARTICLE HEADER
+       Inside surface, aligned with prose
+       ================================================ */
+
+    .article-header {
+      padding: var(--space-2xl) var(--space-lg);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .article-header {
+        padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .article-header {
+        padding: var(--space-3xl) var(--space-3xl) var(--space-xl);
+      }
+    }
+
+    /* Meta: Date & Reading Time */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .article-date {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-600);
+      letter-spacing: 0.01em;
+    }
+
+    .article-reading-time {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+      opacity: 0.8;
+    }
+
+    .article-reading-time::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      background: var(--text-600);
+      border-radius: 50%;
+      margin-right: var(--space-md);
+      vertical-align: middle;
+    }
+
+    /* Title: 32-36px */
+    .article-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 600;
+      color: var(--text-100);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* Tags: Minimal style */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-400);
+      padding: var(--space-xs) var(--space-sm);
+      background: rgba(168, 178, 209, 0.06);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .tag--accent {
+      color: var(--uv-400);
+      background: rgba(176, 75, 255, 0.08);
+    }
+
+    /* ================================================
+       ARTICLE CONTENT: Readable Prose Column
+       Narrower (720px) inside the wide card
+       ================================================ */
+
+    .article-content {
+      padding: 0 var(--space-lg) var(--space-2xl);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .article-content {
+        padding: 0 var(--space-2xl) var(--space-2xl);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .article-content {
+        padding: 0 var(--space-3xl) var(--space-3xl);
+      }
+    }
+
+    /* Prose Styles */
+    .prose {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-200);
+    }
+
+    @media (min-width: 768px) {
+      .prose {
+        font-size: 17px;
+      }
+    }
+
+    .prose p {
+      margin-bottom: 1.5em;
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* First paragraph - slightly emphasized */
+    .prose p:first-of-type {
+      font-size: 1.0625em;
+      color: var(--text-100);
+      line-height: 1.7;
+    }
+
+    .prose strong {
+      color: var(--text-100);
+      font-weight: 600;
+    }
+
+    .prose em {
+      font-style: italic;
+    }
+
+    /* Links */
+    .prose a {
+      color: var(--ice-400);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(125, 231, 255, 0.3);
+      transition: border-color 0.2s ease;
+    }
+
+    .prose a:hover {
+      border-bottom-color: var(--ice-400);
+    }
+
+    /* Headings */
+    .prose h2 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 26px);
+      font-weight: 600;
+      color: var(--text-100);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-top: 2.5em;
+      margin-bottom: 0.75em;
+    }
+
+    .prose h3 {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.5vw, 20px);
+      font-weight: 600;
+      color: var(--text-100);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+
+    /* Lists */
+    .prose ul, .prose ol {
+      margin-bottom: 1.5em;
+      padding-left: 1.5em;
+    }
+
+    .prose li {
+      margin-bottom: 0.5em;
+    }
+
+    .prose li::marker {
+      color: var(--text-600);
+    }
+
+    /* Blockquote */
+    .prose blockquote {
+      border-left: 2px solid var(--uv-500);
+      padding-left: var(--space-lg);
+      margin: 2em 0;
+      color: var(--text-400);
+      font-style: italic;
+    }
+
+    .prose blockquote p {
+      margin-bottom: 0;
+    }
+
+    /* Inline code */
+    .prose code {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+
+    /* Horizontal rule */
+    .prose hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(168, 178, 209, 0.15) 20%,
+        rgba(168, 178, 209, 0.15) 80%,
+        transparent
+      );
+      margin: 2.5em 0;
+    }
+
+    /* ================================================
+       ARTICLE END MARKER
+       ================================================ */
+
+    .article-end {
+      padding: var(--space-xl) var(--space-lg);
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    @media (min-width: 768px) {
+      .article-end {
+        padding: var(--space-xl) var(--space-2xl) var(--space-2xl);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .article-end {
+        padding: var(--space-xl) var(--space-3xl) var(--space-3xl);
+      }
+    }
+
+    .article-end-marker {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .article-end-marker::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--text-600);
+      opacity: 0.4;
+    }
+
+    .article-end-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ================================================
+       DESIGN NOTES (for mockup only)
+       ================================================ */
+
+    .design-notes {
+      max-width: 1200px;
+      margin: var(--space-3xl) auto 0;
+      padding: var(--space-xl) var(--space-lg);
+      border-top: 1px dashed rgba(168, 178, 209, 0.12);
+    }
+
+    @media (min-width: 768px) {
+      .design-notes {
+        padding: var(--space-xl) var(--space-2xl);
+      }
+    }
+
+    .design-notes h4 {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-md);
+    }
+
+    .design-notes ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-400);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    @media (min-width: 768px) {
+      .design-notes ul {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm) var(--space-xl);
+      }
+    }
+
+    .design-notes li {
+      padding-left: var(--space-md);
+      position: relative;
+    }
+
+    .design-notes li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--ice-400);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- Back Link: Simple, beautiful text arrow -->
+    <div class="back-link-wrapper">
+      <a href="#" class="back-link">
+        <span aria-hidden="true">&larr;</span> Writings
+      </a>
+    </div>
+
+    <!-- Article Surface: Wide elevated card -->
+    <article class="article-surface">
+
+      <!-- Article Header -->
+      <header class="article-header">
+        <div class="article-meta">
+          <time class="article-date" datetime="2026-01-12">Jan 12, 2026</time>
+          <span class="article-reading-time">8 min read</span>
+        </div>
+
+        <h1 class="article-title">Designing in the Void</h1>
+
+        <div class="article-tags">
+          <span class="tag tag--accent">Design</span>
+          <span class="tag">Process</span>
+          <span class="tag">Philosophy</span>
+        </div>
+      </header>
+
+      <!-- Article Content: Readable prose column -->
+      <div class="article-content">
+        <div class="prose">
+          <p>
+            There is a moment in every design process when you realize that what you're
+            building isn't defined by what you add, but by what you choose to leave out.
+            The void isn't empty space waiting to be filled. It's the canvas that gives
+            meaning to everything that exists within it.
+          </p>
+
+          <p>
+            I spent years adding more: more features, more visual elements, more
+            interactions. Each addition felt like progress. But the interfaces grew
+            heavier, slower, more confusing. Users couldn't find what they needed
+            because there was too much competing for their attention.
+          </p>
+
+          <h2>The Negative Space Revelation</h2>
+
+          <p>
+            In traditional Japanese aesthetics, there's a concept called <code>ma</code>
+            (literally "gap" or "pause"). It's not merely empty space, but a conscious
+            pause that gives shape to what surrounds it. In music, it's the silence
+            between notes that creates rhythm. In architecture, it's the void that
+            makes a room feel spacious rather than cramped.
+          </p>
+
+          <blockquote>
+            <p>
+              "The space between things is just as important as the things themselves.
+              Design the absence with the same intention you design the presence."
+            </p>
+          </blockquote>
+
+          <p>
+            When I began applying this principle to interface design, everything
+            shifted. Instead of asking "what can I add here?", I started asking
+            "what can I remove while preserving meaning?" The results were
+            transformative. Interfaces that breathed. Content that commanded
+            attention without shouting. Interactions that felt effortless.
+          </p>
+
+          <h2>Practical Application</h2>
+
+          <p>
+            Designing with void requires discipline. Here's how I approach it:
+          </p>
+
+          <ul>
+            <li><strong>Start with content, not containers.</strong> Let the text and images define their own boundaries before reaching for boxes and cards.</li>
+            <li><strong>Use typography as architecture.</strong> Size, weight, and spacing can create hierarchy without any visual chrome.</li>
+            <li><strong>Embrace asymmetry.</strong> Perfect balance often feels static; intentional imbalance creates movement and interest.</li>
+            <li><strong>Test in grayscale.</strong> If the hierarchy doesn't work without color, color won't save it.</li>
+          </ul>
+
+          <h3>The Courage to Subtract</h3>
+
+          <p>
+            Perhaps the hardest part is having the courage to subtract. Every element
+            you remove feels like you're giving something up. But subtraction is
+            addition by another name: you're adding clarity, focus, and breathing room.
+          </p>
+
+          <p>
+            The next time you're stuck on a design, don't ask what's missing. Ask what's
+            unnecessary. The answer might surprise you. Often, the best interface is
+            the one that gets out of the way entirely, leaving only the essential
+            conversation between the user and their goal.
+          </p>
+
+          <hr>
+
+          <p>
+            This approach isn't minimalism for its own sake. It's not about making
+            things look sparse or trendy. It's about understanding that attention is
+            finite, that cognitive load is real, and that every pixel you place on
+            screen is competing for someone's limited mental resources.
+          </p>
+
+          <p>
+            Design in the void. Let your interfaces breathe. Your users will thank you
+            with something more valuable than praise: they'll actually use what you build.
+          </p>
+        </div>
+      </div>
+
+      <!-- Article End Marker -->
+      <footer class="article-end">
+        <div class="article-end-marker">
+          <span class="article-end-text">End</span>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- Design Notes (for mockup reference only) -->
+  <aside class="design-notes">
+    <h4>Hybrid: Elevated Surface + Wide Container</h4>
+    <ul>
+      <li>Back link: simple text arrow, ice-400 color, no SVG</li>
+      <li>Wide container: 1200px max-width (matches nav)</li>
+      <li>Elevated surface with glass-morphism + soft shadows</li>
+      <li>No internal border between header and content</li>
+      <li>Prose constrained to 720px inside wide card</li>
+      <li>Subtle top gradient accent line (UV to Ice)</li>
+      <li>Title: 32-36px for hierarchy</li>
+      <li>Tags: minimal pill style</li>
+    </ul>
+  </aside>
+
+</body>
+</html>

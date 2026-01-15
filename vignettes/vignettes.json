@@ -1,0 +1,5 @@
+{
+  "layout": "vignette.njk",
+  "tags": ["vignette"],
+  "draft": false
+}

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option B: Elevated Surface | Writings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       OPTION B: ELEVATED SURFACE (Linear-inspired)
+       Glass-morphism with soft shadows
+       ======================================== */
+
+    :root {
+      /* Ink (backgrounds) */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #1A1C24;
+
+      /* Text hierarchy */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --ice-400: #7DE7FF;
+      --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--ink-950);
+      color: var(--text-200);
+      line-height: 1.6;
+      min-height: 100vh;
+
+      /* Subtle gradient background */
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(176, 75, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(125, 231, 255, 0.04) 0%, transparent 50%),
+        var(--ink-950);
+    }
+
+    /* ========================================
+       HEADER / NAVIGATION
+       ======================================== */
+
+    .page-header {
+      padding: var(--space-xl) var(--space-xl);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-400);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--ice-400);
+    }
+
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .back-link:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* ========================================
+       ARTICLE SURFACE (Elevated Glass Card)
+       ======================================== */
+
+    .article-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl) var(--space-3xl);
+    }
+
+    .article-surface {
+      background: linear-gradient(
+        180deg,
+        rgba(18, 19, 25, 0.9) 0%,
+        rgba(13, 15, 20, 0.6) 100%
+      );
+      border-radius: 16px;
+      box-shadow:
+        0 0 0 1px rgba(214, 230, 255, 0.06),
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        0 12px 48px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle top gradient accent line */
+    .article-surface::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(176, 75, 255, 0.4) 30%,
+        rgba(125, 231, 255, 0.3) 70%,
+        transparent 100%
+      );
+      opacity: 0.6;
+    }
+
+    /* ========================================
+       ARTICLE HEADER (Inside Surface)
+       NO border-bottom - unified with content
+       ======================================== */
+
+    .article-header {
+      padding: var(--space-2xl) var(--space-2xl) var(--space-lg);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .article-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-600);
+      letter-spacing: 0.01em;
+    }
+
+    .article-reading-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-600);
+      opacity: 0.7;
+    }
+
+    .article-reading-time::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      background: var(--text-600);
+      border-radius: 50%;
+      margin-right: var(--space-md);
+      vertical-align: middle;
+    }
+
+    .article-title {
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--text-100);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* Tags - minimal text style */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-400);
+      padding: var(--space-xs) var(--space-sm);
+      background: rgba(168, 178, 209, 0.06);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .tag:hover {
+      color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+    }
+
+    .tag--accent {
+      color: var(--uv-400);
+      background: rgba(176, 75, 255, 0.08);
+    }
+
+    .tag--accent:hover {
+      color: var(--uv-400);
+      background: rgba(176, 75, 255, 0.12);
+    }
+
+    /* ========================================
+       ARTICLE CONTENT (Prose)
+       ======================================== */
+
+    .article-content {
+      padding: 0 var(--space-2xl) var(--space-2xl);
+    }
+
+    .prose {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-200);
+    }
+
+    .prose p {
+      margin-bottom: 1.5em;
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose strong {
+      color: var(--text-100);
+      font-weight: 600;
+    }
+
+    .prose em {
+      font-style: italic;
+      color: var(--text-200);
+    }
+
+    .prose a {
+      color: var(--ice-400);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(125, 231, 255, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .prose a:hover {
+      border-bottom-color: var(--ice-400);
+    }
+
+    .prose h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-100);
+      margin-top: 2em;
+      margin-bottom: 0.75em;
+      letter-spacing: -0.01em;
+    }
+
+    .prose h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-100);
+      margin-top: 1.75em;
+      margin-bottom: 0.5em;
+    }
+
+    .prose ul, .prose ol {
+      margin-bottom: 1.5em;
+      padding-left: 1.5em;
+    }
+
+    .prose li {
+      margin-bottom: 0.5em;
+    }
+
+    .prose li::marker {
+      color: var(--text-600);
+    }
+
+    .prose blockquote {
+      border-left: 2px solid rgba(176, 75, 255, 0.4);
+      padding-left: var(--space-lg);
+      margin: 1.5em 0;
+      color: var(--text-400);
+      font-style: italic;
+    }
+
+    .prose code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: rgba(168, 178, 209, 0.1);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: var(--uv-400);
+    }
+
+    .prose pre {
+      background: rgba(5, 6, 10, 0.6);
+      border-radius: 8px;
+      padding: var(--space-lg);
+      margin: 1.5em 0;
+      overflow-x: auto;
+      border: 1px solid rgba(214, 230, 255, 0.06);
+    }
+
+    .prose pre code {
+      background: none;
+      padding: 0;
+      font-size: 14px;
+      color: var(--text-200);
+    }
+
+    .prose hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(168, 178, 209, 0.15) 20%,
+        rgba(168, 178, 209, 0.15) 80%,
+        transparent
+      );
+      margin: 2.5em 0;
+    }
+
+    /* ========================================
+       LEAD PARAGRAPH
+       ======================================== */
+
+    .prose .lead {
+      font-size: 18px;
+      color: var(--text-300, #BCC6DD);
+      line-height: 1.7;
+      margin-bottom: 2em;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+
+    @media (max-width: 768px) {
+      .page-header {
+        padding: var(--space-lg) var(--space-md);
+      }
+
+      .article-container {
+        padding: 0 var(--space-md) var(--space-2xl);
+      }
+
+      .article-surface {
+        border-radius: 12px;
+      }
+
+      .article-header {
+        padding: var(--space-xl) var(--space-lg) var(--space-md);
+      }
+
+      .article-title {
+        font-size: 28px;
+      }
+
+      .article-content {
+        padding: 0 var(--space-lg) var(--space-xl);
+      }
+
+      .prose {
+        font-size: 15px;
+      }
+    }
+
+    /* ========================================
+       DESIGN NOTES (for mockup only)
+       ======================================== */
+
+    .design-notes {
+      max-width: 900px;
+      margin: var(--space-3xl) auto;
+      padding: var(--space-xl);
+      border-top: 1px dashed rgba(168, 178, 209, 0.15);
+    }
+
+    .design-notes h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-md);
+    }
+
+    .design-notes ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-400);
+    }
+
+    .design-notes li {
+      margin-bottom: var(--space-sm);
+      padding-left: var(--space-md);
+      position: relative;
+    }
+
+    .design-notes li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--ice-400);
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with back link (NO border underneath) -->
+  <header class="page-header">
+    <a href="#" class="back-link">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M10 12L6 8L10 4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      // WRITINGS
+    </a>
+  </header>
+
+  <!-- Article Container -->
+  <main class="article-container">
+    <article class="article-surface">
+
+      <!-- Article Header (unified with content - no border) -->
+      <header class="article-header">
+        <div class="article-meta">
+          <time class="article-date" datetime="2024-01-15">Jan 15, 2024</time>
+          <span class="article-reading-time">8 min read</span>
+        </div>
+
+        <h1 class="article-title">Building Design Systems That Scale Without Breaking</h1>
+
+        <div class="article-tags">
+          <span class="tag tag--accent">Design Systems</span>
+          <span class="tag">Architecture</span>
+          <span class="tag">Process</span>
+        </div>
+      </header>
+
+      <!-- Article Content (prose) -->
+      <div class="article-content">
+        <div class="prose">
+          <p class="lead">
+            Design systems are deceptively simple to start and notoriously difficult to maintain. After building systems for teams ranging from five to five hundred, here's what actually works.
+          </p>
+
+          <p>
+            The first instinct when building a design system is to document everything. Every color, every spacing value, every possible state of every component. This approach feels thorough but creates <strong>immediate technical debt</strong>. The documentation becomes stale the moment you ship it.
+          </p>
+
+          <p>
+            Instead, start with constraints. A design system is fundamentally about <em>reducing decisions</em>, not documenting them. When your team reaches for a component, they shouldn't need to read documentation. The <a href="#">API should be obvious</a>, the defaults should be sensible, and edge cases should be rare by design.
+          </p>
+
+          <h2>The Token Architecture</h2>
+
+          <p>
+            Tokens are the foundation. But most teams implement them backwards, they start with values and work toward meaning. A better approach is to start with intent:
+          </p>
+
+          <ul>
+            <li><strong>Semantic tokens</strong> describe purpose: <code>--color-text-primary</code></li>
+            <li><strong>Component tokens</strong> describe context: <code>--button-bg</code></li>
+            <li><strong>Primitive tokens</strong> are implementation details users rarely touch</li>
+          </ul>
+
+          <p>
+            This inversion means your system can evolve. Change a primitive, and semantic tokens automatically update. Change a semantic token, and components follow. The ripple is intentional and controlled.
+          </p>
+
+          <blockquote>
+            The best design systems disappear. You stop thinking about the system and start thinking about the product.
+          </blockquote>
+
+          <h2>Component Boundaries</h2>
+
+          <p>
+            Every component is a contract. Break that contract, and you break trust. But rigid contracts create friction. The solution isn't flexibility, it's <strong>composition</strong>.
+          </p>
+
+          <p>
+            Rather than building a button with twelve props to handle every use case, build a button that does one thing well and composes with other primitives. Need an icon button? Compose <code>Button</code> with <code>Icon</code>. Need a loading state? Compose with <code>Spinner</code>.
+          </p>
+
+          <hr>
+
+          <h3>What to optimize for</h3>
+
+          <p>
+            At the end of the day, a design system succeeds when it makes the right thing easy and the wrong thing hard. Not impossible, just hard enough that developers pause and consider whether they really need that custom solution.
+          </p>
+
+          <p>
+            Build for the 80%. Let the 20% opt out gracefully. And above all, remember that a design system is a product. It needs advocacy, iteration, and someone who wakes up thinking about how to make it better.
+          </p>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Design Notes (mockup only) -->
+  <aside class="design-notes">
+    <h4>Option B: Elevated Surface</h4>
+    <ul>
+      <li>Soft shadows replace hard borders for depth</li>
+      <li>Glass-morphism with backdrop-filter blur</li>
+      <li>Gradient background for subtle dimension</li>
+      <li>Top accent line uses gradient (UV to Ice)</li>
+      <li>No internal border - unified card surface</li>
+      <li>Minimal tag styling (subtle pills)</li>
+      <li>36px title for hierarchy</li>
+      <li>Linear-inspired refinement</li>
+    </ul>
+  </aside>
+
+</body>
+</html>

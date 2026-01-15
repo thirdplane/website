@@ -1,0 +1,33 @@
+{
+  "name": "thirdplane-website",
+  "version": "1.0.0",
+  "description": "Third Plane Studios portfolio website",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "ELEVENTY_ENV=development eleventy --serve",
+    "build": "eleventy",
+    "build:prod": "ELEVENTY_ENV=production eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thirdplane/website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/thirdplane/website/issues"
+  },
+  "homepage": "https://github.com/thirdplane/website#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-attrs": "^4.3.1"
+  }
+}

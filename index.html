@@ -50,6 +50,7 @@
       /* Accents */
       --uv-600: #7A2BFF;
       --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
       --ice-400: #7DE7FF;
       --strobe-500: #FF2A4A;
       --sun-400: #FFD26A;
@@ -89,10 +90,24 @@
       --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
       --letter-spacing-tight: -0.03em;
 
-      /* Spacing */
+      /* Spacing Scale */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+
+      /* Legacy spacing (for compatibility) */
       --section-padding: 120px;
       --card-gap: 24px;
       --page-padding: 24px;
+
+      /* Layout: Navbar and Detail Page Spacing */
+      --nav-height: 60px;                  /* Approximate navbar height (14px font + 2*20px padding + borders) */
+      --detail-page-top: 100px;            /* Navbar height + breathing room (60px + 40px) */
+      --detail-back-link-margin: 28px;     /* Space between back link and card */
 
       /* Transitions */
       --transition-fast: 0.2s ease;

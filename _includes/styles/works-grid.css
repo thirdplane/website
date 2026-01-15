@@ -1,0 +1,159 @@
+/* ============ WORKS SECTION ============ */
+/* Canonical styles from works.html - DO NOT MODIFY without updating source */
+
+.works-section {
+  padding: 120px 0 var(--section-padding);
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.works-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 32px;
+}
+
+.works-head .section-label {
+  margin-bottom: 0;
+}
+
+.works-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-600);
+  letter-spacing: 0.04em;
+}
+
+/* ============ WORKS GRID ============ */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: min-content;
+  align-items: start;
+  gap: 40px 32px;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ============ WORK CARD ============ */
+.work-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;  /* Prevent grid blowout from content */
+  /* Scroll reveal initial state */
+  opacity: 0;
+  transform: translateY(24px);
+  /* Transition must be on base state so it's present BEFORE class is added */
+  transition:
+    opacity 0.5s ease-out,
+    transform var(--spring-stagger);
+  will-change: opacity, transform;
+}
+
+.work-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  /* No transition needed - inherited from base */
+}
+
+/* Focus state for accessibility */
+.work-card:focus-visible {
+  outline: 2px solid var(--ice-400);
+  outline-offset: 4px;
+}
+
+/* Hover lift effect (only after reveal animation completes) */
+.work-card.revealed:hover {
+  transform: translateY(-4px);
+  transition: transform var(--spring-hover);
+}
+
+/* ============ WORK MEDIA ============ */
+.work-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-850);
+  border-radius: 2px;
+}
+
+.work-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--spring-hover);
+}
+
+.work-card:hover .work-media img {
+  transform: scale(1.04);
+}
+
+/* ============ WORK META ============ */
+.work-meta {
+  margin-top: 16px;
+  padding-right: 4px;  /* Subtle breathing room for arrow */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.work-type {
+  font-family: var(--font-mono);  /* JetBrains Mono */
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-200);  /* Softer white */
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.work-type::after {
+  content: '\2192';  /* Arrow symbol only */
+  opacity: 0.6;
+}
+
+/* ============ PLACEHOLDER ============ */
+/* For cards without cover images - maintains grid rhythm */
+.work-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--ink-850) 0%, var(--ink-900) 100%);
+}
+
+/* ============ PERFORMANCE OPTIMIZATION ============ */
+/* Defer rendering of off-screen cards (row 2+, items 4+ in 3-col grid) */
+.work-card:nth-child(n+4) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 450px;
+}
+
+/* ============ ACCESSIBILITY ============ */
+@media (prefers-reduced-motion: reduce) {
+  .work-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .work-media img {
+    transition: none;
+  }
+}
