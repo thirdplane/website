@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Archive / Timeline - Third Plane Studios</title>
+  <meta name="description" content="A chronological archive of creative work from Third Plane Studios. Essays, projects, and visual experiments.">
+  <meta name="theme-color" content="#05060A">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       OPTION B: TIMELINE / STREAM
+       Chronological Archive of All Creative Work
+       ============================================ */
+
+    :root {
+      color-scheme: dark;
+
+      /* Core neutrals */
+      --ink-950: #05060A;
+      --ink-900: #0D0F14;
+      --ink-850: #121319;
+      --ink-800: #16181E;
+      --ink-700: #1E2028;
+
+      /* Text */
+      --text-100: #EAF0FF;
+      --text-200: #D6E6FF;
+      --text-400: #A8B2D1;
+      --text-600: #676D81;
+
+      /* Accents */
+      --uv-600: #7A2BFF;
+      --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
+      --ice-400: #7DE7FF;
+      --strobe-500: #FF2A4A;
+      --sun-400: #FFD26A;
+      --amber-500: #FF8A3D;
+
+      /* Type-specific accent colors */
+      --color-essay: var(--ice-400);
+      --color-project: var(--uv-500);
+      --color-vignette: var(--sun-400);
+
+      /* Semantic */
+      --bg: var(--ink-950);
+      --surface: var(--ink-900);
+      --border: rgba(214, 230, 255, 0.12);
+      --border-strong: rgba(214, 230, 255, 0.20);
+      --text: var(--text-100);
+      --text-muted: var(--text-400);
+
+      /* Glows */
+      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
+      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
+      --glow-gold: 0 0 28px rgba(255, 210, 106, 0.18);
+
+      /* Overlays */
+      --scrim: rgba(5, 6, 10, 0.72);
+      --scrim-strong: rgba(5, 6, 10, 0.86);
+
+      /* Typography */
+      --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --letter-spacing-tight: -0.03em;
+
+      /* Spacing */
+      --page-padding: 24px;
+      --timeline-width: 720px;
+      --timeline-line-offset: 0px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.35s ease;
+
+      /* Spring Curves */
+      --spring-reveal: 500ms linear(0, 0.3892, 0.921, 1.1515, 1.1295, 1.037, 0.9817, 0.9751, 0.9892, 1.0011, 1, 1.0026, 1.0003, 0.9993, 0.9994, 0.9998, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+    }
+
+    @media (min-width: 768px) {
+      :root {
+        --page-padding: 48px;
+        --timeline-line-offset: 40px;
+      }
+    }
+
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    /* ============ NAVIGATION ============ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: transparent;
+      transition: background var(--transition-medium), backdrop-filter var(--transition-medium);
+    }
+
+    .nav.scrolled {
+      background: var(--scrim);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-200);
+      display: inline-flex;
+      align-items: baseline;
+      transition: text-shadow var(--spring-snap);
+    }
+
+    .nav-logo:hover {
+      text-shadow: var(--glow-ice);
+    }
+
+    .logo-third, .logo-plane {
+      display: inline;
+      transition: margin var(--spring-snap);
+    }
+
+    .nav-logo:hover .logo-third { margin-right: 0.25em; }
+    .nav-logo:hover .logo-plane { margin-left: 0.08em; }
+
+    .logo-studios {
+      color: var(--text-600);
+      margin-left: 0.35em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-400);
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--ice-400);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-link--active {
+      color: var(--text-100) !important;
+    }
+
+    .nav-link--active::after {
+      width: 100% !important;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 13px; }
+    }
+
+    /* ============ ARCHIVE HEADER ============ */
+    .archive-header {
+      padding: 140px var(--page-padding) 64px;
+      max-width: var(--timeline-width);
+      margin: 0 auto;
+    }
+
+    .archive-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 48px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--text-100);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .archive-subtitle {
+      font-size: 17px;
+      color: var(--text-400);
+      max-width: 520px;
+      line-height: 1.65;
+    }
+
+    .archive-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .archive-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .archive-stat__value {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-100);
+    }
+
+    .archive-stat__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ============ TIMELINE CONTAINER ============ */
+    .timeline {
+      position: relative;
+      max-width: var(--timeline-width);
+      margin: 0 auto;
+      padding: 0 var(--page-padding) 120px;
+    }
+
+    /* Vertical timeline line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--page-padding) + var(--timeline-line-offset));
+      top: 0;
+      bottom: 120px;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        var(--border-strong) 0%,
+        var(--border) 50%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        display: none;
+      }
+    }
+
+    /* ============ DATE MARKER ============ */
+    .date-marker {
+      position: relative;
+      padding: 48px 0 24px;
+      padding-left: calc(var(--timeline-line-offset) + 32px);
+    }
+
+    .date-marker::before {
+      content: '';
+      position: absolute;
+      left: var(--timeline-line-offset);
+      top: 56px;
+      width: 9px;
+      height: 9px;
+      background: var(--ink-950);
+      border: 2px solid var(--text-600);
+      border-radius: 50%;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .date-marker:first-of-type::before {
+      border-color: var(--ice-400);
+      box-shadow: 0 0 12px rgba(125, 231, 255, 0.4);
+    }
+
+    .date-marker__text {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-200);
+      letter-spacing: 0.02em;
+    }
+
+    .date-marker__year {
+      color: var(--text-600);
+      margin-left: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .date-marker {
+        padding-left: 0;
+        padding-top: 40px;
+        padding-bottom: 16px;
+      }
+
+      .date-marker::before {
+        display: none;
+      }
+
+      .date-marker__text {
+        font-size: 12px;
+        padding: 8px 12px;
+        background: var(--ink-850);
+        border-radius: 6px;
+        display: inline-block;
+      }
+    }
+
+    /* ============ TIMELINE ENTRY ============ */
+    .timeline-entry {
+      position: relative;
+      padding-left: calc(var(--timeline-line-offset) + 32px);
+      margin-bottom: 32px;
+      /* Scroll reveal initial state */
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .timeline-entry.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.5s ease-out,
+        transform var(--spring-reveal);
+    }
+
+    /* Connector dot on timeline */
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--timeline-line-offset) - 2px);
+      top: 24px;
+      width: 5px;
+      height: 5px;
+      background: var(--text-600);
+      border-radius: 50%;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .timeline-entry:hover::before {
+      background: var(--ice-400);
+      box-shadow: 0 0 8px rgba(125, 231, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .timeline-entry {
+        padding-left: 0;
+        margin-bottom: 24px;
+      }
+
+      .timeline-entry::before {
+        display: none;
+      }
+    }
+
+    /* ============ ENTRY CARD ============ */
+    .entry-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition:
+        border-color var(--transition-fast),
+        transform var(--spring-hover),
+        box-shadow var(--transition-fast);
+    }
+
+    .timeline-entry.revealed .entry-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Type-specific hover accents */
+    .timeline-entry[data-type="essay"] .entry-card:hover {
+      border-color: rgba(125, 231, 255, 0.3);
+    }
+
+    .timeline-entry[data-type="project"] .entry-card:hover {
+      border-color: rgba(176, 75, 255, 0.3);
+    }
+
+    .timeline-entry[data-type="vignette"] .entry-card:hover {
+      border-color: rgba(255, 210, 106, 0.3);
+    }
+
+    .entry-card:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 4px;
+    }
+
+    /* ============ ENTRY MEDIA (Optional Image/Video) ============ */
+    .entry-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--ink-850);
+    }
+
+    .entry-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--spring-hover);
+    }
+
+    .entry-card:hover .entry-media img {
+      transform: scale(1.04);
+    }
+
+    /* Video badge */
+    .entry-media__badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: var(--scrim-strong);
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-200);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .entry-media__badge svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* ============ ENTRY CONTENT ============ */
+    .entry-content {
+      padding: 24px;
+    }
+
+    .entry-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .entry-type {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Type badge colors */
+    .entry-type--essay {
+      color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.12);
+      border: 1px solid rgba(125, 231, 255, 0.2);
+    }
+
+    .entry-type--project {
+      color: var(--uv-400);
+      background: rgba(176, 75, 255, 0.12);
+      border: 1px solid rgba(176, 75, 255, 0.2);
+    }
+
+    .entry-type--vignette {
+      color: var(--sun-400);
+      background: rgba(255, 210, 106, 0.12);
+      border: 1px solid rgba(255, 210, 106, 0.2);
+    }
+
+    .entry-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    .entry-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-100);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      transition: color var(--transition-fast);
+    }
+
+    .entry-card:hover .entry-title {
+      color: var(--ice-400);
+    }
+
+    .entry-excerpt {
+      font-size: 15px;
+      color: var(--text-400);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ============ ENTRY FOOTER ============ */
+    .entry-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .entry-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .entry-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-600);
+      padding: 4px 8px;
+      background: var(--ink-850);
+      border-radius: 4px;
+    }
+
+    .entry-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .entry-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--text-600);
+      font-size: 16px;
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .entry-card:hover .entry-arrow {
+      transform: translateX(4px);
+      color: var(--ice-400);
+    }
+
+    /* ============ COMPACT ENTRY (text-only) ============ */
+    .entry-card--compact .entry-content {
+      padding: 20px 24px;
+    }
+
+    .entry-card--compact .entry-title {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .entry-card--compact .entry-excerpt {
+      font-size: 14px;
+      -webkit-line-clamp: 1;
+    }
+
+    .entry-card--compact .entry-footer {
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+
+    /* ============ LOAD MORE ============ */
+    .load-more-container {
+      display: flex;
+      justify-content: center;
+      padding: 48px 0;
+    }
+
+    .load-more {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-400);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: all var(--spring-hover);
+    }
+
+    .load-more:hover {
+      color: var(--ice-400);
+      border-color: var(--ice-400);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-ice);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--ink-900);
+      padding: 80px 0 48px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125, 231, 255, 0.3), transparent);
+    }
+
+    .footer-container {
+      max-width: var(--timeline-width);
+      margin: 0 auto;
+      padding: 0 var(--page-padding);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-200);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-tagline {
+      font-size: 15px;
+      color: var(--text-600);
+      line-height: 1.5;
+    }
+
+    .footer-contact {
+      text-align: right;
+    }
+
+    .footer-email {
+      display: inline-block;
+      font-size: 16px;
+      color: var(--text-200);
+      margin-bottom: 16px;
+      position: relative;
+      transition: color var(--transition-fast), text-shadow var(--transition-fast);
+    }
+
+    .footer-email::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ice-400);
+      transition: width var(--transition-fast);
+    }
+
+    .footer-email:hover {
+      color: var(--ice-400);
+      text-shadow: var(--glow-ice);
+    }
+
+    .footer-email:hover::after {
+      width: 100%;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: var(--text-600);
+      border: 1px solid var(--border);
+      transition: all var(--spring-hover);
+    }
+
+    .footer-social a:hover {
+      color: var(--ice-400);
+      border-color: var(--ice-400);
+      background: rgba(125, 231, 255, 0.08);
+      transform: translateY(-3px);
+      box-shadow: var(--glow-ice);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copyright {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 600px) {
+      .footer { padding: 64px 0 40px; }
+      .footer-content { flex-direction: column; gap: 32px; }
+      .footer-contact { text-align: left; }
+      .footer-social { justify-content: flex-start; }
+    }
+
+    /* ============ ACCESSIBILITY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .timeline-entry {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ice-400);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      background: rgba(125, 231, 255, 0.25);
+      color: var(--text-100);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
+      </a>
+      <div class="nav-links">
+        <a href="/archive.html" class="nav-link--active">Archive</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Archive Header -->
+    <header class="archive-header">
+      <h1 class="archive-title">Archive</h1>
+      <p class="archive-subtitle">A chronological record of creative work. Essays, projects, and visual experiments exploring the intersection of computation and creativity.</p>
+
+      <div class="archive-meta">
+        <div class="archive-stat">
+          <span class="archive-stat__value">24</span>
+          <span class="archive-stat__label">Total Entries</span>
+        </div>
+        <div class="archive-stat">
+          <span class="archive-stat__value">2024</span>
+          <span class="archive-stat__label">Since</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Timeline -->
+    <section class="timeline" aria-label="Archive timeline">
+      <h2 class="visually-hidden">Creative Archive</h2>
+
+      <!-- ========== JANUARY 2025 ========== -->
+      <div class="date-marker">
+        <span class="date-marker__text">January<span class="date-marker__year">2025</span></span>
+      </div>
+
+      <!-- Entry 1: Essay with no image -->
+      <article class="timeline-entry" data-type="essay">
+        <a href="#" class="entry-card entry-card--compact">
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--essay">Essay</span>
+              <span class="entry-date">Jan 15</span>
+            </div>
+            <h3 class="entry-title">Designing in the Void</h3>
+            <p class="entry-excerpt">On the practice of creating from nothing - embracing uncertainty as a design methodology and finding clarity in the absence of constraints.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Process</span>
+                <span class="entry-tag">Philosophy</span>
+              </div>
+              <span class="entry-meta">8 min read</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 2: Project with image -->
+      <article class="timeline-entry" data-type="project">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.3'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23B04BFF' stop-opacity='0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g1)'/%3E%3C/svg%3E"
+              alt="Lumina brand identity preview"
+              loading="lazy"
+            >
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--project">Project</span>
+              <span class="entry-date">Jan 12</span>
+            </div>
+            <h3 class="entry-title">Lumina</h3>
+            <p class="entry-excerpt">Brand identity for an AI lighting startup. A visual system that bridges technological precision with organic warmth.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Brand Identity</span>
+                <span class="entry-tag">Visual System</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 3: Vignette with image -->
+      <article class="timeline-entry" data-type="vignette">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FFD26A' stop-opacity='0.25'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FF8A3D' stop-opacity='0.15'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g2)'/%3E%3C/svg%3E"
+              alt="Solar Flare vignette preview"
+              loading="lazy"
+            >
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--vignette">Vignette</span>
+              <span class="entry-date">Jan 8</span>
+            </div>
+            <h3 class="entry-title">Solar Flare</h3>
+            <p class="entry-excerpt">Sun surface eruption, magnetic field lines, plasma arcs dancing at the edge of fusion.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">DALL-E 3</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 4: Essay -->
+      <article class="timeline-entry" data-type="essay">
+        <a href="#" class="entry-card entry-card--compact">
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--essay">Essay</span>
+              <span class="entry-date">Jan 4</span>
+            </div>
+            <h3 class="entry-title">Latent Space as Medium</h3>
+            <p class="entry-excerpt">Exploring the territory between prompt and output - where meaning emerges from probability distributions.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">AI</span>
+                <span class="entry-tag">Theory</span>
+              </div>
+              <span class="entry-meta">12 min read</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 5: Essay (The Manifesto) -->
+      <article class="timeline-entry" data-type="essay">
+        <a href="#" class="entry-card entry-card--compact">
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--essay">Essay</span>
+              <span class="entry-date">Jan 1</span>
+            </div>
+            <h3 class="entry-title">The Third Plane Manifesto</h3>
+            <p class="entry-excerpt">A declaration of intent - on the intersection of computation, creativity, and curation.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Manifesto</span>
+              </div>
+              <span class="entry-meta">5 min read</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- ========== DECEMBER 2024 ========== -->
+      <div class="date-marker">
+        <span class="date-marker__text">December<span class="date-marker__year">2024</span></span>
+      </div>
+
+      <!-- Entry 6: Vignette video -->
+      <article class="timeline-entry" data-type="vignette">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='50%25' x2='100%25' y2='50%25'%3E%3Cstop offset='0%25' stop-color='%23B04BFF' stop-opacity='0.3'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FF8A3D' stop-opacity='0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g3)'/%3E%3C/svg%3E"
+              alt="Emergence video vignette preview"
+              loading="lazy"
+            >
+            <span class="entry-media__badge">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              Video
+            </span>
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--vignette">Vignette</span>
+              <span class="entry-date">Dec 28</span>
+            </div>
+            <h3 class="entry-title">Emergence</h3>
+            <p class="entry-excerpt">Particle system coalescing into form, slow motion, abstract patterns finding structure.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Runway Gen-2</span>
+                <span class="entry-tag">Motion</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 7: Project -->
+      <article class="timeline-entry" data-type="project">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237DE7FF' stop-opacity='0.2'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237A2BFF' stop-opacity='0.15'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g4)'/%3E%3C/svg%3E"
+              alt="Synthesis web experience preview"
+              loading="lazy"
+            >
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--project">Project</span>
+              <span class="entry-date">Dec 20</span>
+            </div>
+            <h3 class="entry-title">Synthesis</h3>
+            <p class="entry-excerpt">Immersive web experience exploring digital consciousness. WebGL shaders, generative audio, and emergent narratives.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Web Experience</span>
+                <span class="entry-tag">WebGL</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 8: Vignette -->
+      <article class="timeline-entry" data-type="vignette">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237A2BFF' stop-opacity='0.35'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%237DE7FF' stop-opacity='0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g5)'/%3E%3C/svg%3E"
+              alt="Neon City vignette preview"
+              loading="lazy"
+            >
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--vignette">Vignette</span>
+              <span class="entry-date">Dec 15</span>
+            </div>
+            <h3 class="entry-title">Neon City</h3>
+            <p class="entry-excerpt">Cyberpunk cityscape, rain-slicked streets, neon reflections bleeding into the void.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Midjourney v6</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- ========== NOVEMBER 2024 ========== -->
+      <div class="date-marker">
+        <span class="date-marker__text">November<span class="date-marker__year">2024</span></span>
+      </div>
+
+      <!-- Entry 9: Project -->
+      <article class="timeline-entry" data-type="project">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='50%25' y1='0%25' x2='50%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FF2A4A' stop-opacity='0.2'/%3E%3Cstop offset='50%25' stop-color='%23121319'/%3E%3Cstop offset='100%25' stop-color='%23FFD26A' stop-opacity='0.15'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g6)'/%3E%3C/svg%3E"
+              alt="Void Protocol generative art preview"
+              loading="lazy"
+            >
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--project">Project</span>
+              <span class="entry-date">Nov 28</span>
+            </div>
+            <h3 class="entry-title">Void Protocol</h3>
+            <p class="entry-excerpt">Generative art series exploring entropy and emergence. 256 unique pieces minted on-chain.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Generative Art</span>
+                <span class="entry-tag">On-chain</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Entry 10: Vignette -->
+      <article class="timeline-entry" data-type="vignette">
+        <a href="#" class="entry-card">
+          <div class="entry-media">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3CradialGradient id='g7' cx='50%25' cy='50%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%237DE7FF' stop-opacity='0.4'/%3E%3Cstop offset='100%25' stop-color='%23121319'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='%23121319'/%3E%3Crect width='800' height='450' fill='url(%23g7)'/%3E%3C/svg%3E"
+              alt="Ice Ring vignette preview"
+              loading="lazy"
+            >
+          </div>
+          <div class="entry-content">
+            <div class="entry-header">
+              <span class="entry-type entry-type--vignette">Vignette</span>
+              <span class="entry-date">Nov 18</span>
+            </div>
+            <h3 class="entry-title">Ice Ring</h3>
+            <p class="entry-excerpt">Frozen ring structure, bioluminescent, floating in the deep void.</p>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="entry-tag">Midjourney v6</span>
+              </div>
+              <span class="entry-arrow">&#8594;</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Load More -->
+      <div class="load-more-container">
+        <button class="load-more" type="button">
+          Load more entries
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">thirdplane studios</span>
+          <p class="footer-tagline">The curation of latent space.</p>
+        </div>
+
+        <div class="footer-contact">
+          <a href="mailto:j@thirdplane.io" class="footer-email">j@thirdplane.io</a>
+          <div class="footer-social">
+            <a href="https://github.com/thirdplane" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/thirdplane" target="_blank" rel="noopener" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">&copy; 2025 Third Plane Studios</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ============ Nav Scroll State ============
+      const nav = document.getElementById('nav');
+      if (nav) {
+        const updateNavState = () => {
+          nav.classList.toggle('scrolled', window.scrollY > 50);
+        };
+        updateNavState();
+        window.addEventListener('scroll', updateNavState, { passive: true });
+      }
+
+      // ============ Staggered Scroll Reveal ============
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const entries = document.querySelectorAll('.timeline-entry');
+
+      if (prefersReducedMotion) {
+        entries.forEach(entry => entry.classList.add('revealed'));
+      } else {
+        const observer = new IntersectionObserver((observerEntries) => {
+          observerEntries.forEach((observerEntry, idx) => {
+            if (observerEntry.isIntersecting) {
+              const entry = observerEntry.target;
+
+              // Stagger based on visible order
+              const visibleEntries = [...entries].filter(e =>
+                e.getBoundingClientRect().top < window.innerHeight && !e.classList.contains('revealed')
+              );
+              const visibleIndex = visibleEntries.indexOf(entry);
+              const delay = Math.max(0, visibleIndex) * 80;
+
+              entry.style.transitionDelay = `${delay}ms`;
+              entry.classList.add('revealed');
+
+              observer.unobserve(entry);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -60px 0px'
+        });
+
+        entries.forEach(entry => observer.observe(entry));
+      }
+
+      // ============ Load More (Demo) ============
+      const loadMoreBtn = document.querySelector('.load-more');
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+          loadMoreBtn.textContent = 'Loading...';
+          setTimeout(() => {
+            loadMoreBtn.textContent = 'No more entries';
+            loadMoreBtn.disabled = true;
+            loadMoreBtn.style.opacity = '0.5';
+            loadMoreBtn.style.cursor = 'not-allowed';
+          }, 800);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
