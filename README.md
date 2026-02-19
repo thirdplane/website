@@ -199,6 +199,100 @@ The accent color carries through the collection dot, card hover glow, detail pag
 
 ---
 
+## Media & Images
+
+### Two options
+
+| Option | Best for |
+|--------|----------|
+| **Cloudinary** | Video (required), images where you want CDN delivery and on-the-fly transforms |
+| **Local `assets/`** | Simple static images where transforms aren't needed |
+
+### Cloudinary
+
+The site's Cloudinary cloud name is **`dxghuzxip`**. All URLs follow this pattern:
+
+```
+# Image
+https://res.cloudinary.com/dxghuzxip/image/upload/<version>/<public_id>.<ext>
+
+# Video
+https://res.cloudinary.com/dxghuzxip/video/upload/<version>/<public_id>.<ext>
+```
+
+Real examples from the codebase:
+
+```
+# Video (vignettes/latent-space.md)
+https://res.cloudinary.com/dxghuzxip/video/upload/v1768367081/ScreenRecording_01-02-2026_23-56-58_1_xlp00b.mov
+
+# Image / poster
+https://res.cloudinary.com/dxghuzxip/image/upload/v1768367079/9E5176AE-2D75-43AA-9D2C-D7144CAE58A2_h02lpq.png
+```
+
+**Transformation URL template** — insert a transformation string between `/upload/` and the version/public ID:
+
+```
+# Resize to 800px wide, auto quality, WebP
+https://res.cloudinary.com/dxghuzxip/image/upload/w_800,q_auto,f_webp/v1768367079/<public_id>.jpg
+
+# Crop to 16:10 for collection mosaic thumbnails
+https://res.cloudinary.com/dxghuzxip/image/upload/ar_16:10,c_fill,w_800,q_auto,f_webp/v.../public_id.jpg
+
+# Cover image: 3:2, 1200px wide
+https://res.cloudinary.com/dxghuzxip/image/upload/ar_3:2,c_fill,w_1200,q_auto,f_webp/v.../public_id.jpg
+```
+
+Common transform params: `w_<px>` width, `h_<px>` height, `ar_<w>:<h>` aspect ratio, `c_fill` crop mode, `q_auto` auto quality, `f_webp` / `f_auto` format.
+
+**Video is always Cloudinary.** The `{% video %}` shortcode outputs a `<source type="video/mp4">` element; the vignette layout handles additional formats as separate `<source>` elements.
+
+### Local assets
+
+Files placed in `assets/` are copied verbatim to `_site/assets/` via passthrough copy in `.eleventy.js`:
+
+```js
+eleventyConfig.addPassthroughCopy("assets");
+```
+
+Suggested structure:
+
+```
+assets/
+├── works/
+│   └── my-project/
+│       └── cover.jpg
+├── vignettes/
+│   └── my-clip/
+│       └── poster.jpg
+└── images/
+    └── shared-graphic.png
+```
+
+Reference in frontmatter with a root-relative path:
+
+```yaml
+cover: "/assets/works/my-project/cover.jpg"
+poster: "/assets/vignettes/my-clip/poster.jpg"
+```
+
+Images co-located in `writings/` or `collections/` subdirectories are also passed through automatically (`.jpg`, `.jpeg`, `.png`, `.gif`, `.svg`, `.webp`).
+
+### Which to use when
+
+| Situation | Use |
+|-----------|-----|
+| Any video | Cloudinary (required — local video is not configured) |
+| Cover/poster images, if you want resize/format on the fly | Cloudinary |
+| Simple static images, no transforms needed | Local `assets/` |
+| Collection mosaic thumbnails | Cloudinary (transforms for consistent crop) |
+
+### Cover image guidance
+
+Work cards in the collection detail view use a **16:10** aspect ratio (`.collection-mosaic`). The About page timeline card uses **3:4** (portrait). For a cover image that looks good in both contexts, crop to **3:2** at upload time and let each layout crop from center. Minimum recommended width: **800px**. For Cloudinary, use the transform `ar_3:2,c_fill,w_1200,q_auto,f_webp` on upload or at request time.
+
+---
+
 ## Content Relationships
 
 ### How `memberOf` works

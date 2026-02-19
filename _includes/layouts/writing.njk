@@ -12,13 +12,29 @@
 
   <!-- Back Link: Simple, beautiful text arrow -->
   <div class="back-link-wrapper">
-    <a href="/thoughts/" class="back-link">
+    <a href="/thoughts/" class="back-link js-back-link">
       <svg class="back-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
-      Thoughts
+      <span class="js-back-link-text">Thoughts</span>
     </a>
   </div>
+  <script>
+  (function() {
+    var colMap = {{ collections.thematicCollections | collectionsMap | safe }};
+    var params = new URLSearchParams(window.location.search);
+    var from = params.get('from');
+    if (from) {
+      var col = colMap.find(function(c) { return c.slug === from; });
+      if (col) {
+        var link = document.querySelector('.js-back-link');
+        var text = document.querySelector('.js-back-link-text');
+        if (link) link.href = '/collections/' + from + '/';
+        if (text) text.textContent = col.title;
+      }
+    }
+  })();
+  </script>
 
   <!-- Article Surface: Wide elevated card with glass-morphism -->
   <article class="article-surface">

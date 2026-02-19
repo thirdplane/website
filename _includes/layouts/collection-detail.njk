@@ -53,7 +53,7 @@
     <div class="container">
       <div class="works-grid">
         {% for work in collectionWorks %}
-        <a href="{{ work.url }}" class="work-card" data-index="{{ loop.index0 }}">
+        <a href="{{ work.url }}?from={{ slug }}" class="work-card" data-index="{{ loop.index0 }}">
           <div class="work-media">
             <span class="work-type-badge" data-type="{{ work.data.badgeType or 'project' }}">
               <span class="type-dot"></span>

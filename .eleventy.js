@@ -138,6 +138,16 @@ module.exports = function(eleventyConfig) {
     };
   });
 
+  // Serialize thematic collections to a JSON slug→title map for client-side back-link resolution
+  eleventyConfig.addFilter("collectionsMap", function(thematicCollections) {
+    if (!thematicCollections) return "[]";
+    return JSON.stringify(
+      thematicCollections.map(function(col) {
+        return { slug: col.data.slug, title: col.data.title };
+      })
+    );
+  });
+
   // Short date format: "Dec 2024"
   eleventyConfig.addFilter("formatDateShort", function(date, year) {
     if (date) {
