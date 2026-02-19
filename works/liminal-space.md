@@ -4,6 +4,11 @@ type: "Web Experience"
 year: 2024
 cover: https://picsum.photos/seed/liminalspace/800/600
 featured: false
+memberOf:
+  - void-studies
+  - experiments
+badgeType: "interface"
+excerpt: "An experimental web experience that exists in the threshold between sites, transforming moments of digital waiting into spaces of contemplation."
 ---
 
 An experimental web experience that exists in the threshold between sites. Liminal Space intercepts browser navigation, creating a transitional realm that visitors pass through without fully arriving or departing.

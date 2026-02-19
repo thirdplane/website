@@ -1,0 +1,72 @@
+/* ============================================
+   COLLECTION INDEX PAGE - Page Header Styles
+   Styles specific to the collections index page
+   that are NOT in collections.css
+   ============================================ */
+
+.page-header {
+  padding: 160px 0 80px;
+  position: relative;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(122, 43, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(125, 231, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.page-header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.page-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ice-400);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--ice-400);
+  opacity: 0.5;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 8vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text-100);
+  margin-bottom: 28px;
+}
+
+.page-intro {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-400);
+  max-width: 560px;
+}
+
+.page-intro em {
+  color: var(--text-200);
+  font-style: normal;
+}

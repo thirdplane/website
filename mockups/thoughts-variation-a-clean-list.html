@@ -3,18 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Writings — Third Plane Studios</title>
-  <meta name="description" content="Essays and thoughts from Third Plane Studios. On design, process, and the curation of latent space.">
+  <title>Thoughts — Third Plane Studios</title>
+  <meta name="description" content="Essays and explorations on design, technology, and creative process.">
   <meta name="theme-color" content="#05060A">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Writings — Third Plane Studios">
-  <meta property="og:description" content="Essays and thoughts from Third Plane Studios. On design, process, and the curation of latent space.">
-  <meta property="og:url" content="https://www.thirdplane.io/writings">
-
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,10 +17,11 @@
 
   <style>
     /* ============================================
-       NEON NOIR DESIGN SYSTEM
-       Third Plane Studios - 2026
+       THOUGHTS PAGE — VARIATION A: CLEAN LIST
+       Minimal refinement of current stacked layout
        ============================================ */
 
+    /* ============ TOKENS ============ */
     :root {
       color-scheme: dark;
 
@@ -35,6 +30,7 @@
       --ink-900: #0D0F14;
       --ink-850: #121319;
       --ink-800: #16181E;
+      --ink-700: #1E2028;
 
       /* Text */
       --text-100: #EAF0FF;
@@ -45,38 +41,22 @@
       /* Accents */
       --uv-600: #7A2BFF;
       --uv-500: #B04BFF;
+      --uv-400: #C77DFF;
       --ice-400: #7DE7FF;
       --strobe-500: #FF2A4A;
       --sun-400: #FFD26A;
       --amber-500: #FF8A3D;
 
       /* Semantic */
-      --bg: var(--ink-950);
-      --surface: var(--ink-900);
-      --border: rgba(214, 230, 255, 0.16);
-      --text: var(--text-100);
-      --text-muted: var(--text-400);
-      --brand: var(--uv-600);
-      --link: var(--ice-400);
-
-      /* Gradient background */
-      --gradient-soul:
-        radial-gradient(55rem 55rem at 38% 26%, rgba(122, 43, 255, 0.35) 0%, rgba(122, 43, 255, 0.00) 60%),
-        radial-gradient(52rem 52rem at 60% 34%, rgba(176, 75, 255, 0.25) 0%, rgba(176, 75, 255, 0.00) 60%),
-        radial-gradient(58rem 58rem at 70% 62%, rgba(255, 42, 74, 0.20) 0%, rgba(255, 42, 74, 0.00) 60%),
-        radial-gradient(64rem 64rem at 28% 70%, rgba(255, 138, 61, 0.16) 0%, rgba(255, 138, 61, 0.00) 60%),
-        radial-gradient(70rem 70rem at 55% 8%, rgba(125, 231, 255, 0.14) 0%, rgba(125, 231, 255, 0.00) 60%),
-        linear-gradient(140deg, rgba(255, 210, 106, 0.00) 0%, rgba(255, 210, 106, 0.00) 28%, rgba(255, 210, 106, 0.22) 36%, rgba(255, 210, 106, 0.00) 55%, rgba(255, 210, 106, 0.00) 100%);
+      --bg: #05060A;
+      --surface: #0D0F14;
+      --border: rgba(214, 230, 255, 0.12);
+      --border-hover: rgba(214, 230, 255, 0.24);
+      --text: #EAF0FF;
+      --text-muted: #A8B2D1;
 
       /* Glows */
-      --glow-uv: 0 0 24px rgba(176, 75, 255, 0.35);
-      --glow-ice: 0 0 22px rgba(125, 231, 255, 0.25);
-      --glow-red: 0 0 22px rgba(255, 42, 74, 0.22);
-      --glow-gold: 0 0 28px rgba(255, 210, 106, 0.18);
-
-      /* Overlays */
-      --scrim: rgba(5, 6, 10, 0.72);
-      --scrim-strong: rgba(5, 6, 10, 0.86);
+      --glow-ice: 0 0 32px rgba(125, 231, 255, 0.20);
 
       /* Typography */
       --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
@@ -85,19 +65,22 @@
       --letter-spacing-tight: -0.03em;
 
       /* Spacing */
-      --section-padding: 120px;
-      --card-gap: 24px;
       --page-padding: 24px;
+      --section-padding: 120px;
+
+      /* Springs */
+      --spring-card: 350ms linear(0, 0.3667, 0.8271, 1.0379, 1.0652, 1.0332, 1.006, 0.9961, 0.996, 0.9984, 0.9999, 1);
+      --spring-reveal: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
 
       /* Transitions */
       --transition-fast: 0.2s ease;
       --transition-medium: 0.35s ease;
+    }
 
-      /* Spring Curves */
-      --spring-hero: 550ms linear(0, 0.2606, 0.7094, 1.0343, 1.158, 1.1389, 1.0674, 1.006, 0.977, 0.975, 0.9856, 0.9967, 1.003, 1, 1.0029, 1.001, 0.9997, 1);
-      --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
-      --spring-stagger: 500ms linear(0, 0.4133, 1.0078, 1.2506, 1.1719, 1.0154, 0.9389, 0.9509, 0.9912, 1.0144, 1.0137, 1.0036, 0.9968, 0.9962, 0.9987, 1.0007, 1);
-      --spring-hover: 450ms linear(0, 0.2459, 0.6526, 0.9468, 1.0764, 1.0915, 1.0585, 1.0219, 0.9993, 0.9914, 0.9921, 0.9957, 0.9988, 1.0004, 1);
+    @media (min-width: 768px) {
+      :root { --page-padding: 48px; }
     }
 
     /* ============ RESET & BASE ============ */
@@ -123,12 +106,6 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Page padding - shared by nav and content containers */
-    @media (min-width: 768px) {
-      :root { --page-padding: 48px; }
-    }
-
-    /* Container */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -136,26 +113,6 @@
       padding: 0 var(--page-padding);
     }
 
-    /* Section Label */
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--text-600);
-      margin-bottom: 48px;
-      display: block;
-    }
-
-    /* Typography */
-    h1, h2, h3 {
-      font-weight: 600;
-      letter-spacing: var(--letter-spacing-tight);
-      line-height: 1.1;
-      color: var(--text-100);
-    }
-
-    /* Links */
     a {
       color: inherit;
       text-decoration: none;
@@ -175,7 +132,7 @@
     }
 
     .nav.scrolled {
-      background: var(--scrim);
+      background: rgba(5, 6, 10, 0.72);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -189,13 +146,12 @@
       padding: 0 var(--page-padding);
     }
 
-    /* Nav Logo with Tension-Snap Animation */
     .nav-logo {
       font-family: var(--font-mono);
       font-size: 14px;
       font-weight: 500;
       letter-spacing: -0.01em;
-      color: var(--text-200);
+      color: #D6E6FF;
       display: inline-flex;
       align-items: baseline;
       transition: text-shadow var(--spring-snap);
@@ -211,7 +167,6 @@
       transition: margin var(--spring-snap);
     }
 
-    /* Restore hover micro-shift animation on wordmark */
     .nav-logo:hover .logo-third {
       margin-right: 0.25em;
     }
@@ -221,7 +176,7 @@
     }
 
     .logo-studios {
-      color: var(--text-600);
+      color: #676D81;
       margin-left: 0.35em;
     }
 
@@ -234,7 +189,7 @@
     .nav-links a {
       font-size: 14px;
       font-weight: 500;
-      color: var(--text-400);
+      color: #A8B2D1;
       position: relative;
       transition: color var(--transition-fast);
     }
@@ -246,62 +201,121 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: var(--ice-400);
+      background: #7DE7FF;
       transition: width var(--transition-fast);
     }
 
     .nav-links a:hover {
-      color: var(--ice-400);
+      color: #7DE7FF;
     }
 
     .nav-links a:hover::after {
       width: 100%;
     }
 
-    /* Nav Link Active State */
     .nav-link--active {
-      color: var(--text-100);
+      color: #EAF0FF !important;
     }
 
     .nav-link--active::after {
-      width: 100%;
+      width: 100% !important;
     }
 
     @media (max-width: 600px) {
-      .nav-links {
-        gap: 20px;
-      }
-      .nav-links a {
-        font-size: 13px;
-      }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 13px; }
     }
 
-    /* ============ WRITINGS SECTION ============ */
+    /* ============ PAGE HEADER ============ */
+    .page-header {
+      padding: 160px 0 80px;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(122, 43, 255, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(125, 231, 255, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .page-header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .page-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7DE7FF;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #7DE7FF;
+      opacity: 0.5;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 8vw, 64px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #EAF0FF;
+      margin-bottom: 28px;
+    }
+
+    .page-intro {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #A8B2D1;
+      max-width: 560px;
+    }
+
+    .page-intro em {
+      color: #D6E6FF;
+      font-style: normal;
+    }
+
+    /* ============ WRITINGS LIST ============ */
     .writings-section {
-      padding: 120px 0 var(--section-padding);
-      background: var(--bg);
-      min-height: 100vh;
+      padding: 0 0 var(--section-padding);
     }
 
-    .writings-head {
+    .writings-list-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 32px;
-    }
-
-    .writings-head .section-label {
-      margin-bottom: 0;
+      margin-bottom: 24px;
     }
 
     .writings-count {
       font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-600);
+      font-size: 11px;
+      font-weight: 500;
       letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #676D81;
     }
 
-    /* ============ WRITINGS LIST ============ */
+    /* Bordered container with dividers */
     .writings-list {
       display: flex;
       flex-direction: column;
@@ -312,65 +326,108 @@
       overflow: hidden;
     }
 
+    /* Individual list item */
     .writing-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 24px;
-      background: var(--ink-900);
-      transition: background var(--transition-fast);
+      padding: 24px 28px;
+      background: #0D0F14;
       gap: 24px;
+      /* Scroll reveal initial state */
+      opacity: 0;
+      transform: translateY(16px);
+      transition: background var(--transition-fast);
     }
 
-    .writing-item:hover {
-      background: var(--ink-850);
+    .writing-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.5s ease-out,
+        transform var(--spring-reveal),
+        background var(--transition-fast);
     }
 
+    .writing-item.revealed:hover {
+      background: #121319;
+      transform: translateY(-2px);
+      transition:
+        transform var(--spring-hover),
+        background var(--transition-fast);
+    }
+
+    /* Left side: title + excerpt */
     .writing-item__content {
       flex: 1;
       min-width: 0;
     }
 
     .writing-item__title {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--text-100);
-      margin-bottom: 4px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: #EAF0FF;
+      margin-bottom: 6px;
       letter-spacing: var(--letter-spacing-tight);
+      transition: color var(--transition-fast);
+    }
+
+    .writing-item:hover .writing-item__title {
+      color: #7DE7FF;
     }
 
     .writing-item__excerpt {
-      font-size: 14px;
-      color: var(--text-400);
+      font-size: 15px;
+      color: #A8B2D1;
+      margin: 0;
+      line-height: 1.6;
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
+    /* Right side: date + reading time stacked */
     .writing-item__meta {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 4px;
+      gap: 6px;
       flex-shrink: 0;
     }
 
     .writing-item__date {
       font-family: var(--font-mono);
       font-size: 12px;
-      color: var(--text-600);
+      color: #676D81;
     }
 
     .writing-item__reading-time {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--text-600);
+      color: #676D81;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .writing-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 20px;
+      }
+
+      .writing-item__meta {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+      }
     }
 
     /* ============ FOOTER ============ */
     .footer {
-      background: var(--ink-900);
+      background: #0D0F14;
       padding: 80px 0 48px;
       border-top: 1px solid var(--border);
       position: relative;
@@ -400,7 +457,7 @@
       font-family: var(--font-mono);
       font-size: 14px;
       font-weight: 500;
-      color: var(--text-200);
+      color: #D6E6FF;
       display: block;
       margin-bottom: 12px;
       letter-spacing: -0.01em;
@@ -408,7 +465,7 @@
 
     .footer-tagline {
       font-size: 15px;
-      color: var(--text-600);
+      color: #676D81;
       line-height: 1.5;
     }
 
@@ -419,7 +476,7 @@
     .footer-email {
       display: inline-block;
       font-size: 16px;
-      color: var(--text-200);
+      color: #D6E6FF;
       margin-bottom: 16px;
       position: relative;
       transition: color var(--transition-fast), text-shadow var(--transition-fast);
@@ -432,12 +489,12 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: var(--ice-400);
+      background: #7DE7FF;
       transition: width var(--transition-fast);
     }
 
     .footer-email:hover {
-      color: var(--ice-400);
+      color: #7DE7FF;
       text-shadow: var(--glow-ice);
     }
 
@@ -458,14 +515,14 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      color: var(--text-600);
+      color: #676D81;
       border: 1px solid var(--border);
       transition: all var(--spring-hover);
     }
 
     .footer-social a:hover {
-      color: var(--ice-400);
-      border-color: var(--ice-400);
+      color: #7DE7FF;
+      border-color: #7DE7FF;
       background: rgba(125, 231, 255, 0.08);
       transform: translateY(-3px);
       box-shadow: var(--glow-ice);
@@ -484,25 +541,16 @@
     .footer-copyright {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--text-600);
+      color: #676D81;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
 
     @media (max-width: 600px) {
-      .footer {
-        padding: 64px 0 40px;
-      }
-      .footer-content {
-        flex-direction: column;
-        gap: 32px;
-      }
-      .footer-contact {
-        text-align: left;
-      }
-      .footer-social {
-        justify-content: flex-start;
-      }
+      .footer { padding: 64px 0 40px; }
+      .footer-content { flex-direction: column; gap: 32px; }
+      .footer-contact { text-align: left; }
+      .footer-social { justify-content: flex-start; }
     }
 
     /* ============ ACCESSIBILITY ============ */
@@ -514,19 +562,22 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
+
+      .writing-item {
+        opacity: 1;
+        transform: none;
+      }
     }
 
-    /* Focus states for keyboard navigation */
     a:focus-visible,
     button:focus-visible {
-      outline: 2px solid var(--ice-400);
+      outline: 2px solid #7DE7FF;
       outline-offset: 3px;
     }
 
-    /* Selection styling */
     ::selection {
       background: rgba(125, 231, 255, 0.25);
-      color: var(--text-100);
+      color: #EAF0FF;
     }
   </style>
 </head>
@@ -539,50 +590,69 @@
         <span class="logo-third">third</span><span class="logo-plane">plane</span><span class="logo-studios"> studios</span>
       </a>
       <div class="nav-links">
-        <a href="/works.html">Works</a>
-        <a href="/writings.html" class="nav-link--active">Writings</a>
-        <a href="/vignettes.html">Vignettes</a>
+        <a href="/collections/">Collections</a>
+        <a href="/thoughts/" class="nav-link--active">Thoughts</a>
+        <a href="/about/">About</a>
       </div>
     </div>
   </nav>
 
   <main>
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <span class="page-label">Thoughts</span>
+          <h1 class="page-title">Essays</h1>
+          <p class="page-intro">
+            Long-form reflections on design, technology, and the <em>creative process</em>.
+            Writing as a way of thinking through problems that resist easy answers.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Writings List -->
     <section class="writings-section">
       <div class="container">
-        <header class="writings-head">
-          <span class="section-label">// WRITINGS</span>
+        <div class="writings-list-header">
           <span class="writings-count">03 Essays</span>
-        </header>
+        </div>
 
         <div class="writings-list">
-          <a href="/writings/designing-in-the-void.html" class="writing-item">
+          <!-- Essay 1 -->
+          <a href="#" class="writing-item">
             <div class="writing-item__content">
               <h3 class="writing-item__title">Designing in the Void</h3>
-              <p class="writing-item__excerpt">On the practice of creating from nothing — embracing uncertainty as a design methodology.</p>
+              <p class="writing-item__excerpt">On the practice of creating from nothing — embracing uncertainty as a design methodology and finding clarity in the absence of constraints.</p>
             </div>
             <div class="writing-item__meta">
-              <span class="writing-item__date">Jan 15, 2026</span>
+              <time datetime="2025-01-15" class="writing-item__date">Jan 15, 2025</time>
               <span class="writing-item__reading-time">8 min read</span>
             </div>
           </a>
+
+          <!-- Essay 2 -->
           <a href="#" class="writing-item">
             <div class="writing-item__content">
-              <h3 class="writing-item__title">Latent Space as Medium</h3>
-              <p class="writing-item__excerpt">Exploring the territory between prompt and output — where meaning emerges from probability.</p>
+              <h3 class="writing-item__title">Latent Space Explorations</h3>
+              <p class="writing-item__excerpt">Navigating the territory between prompt and output, where meaning emerges from probability distributions and creative intent.</p>
             </div>
             <div class="writing-item__meta">
-              <span class="writing-item__date">Jan 8, 2026</span>
+              <time datetime="2024-12-20" class="writing-item__date">Dec 20, 2024</time>
               <span class="writing-item__reading-time">12 min read</span>
             </div>
           </a>
+
+          <!-- Essay 3 -->
           <a href="#" class="writing-item">
             <div class="writing-item__content">
-              <h3 class="writing-item__title">The Third Plane Manifesto</h3>
-              <p class="writing-item__excerpt">A declaration of intent — on the intersection of computation, creativity, and curation.</p>
+              <h3 class="writing-item__title">The Architecture of Absence</h3>
+              <p class="writing-item__excerpt">Why the most powerful design decisions are often about what you leave out. Negative space as structural element in digital interfaces.</p>
             </div>
             <div class="writing-item__meta">
-              <span class="writing-item__date">Jan 1, 2026</span>
-              <span class="writing-item__reading-time">5 min read</span>
+              <time datetime="2024-11-08" class="writing-item__date">Nov 8, 2024</time>
+              <span class="writing-item__reading-time">6 min read</span>
             </div>
           </a>
         </div>
@@ -613,7 +683,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span class="footer-copyright">&copy; 2026 Third Plane Studios</span>
+        <span class="footer-copyright">&copy; 2025 Third Plane Studios</span>
       </div>
     </div>
   </footer>
@@ -622,15 +692,41 @@
     (function() {
       'use strict';
 
-      // ============ Nav Scroll State ============
+      // Nav scroll state
       const nav = document.getElementById('nav');
       if (nav) {
         const updateNavState = () => {
           nav.classList.toggle('scrolled', window.scrollY > 50);
         };
-
         updateNavState();
         window.addEventListener('scroll', updateNavState, { passive: true });
+      }
+
+      // Staggered scroll reveal for writing items
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const items = document.querySelectorAll('.writing-item');
+
+      if (prefersReducedMotion) {
+        items.forEach(item => item.classList.add('revealed'));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const item = entry.target;
+              const index = Array.from(items).indexOf(item);
+              const delay = index * 80;
+
+              item.style.transitionDelay = `${delay}ms`;
+              item.classList.add('revealed');
+              observer.unobserve(item);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -60px 0px'
+        });
+
+        items.forEach(item => observer.observe(item));
       }
     })();
   </script>

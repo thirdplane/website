@@ -1,9 +1,13 @@
 ---
 title: "Phantom Grid"
 type: "Data Visualization"
-year: 2025
+year: 2026
 cover: https://picsum.photos/seed/phantomgrid/1000/600
 featured: false
+memberOf:
+  - systems
+badgeType: "research"
+excerpt: "A real-time visualization of electromagnetic field fluctuations in urban environments, revealing the invisible infrastructure that surrounds us."
 ---
 
 A real-time visualization of electromagnetic field fluctuations in urban environments. Phantom Grid reveals the invisible infrastructure that surrounds us, making visible the wireless signals, radio waves, and electrical fields we inhabit.

@@ -1,9 +1,14 @@
 ---
 title: "Data Mirage"
 type: "Creative Coding"
-year: 2025
+year: 2026
 cover: https://picsum.photos/seed/datamirage/600/800
 featured: true
+memberOf:
+  - systems
+  - ai-futures
+badgeType: "generative"
+excerpt: "A live coding performance system that generates visuals from real-time data streams, performing the hidden music of network traffic."
 ---
 
 A live coding performance system that generates visuals from real-time data streams. Data Mirage treats APIs as instruments, market feeds as melodies, and server logs as rhythms, performing the hidden music of network traffic.

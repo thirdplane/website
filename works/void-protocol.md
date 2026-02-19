@@ -1,9 +1,13 @@
 ---
 title: "Void Protocol"
 type: "Interactive Installation"
-year: 2025
+year: 2026
 cover: https://picsum.photos/seed/voidprotocol/600/800
 featured: true
+memberOf:
+  - void-studies
+badgeType: "interface"
+excerpt: "An immersive installation exploring the boundaries between presence and absence through cascading light responses."
 ---
 
 An immersive installation exploring the boundaries between presence and absence. Visitors navigate a darkened space where their movements trigger cascading light responses that map the negative space around them.
@@ -22,4 +26,4 @@ Custom shaders written in GLSL handle the real-time inversion calculations, whil
 
 ## Exhibition
 
-Premiered at the New Museum's "Light/Anti-Light" exhibition in February 2025.
+Premiered at the New Museum's "Light/Anti-Light" exhibition in February 2026.

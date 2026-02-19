@@ -1,28 +1,37 @@
 ---
-title: Writings
+title: Thoughts
 description: Essays and explorations on design, technology, and creative process from Third Plane Studios.
 layout: false
+permalink: /thoughts/
 ---
 
 {% extends "layouts/base.njk" %}
 
 {% block styles %}
 <style>
+{% include "styles/collection-index.css" %}
 {% include "styles/writings-list.css" %}
 </style>
 {% endblock %}
 
 {% block content %}
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-content">
+      <span class="page-label">Essays</span>
+      <h1 class="page-title">Thoughts</h1>
+      <p class="page-intro">
+        Essays and explorations at the intersection of design, technology, and creative process.
+      </p>
+    </div>
+  </div>
+</header>
+
 <section class="writings-section">
   <div class="container">
-    <header class="writings-head">
-      <span class="section-label">// WRITINGS</span>
-      <span class="writings-count">{{ collections.writings | length | pad(2) }} Essays</span>
-    </header>
-
     <div class="writings-list">
       {% for writing in collections.writings %}
-      <a href="{{ writing.url }}" class="writing-item">
+      <a href="{{ writing.url }}" class="writing-item" data-index="{{ loop.index0 }}">
         <div class="writing-item__content">
           <h3 class="writing-item__title">{{ writing.data.title }}</h3>
           {% if writing.data.description %}
@@ -42,3 +51,29 @@ layout: false
 </section>
 {% endblock %}
 
+{% block scripts %}
+<script>
+(function() {
+  'use strict';
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.writing-item');
+  if (prefersReducedMotion) {
+    items.forEach(function(item) { item.classList.add('revealed'); });
+  } else {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var item = entry.target;
+          var index = parseInt(item.dataset.index, 10) || 0;
+          var delay = index * 80;
+          item.style.transitionDelay = delay + 'ms';
+          item.classList.add('revealed');
+          observer.unobserve(item);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    items.forEach(function(item) { observer.observe(item); });
+  }
+})();
+</script>
+{% endblock %}

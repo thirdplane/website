@@ -20,6 +20,9 @@ module.exports = function(eleventyConfig) {
   // Pass through any images in writings
   eleventyConfig.addPassthroughCopy("writings/**/*.{jpg,jpeg,png,gif,svg,webp}");
 
+  // Pass through any images in collections
+  eleventyConfig.addPassthroughCopy("collections/**/*.{jpg,jpeg,png,gif,svg,webp}");
+
   // ============================================
   // COLLECTIONS
   // ============================================
@@ -51,11 +54,29 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  // Thematic collections (the collection definitions themselves)
+  eleventyConfig.addCollection("thematicCollections", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("collections/*.md")
+      .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+  });
+
+  // All content items (works + writings + vignettes) for cross-collection filtering
+  eleventyConfig.addCollection("allContent", function(collectionApi) {
+    const works = collectionApi.getFilteredByGlob("works/**/*.md");
+    const writings = collectionApi.getFilteredByGlob("writings/**/*.md");
+    const vignettes = collectionApi.getFilteredByGlob("vignettes/**/*.md");
+    return [...works, ...writings, ...vignettes].sort((a, b) => {
+      const dateA = a.data.date ? new Date(a.data.date) : new Date((a.data.year || 2020) + '-01-01');
+      const dateB = b.data.date ? new Date(b.data.date) : new Date((b.data.year || 2020) + '-01-01');
+      return dateB - dateA;
+    });
+  });
+
   // ============================================
   // FILTERS
   // ============================================
 
-  // Format date for display (e.g., "Jan 15, 2025")
+  // Format date for display (e.g., "Jan 15, 2026")
   eleventyConfig.addFilter("formatDate", function(date) {
     if (!date) return "";
     const d = new Date(date);
@@ -99,6 +120,78 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("getNextCollectionItem", function(collection, page) {
     const index = collection.findIndex(item => item.url === page.url);
     return index >= 0 && index < collection.length - 1 ? collection[index + 1] : null;
+  });
+
+  // Filter content items by collection slug
+  eleventyConfig.addFilter("worksInCollection", function(allContent, collectionSlug) {
+    return allContent.filter(item =>
+      item.data.memberOf && item.data.memberOf.includes(collectionSlug)
+    ).sort((a, b) => {
+      const dateA = a.data.date ? new Date(a.data.date) : new Date((a.data.year || 2020) + '-01-01');
+      const dateB = b.data.date ? new Date(b.data.date) : new Date((b.data.year || 2020) + '-01-01');
+      return dateB - dateA;
+    });
+  });
+
+  // Get accent color values for a collection
+  eleventyConfig.addFilter("accentColors", function(accent) {
+    const colors = {
+      uv: {
+        primary: '#B04BFF',
+        dim: 'rgba(176, 75, 255, 0.15)',
+        border: 'rgba(176, 75, 255, 0.2)',
+        glow: '0 0 32px rgba(176, 75, 255, 0.25)',
+        hoverBorder: 'rgba(176, 75, 255, 0.3)'
+      },
+      ice: {
+        primary: '#7DE7FF',
+        dim: 'rgba(125, 231, 255, 0.12)',
+        border: 'rgba(125, 231, 255, 0.2)',
+        glow: '0 0 32px rgba(125, 231, 255, 0.20)',
+        hoverBorder: 'rgba(125, 231, 255, 0.25)'
+      },
+      gold: {
+        primary: '#FFD26A',
+        dim: 'rgba(255, 210, 106, 0.12)',
+        border: 'rgba(255, 210, 106, 0.2)',
+        glow: '0 0 32px rgba(255, 210, 106, 0.15)',
+        hoverBorder: 'rgba(255, 210, 106, 0.25)'
+      },
+      strobe: {
+        primary: '#FF2A4A',
+        dim: 'rgba(255, 42, 74, 0.12)',
+        border: 'rgba(255, 42, 74, 0.2)',
+        glow: '0 0 32px rgba(255, 42, 74, 0.18)',
+        hoverBorder: 'rgba(255, 42, 74, 0.25)'
+      }
+    };
+    return colors[accent] || colors.uv;
+  });
+
+  // Get prev/next collections for navigation (wrapping)
+  eleventyConfig.addFilter("prevNextCollections", function(collectionsArray, currentSlug) {
+    const index = collectionsArray.findIndex(c => c.data.slug === currentSlug);
+    const total = collectionsArray.length;
+    return {
+      prev: collectionsArray[(index - 1 + total) % total],
+      next: collectionsArray[(index + 1) % total]
+    };
+  });
+
+  // Short date format: "Dec 2024"
+  eleventyConfig.addFilter("formatDateShort", function(date, year) {
+    if (date) {
+      const d = new Date(date);
+      return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    }
+    if (year) return String(year);
+    return "";
+  });
+
+  // Head filter: return first N items from array
+  eleventyConfig.addFilter("head", function(array, n) {
+    if (!Array.isArray(array)) return [];
+    return array.slice(0, n);
   });
 
   // ============================================

@@ -1,0 +1,110 @@
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/collections.css" %}
+{% include "styles/collection-index.css" %}
+</style>
+{% endblock %}
+
+{% block content %}
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="page-label">Curated</span>
+        <h1 class="page-title">Collections</h1>
+        <p class="page-intro">
+          Thematic groupings that trace threads across different mediums and moments.
+          Each collection represents a <em>sustained inquiry</em> — a question I keep returning to.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Collections Grid -->
+  <section class="collections-section">
+    <div class="container">
+      <div class="collections-grid">
+        {% for collection in collections.thematicCollections %}
+        {% set collectionWorks = collections.allContent | worksInCollection(collection.data.slug) %}
+        <a href="/collections/{{ collection.data.slug }}/"
+           class="collection-card"
+           data-accent="{{ collection.data.accent }}">
+          <div class="collection-mosaic">
+            {% for thumb in collection.data.mosaic %}
+            <div class="mosaic-tile">
+              <img src="{{ thumb }}" alt="" loading="lazy">
+            </div>
+            {% endfor %}
+          </div>
+          <div class="collection-info">
+            <div class="collection-meta">
+              <span class="collection-count">{{ collectionWorks.length }} work{{ 's' if collectionWorks.length != 1 }}</span>
+              <span class="collection-accent" data-color="{{ collection.data.accent }}"></span>
+            </div>
+            <h2 class="collection-title">{{ collection.data.title }}</h2>
+            <p class="collection-description">{{ collection.data.description }}</p>
+            <span class="collection-arrow">
+              Explore collection
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Curatorial Note -->
+  <section class="curatorial-section">
+    <div class="container">
+      <div class="curatorial-content">
+        <span class="curatorial-label">Curatorial Note</span>
+        <div class="curatorial-text">
+          <p>
+            These collections are <em>living arrangements</em> — they grow and shift as new work emerges
+            and old work reveals new connections. A piece might belong to multiple collections,
+            or migrate between them as my understanding deepens.
+          </p>
+          <p>
+            The boundaries between categories have always felt artificial to me. An essay about AI
+            is also a meditation on void. A data visualization is also an aesthetic experiment.
+            These collections honor that multiplicity.
+          </p>
+          <div class="curatorial-signature">
+            — J, Third Plane Studios
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+  'use strict';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = document.querySelectorAll('.collection-card');
+  if (prefersReducedMotion) {
+    cards.forEach(card => card.classList.add('revealed'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = Array.from(cards).indexOf(card);
+          const delay = index * 120;
+          setTimeout(() => { card.classList.add('revealed'); }, delay);
+          observer.unobserve(card);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    cards.forEach(card => observer.observe(card));
+  }
+})();
+</script>
+{% endblock %}

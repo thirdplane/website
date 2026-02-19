@@ -6,6 +6,10 @@ github: https://github.com/thirdplane/lumina
 live: https://lumina.example.com
 cover: /assets/works/lumina/cover.jpg
 featured: true
+memberOf:
+  - systems
+badgeType: "interface"
+excerpt: "A comprehensive brand identity system designed for an AI-powered creative tools platform."
 ---
 
 ## Overview

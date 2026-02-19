@@ -5,6 +5,11 @@ year: 2024
 github: https://github.com/thirdplane/synthesis
 cover: /assets/works/synthesis/cover.jpg
 featured: true
+memberOf:
+  - ai-futures
+  - systems
+badgeType: "generative"
+excerpt: "An exploration of emergent patterns through computational design, combining noise algorithms, particle systems, and real-time rendering."
 ---
 
 ## Overview

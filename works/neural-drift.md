@@ -4,6 +4,11 @@ type: "AI Experiment"
 year: 2024
 cover: https://picsum.photos/seed/neuraldrift/1200/675
 featured: false
+memberOf:
+  - ai-futures
+  - experiments
+badgeType: "generative"
+excerpt: "A meditation on machine perception using fine-tuned diffusion models, generating landscapes in the liminal space between recognition and abstraction."
 ---
 
 A meditation on machine perception using fine-tuned diffusion models. Neural Drift generates landscapes that exist in the liminal space between recognition and abstraction, training AI to dream of places that never were.

@@ -1,11 +1,14 @@
 ---
 title: Designing in the Void
-date: 2025-01-15
+date: 2026-01-15
 description: On the practice of creating from nothing — embracing uncertainty as a design methodology.
 tags:
   - Design
   - Process
   - Philosophy
+memberOf:
+  - void-studies
+badgeType: "essay"
 ---
 
 There's a moment before every project begins — a suspended breath between conception and creation — where nothing exists yet everything is possible. This is **the void**: not empty, but pregnant with potential.

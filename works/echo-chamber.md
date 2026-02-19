@@ -4,6 +4,11 @@ type: "Sound Design"
 year: 2024
 cover: https://picsum.photos/seed/echochamber/600/900
 featured: true
+memberOf:
+  - systems
+  - experiments
+badgeType: "interface"
+excerpt: "An adaptive sound environment that evolves based on the acoustic signatures of its listeners, creating a unique sonic space for each visitor."
 ---
 
 An adaptive sound environment that evolves based on the acoustic signatures of its listeners. Echo Chamber creates a unique sonic space for each visitor, using their voice and movements to sculpt an ever-changing soundscape.

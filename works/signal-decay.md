@@ -4,6 +4,11 @@ type: "Generative Art"
 year: 2023
 cover: https://picsum.photos/seed/signaldecay/800/600
 featured: false
+memberOf:
+  - void-studies
+  - experiments
+badgeType: "generative"
+excerpt: "An exploration of entropy and information loss through generative visual systems, treating degradation as a creative partner."
 ---
 
 An exploration of entropy and information loss through generative visual systems. Signal Decay creates images that degrade in real-time, visualizing the inevitable march toward disorder that governs all systems.

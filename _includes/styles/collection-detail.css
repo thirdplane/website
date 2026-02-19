@@ -1,0 +1,14 @@
+/* ============================================
+   COLLECTION DETAIL PAGE
+   Minimal file — collections.css already contains
+   all collection detail page styles including:
+   - .collection-header and ::before gradient
+   - .back-link
+   - .collection-meta-row, .collection-accent-dot
+   - .curator-note
+   - .works-section, .works-grid, .work-card
+   - .work-type-badge, .type-dot
+   - .collection-nav (prev/next)
+   - [data-collection-accent] theme selectors
+   - Reduced-motion and responsive styles
+   ============================================ */

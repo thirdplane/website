@@ -10,12 +10,12 @@
     "twitter": "https://twitter.com/thirdplane"
   },
   "nav": [
-    { "title": "Works", "url": "/works/" },
-    { "title": "Writings", "url": "/writings/" },
-    { "title": "Vignettes", "url": "/vignettes/" }
+    { "title": "Collections", "url": "/collections/" },
+    { "title": "Thoughts", "url": "/thoughts/" },
+    { "title": "About", "url": "/about/" }
   ],
   "copyright": {
-    "year": 2025,
+    "year": 2026,
     "holder": "Third Plane Studios"
   }
 }

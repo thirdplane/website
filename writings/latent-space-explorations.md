@@ -1,11 +1,14 @@
 ---
 title: Latent Space as Medium
-date: 2025-01-08
+date: 2026-01-08
 description: Exploring the aesthetic and philosophical possibilities of generative systems as tools for creative expression.
 tags:
   - AI
   - Creativity
   - Technology
+memberOf:
+  - ai-futures
+badgeType: "essay"
 ---
 
 The latent space isn't a place. It's a mode of thinking — a dimensionless garden where all possibilities coexist.

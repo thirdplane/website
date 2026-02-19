@@ -4,6 +4,10 @@ type: "Motion Design"
 year: 2023
 cover: https://picsum.photos/seed/chromaticpulse/800/800
 featured: false
+memberOf:
+  - experiments
+badgeType: "generative"
+excerpt: "Audiovisual compositions exploring the synesthetic relationship between color and rhythm, translating musical structures into pure chromatic motion."
 ---
 
 A series of audiovisual compositions exploring the synesthetic relationship between color and rhythm. Each piece translates musical structures into pure chromatic motion, creating a visual language for sound.
