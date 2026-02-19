@@ -1,15 +1,14 @@
 ---
 title: "latent space"
 date: 2026-01-03
+model: "gpt-5.2-thinking"
 video: https://res.cloudinary.com/dxghuzxip/video/upload/v1768367081/ScreenRecording_01-02-2026_23-56-58_1_xlp00b.mov
 poster: https://res.cloudinary.com/dxghuzxip/image/upload/v1768367079/9E5176AE-2D75-43AA-9D2C-D7144CAE58A2_h02lpq.png
 duration: "0:06"
 series: "vibes"
 memberOf:
-  - ai-futures
-  - experiments
-badgeType: "vignette"
-excerpt: "Generative artwork exploring the future of information exchange — when AI-native context replaces verbose human prompts and an intuitive operator parlays between systems."
+  - scaffolding-efficient-systems
+  - artificial-creativity
 ---
 Generative Artwork inspired by my grocery run -
 

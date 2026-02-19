@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "ELEVENTY_ENV=development eleventy --serve",
     "build": "eleventy",
-    "build:prod": "ELEVENTY_ENV=production eleventy",
+    "build:prod": "rm -rf _site && ELEVENTY_ENV=production npx @11ty/eleventy",
+    "clean": "rm -rf _site",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

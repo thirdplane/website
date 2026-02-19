@@ -488,20 +488,12 @@
 }
 
 /* Collection dot colors matching accent system */
-.entry-collection-dot[data-accent="ai-futures"] {
-  background: var(--uv-500);
-}
-
-.entry-collection-dot[data-accent="void-studies"] {
-  background: var(--ice-400);
-}
-
-.entry-collection-dot[data-accent="systems"] {
+.entry-collection-dot[data-accent="scaffolding-efficient-systems"] {
   background: var(--sun-400);
 }
 
-.entry-collection-dot[data-accent="experiments"] {
-  background: var(--strobe-500);
+.entry-collection-dot[data-accent="artificial-creativity"] {
+  background: var(--uv-500);
 }
 
 /* Entry arrow */
@@ -634,16 +626,4 @@
   .timeline-entry.revealed {
     transition: none;
   }
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }

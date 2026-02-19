@@ -105,18 +105,16 @@ The site uses a **thematic collections** architecture instead of type-based orga
 
 ### Philosophy
 - **Artist as curator**: Works converse across media types
-- **Thematic groupings**: "AI Futures", "Void Studies", "Systems", "Experiments"
+- **Thematic groupings**: "Scaffolding Efficient Systems", "Artificial Creativity"
 - **Multi-collection**: A work can belong to multiple collections
 
 ### Collection Accent Colors
 Each collection has a signature accent that carries through hover states, glows, and badges:
 
-| Collection | Accent | Variable | Meaning |
-|------------|--------|----------|---------|
-| AI Futures | Purple | `--uv-500` | Synthetic, technological |
-| Void Studies | Cyan | `--ice-400` | Cold, negative space |
-| Systems | Gold | `--sun-400` | Warm, structured |
-| Experiments | Red | `--strobe-500` | Raw, in-progress |
+| Collection | Accent | Variable | Slug |
+|------------|--------|----------|------|
+| Scaffolding Efficient Systems | Gold | `--sun-400` | `scaffolding-efficient-systems` |
+| Artificial Creativity | Purple | `--uv-500` | `artificial-creativity` |
 
 ### Key Components
 - **Collection Card**: 2x2 mosaic thumbnail, accent dot, arrow indicator

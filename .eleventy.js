@@ -105,11 +105,6 @@ module.exports = function(eleventyConfig) {
     return `${minutes} min read`;
   });
 
-  // Pad filter for zero-padded numbers (e.g., "02 Projects")
-  eleventyConfig.addFilter("pad", function(num, size = 2) {
-    return String(num).padStart(size, '0');
-  });
-
   // Get previous item in collection
   eleventyConfig.addFilter("getPreviousCollectionItem", function(collection, page) {
     const index = collection.findIndex(item => item.url === page.url);
@@ -133,41 +128,6 @@ module.exports = function(eleventyConfig) {
     });
   });
 
-  // Get accent color values for a collection
-  eleventyConfig.addFilter("accentColors", function(accent) {
-    const colors = {
-      uv: {
-        primary: '#B04BFF',
-        dim: 'rgba(176, 75, 255, 0.15)',
-        border: 'rgba(176, 75, 255, 0.2)',
-        glow: '0 0 32px rgba(176, 75, 255, 0.25)',
-        hoverBorder: 'rgba(176, 75, 255, 0.3)'
-      },
-      ice: {
-        primary: '#7DE7FF',
-        dim: 'rgba(125, 231, 255, 0.12)',
-        border: 'rgba(125, 231, 255, 0.2)',
-        glow: '0 0 32px rgba(125, 231, 255, 0.20)',
-        hoverBorder: 'rgba(125, 231, 255, 0.25)'
-      },
-      gold: {
-        primary: '#FFD26A',
-        dim: 'rgba(255, 210, 106, 0.12)',
-        border: 'rgba(255, 210, 106, 0.2)',
-        glow: '0 0 32px rgba(255, 210, 106, 0.15)',
-        hoverBorder: 'rgba(255, 210, 106, 0.25)'
-      },
-      strobe: {
-        primary: '#FF2A4A',
-        dim: 'rgba(255, 42, 74, 0.12)',
-        border: 'rgba(255, 42, 74, 0.2)',
-        glow: '0 0 32px rgba(255, 42, 74, 0.18)',
-        hoverBorder: 'rgba(255, 42, 74, 0.25)'
-      }
-    };
-    return colors[accent] || colors.uv;
-  });
-
   // Get prev/next collections for navigation (wrapping)
   eleventyConfig.addFilter("prevNextCollections", function(collectionsArray, currentSlug) {
     const index = collectionsArray.findIndex(c => c.data.slug === currentSlug);
@@ -186,12 +146,6 @@ module.exports = function(eleventyConfig) {
     }
     if (year) return String(year);
     return "";
-  });
-
-  // Head filter: return first N items from array
-  eleventyConfig.addFilter("head", function(array, n) {
-    if (!Array.isArray(array)) return [];
-    return array.slice(0, n);
   });
 
   // ============================================
@@ -259,6 +213,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("README.md");
 
   // Ignore mockup files
+  eleventyConfig.ignores.add("mockups/**");
   eleventyConfig.ignores.add("content-mockup.html");
   eleventyConfig.ignores.add("article-header-mockup.html");
   eleventyConfig.ignores.add("*-mockup.html");
