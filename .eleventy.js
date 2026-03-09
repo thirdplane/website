@@ -63,10 +63,15 @@ module.exports = function(eleventyConfig) {
   });
 
   // All content items (works + writings + vignettes) for cross-collection filtering
+  // Respects draft: true in production builds
   eleventyConfig.addCollection("allContent", function(collectionApi) {
-    const works = collectionApi.getFilteredByGlob("works/**/*.md");
-    const writings = collectionApi.getFilteredByGlob("writings/**/*.md");
-    const vignettes = collectionApi.getFilteredByGlob("vignettes/**/*.md");
+    const isProduction = process.env.ELEVENTY_ENV === 'production';
+    const works = collectionApi.getFilteredByGlob("works/**/*.md")
+      .filter(item => isProduction ? !item.data.draft : true);
+    const writings = collectionApi.getFilteredByGlob("writings/**/*.md")
+      .filter(item => isProduction ? !item.data.draft : true);
+    const vignettes = collectionApi.getFilteredByGlob("vignettes/**/*.md")
+      .filter(item => isProduction ? !item.data.draft : true);
     return [...works, ...writings, ...vignettes].sort((a, b) => {
       const dateA = a.data.date ? new Date(a.data.date) : new Date((a.data.year || 2020) + '-01-01');
       const dateB = b.data.date ? new Date(b.data.date) : new Date((b.data.year || 2020) + '-01-01');
