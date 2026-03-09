@@ -37,7 +37,7 @@ The site is a static Eleventy (11ty) project using Nunjucks templates and markdo
 ├── works/              Individual works (projects, essays, videos)
 ├── writings/           Long-form thoughts and essays
 ├── vignettes/          Short video notes and clips
-├── assets/             Images, videos, static files
+├── assets/             Local images (works/, vignettes/, images/)
 ├── docs/               Internal documentation (not built)
 └── .eleventy.js        Build config
 ```
@@ -173,6 +173,7 @@ title: "Collection Name"
 slug: "collection-name"                # URL slug and the value works use in memberOf
 accent: "gold"                         # Color theme (see table below)
 order: 1                               # Sort position on index page (lower = first)
+hidden: false                          # Set true to hide from index but keep URL accessible
 description: "Short tagline, under 200 characters. Shown on index cards."
 longDescription: "Longer description shown at the top of the collection detail page."
 curatorNote: "Personal note about why these works belong together."
@@ -183,6 +184,13 @@ mosaic:                                # 4 thumbnail URLs for the 2x2 mosaic on 
   - "https://example.com/thumb4.jpg"
 ---
 ```
+
+**Hidden collections:**
+
+Use `hidden: true` for collections you want accessible via direct URL but not listed on the `/collections/` index. Useful for:
+- Job application portfolios (e.g., `selected-work`)
+- Client-specific curations
+- Unlisted but shareable groupings
 
 Any markdown body below the frontmatter is ignored. All collection content is rendered from frontmatter fields.
 
@@ -255,18 +263,25 @@ Files placed in `assets/` are copied verbatim to `_site/assets/` via passthrough
 eleventyConfig.addPassthroughCopy("assets");
 ```
 
-Suggested structure:
+Folder structure (pre-created with `.gitkeep` files):
 
 ```
 assets/
-├── works/
-│   └── my-project/
-│       └── cover.jpg
-├── vignettes/
-│   └── my-clip/
-│       └── poster.jpg
-└── images/
-    └── shared-graphic.png
+├── images/           # Shared images (collection mosaics, site graphics)
+│   └── .gitkeep
+├── works/            # Work-specific images (one subfolder per project)
+│   └── .gitkeep
+└── vignettes/        # Vignette posters (if not using Cloudinary)
+    └── .gitkeep
+```
+
+To add images for a work, create a subfolder matching the work slug:
+
+```
+assets/works/my-project/
+├── cover.jpg         # Main cover image
+├── hero.jpg          # Optional hero/banner
+└── detail-01.jpg     # Additional images for case study
 ```
 
 Reference in frontmatter with a root-relative path:
@@ -386,6 +401,7 @@ The `writings/` to `/thoughts/` remap is defined in `writings/writings.json`:
 | `slug`            | Yes      | string   | --      | URL slug and `memberOf` reference key    |
 | `accent`          | Yes      | string   | --      | Color theme: `gold`, `uv`, `ice`, `strobe` |
 | `order`           | No       | number   | `999`   | Sort position on index (lower = first)   |
+| `hidden`          | No       | boolean  | `false` | Hide from `/collections/` index but keep URL accessible |
 | `description`     | No       | string   | --      | Short tagline for index cards (<200 chars) |
 | `longDescription` | No       | string   | --      | Expanded description for detail page     |
 | `curatorNote`     | No       | string   | --      | Personal note about the collection       |

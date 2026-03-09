@@ -55,8 +55,10 @@ module.exports = function(eleventyConfig) {
   });
 
   // Thematic collections (the collection definitions themselves)
+  // Collections with `hidden: true` are excluded from the index but still accessible via direct URL
   eleventyConfig.addCollection("thematicCollections", function(collectionApi) {
     return collectionApi.getFilteredByGlob("collections/*.md")
+      .filter(item => !item.data.hidden)
       .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
   });
 
