@@ -1,0 +1,5 @@
+{
+  "layout": "collection-detail.njk",
+  "tags": ["collection"],
+  "permalink": "/collections/{{ slug }}/"
+}

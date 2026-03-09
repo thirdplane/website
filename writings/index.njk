@@ -1,0 +1,79 @@
+---
+title: Thoughts
+description: Essays and explorations on design, technology, and creative process from Third Plane Studios.
+layout: false
+permalink: /thoughts/
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<style>
+{% include "styles/collection-index.css" %}
+{% include "styles/writings-list.css" %}
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-content">
+      <span class="page-label">Essays</span>
+      <h1 class="page-title">Thoughts</h1>
+      <p class="page-intro">
+        [INSERT: Your intro text for the Thoughts page — what kind of writing lives here and why]
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="writings-section">
+  <div class="container">
+    <div class="writings-list">
+      {% for writing in collections.writings %}
+      <a href="{{ writing.url }}" class="writing-item" data-index="{{ loop.index0 }}">
+        <div class="writing-item__content">
+          <h3 class="writing-item__title">{{ writing.data.title }}</h3>
+          {% if writing.data.description %}
+          <p class="writing-item__excerpt">{{ writing.data.description }}</p>
+          {% endif %}
+        </div>
+        <div class="writing-item__meta">
+          <time datetime="{{ writing.data.date | isoDate }}" class="writing-item__date">
+            {{ writing.data.date | formatDate }}
+          </time>
+          <span class="writing-item__reading-time">{{ writing.templateContent | readingTime }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+  'use strict';
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.writing-item');
+  if (prefersReducedMotion) {
+    items.forEach(function(item) { item.classList.add('revealed'); });
+  } else {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var item = entry.target;
+          var index = parseInt(item.dataset.index, 10) || 0;
+          var delay = index * 80;
+          item.style.transitionDelay = delay + 'ms';
+          item.classList.add('revealed');
+          observer.unobserve(item);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    items.forEach(function(item) { observer.observe(item); });
+  }
+})();
+</script>
+{% endblock %}

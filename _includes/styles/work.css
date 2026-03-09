@@ -1,0 +1,374 @@
+/* ================================================
+   WORK PROJECT PAGE
+   Hybrid: Elevated Surface + Wide Container
+   Glass-morphism card matching writing page aesthetic
+   ================================================ */
+
+/* ============ PAGE LAYOUT ============ */
+
+.work-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  /*
+   * Top padding clears fixed navbar + adds breathing room
+   * Uses shared --detail-page-top for consistency with writing page
+   */
+  padding: var(--detail-page-top, 100px) var(--page-padding, 24px) var(--space-3xl, 64px);
+}
+
+/* ============ BACK NAVIGATION ============ */
+/* Arrow hangs left, "Works" text aligns with content */
+
+.back-link-wrapper {
+  /* No extra padding - back-link handles its own alignment */
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0; /* No gap - arrow margin handles spacing */
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-600);
+  text-decoration: none;
+  /* Uses shared --detail-back-link-margin for consistency with writing page */
+  margin-bottom: var(--detail-back-link-margin, 28px);
+  transition: color var(--spring-hover), transform var(--spring-hover);
+}
+
+.back-link:hover {
+  color: var(--ice-400);
+  transform: translateX(-2px);
+}
+
+/* Arrow sits naturally before the text with a small gap */
+.back-link-arrow {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;  /* Visual gap before text */
+  transition: transform var(--spring-hover);
+}
+
+.back-link:hover .back-link-arrow {
+  transform: translateX(-3px);
+}
+
+/* ============ ELEVATED SURFACE ============ */
+/* Glass-morphism card spanning full container width */
+
+.work-surface {
+  background: linear-gradient(180deg, rgba(var(--ink-900-rgb), 0.9) 0%, rgba(var(--ink-900-rgb), 0.7) 100%);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(214, 230, 255, 0.08),
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Subtle gradient accent line at top */
+.work-surface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(176, 75, 255, 0.15) 25%,
+    rgba(125, 231, 255, 0.12) 75%,
+    transparent 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .work-surface {
+    border-radius: 16px;
+  }
+}
+
+/* ============ WORK HEADER ============ */
+/* Inside surface, aligned with prose column */
+
+.work-header {
+  padding: var(--space-2xl, 48px) var(--space-lg, 24px);
+}
+
+@media (min-width: 768px) {
+  .work-header {
+    padding: var(--space-2xl, 48px) var(--space-2xl, 48px) var(--space-xl, 32px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .work-header {
+    padding: var(--space-3xl, 64px) var(--space-3xl, 64px) var(--space-xl, 32px);
+  }
+}
+
+/* Meta: Type, Year, Client */
+.work-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 16px);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md, 16px);
+}
+
+.work-type {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--uv-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.work-year {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-600);
+  letter-spacing: 0.01em;
+}
+
+.work-year::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: var(--text-600);
+  border-radius: 50%;
+  margin-right: var(--space-md, 16px);
+  vertical-align: middle;
+}
+
+.work-client {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-600);
+  opacity: 0.8;
+}
+
+.work-client::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: var(--text-600);
+  border-radius: 50%;
+  margin-right: var(--space-md, 16px);
+  vertical-align: middle;
+}
+
+/* Title: 28-36px responsive */
+.work-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 600;
+  color: var(--text-100);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+/* Work Links: GitHub & Live buttons */
+.work-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm, 8px);
+  margin-top: var(--space-lg, 24px);
+}
+
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-400);
+  padding: var(--space-xs, 4px) var(--space-sm, 8px);
+  background: rgba(168, 178, 209, 0.06);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.work-link:hover {
+  color: var(--ice-400);
+  background: rgba(125, 231, 255, 0.08);
+}
+
+.work-link svg {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.work-link:hover svg {
+  opacity: 1;
+}
+
+/* ============ WORK CONTENT ============ */
+/* Readable prose column inside wide card */
+
+.work-content {
+  padding: 0 var(--space-lg, 24px) var(--space-2xl, 48px);
+}
+
+@media (min-width: 768px) {
+  .work-content {
+    padding: 0 var(--space-2xl, 48px) var(--space-2xl, 48px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .work-content {
+    padding: 0 var(--space-3xl, 64px) var(--space-3xl, 64px);
+  }
+}
+
+/* Image styling within prose */
+.work-content img {
+  border-radius: 8px;
+  margin: 2em 0;
+}
+
+/* ============ WORK END MARKER ============ */
+
+.work-end {
+  padding: var(--space-xl, 32px) var(--space-lg, 24px);
+  border-top: 1px solid rgba(214, 230, 255, 0.06);
+}
+
+@media (min-width: 768px) {
+  .work-end {
+    padding: var(--space-xl, 32px) var(--space-2xl, 48px) var(--space-2xl, 48px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .work-end {
+    padding: var(--space-xl, 32px) var(--space-3xl, 64px) var(--space-3xl, 64px);
+  }
+}
+
+.work-end-marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 16px);
+  margin-bottom: var(--space-xl, 32px);
+}
+
+.work-end-marker::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--text-600);
+  opacity: 0.4;
+}
+
+.work-end-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-600);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ============ WORK NAVIGATION ============ */
+/* Prev/Next links inside the card */
+
+.work-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md, 16px);
+}
+
+.work-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-md, 16px);
+  background: rgba(168, 178, 209, 0.04);
+  border: 1px solid rgba(214, 230, 255, 0.06);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.work-nav__link:hover {
+  border-color: var(--ice-400);
+  background: rgba(125, 231, 255, 0.04);
+}
+
+.work-nav__link--next {
+  text-align: right;
+}
+
+.work-nav__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-600);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.work-nav__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-200);
+  line-height: 1.3;
+}
+
+.work-nav__link:hover .work-nav__title {
+  color: var(--ice-400);
+}
+
+/* ============ MOBILE RESPONSIVENESS ============ */
+
+@media (max-width: 768px) {
+  .work-title {
+    font-size: clamp(24px, 5vw, 28px);
+  }
+
+  .work-meta {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .work-links {
+    gap: 6px;
+  }
+
+  .work-link {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .work-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .work-nav__link--next {
+    text-align: left;
+  }
+}
+
+/* ============ REDUCED MOTION ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  .back-link,
+  .back-link-arrow,
+  .work-link {
+    transition: none;
+  }
+}

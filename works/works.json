@@ -1,0 +1,6 @@
+{
+  "layout": "work.njk",
+  "tags": ["work"],
+  "draft": false,
+  "featured": false
+}

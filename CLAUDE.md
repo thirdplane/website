@@ -98,3 +98,52 @@ Key color variables:
 - `--ice-400`: Cyan/ice accent (primary interactive color)
 - `--strobe-500`: Red accent
 - `--sun-400` / `--amber-500`: Gold/orange accents
+
+## Collections System (Option D)
+
+The site uses a **thematic collections** architecture instead of type-based organization. Works are grouped by conceptual inquiry, not medium.
+
+### Philosophy
+- **Artist as curator**: Works converse across media types
+- **Thematic groupings**: "Scaffolding Efficient Systems", "Artificial Creativity"
+- **Multi-collection**: A work can belong to multiple collections
+
+### Collection Accent Colors
+Each collection has a signature accent that carries through hover states, glows, and badges:
+
+| Collection | Accent | Variable | Slug |
+|------------|--------|----------|------|
+| Scaffolding Efficient Systems | Gold | `--sun-400` | `scaffolding-efficient-systems` |
+| Artificial Creativity | Purple | `--uv-500` | `artificial-creativity` |
+
+### Key Components
+- **Collection Card**: 2x2 mosaic thumbnail, accent dot, arrow indicator
+- **Curator's Note**: Glass-morphism card with editorial voice
+- **Work Card**: Type badge with colored dot, image with hover scale
+- **Type Badge**: Floating over media, backdrop-blur, color-coded by type
+
+### Type Badge Colors
+```css
+[data-type="essay"]      { color: var(--ice-400); }
+[data-type="interface"]  { color: var(--uv-400); }
+[data-type="generative"] { color: var(--sun-400); }
+[data-type="vignette"]   { color: var(--strobe-500); }
+[data-type="research"]   { color: var(--amber-500); }
+```
+
+### Collection Accent Theming
+Apply `data-collection-accent` attribute to set theme:
+```html
+<body data-collection-accent="uv">
+```
+
+This sets CSS custom properties:
+- `--collection-accent`: Primary accent color
+- `--collection-accent-dim`: Background tint (15% opacity)
+- `--collection-accent-border`: Border color (20% opacity)
+- `--collection-glow`: Box-shadow glow
+
+### Documentation
+- Full design spec: `docs/COLLECTIONS_DESIGN_SPEC.md`
+- CSS: `_includes/styles/collections.css`
+- Mockups: `mockups/option-d-*.html`

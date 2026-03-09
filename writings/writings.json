@@ -1,0 +1,6 @@
+{
+  "layout": "writing.njk",
+  "tags": ["writing"],
+  "draft": false,
+  "permalink": "/thoughts/{{ page.fileSlug }}/"
+}
