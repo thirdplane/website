@@ -49,7 +49,7 @@ All placeholder content has been stripped. Below is every `[INSERT: ...]` marker
 
 ---
 
-## Collections (2 files)
+## Collections (3 files)
 
 ### `collections/scaffolding-efficient-systems.md`
 - `description:` — `[INSERT: Short description for index card, <200 chars...]`
@@ -63,7 +63,13 @@ All placeholder content has been stripped. Below is every `[INSERT: ...]` marker
 - `curatorNote:` — `[INSERT: Personal curator's note about what draws you to machines and creative expression...]`
 - `mosaic:` (4 items) — `[INSERT: thumbnail 1-4 URL]`
 
-**Total collection action items: 14**
+### `collections/selected-work.md` (Hidden collection for job applications)
+- `curatorNote:` — Update with role-specific context (e.g., company name, domain)
+- `mosaic:` (4 items) — Update with real thumbnail URLs from selected works
+- Tag works by adding `selected-work` to their `memberOf` array
+- Note: This collection has `hidden: true` so it won't appear on `/collections/` index but is accessible at `/collections/selected-work/`
+
+**Total collection action items: 17**
 
 ---
 
@@ -100,9 +106,9 @@ All placeholder content has been stripped. Below is every `[INSERT: ...]` marker
 |----------|-------|-------------|
 | Works | 6 | 18 |
 | Vignettes | 0 | 0 |
-| Collections | 2 | 14 |
+| Collections | 3 | 17 |
 | Layouts & Pages | 4 | 12 |
-| **Total** | **12** | **44** |
+| **Total** | **13** | **47** |
 
 ---
 

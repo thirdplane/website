@@ -173,6 +173,7 @@ title: "Collection Name"
 slug: "collection-name"                # URL slug and the value works use in memberOf
 accent: "gold"                         # Color theme (see table below)
 order: 1                               # Sort position on index page (lower = first)
+hidden: false                          # Set true to hide from index but keep URL accessible
 description: "Short tagline, under 200 characters. Shown on index cards."
 longDescription: "Longer description shown at the top of the collection detail page."
 curatorNote: "Personal note about why these works belong together."
@@ -183,6 +184,13 @@ mosaic:                                # 4 thumbnail URLs for the 2x2 mosaic on 
   - "https://example.com/thumb4.jpg"
 ---
 ```
+
+**Hidden collections:**
+
+Use `hidden: true` for collections you want accessible via direct URL but not listed on the `/collections/` index. Useful for:
+- Job application portfolios (e.g., `selected-work`)
+- Client-specific curations
+- Unlisted but shareable groupings
 
 Any markdown body below the frontmatter is ignored. All collection content is rendered from frontmatter fields.
 
@@ -386,6 +394,7 @@ The `writings/` to `/thoughts/` remap is defined in `writings/writings.json`:
 | `slug`            | Yes      | string   | --      | URL slug and `memberOf` reference key    |
 | `accent`          | Yes      | string   | --      | Color theme: `gold`, `uv`, `ice`, `strobe` |
 | `order`           | No       | number   | `999`   | Sort position on index (lower = first)   |
+| `hidden`          | No       | boolean  | `false` | Hide from `/collections/` index but keep URL accessible |
 | `description`     | No       | string   | --      | Short tagline for index cards (<200 chars) |
 | `longDescription` | No       | string   | --      | Expanded description for detail page     |
 | `curatorNote`     | No       | string   | --      | Personal note about the collection       |

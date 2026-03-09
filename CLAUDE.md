@@ -111,10 +111,14 @@ The site uses a **thematic collections** architecture instead of type-based orga
 ### Collection Accent Colors
 Each collection has a signature accent that carries through hover states, glows, and badges:
 
-| Collection | Accent | Variable | Slug |
-|------------|--------|----------|------|
-| Scaffolding Efficient Systems | Gold | `--sun-400` | `scaffolding-efficient-systems` |
-| Artificial Creativity | Purple | `--uv-500` | `artificial-creativity` |
+| Collection | Accent | Variable | Slug | Hidden |
+|------------|--------|----------|------|--------|
+| Scaffolding Efficient Systems | Gold | `--sun-400` | `scaffolding-efficient-systems` | No |
+| Artificial Creativity | Purple | `--uv-500` | `artificial-creativity` | No |
+| Selected Work | Cyan | `--ice-400` | `selected-work` | Yes |
+
+### Hidden Collections
+Collections with `hidden: true` are excluded from the `/collections/` index but remain accessible via direct URL. Use for job application portfolios, client curations, or unlisted shareable links.
 
 ### Key Components
 - **Collection Card**: 2x2 mosaic thumbnail, accent dot, arrow indicator
