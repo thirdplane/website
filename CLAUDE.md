@@ -91,6 +91,21 @@ The site defines these springs in `:root`:
 --spring-hover: 450ms linear(...);  /* Hover interactions */
 ```
 
+## Assets Folder
+
+Local images are stored in `assets/` and copied to `_site/assets/` via passthrough:
+
+```
+assets/
+├── images/           # Shared images (collection mosaics, site graphics)
+├── works/            # Work-specific images (subfolder per project)
+└── vignettes/        # Vignette posters (if not using Cloudinary)
+```
+
+Reference in frontmatter: `cover: "/assets/works/my-project/cover.jpg"`
+
+For video or images needing transforms, use Cloudinary (cloud: `dxghuzxip`).
+
 ## Design Tokens
 
 Key color variables:

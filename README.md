@@ -37,7 +37,7 @@ The site is a static Eleventy (11ty) project using Nunjucks templates and markdo
 ├── works/              Individual works (projects, essays, videos)
 ├── writings/           Long-form thoughts and essays
 ├── vignettes/          Short video notes and clips
-├── assets/             Images, videos, static files
+├── assets/             Local images (works/, vignettes/, images/)
 ├── docs/               Internal documentation (not built)
 └── .eleventy.js        Build config
 ```
@@ -263,18 +263,25 @@ Files placed in `assets/` are copied verbatim to `_site/assets/` via passthrough
 eleventyConfig.addPassthroughCopy("assets");
 ```
 
-Suggested structure:
+Folder structure (pre-created with `.gitkeep` files):
 
 ```
 assets/
-├── works/
-│   └── my-project/
-│       └── cover.jpg
-├── vignettes/
-│   └── my-clip/
-│       └── poster.jpg
-└── images/
-    └── shared-graphic.png
+├── images/           # Shared images (collection mosaics, site graphics)
+│   └── .gitkeep
+├── works/            # Work-specific images (one subfolder per project)
+│   └── .gitkeep
+└── vignettes/        # Vignette posters (if not using Cloudinary)
+    └── .gitkeep
+```
+
+To add images for a work, create a subfolder matching the work slug:
+
+```
+assets/works/my-project/
+├── cover.jpg         # Main cover image
+├── hero.jpg          # Optional hero/banner
+└── detail-01.jpg     # Additional images for case study
 ```
 
 Reference in frontmatter with a root-relative path:
