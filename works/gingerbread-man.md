@@ -4,6 +4,7 @@ type: "Generative Art"
 year: 2025
 cover: "[INSERT: cover image URL]"
 featured: false
+draft: true
 memberOf:
   - artificial-creativity
 badgeType: "generative"

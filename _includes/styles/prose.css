@@ -144,10 +144,25 @@
 
 /* Images */
 .prose img {
+  display: block;
   max-width: 100%;
   height: auto;
   border-radius: 8px;
   margin: 2em 0;
+}
+
+/* Images following headings need less top margin */
+.prose h2 + p > img:first-child,
+.prose h3 + p > img:first-child,
+.prose h2 + img,
+.prose h3 + img {
+  margin-top: 1em;
+}
+
+/* Standalone images in paragraphs */
+.prose p > img:only-child {
+  display: block;
+  margin: 2.5em auto;
 }
 
 /* Figures */
