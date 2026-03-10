@@ -4,6 +4,7 @@ type: "Creative Process"
 year: 2025
 cover: "[INSERT: cover image URL]"
 featured: false
+draft: true
 memberOf:
   - scaffolding-efficient-systems
 badgeType: "essay"
