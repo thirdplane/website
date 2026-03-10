@@ -1,79 +1,85 @@
 ---
-title: "Generative Remix: A workbench that parameterizes components on the fly"
+title: "Generative Remix"
+subtitle: "A workbench that parameterizes components on the fly"
 date: 2026-02-21
-medium: "software"           
+medium: "software"
 cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png"
 excerpt: "A workbench where AI generates the UI itself — you curate taste, Claude builds the knobs."
-featured: false                  # Set true to pin to top of listings
-draft: false                     # Set true to hide from production builds
+featured: true
+draft: false
 memberOf:
   - artificial-creativity
   - selected-work
 ---
-# Summary
-Thesis: you can't prompt taste, but you can curate it. Rather than asking users to articulate what they want in words, Generative Remix lets them point at something tasteful and remix it -- with AI generating the interface itself, not just the output.
 
-The working prototype is a live remix workbench built around a WebGL shader (a "Nova Halo" component, originally extracted from Framer AI's halo-glow component). Two Claude agents negotiate behind the scenes: Alice analyzes the shader's documentation and extracts a taste-to-math mapping - translating 12 shader uniforms into perceptual categories like "Edge Turbulence" and "Color Warmth." Bob then generates a complete UI control schema via structured tool use, deciding what controls to expose, how to group them, and what to call them. The controls you see on screen weren't designed by us. Claude decided what knobs a non-technical person would need to explore this artifact.
+You can't prompt taste, but you can curate it.
 
-The interface shatters conventions in three ways. First, the UI is generative: different artifacts would produce entirely different control panels. The sliders, color pickers, and groupings are Claude's output, not a static form. Second, direct manipulation and natural language coexist;  drag a slider at 60fps for precise control, or type "make it feel like deep space, cold and lonely" and watch Claude interpret that into coordinated parameter shifts across hue, palette, and noise. Third, the A2A (agent to agent) trace panel makes the AI collaboration visible: expand it to see Alice's extraction reasoning and Bob's parameterization decisions, with syntax-highlighted JSON and timing badges.
+Rather than asking users to articulate what they want in words, Generative Remix lets them point at something tasteful and remix it — with AI generating the interface itself, not just the output.
 
-# Context
-We don’t know what it doesn’t know
+![The Workbench](https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png)
 
-Free-form and even scoped generation has 0 taste
+## The Prototype
 
-We source taste from human choices, requirements, and references
+The working prototype is a live remix workbench built around a WebGL shader (a "Nova Halo" component, originally extracted from Framer AI's halo-glow component).
 
-A lot of design and UI is not structure-able into concrete requirements
+Two Claude agents negotiate behind the scenes:
 
-How do we quantify and describe good design?
+- **Alice** analyzes the shader's documentation and extracts a taste-to-math mapping — translating 12 shader uniforms into perceptual categories like "Edge Turbulence" and "Color Warmth."
+- **Bob** generates a complete UI control schema via structured tool use, deciding what controls to expose, how to group them, and what to call them.
 
-Design briefs, stylesheets
+The controls you see on screen weren't designed by us. Claude decided what knobs a non-technical person would need to explore this artifact.
 
-We are approaching the limit of prompt-guided generation (even with markdown files).
+## Three Conventions Shattered
 
-Ask an AI how it built something, it can instruct another AI how to build it, and then augment with human-tunable toggles. Et voila: custom UI.
+1. **The UI is generative.** Different artifacts produce entirely different control panels. The sliders, color pickers, and groupings are Claude's output, not a static form.
 
-# Claude Sonnet Notes
+2. **Direct manipulation and natural language coexist.** Drag a slider at 60fps for precise control, or type "make it feel like deep space, cold and lonely" and watch Claude interpret that into coordinated parameter shifts across hue, palette, and noise.
 
-> The descriptive thesis:
-> 
+3. **The A2A trace panel makes AI collaboration visible.** Expand it to see Alice's extraction reasoning and Bob's parameterization decisions, with syntax-highlighted JSON and timing badges.
 
-> Prompting fails because it requires you to articulate taste. Most people can recognize taste
-but can't articulate it. Curation bypasses articulation — you point at an existing thing.
-AI's job is to extract the math from what you pointed at and expose it as parameters you can
-tune
-> 
+---
 
-> The chain becomes:
-> 
-> 
-> curator points at tasteful artifact
-> → AI deconstructs into parameters
-> → human tunes without needing vocabulary
-> → professional-quality output
-> 
+## Context
+
+- We don't know what AI doesn't know
+- Free-form and even scoped generation has zero taste
+- We source taste from human choices, requirements, and references
+- A lot of design and UI is not structurable into concrete requirements
+- How do we quantify and describe good design? Design briefs, stylesheets?
+
+We are approaching the limit of prompt-guided generation (even with markdown files). Ask an AI how it built something, it can instruct another AI how to build it, and then augment with human-tunable toggles. Et voila: custom UI.
+
+## The Thesis
+
+> Prompting fails because it requires you to articulate taste. Most people can recognize taste but can't articulate it. Curation bypasses articulation — you point at an existing thing. AI's job is to extract the math from what you pointed at and expose it as parameters you can tune.
+
+The chain becomes:
+
+1. Curator points at tasteful artifact
+2. AI deconstructs into parameters
+3. Human tunes without needing vocabulary
+4. Professional-quality output
+
+---
 
 ## Conceptual Model
 
 ### Diagram 1: "Remixing" — The System
 
-Input layer: You curate a Reference — a thing you like (e.g., a component from some
-cumbersome tool like Figma or Framer). It could be a WebGL shader, art, "or some other
-obscure bs."
+![System Design](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100684/IMG_6883.HEIC_h2smld.png)
 
-Two agents:
+**Input layer:** You curate a Reference — a thing you like (e.g., a component from some cumbersome tool like Figma or Framer). It could be a WebGL shader, art, or some other obscure artifact.
 
-- "Alice" — Extraction agent. The resident AI of the source tool. She understands the
-internals of the reference. (Framer AI in the halo case.)
-- "Bob" — Implementation Claude. He takes what Alice extracted, parameterizes it, and
-provides "remix" levers via natural language.
+**Two agents:**
 
-Result: Bob Ross — "happy little accidents." The user doesn't need to be a painter. They
-just need to choose colors and nudge. The system enables expressive play without requiring
-expertise.
+- **Alice** — Extraction agent. The resident AI of the source tool. She understands the internals of the reference. (Framer AI in the halo case.)
+- **Bob** — Implementation Claude. He takes what Alice extracted, parameterizes it, and provides "remix" levers via natural language.
+
+**Result:** Bob Ross — "happy little accidents." The user doesn't need to be a painter. They just need to choose colors and nudge. The system enables expressive play without requiring expertise.
 
 ### Diagram 2: The Workflow
+
+![Workflow Overview](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100684/IMG_6884.HEIC_uia8jp.png)
 
 **Curation** — Human picks the reference.
 
@@ -81,7 +87,21 @@ expertise.
 
 **Customization** — Bob builds, human inspects, requests "make it red/blue," Bob refers to the MD guide and produces artifact. The human's input is simple natural language preferences, not technical specs.
 
-## Technical Details
-- Stability comes from layered fallbacks: Zod validates every Claude tool output at runtime, a hardcoded fallback schema loads instantly if the API fails, localStorage caches successful extractions for instant reload, and an offline mode bundles pre-recorded agent responses. The WebGL renderer writes uniforms directly via ref (bypassing React state entirely) for locked 60fps performance even while Claude streams responses.
+---
 
-**Stack:** React 18 + TypeScript, Vite, Vercel Edge Functions (Claude API proxy with native streaming), @anthropic-ai/sdk, WebGL1 (raw, no Three.js), Zod (runtime validation), react-colorful, lucide-react. Claude Sonnet powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
+## Technical Details
+
+Stability comes from layered fallbacks:
+
+- **Zod** validates every Claude tool output at runtime
+- A **hardcoded fallback schema** loads instantly if the API fails
+- **localStorage** caches successful extractions for instant reload
+- **Offline mode** bundles pre-recorded agent responses
+
+The WebGL renderer writes uniforms directly via ref (bypassing React state entirely) for locked 60fps performance even while Claude streams responses.
+
+### Stack
+
+React 18 + TypeScript, Vite, Vercel Edge Functions (Claude API proxy with native streaming), @anthropic-ai/sdk, WebGL1 (raw, no Three.js), Zod (runtime validation), react-colorful, lucide-react.
+
+Claude Sonnet powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
