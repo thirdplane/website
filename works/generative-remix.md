@@ -66,7 +66,7 @@ The chain becomes:
 
 ### Diagram 1: "Remixing" — The System
 
-![System Design](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100684/IMG_6883.HEIC_h2smld.png)
+![System Design](https://res.cloudinary.com/dxghuzxip/image/upload/f_auto,q_auto/v1773100684/IMG_6883.HEIC_h2smld)
 
 **Input layer:** You curate a Reference — a thing you like (e.g., a component from some cumbersome tool like Figma or Framer). It could be a WebGL shader, art, or some other obscure artifact.
 
@@ -79,7 +79,7 @@ The chain becomes:
 
 ### Diagram 2: The Workflow
 
-![Workflow Overview](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100684/IMG_6884.HEIC_uia8jp.png)
+![Workflow Overview](https://res.cloudinary.com/dxghuzxip/image/upload/f_auto,q_auto/v1773100684/IMG_6884.HEIC_uia8jp)
 
 **Curation** — Human picks the reference.
 
