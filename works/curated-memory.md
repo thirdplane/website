@@ -3,7 +3,8 @@ title: "Curated Memory and Prompt Augmentation"
 type: "Article"
 year: 2025
 cover: "[INSERT: cover image URL]"
-featured: true
+featured: false
+draft: true
 memberOf:
   - scaffolding-efficient-systems
 badgeType: "essay"
