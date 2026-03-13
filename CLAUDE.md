@@ -91,6 +91,21 @@ The site defines these springs in `:root`:
 --spring-hover: 450ms linear(...);  /* Hover interactions */
 ```
 
+## Assets Folder
+
+Local images are stored in `assets/` and copied to `_site/assets/` via passthrough:
+
+```
+assets/
+├── images/           # Shared images (collection mosaics, site graphics)
+├── works/            # Work-specific images (subfolder per project)
+└── vignettes/        # Vignette posters (if not using Cloudinary)
+```
+
+Reference in frontmatter: `cover: "/assets/works/my-project/cover.jpg"`
+
+For video or images needing transforms, use Cloudinary (cloud: `dxghuzxip`).
+
 ## Design Tokens
 
 Key color variables:
@@ -111,10 +126,14 @@ The site uses a **thematic collections** architecture instead of type-based orga
 ### Collection Accent Colors
 Each collection has a signature accent that carries through hover states, glows, and badges:
 
-| Collection | Accent | Variable | Slug |
-|------------|--------|----------|------|
-| Scaffolding Efficient Systems | Gold | `--sun-400` | `scaffolding-efficient-systems` |
-| Artificial Creativity | Purple | `--uv-500` | `artificial-creativity` |
+| Collection | Accent | Variable | Slug | Hidden |
+|------------|--------|----------|------|--------|
+| Scaffolding Efficient Systems | Gold | `--sun-400` | `scaffolding-efficient-systems` | No |
+| Artificial Creativity | Purple | `--uv-500` | `artificial-creativity` | No |
+| Selected Work | Cyan | `--ice-400` | `selected-work` | Yes |
+
+### Hidden Collections
+Collections with `hidden: true` are excluded from the `/collections/` index but remain accessible via direct URL. Use for job application portfolios, client curations, or unlisted shareable links.
 
 ### Key Components
 - **Collection Card**: 2x2 mosaic thumbnail, accent dot, arrow indicator
