@@ -397,7 +397,6 @@
   font-size: 19px;
   line-height: 1.7;
   color: var(--text-400);
-  max-width: 960px;
   margin-bottom: 40px;
 }
 
@@ -413,7 +412,6 @@
   border: 1px solid var(--collection-accent-border, rgba(176, 75, 255, 0.2));
   border-radius: 12px;
   padding: 24px 28px;
-  max-width: 960px;
 }
 
 .curator-note-header {
