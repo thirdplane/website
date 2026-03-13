@@ -52,7 +52,7 @@
 }
 
 .back-link:hover .back-link-arrow {
-  transform: translateX(-3px);
+  transform: translateX(-4px);
 }
 
 /* ============ ELEVATED SURFACE ============ */
@@ -82,8 +82,8 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(176, 75, 255, 0.15) 25%,
-    rgba(125, 231, 255, 0.12) 75%,
+    color-mix(in srgb, var(--collection-accent, var(--uv-500)) 15%, transparent) 25%,
+    color-mix(in srgb, var(--ice-400) 12%, transparent) 75%,
     transparent 100%
   );
 }
