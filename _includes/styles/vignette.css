@@ -53,7 +53,7 @@
 }
 
 .back-link:hover .back-link-arrow {
-  transform: translateX(-3px);
+  transform: translateX(-4px);
 }
 
 /* ============ ELEVATED SURFACE ============ */
@@ -72,7 +72,7 @@
   position: relative;
 }
 
-/* Subtle gradient accent line at top - purple theme for AI/generative */
+/* Subtle gradient accent line at top */
 .vignette-surface::before {
   content: '';
   position: absolute;
@@ -83,9 +83,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(176, 75, 255, 0.2) 25%,
-    rgba(176, 75, 255, 0.15) 50%,
-    rgba(125, 231, 255, 0.1) 75%,
+    color-mix(in srgb, var(--collection-accent, var(--uv-500)) 20%, transparent) 25%,
+    color-mix(in srgb, var(--collection-accent, var(--uv-500)) 15%, transparent) 50%,
+    color-mix(in srgb, var(--ice-400) 10%, transparent) 75%,
     transparent 100%
   );
 }
