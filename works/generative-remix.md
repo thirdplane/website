@@ -15,12 +15,17 @@ memberOf:
   - artificial-creativity
   - selected-work
 ---
+Note: Deployed — runs on your own Anthropic key.
 
+## Overview
 
 You can't prompt taste, but you can curate it.
 
 Rather than asking users to articulate what they want in words, Generative Remix lets them point at something tasteful and remix it — with AI generating the interface itself, not just the output.
 
+## Start with this
+![Initial state](https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png)
+## Then connect the LLM and use the workbench:
 ![The Workbench](https://res.cloudinary.com/dxghuzxip/image/upload/v1773529582/glow-screenshot-2_rftr1u.png)
 
 ## The Prototype
@@ -34,7 +39,7 @@ Two LLM agents negotiate behind the scenes:
 
 The controls you see on screen weren't designed by us. Claude decided what knobs a non-technical person would need to explore this artifact.
 
-<video controls playsinline preload="metadata" poster="https://res.cloudinary.com/dxghuzxip/video/upload/so_0,f_jpg/v1773104915/style-shape_onvskk.jpg" style="width: 100%; border-radius: 8px; margin: 2em 0;">
+<video controls playsinline preload="metadata" poster="https://res.cloudinary.com/dxghuzxip/image/upload/v1773529582/Screenshot_2026-03-14_at_7.05.14_PM_sjcasw.png" style="width: 100%; border-radius: 8px; margin: 2em 0;">
   <source src="https://res.cloudinary.com/dxghuzxip/video/upload/v1773529694/halo-glow-demo_mqa3so.mov" type="video/mp4">
   Your browser does not support the video tag.
 </video>
