@@ -8,6 +8,7 @@ cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773526314/Screenshot
 featured: true
 draft: false
 model: "inference: gpt-5-mini"
+github: "https://github.com/jasminepoon/figma_make"
 badgeType: "interface"
 memberOf:
   - artificial-creativity

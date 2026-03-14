@@ -7,7 +7,8 @@ year: 2026
 cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png"
 excerpt: "A workbench where AI generates the UI itself — you curate taste, Claude builds the knobs."
 featured: true
-model: "Claude Sonnet"
+model: "inference: claude-sonnet-4-6"
+github: "https://github.com/jasminepoon/hack022126"
 draft: false
 badgeType: "interface"
 memberOf:
@@ -15,11 +16,12 @@ memberOf:
   - selected-work
 ---
 
+
 You can't prompt taste, but you can curate it.
 
 Rather than asking users to articulate what they want in words, Generative Remix lets them point at something tasteful and remix it — with AI generating the interface itself, not just the output.
 
-![The Workbench](https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png)
+![The Workbench](https://res.cloudinary.com/dxghuzxip/image/upload/v1773529582/glow-screenshot-2_rftr1u.png)
 
 ## The Prototype
 
@@ -31,6 +33,12 @@ Two LLM agents negotiate behind the scenes:
 - **Bob** generates a complete UI control schema via structured tool use, deciding what controls to expose, how to group them, and what to call them.
 
 The controls you see on screen weren't designed by us. Claude decided what knobs a non-technical person would need to explore this artifact.
+
+<video controls playsinline preload="metadata" poster="https://res.cloudinary.com/dxghuzxip/video/upload/so_0,f_jpg/v1773104915/style-shape_onvskk.jpg" style="width: 100%; border-radius: 8px; margin: 2em 0;">
+  <source src="https://res.cloudinary.com/dxghuzxip/video/upload/v1773529694/halo-glow-demo_mqa3so.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ## Three Conventions Shattered
 
