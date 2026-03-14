@@ -7,6 +7,7 @@ year: 2026
 cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png"
 excerpt: "A workbench where AI generates the UI itself — you curate taste, Claude builds the knobs."
 featured: true
+model: "Claude Sonnet"
 draft: false
 badgeType: "interface"
 memberOf:

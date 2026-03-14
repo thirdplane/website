@@ -167,6 +167,20 @@
   vertical-align: middle;
 }
 
+/* AI model badge — ice accent, matches vignette-model */
+.work-model {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ice-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  background: rgba(125, 231, 255, 0.1);
+  border: 1px solid rgba(125, 231, 255, 0.2);
+  border-radius: 4px;
+}
+
 /* Title: 28-36px responsive */
 .work-title {
   font-family: var(--font-display);

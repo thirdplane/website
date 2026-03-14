@@ -44,6 +44,9 @@
         {% if client %}
         <span class="work-client">{{ client }}</span>
         {% endif %}
+        {% if model %}
+        <span class="work-model">{{ model }}</span>
+        {% endif %}
       </div>
       <h1 class="work-title">{{ title }}</h1>
       {% if github or live %}
