@@ -24,7 +24,7 @@ Rather than asking users to articulate what they want in words, Generative Remix
 
 The working prototype is a live remix workbench built around a WebGL shader (a "Nova Halo" component, originally extracted from Framer AI's halo-glow component).
 
-Two Claude agents negotiate behind the scenes:
+Two LLM agents negotiate behind the scenes:
 
 - **Alice** analyzes the shader's documentation and extracts a taste-to-math mapping — translating 12 shader uniforms into perceptual categories like "Edge Turbulence" and "Color Warmth."
 - **Bob** generates a complete UI control schema via structured tool use, deciding what controls to expose, how to group them, and what to call them.
@@ -110,4 +110,4 @@ The WebGL renderer writes uniforms directly via ref (bypassing React state entir
 
 React 18 + TypeScript, Vite, Vercel Edge Functions (Claude API proxy with native streaming), @anthropic-ai/sdk, WebGL1 (raw, no Three.js), Zod (runtime validation), react-colorful, lucide-react.
 
-Claude Sonnet powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
+Claude powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
