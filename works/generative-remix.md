@@ -2,11 +2,13 @@
 title: "Generative Remix"
 subtitle: "A workbench that parameterizes components on the fly"
 date: 2026-02-21
-medium: "software"
+type: "Software"
+year: 2026
 cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png"
 excerpt: "A workbench where AI generates the UI itself — you curate taste, Claude builds the knobs."
 featured: true
 draft: false
+badgeType: "interface"
 memberOf:
   - artificial-creativity
   - selected-work
@@ -35,7 +37,7 @@ The controls you see on screen weren't designed by us. Claude decided what knobs
 
 2. **Direct manipulation and natural language coexist.** Drag a slider at 60fps for precise control, or type "make it feel like deep space, cold and lonely" and watch Claude interpret that into coordinated parameter shifts across hue, palette, and noise.
 
-3. **The A2A trace panel makes AI collaboration visible.** Expand it to see Alice's extraction reasoning and Bob's parameterization decisions, with syntax-highlighted JSON and timing badges.
+3. **The A2A trace panel makes AI collaboration visible.** Alice & Bob are two agents that communicate. As a proof of concept, expand it to see Alice's extraction reasoning and Bob's parameterization decisions, with syntax-highlighted JSON and timing badges.
 
 ---
 
@@ -46,6 +48,8 @@ The controls you see on screen weren't designed by us. Claude decided what knobs
 - We source taste from human choices, requirements, and references
 - A lot of design and UI is not structurable into concrete requirements
 - How do we quantify and describe good design? Design briefs, stylesheets?
+
+![Limit Fundamentals](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100685/image-3_ruhfyb.png)
 
 We are approaching the limit of prompt-guided generation (even with markdown files). Ask an AI how it built something, it can instruct another AI how to build it, and then augment with human-tunable toggles. Et voila: custom UI.
 
@@ -59,6 +63,8 @@ The chain becomes:
 2. AI deconstructs into parameters
 3. Human tunes without needing vocabulary
 4. Professional-quality output
+
+![Problem](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100684/image-4_sor25f.png)
 
 ---
 
