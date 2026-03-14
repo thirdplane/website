@@ -2,32 +2,48 @@
 title: "Generative Remix"
 subtitle: "A workbench that parameterizes components on the fly"
 date: 2026-02-21
-medium: "software"
+type: "Software"
+year: 2026
 cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png"
 excerpt: "A workbench where AI generates the UI itself — you curate taste, Claude builds the knobs."
 featured: true
+model: "inference: claude-sonnet-4-6"
+github: "https://github.com/jasminepoon/hack022126"
 draft: false
+badgeType: "interface"
 memberOf:
   - artificial-creativity
   - selected-work
 ---
+Note: Deployed — runs on your own Anthropic key.
+
+## Overview
 
 You can't prompt taste, but you can curate it.
 
 Rather than asking users to articulate what they want in words, Generative Remix lets them point at something tasteful and remix it — with AI generating the interface itself, not just the output.
 
-![The Workbench](https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png)
+## Start with this
+![Initial state](https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png)
+## Then connect the LLM and use the workbench:
+![The Workbench](https://res.cloudinary.com/dxghuzxip/image/upload/v1773529582/glow-screenshot-2_rftr1u.png)
 
 ## The Prototype
 
 The working prototype is a live remix workbench built around a WebGL shader (a "Nova Halo" component, originally extracted from Framer AI's halo-glow component).
 
-Two Claude agents negotiate behind the scenes:
+Two LLM agents negotiate behind the scenes:
 
 - **Alice** analyzes the shader's documentation and extracts a taste-to-math mapping — translating 12 shader uniforms into perceptual categories like "Edge Turbulence" and "Color Warmth."
 - **Bob** generates a complete UI control schema via structured tool use, deciding what controls to expose, how to group them, and what to call them.
 
 The controls you see on screen weren't designed by us. Claude decided what knobs a non-technical person would need to explore this artifact.
+
+<video controls playsinline preload="metadata" poster="https://res.cloudinary.com/dxghuzxip/image/upload/v1773529582/Screenshot_2026-03-14_at_7.05.14_PM_sjcasw.png" style="width: 100%; border-radius: 8px; margin: 2em 0;">
+  <source src="https://res.cloudinary.com/dxghuzxip/video/upload/v1773529694/halo-glow-demo_mqa3so.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ## Three Conventions Shattered
 
@@ -35,7 +51,7 @@ The controls you see on screen weren't designed by us. Claude decided what knobs
 
 2. **Direct manipulation and natural language coexist.** Drag a slider at 60fps for precise control, or type "make it feel like deep space, cold and lonely" and watch Claude interpret that into coordinated parameter shifts across hue, palette, and noise.
 
-3. **The A2A trace panel makes AI collaboration visible.** Expand it to see Alice's extraction reasoning and Bob's parameterization decisions, with syntax-highlighted JSON and timing badges.
+3. **The A2A trace panel makes AI collaboration visible.** Alice & Bob are two agents that communicate. As a proof of concept, expand it to see Alice's extraction reasoning and Bob's parameterization decisions, with syntax-highlighted JSON and timing badges.
 
 ---
 
@@ -46,6 +62,8 @@ The controls you see on screen weren't designed by us. Claude decided what knobs
 - We source taste from human choices, requirements, and references
 - A lot of design and UI is not structurable into concrete requirements
 - How do we quantify and describe good design? Design briefs, stylesheets?
+
+![Limit Fundamentals](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100685/image-3_ruhfyb.png)
 
 We are approaching the limit of prompt-guided generation (even with markdown files). Ask an AI how it built something, it can instruct another AI how to build it, and then augment with human-tunable toggles. Et voila: custom UI.
 
@@ -59,6 +77,8 @@ The chain becomes:
 2. AI deconstructs into parameters
 3. Human tunes without needing vocabulary
 4. Professional-quality output
+
+![Problem](https://res.cloudinary.com/dxghuzxip/image/upload/v1773100684/image-4_sor25f.png)
 
 ---
 
@@ -104,4 +124,4 @@ The WebGL renderer writes uniforms directly via ref (bypassing React state entir
 
 React 18 + TypeScript, Vite, Vercel Edge Functions (Claude API proxy with native streaming), @anthropic-ai/sdk, WebGL1 (raw, no Three.js), Zod (runtime validation), react-colorful, lucide-react.
 
-Claude Sonnet powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
+Claude powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
