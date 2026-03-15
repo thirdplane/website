@@ -1,5 +1,6 @@
 ---
 title: "latent space"
+subtitle: "generative artwork about information exchange"
 date: 2026-01-03
 model: "gpt-5.2-thinking"
 video: https://res.cloudinary.com/dxghuzxip/video/upload/v1768367081/ScreenRecording_01-02-2026_23-56-58_1_xlp00b.mov

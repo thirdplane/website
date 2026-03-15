@@ -91,6 +91,19 @@ The site defines these springs in `:root`:
 --spring-hover: 450ms linear(...);  /* Hover interactions */
 ```
 
+## Homepage Architecture
+
+`index.html` extends `base.njk` via Nunjucks `{% extends "layouts/base.njk" %}`. It is a fully integrated template — it uses `components/footer.njk`, `components/nav.njk`, `components/head.njk`, and has access to `_data/site.json` exactly like every other page.
+
+### Homepage-specific CSS
+Page-specific styles (void section, statement section, scroll indicators, WebGL canvas) live in `{% block styles %}` inside `index.html`. Do NOT add homepage-only CSS to `footer.css` or other shared files.
+
+### Homepage-specific scripts
+The Nova Halo WebGL animation lives in `{% block scripts %}` at the bottom of `index.html`.
+
+### Footer
+`components/footer.njk` is the single source of truth for the footer. It renders `site.tagline`, `site.email`, `site.social.*`, and `site.copyright.*` from `_data/site.json`. To change any footer content, edit `_data/site.json` or `_includes/components/footer.njk` — it applies everywhere.
+
 ## Assets Folder
 
 Local images are stored in `assets/` and copied to `_site/assets/` via passthrough:

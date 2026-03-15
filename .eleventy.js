@@ -7,8 +7,7 @@ module.exports = function(eleventyConfig) {
   // PASSTHROUGH COPIES
   // ============================================
 
-  // Pass through existing HTML files
-  eleventyConfig.addPassthroughCopy("index.html");
+  // index.html is processed as a Nunjucks template (not passthrough) so it has access to _data/site.json
   // works.html, writings.html, and vignettes.html are now generated from their respective index.njk files
 
   // Pass through assets directory (for future use)

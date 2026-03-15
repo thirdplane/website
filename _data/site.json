@@ -4,10 +4,10 @@
   "tagline": "The curation of latent space.",
   "description": "Third Plane Studios - Where computation and creativity converge.",
   "themeColor": "#05060A",
-  "email": "[INSERT: your email address]",
+  "email": "j@thirdplane.io",
   "social": {
-    "github": "[INSERT: your GitHub profile URL]",
-    "twitter": "[INSERT: your Twitter/X profile URL]"
+    "github": "https://github.com/jasminepoon",
+    "twitter": ""
   },
   "nav": [
     { "title": "Collections", "url": "/collections/" },

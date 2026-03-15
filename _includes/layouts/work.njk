@@ -40,7 +40,7 @@
     <header class="work-header">
       <div class="work-meta">
         <span class="work-type">{{ type }}</span>
-        <span class="work-year">{{ year }}</span>
+        <span class="work-year">{{ date | formatDateShort(year) }}</span>
         {% if client %}
         <span class="work-client">{{ client }}</span>
         {% endif %}

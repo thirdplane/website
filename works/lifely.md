@@ -7,7 +7,6 @@ featured: false
 draft: true
 memberOf:
   - scaffolding-efficient-systems
-  - selected-work
 badgeType: "interface"
 excerpt: "[INSERT: 1-2 sentence description of Lifely, the 2025 Wrapped react app — generative art and reductive creation]"
 ---

@@ -3,9 +3,11 @@ title: "Cigarette Ash on Sora"
 type: "AI Video"
 year: 2025
 cover: "https://res.cloudinary.com/dxghuzxip/video/upload/so_0,f_jpg/v1768367151/download_iwmkak.jpg"
-featured: false
+featured: true
+badgeType: "vignette"
 memberOf:
   - artificial-creativity
+  - selected-work
 excerpt: "An AI-generated meditation on impermanence — cigarette ash accumulating and dispersing, rendered through Sora's emergent understanding of physics and time."
 ---
 
