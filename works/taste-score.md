@@ -15,13 +15,11 @@ memberOf:
   - selected-work
 excerpt: "An exploration into configurable dialogue beyond natural language prompting."
 ---
-## Why wait for AI to show you it's not understanding you correctly, when you can just visualize the prompt as artifacts? Let's also make that configurable.
-
-![The Taste Score: An Intent Configuration Interface](https://res.cloudinary.com/dxghuzxip/image/upload/v1773526314/Screenshot_2026-03-14_at_6.09.11_PM_jijaiy.png)
-
 ## The Thesis
 
 > When someone uses AI to create something, their preferences should be readable. It's the equivalent of visualizing the response, "am I understanding this correctly?". 
+
+![The Taste Score: An Intent Configuration Interface](https://res.cloudinary.com/dxghuzxip/image/upload/v1773526314/Screenshot_2026-03-14_at_6.09.11_PM_jijaiy.png)
 
 The chain:
 

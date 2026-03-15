@@ -125,3 +125,6 @@ The WebGL renderer writes uniforms directly via ref (bypassing React state entir
 React 18 + TypeScript, Vite, Vercel Edge Functions (Claude API proxy with native streaming), @anthropic-ai/sdk, WebGL1 (raw, no Three.js), Zod (runtime validation), react-colorful, lucide-react.
 
 Claude powers both agents via structured tool use with `generate_control_schema` and `update_parameters` tools.
+
+## What's next?
+I made: [Intent Configuration Interface](/works/taste-score/) as a natural extension of the investigation into human-AI interfaces, and rethinking how we prompt and interact with AI to make cool and useful software.
