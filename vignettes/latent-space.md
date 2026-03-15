@@ -9,7 +9,7 @@ duration: "0:06"
 series: "vibes"
 badgeType: "generative"
 memberOf:
-  - scaffolding-efficient-systems
+  - selected-work
   - artificial-creativity
 ---
 Generative Artwork inspired by my grocery run -
