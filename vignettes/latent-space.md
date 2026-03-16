@@ -7,7 +7,7 @@ video: https://res.cloudinary.com/dxghuzxip/video/upload/v1768367081/ScreenRecor
 poster: https://res.cloudinary.com/dxghuzxip/image/upload/v1768367079/9E5176AE-2D75-43AA-9D2C-D7144CAE58A2_h02lpq.png
 duration: "0:06"
 series: "vibes"
-badgeType: "generative"
+badgeType: "generative art"
 excerpt: "The future of information exchange will be at a speed we cannot and need not comprehend."
 memberOf:
   - selected-work
