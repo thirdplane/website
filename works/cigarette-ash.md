@@ -11,7 +11,7 @@ memberOf:
 excerpt: "How well can AI reproduce our daily observations?"
 ---
 
-<video controls playsinline preload="metadata" style="width: 100%; border-radius: 8px; margin: 2em 0;">
+<video controls playsinline preload="metadata" style="max-width: 375px; width: 100%; border-radius: 8px; margin: 2em auto; display: block;">
   <source src="https://res.cloudinary.com/dxghuzxip/video/upload/v1768367151/download_iwmkak.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
