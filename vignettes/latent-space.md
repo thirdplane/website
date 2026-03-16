@@ -13,13 +13,14 @@ memberOf:
   - selected-work
   - artificial-creativity
 ---
-Generative Artwork inspired by my grocery run -
+## Generative Artwork inspired by my grocery run
 
-* the future of information exchange will be at a speed we cannot and need not comprehend. *
+
+> the future of information exchange will be at a speed we cannot and need not comprehend.
 - Human-written guidance to AI; “prompts”, are verbose and noisy and ineffective.
 - Apps (as we know them now), will have native AI exchange context and subtext specific to the task and function.
 - An “operator” (ring ring operator) works with the human user to parlay with the other applications that contain AI-native information exchange.
 
-this is what “model context protocol” sounds like it should be, but instead its state this year and the last, renders it a simple framework for functions - a “remote control” of programmable buttons.
+-> this is what “model context protocol” sounds like it should be, but instead its state this year and the last, renders it a simple framework for functions - a “remote control” of programmable buttons.
 
 Whoever builds the “operator” first, wins. The interface will have to be highly intuitive, evolve to become “familiar” over time for humans to learn (hence also “steerable” and transparent), and allows a stateful AI to capture all the idiosyncrasies of man.

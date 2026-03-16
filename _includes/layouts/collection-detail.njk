@@ -29,6 +29,10 @@
 
         <h1 class="collection-title">{{ title }}</h1>
 
+        {% if statement %}
+        <p class="collection-statement">{{ statement }}</p>
+        {% endif %}
+
         {% if longDescription %}
         <div class="collection-subtitle">{{ longDescription | safe }}</div>
         {% elif description %}
@@ -85,7 +89,7 @@
   {% else %}
   <section class="works-section">
     <div class="container">
-      <div class="works-grid">
+      <div class="works-grid{% if collectionWorks.length <= 4 %} works-grid--featured{% endif %}">
         {% for work in collectionWorks %}
         <a href="{{ work.url }}?from={{ slug }}" class="work-card" data-index="{{ loop.index0 }}">
           <div class="work-media">
