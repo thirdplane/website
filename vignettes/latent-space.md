@@ -8,6 +8,7 @@ poster: https://res.cloudinary.com/dxghuzxip/image/upload/v1768367079/9E5176AE-2
 duration: "0:06"
 series: "vibes"
 badgeType: "generative"
+excerpt: "The future of information exchange will be at a speed we cannot and need not comprehend."
 memberOf:
   - selected-work
   - artificial-creativity

@@ -11,8 +11,8 @@
   },
   "nav": [
     { "title": "Collections", "url": "/collections/" },
-    { "title": "Thoughts", "url": "/thoughts/" },
-    { "title": "About", "url": "/about/" }
+    { "title": "Thoughts", "url": "/thoughts/", "wip": true },
+    { "title": "About", "url": "/about/", "wip": true }
   ],
   "copyright": {
     "year": 2026,
