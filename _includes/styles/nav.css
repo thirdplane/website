@@ -106,6 +106,43 @@
   width: 100%;
 }
 
+/* WIP nav items — text swaps to "WIP" on hover */
+.nav-link--wip {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-600);
+  opacity: 0.35;
+  cursor: default;
+  position: relative;
+  user-select: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-link--wip:hover {
+  color: transparent;
+}
+
+.nav-link--wip::after {
+  content: 'WIP';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-600);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.nav-link--wip:hover::after {
+  opacity: 1;
+}
+
 @media (max-width: 600px) {
   .nav-links {
     gap: 20px;

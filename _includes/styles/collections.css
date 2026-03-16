@@ -332,7 +332,7 @@
 
 /* Collection header */
 .collection-header {
-  padding: 140px 0 64px;
+  padding: 140px 0 48px;
   position: relative;
 }
 
@@ -393,16 +393,44 @@
   margin-bottom: 28px;
 }
 
-.collection-header .collection-description {
-  font-size: 19px;
+.collection-subtitle {
+  font-size: 16px;
   line-height: 1.7;
   color: var(--text-400);
-  margin-bottom: 40px;
+  background: var(--ink-900);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
 }
 
-.collection-header .collection-description em {
+.collection-subtitle ul {
+  list-style: disc;
+  padding-left: 1.25em;
+  margin: 12px 0;
+}
+
+.collection-subtitle ul li {
+  margin-bottom: 8px;
   color: var(--text-200);
-  font-style: normal;
+}
+
+.collection-subtitle strong {
+  color: var(--text-100);
+  font-weight: 600;
+}
+
+.collection-subtitle em {
+  color: var(--text-200);
+  display: block;
+  margin-top: 8px;
+}
+
+.collection-statement {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-600);
+  max-width: 960px;
+  font-style: italic;
 }
 
 /* ============ CURATOR'S NOTE ============ */
@@ -445,6 +473,18 @@
 .curator-note-text em {
   color: var(--text-200);
   font-style: italic;
+}
+
+/* ============ FEATURED WORKS GRID ============ */
+
+.works-grid--featured {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 600px) {
+  .works-grid--featured {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============ WORKS GRID (IN COLLECTION) ============ */

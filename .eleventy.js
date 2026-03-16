@@ -154,6 +154,12 @@ module.exports = function(eleventyConfig) {
     );
   });
 
+  // Check if a string contains a substring (for segment type matching)
+  eleventyConfig.addFilter("includes", function(str, substring) {
+    if (!str || !substring) return false;
+    return str.includes(substring);
+  });
+
   // Short date format: "Dec 2024"
   eleventyConfig.addFilter("formatDateShort", function(date, year) {
     if (date) {

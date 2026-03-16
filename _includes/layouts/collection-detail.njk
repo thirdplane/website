@@ -29,26 +29,60 @@
 
         <h1 class="collection-title">{{ title }}</h1>
 
-        <p class="collection-description">
-          {{ longDescription or description }}
-        </p>
+        {% if longDescription %}
+        <div class="collection-subtitle">{{ longDescription | safe }}</div>
+        {% elif description %}
+        <div class="collection-subtitle">{{ description }}</div>
+        {% endif %}
 
         {% if curatorNote %}
-        <div class="curator-note">
-          <div class="curator-note-header">
-            <svg class="curator-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-            </svg>
-            <span class="curator-note-label">Curator's Note</span>
-          </div>
-          <p class="curator-note-text">{{ curatorNote }}</p>
-        </div>
+        <p class="collection-statement">{{ curatorNote }}</p>
         {% endif %}
       </div>
     </div>
   </header>
 
-  <!-- Works Grid -->
+  <!-- Works: segmented or single grid -->
+  {% if segments %}
+    {% for segment in segments %}
+    <section class="works-section{% if loop.first %} works-section--primary{% endif %}">
+      <div class="container">
+        <span class="section-label">{{ segment.label }}</span>
+        <div class="works-grid{% if loop.first %} works-grid--featured{% endif %}">
+          {% set segIndex = { val: 0 } %}
+          {% for work in collectionWorks %}
+            {% if segment.types | join(',') | includes(work.data.badgeType or 'project') %}
+            <a href="{{ work.url }}?from={{ slug }}" class="work-card" data-index="{{ segIndex.val }}">
+              <div class="work-media">
+                <span class="work-type-badge" data-type="{{ work.data.badgeType or 'project' }}">
+                  <span class="type-dot"></span>
+                  {{ work.data.badgeType or work.data.type or 'Project' }}
+                </span>
+                {% if work.data.cover or work.data.poster %}
+                <img
+                  src="{{ work.data.cover or work.data.poster }}"
+                  alt="{{ work.data.title }}"
+                  loading="{% if segIndex.val < 3 %}eager{% else %}lazy{% endif %}"
+                  decoding="async"
+                >
+                {% else %}
+                <div style="width:100%;aspect-ratio:4/3;background:var(--ink-850);"></div>
+                {% endif %}
+              </div>
+              <div class="work-meta">
+                <h3 class="work-title">{{ work.data.title }}</h3>
+                <p class="work-excerpt">{{ work.data.excerpt or work.data.description or '' }}</p>
+                <span class="work-date">{{ work.data.date | formatDateShort(work.data.year) }}</span>
+              </div>
+            </a>
+            {% set segIndex = { val: segIndex.val + 1 } %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+  {% else %}
   <section class="works-section">
     <div class="container">
       <div class="works-grid">
@@ -80,8 +114,10 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
-  <!-- Collection Navigation (Prev/Next) -->
+  <!-- Collection Navigation (Prev/Next) — hidden when only 1 collection visible -->
+  {% if collections.thematicCollections.length > 1 %}
   {% set navData = collections.thematicCollections | prevNextCollections(slug) %}
   {% set prevWorks = collections.allContent | worksInCollection(navData.prev.data.slug) %}
   {% set nextWorks = collections.allContent | worksInCollection(navData.next.data.slug) %}
@@ -113,6 +149,7 @@
       </div>
     </div>
   </section>
+  {% endif %}
 </div>
 {% endblock %}
 

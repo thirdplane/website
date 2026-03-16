@@ -4,7 +4,7 @@ subtitle: "A workbench that parameterizes components on the fly"
 date: 2026-02-21
 type: "Software"
 year: 2026
-cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773099027/Screenshot_2026-03-09_at_7.29.58_PM_ahz4pm.png"
+cover: "https://res.cloudinary.com/dxghuzxip/image/upload/v1773529582/Screenshot_2026-03-14_at_7.05.14_PM_sjcasw.png"
 excerpt: "A workbench where AI generates the UI itself — you curate taste, Claude builds the knobs."
 featured: true
 model: "inference: claude-sonnet-4-6"

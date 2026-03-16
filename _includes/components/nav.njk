@@ -6,7 +6,11 @@
     </a>
     <div class="nav-links">
       {% for item in site.nav %}
-        <a href="{{ item.url }}"{% if page.url == item.url or (page.url and page.url.startsWith(item.url | replace('.html', '/'))) %} class="nav-link--active"{% endif %}>{{ item.title }}</a>
+        {% if item.wip %}
+          <span class="nav-link--wip" aria-disabled="true">{{ item.title }}</span>
+        {% else %}
+          <a href="{{ item.url }}"{% if page.url == item.url or (page.url and page.url.startsWith(item.url | replace('.html', '/'))) %} class="nav-link--active"{% endif %}>{{ item.title }}</a>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
