@@ -595,7 +595,9 @@
 /* Type color variants */
 .work-type-badge[data-type="essay"] { color: var(--ice-400); }
 .work-type-badge[data-type="interface"] { color: var(--uv-400); }
+.work-type-badge[data-type="prototype"] { color: var(--uv-400); }
 .work-type-badge[data-type="generative"] { color: var(--sun-400); }
+.work-type-badge[data-type="generative art"] { color: var(--sun-400); }
 .work-type-badge[data-type="writing"] { color: var(--text-200); }
 .work-type-badge[data-type="vignette"] { color: var(--strobe-500); }
 .work-type-badge[data-type="research"] { color: var(--amber-500); }

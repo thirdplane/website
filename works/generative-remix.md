@@ -10,7 +10,7 @@ featured: true
 model: "inference: claude-sonnet-4-6"
 github: "https://github.com/jasminepoon/hack022126"
 draft: false
-badgeType: "interface"
+badgeType: "prototype"
 memberOf:
   - artificial-creativity
   - selected-work

@@ -9,7 +9,7 @@ featured: true
 draft: false
 model: "inference: gpt-5-mini"
 github: "https://github.com/jasminepoon/figma_make"
-badgeType: "interface"
+badgeType: "prototype"
 memberOf:
   - artificial-creativity
   - selected-work

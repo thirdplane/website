@@ -4,7 +4,7 @@ type: "AI Video"
 year: 2025
 cover: "https://res.cloudinary.com/dxghuzxip/video/upload/so_0,f_jpg/v1768367151/download_iwmkak.jpg"
 featured: true
-badgeType: "vignette"
+badgeType: "generative art"
 memberOf:
   - artificial-creativity
   - selected-work
