@@ -1,5 +1,17 @@
 {
   "buildCommand": "npm run build:prod",
   "outputDirectory": "_site",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/mindreader",
+      "destination": "https://docs.google.com/presentation/d/1Y87IkV7AYUV72fjJ36Kbc1aQxfRxdNiPsm7tOhV-3yw/edit?usp=sharing",
+      "permanent": false
+    },
+    {
+      "source": "/mindreader/",
+      "destination": "https://docs.google.com/presentation/d/1Y87IkV7AYUV72fjJ36Kbc1aQxfRxdNiPsm7tOhV-3yw/edit?usp=sharing",
+      "permanent": false
+    }
+  ]
 }
