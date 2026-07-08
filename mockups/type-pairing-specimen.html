@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Type Pairing Specimen · Third Plane Studios</title>
+<!--
+  TYPE PAIRING SPECIMEN — per docs/VARIATION_B_FEEDBACK.md
+  Demonstrates the chosen stack: Fraunces / Inter / JetBrains Mono.
+  Three families, three jobs. Fraunces varies by opsz + WONK axis rather than
+  adding display faces. WONK 1 is confined to the hero moment.
+  Standalone; does not touch production files.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,0,0;0,9..144,300..600,0,1;1,9..144,300..500,0,0;1,9..144,400,0,1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --ink-950:#05060A; --ink-900:#0D0F14; --ink-850:#121319;
+  --text-100:#EAF0FF; --text-200:#D6E6FF; --text-400:#A8B2D1; --text-600:#676D81;
+  --uv-500:#B04BFF;
+  --bg:var(--ink-950); --border:rgba(214,230,255,0.12);
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-serif:'Fraunces',Georgia,serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --sp:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text-100);font-family:var(--font-body);-webkit-font-smoothing:antialiased;line-height:1.5;padding:56px clamp(24px,6vw,80px);max-width:1100px;margin:0 auto;}
+.meta{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.04em;color:var(--text-600);text-transform:none;}
+
+.page-head{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:56px;}
+.page-head h1{font-family:var(--font-serif);font-weight:400;font-variation-settings:"opsz" 144,"WONK" 1,"SOFT" 0;font-size:clamp(2.6rem,7vw,5rem);line-height:1.05;letter-spacing:-0.02em;margin:16px 0 12px;}
+.page-head p{font-family:var(--font-serif);font-style:italic;font-variation-settings:"opsz" 24,"WONK" 0;font-size:1.2rem;color:var(--text-400);max-width:52ch;}
+
+/* three-family overview row */
+.families{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px;}
+.fam{border:1px solid var(--border);border-radius:14px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);}
+.fam .role{margin-bottom:14px;}
+.fam .big{font-size:3.4rem;line-height:1;margin-bottom:14px;}
+.fam.serif .big{font-family:var(--font-serif);font-variation-settings:"opsz" 144,"WONK" 1;font-weight:500;}
+.fam.sans .big{font-family:var(--font-body);font-weight:600;letter-spacing:-0.02em;}
+.fam.mono .big{font-family:var(--font-mono);font-weight:500;font-size:2.6rem;}
+.fam .name{font-family:var(--font-serif);font-size:1.4rem;margin-bottom:4px;}
+.fam.sans .name,.fam.mono .name{font-family:var(--font-body);}
+.fam .job{color:var(--text-400);font-size:0.95rem;}
+
+section{margin-bottom:64px;}
+.sec-label{margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+/* Fraunces axis ladder — one family, many voices */
+.ladder > div{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(214,230,255,0.06);}
+.ladder .spec{padding-top:6px;}
+.frx{font-family:var(--font-serif);letter-spacing:-0.01em;color:var(--text-100);}
+.r-hero{font-variation-settings:"opsz" 144,"WONK" 1,"SOFT" 0;font-weight:400;font-size:3.6rem;line-height:1.02;}
+.r-h2{font-variation-settings:"opsz" 72,"WONK" 0;font-weight:400;font-size:2.3rem;}
+.r-card{font-variation-settings:"opsz" 60,"WONK" 0;font-weight:500;font-size:1.35rem;}
+.r-lead{font-variation-settings:"opsz" 40,"WONK" 0;font-style:italic;font-weight:400;font-size:1.6rem;color:var(--text-200);}
+.r-tag{font-variation-settings:"opsz" 24,"WONK" 0;font-style:italic;font-weight:400;font-size:1.15rem;color:var(--text-400);}
+
+/* pairing-in-context: a mini card + note */
+.context{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start;}
+.note{border-left:2px solid var(--uv-500);padding-left:28px;}
+.note .lead{font-family:var(--font-serif);font-style:italic;font-variation-settings:"opsz" 40,"WONK" 0;font-size:1.6rem;line-height:1.4;color:var(--text-200);}
+.note .body{font-family:var(--font-body);font-size:0.95rem;line-height:1.6;color:var(--text-400);margin-top:14px;}
+.card .thumb{aspect-ratio:16/10;background:var(--ink-850);border-radius:8px;overflow:hidden;margin-bottom:14px;}
+.card .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.card h3{font-family:var(--font-serif);font-weight:500;font-variation-settings:"opsz" 60,"WONK" 0;font-size:1.25rem;letter-spacing:-0.01em;}
+.card .m{margin-top:6px;}
+
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--uv-500);margin-right:10px;vertical-align:middle;}
+
+@media (max-width:820px){.families{grid-template-columns:1fr;}.context{grid-template-columns:1fr;}.ladder > div{grid-template-columns:1fr;gap:6px;}}
+</style>
+</head>
+<body>
+<div class="page-head">
+  <div class="meta">Type specimen · per VARIATION_B_FEEDBACK.md</div>
+  <h1>Three families, three jobs.</h1>
+  <p>The pairing tension is between categories — not between two serifs. Fraunces does the work of several display faces through its optical-size and wonk axes.</p>
+</div>
+
+<div class="families">
+  <div class="fam serif">
+    <div class="role meta">Display / personality</div>
+    <div class="big">Aa</div>
+    <div class="name">Fraunces</div>
+    <div class="job">Variable serif. opsz 9–144, WONK + SOFT axes. Hero, headings, card titles, pull-quotes.</div>
+  </div>
+  <div class="fam sans">
+    <div class="role meta">Body / neutral</div>
+    <div class="big">Aa</div>
+    <div class="name">Inter</div>
+    <div class="job">Grotesque sans. Running text, nav, UI. Stays out of the serif's way.</div>
+  </div>
+  <div class="fam mono">
+    <div class="role meta">Metadata / technical</div>
+    <div class="big">Aa</div>
+    <div class="name">JetBrains Mono</div>
+    <div class="job">One .meta style everywhere: 0.72rem, --text-600, no uppercase.</div>
+  </div>
+</div>
+
+<section>
+  <div class="sec-label meta">Fraunces axis ladder — one family, five voices (WONK 1 only at the top)</div>
+  <div class="ladder">
+    <div><div class="spec meta">opsz 144 · WONK 1<br>hero h1</div><div class="frx r-hero">The curation of latent space.</div></div>
+    <div><div class="spec meta">opsz 72 · WONK 0<br>collection h2</div><div class="frx r-h2">Artificial Creativity</div></div>
+    <div><div class="spec meta">opsz 60 · WONK 0 · 500<br>card title</div><div class="frx r-card">Intent Configuration Interface</div></div>
+    <div><div class="spec meta">opsz 40 · italic<br>curator pull-quote</div><div class="frx r-lead">Natural language is a lossy medium for conveying intent to a machine.</div></div>
+    <div><div class="spec meta">opsz 24 · italic<br>tagline</div><div class="frx r-tag">A studio investigating new technology to define new paradigms.</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label meta">Pairing in context</div>
+  <div class="context">
+    <div class="note">
+      <div class="meta" style="margin-bottom:12px;">Curator's Note</div>
+      <p class="lead">Natural language is a lossy medium for conveying intent to a machine.</p>
+      <p class="body">These works catch language mid-translation — materializing what the model heard as an editable intermediate artifact. Together they propose a different model for human–AI co-creation: one where interpretation is visible, correctable, and portable.</p>
+    </div>
+    <div class="card">
+      <div class="thumb"><img src="https://res.cloudinary.com/dxghuzxip/image/upload/v1773526314/Screenshot_2026-03-14_at_6.09.11_PM_jijaiy.png" alt="Intent Configuration Interface"></div>
+      <h3>Intent Configuration Interface</h3>
+      <div class="m meta">Software · 2026</div>
+    </div>
+  </div>
+</section>
+
+<div class="meta"><span class="dot"></span>Accent appears only as the dot, the note border, and hover underlines. Everything else is Fraunces, Inter, or gray mono.</div>
+</body>
+</html>
