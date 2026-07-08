@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Variation C — Generative-Art-Forward · Third Plane Studios</title>
+<!--
+  VARIATION C — Generative-Art-Forward
+  Thesis: the site itself demonstrates "the curation of latent space."
+  - HERO: full-bleed WebGL2 fragment shader — evolving fbm/noise fields with
+    feature-map banding, colored uv-600 -> ice-400 -> strobe-500. Slow self-drift,
+    cursor X/Y biases traversal direction. Capped ~30fps, pauses when tab hidden.
+    Static gradient fallback for prefers-reduced-motion AND no-WebGL.
+    PRODUCTION PLAN: replace/augment this shader with a PRE-RENDERED real latent-walk
+    video loop (StyleGAN / SD interpolation), served from Cloudinary cloud "dxghuzxip",
+    muted+autoplay+loop, with --scrim overlay for legibility. Shader is the always-on
+    evocation tier; the video is the real-artifact tier.
+  - TYPE: "degraded" display treatment stands in for the Redaction typeface via an
+    SVG turbulence/displacement filter on hero + collection titles (self-contained,
+    no font download). Production would swap in the actual Redaction 35/50 cuts.
+    Body = Inter. Mono = Martian Mono.
+  - CARD THUMBS: deterministic generative canvases seeded from a hash of the work's
+    title, tinted in the collection accent (uv). Same seed => same image.
+    Hover triggers a ~300ms "re-seed" glitch to a nearby seed (spring-snap).
+  Standalone mockup. Does not touch production files.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Martian+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400..600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --ink-950: #05060A; --ink-900: #0D0F14; --ink-850: #121319; --ink-800: #16181E;
+  --text-100: #EAF0FF; --text-200: #D6E6FF; --text-400: #A8B2D1; --text-600: #676D81;
+  --uv-600: #7A2BFF; --uv-500: #B04BFF; --uv-400: #C77DFF;
+  --ice-400: #7DE7FF; --strobe-500: #FF2A4A; --sun-400: #FFD26A;
+  --bg: var(--ink-950); --surface: var(--ink-900);
+  --border: rgba(214,230,255,0.12); --border-hover: rgba(214,230,255,0.24);
+  --text: var(--text-100); --text-muted: var(--text-400);
+  --scrim: rgba(5,6,10,0.72); --scrim-strong: rgba(5,6,10,0.86);
+  --glow-uv: 0 0 32px rgba(176,75,255,0.25);
+
+  /* Redaction stand-in: a slab/typewriter serif; degradation added via SVG filter */
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Martian Mono', 'JetBrains Mono', monospace;
+
+  --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px;
+  --space-2xl: 48px; --space-3xl: 64px; --page-padding: 24px;
+
+  --spring-snap: 700ms linear(0, 0.1737, 0.5211, 0.8491, 1.0647, 1.1552, 1.1532, 1.1043, 1.0466, 1.0024, 0.979, 0.9735, 0.979, 0.9883, 0.9968, 1.0021, 1.0042, 1.004, 1.0026, 1.0011, 1, 0.9994, 1);
+  --spring-hover: 350ms linear(0, 0.347, 0.7676, 0.9735, 1.0268, 1.0223, 1.0093, 1.0018, 0.9994, 1, 0.9996, 1);
+  --spring-hero: 550ms linear(0, 0.2606, 0.7094, 1.0343, 1.158, 1.1389, 1.0674, 1.006, 0.977, 0.975, 0.9856, 0.9967, 1.003, 1, 1.0029, 1.001, 0.9997, 1);
+}
+@media (min-width:768px){ :root{ --page-padding:48px; } }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-primary); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+
+/* degradation filter host (invisible SVG) */
+.svg-defs { position: absolute; width: 0; height: 0; }
+.degraded { filter: url(#redaction-degrade); }
+
+/* ---------- nav ---------- */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--page-padding); position: relative; z-index: 5;
+}
+.wordmark { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+.nav-links { display: flex; gap: var(--space-xl); font-size: 0.78rem; color: var(--text-200); font-family: var(--font-mono); text-transform: lowercase; }
+.nav-links a { color: inherit; text-decoration: none; opacity: 0.75; transition: opacity var(--spring-hover); }
+.nav-links a:hover { opacity: 1; color: var(--ice-400); }
+
+/* ---------- hero with shader ---------- */
+.hero { position: relative; min-height: 92vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; margin-top: calc(-1 * (20px + 60px)); padding-top: calc(20px + 60px); }
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+.hero-fallback { position: absolute; inset: 0; z-index: 0; display: none;
+  background:
+    radial-gradient(60% 60% at 30% 30%, rgba(122,43,255,0.55), transparent 60%),
+    radial-gradient(55% 55% at 72% 40%, rgba(125,231,255,0.4), transparent 60%),
+    radial-gradient(60% 60% at 55% 82%, rgba(255,42,74,0.35), transparent 60%),
+    var(--ink-950);
+}
+.hero-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(5,6,10,0.35) 0%, rgba(5,6,10,0.55) 55%, rgba(5,6,10,0.85) 100%); pointer-events: none; }
+.hero-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: 0 auto; padding: var(--space-3xl) var(--page-padding); }
+.hero .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ice-400); margin-bottom: var(--space-lg); }
+.hero h1 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(3.2rem, 9vw, 7rem); line-height: 1.0; letter-spacing: -0.01em;
+  max-width: 15ch; margin-bottom: var(--space-xl); text-shadow: 0 2px 40px rgba(5,6,10,0.6);
+}
+.hero .tagline { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-200); max-width: 44ch; line-height: 1.55; }
+
+/* ---------- collection ---------- */
+.collection {
+  --accent: var(--uv-500); --accent-rgb: 176,75,255;
+  max-width: 1200px; margin: 0 auto; padding: var(--space-3xl) var(--page-padding) 120px;
+}
+.collection-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: var(--space-sm); }
+.collection-head .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 16px rgba(var(--accent-rgb),0.8); }
+.collection-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.02; letter-spacing: -0.01em; }
+.collection-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-600); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-2xl); }
+
+.curators-note {
+  position: relative; border: 1px solid rgba(var(--accent-rgb),0.25);
+  background: linear-gradient(180deg, rgba(var(--accent-rgb),0.06), rgba(255,255,255,0.01));
+  border-radius: 14px; padding: var(--space-2xl); max-width: 62ch; margin-bottom: var(--space-3xl);
+  box-shadow: inset 0 0 40px rgba(var(--accent-rgb),0.05);
+}
+.curators-note .label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-md); }
+.curators-note p { font-size: 1.1rem; line-height: 1.65; color: var(--text-200); }
+.curators-note p + p { margin-top: var(--space-md); }
+.curators-note em { color: var(--text-100); font-style: italic; }
+
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); }
+.work-card {
+  display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface);
+  transition: transform var(--spring-hover), border-color var(--spring-hover), box-shadow var(--spring-hover);
+}
+.work-card:hover, .work-card:focus-visible { transform: translateY(-4px); border-color: var(--border-hover); box-shadow: var(--glow-uv); outline: none; }
+.work-thumb { aspect-ratio: 4 / 3; position: relative; overflow: hidden; background: var(--ink-850); }
+.work-thumb canvas { width: 100%; height: 100%; display: block; }
+.type-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono);
+  font-size: 0.66rem; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 999px;
+  background: rgba(5,6,10,0.62); backdrop-filter: blur(8px); border: 1px solid var(--border); color: var(--text-200);
+}
+.type-badge .bd { width: 7px; height: 7px; border-radius: 50%; }
+.work-body { padding: var(--space-lg); }
+.work-body h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.15rem; letter-spacing: -0.01em; margin-bottom: 6px; }
+.work-body .yr { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-600); }
+
+.badge-note { text-align:center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-600); padding: 40px; letter-spacing: 0.08em; }
+
+@media (prefers-reduced-motion: reduce) {
+  #gl { display: none; }
+  .hero-fallback { display: block; }
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG filter: degradation stand-in for Redaction (production swaps real font cuts) -->
+<svg class="svg-defs" aria-hidden="true">
+  <filter id="redaction-degrade">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9 0.9" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<nav class="nav">
+  <span class="wordmark degraded">Third Plane Studios</span>
+  <div class="nav-links"><a href="#work">work</a><a href="#collections">collections</a><a href="#about">about</a></div>
+</nav>
+
+<header class="hero">
+  <canvas id="gl"></canvas>
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Variation C · Generative-Art-Forward</div>
+    <h1 class="degraded">The curation of latent space.</h1>
+    <p class="tagline">A studio investigating new technology to define new paradigms. The site is the demonstration — move your cursor to steer the traversal.</p>
+  </div>
+</header>
+
+<section class="collection" id="work">
+  <div class="collection-head">
+    <span class="dot"></span>
+    <h2 class="degraded">Artificial Creativity</h2>
+  </div>
+  <div class="collection-meta">Collection · 04 works · seed-derived thumbnails</div>
+
+  <div class="curators-note">
+    <div class="label">Curator's Note</div>
+    <p>These works share a premise: natural language is a lossy medium for conveying user intent to AI. They catch language mid-translation, materializing what the model heard as an editable intermediate artifact.</p>
+    <p><em>Interpretation, made visible, correctable, and portable.</em></p>
+  </div>
+
+  <div class="work-grid">
+    <a class="work-card" href="#" data-seed="Generative Remix">
+      <div class="work-thumb"><span class="type-badge"><span class="bd" style="background:var(--sun-400)"></span>Software</span><canvas class="gen-thumb" width="400" height="300"></canvas></div>
+      <div class="work-body"><h3>Generative Remix</h3><div class="yr">2026</div></div>
+    </a>
+    <a class="work-card" href="#" data-seed="Intent Configuration Interface">
+      <div class="work-thumb"><span class="type-badge"><span class="bd" style="background:var(--sun-400)"></span>Software</span><canvas class="gen-thumb" width="400" height="300"></canvas></div>
+      <div class="work-body"><h3>Intent Configuration Interface</h3><div class="yr">2026</div></div>
+    </a>
+    <a class="work-card" href="#" data-seed="Embers by Sora">
+      <div class="work-thumb"><span class="type-badge"><span class="bd" style="background:var(--strobe-500)"></span>AI Video</span><canvas class="gen-thumb" width="400" height="300"></canvas></div>
+      <div class="work-body"><h3>Embers by Sora</h3><div class="yr">2025</div></div>
+    </a>
+  </div>
+</section>
+
+<div class="badge-note">Variation C — end of mockup</div>
+
+<script>
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============================================================
+   1) WebGL2 shader hero — evolving fbm feature-map traversal
+   ============================================================ */
+(function initShader(){
+  if (REDUCED) return;
+  const canvas = document.getElementById('gl');
+  const gl = canvas.getContext('webgl2', { antialias: false, alpha: false });
+  if (!gl) { canvas.style.display = 'none'; document.querySelector('.hero-fallback').style.display = 'block'; return; }
+
+  const vert = `#version 300 es
+  in vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`;
+
+  const frag = `#version 300 es
+  precision highp float;
+  out vec4 outColor;
+  uniform vec2 uRes; uniform float uTime; uniform vec2 uMouse;
+
+  // hash / value noise / fbm
+  float hash(vec2 x){ return fract(sin(dot(x, vec2(127.1, 311.7))) * 43758.5453123); }
+  float noise(vec2 x){
+    vec2 i = floor(x), f = fract(x);
+    float a = hash(i), b = hash(i+vec2(1.,0.)), c = hash(i+vec2(0.,1.)), d = hash(i+vec2(1.,1.));
+    vec2 u = f*f*(3.0-2.0*f);
+    return mix(a,b,u.x) + (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y;
+  }
+  float fbm(vec2 x){
+    float v = 0.0, a = 0.5;
+    mat2 rot = mat2(0.8,-0.6,0.6,0.8);
+    for(int i=0;i<6;i++){ v += a*noise(x); x = rot*x*2.0; a *= 0.5; }
+    return v;
+  }
+  void main(){
+    vec2 uv = gl_FragCoord.xy / uRes.xy;
+    vec2 asp = vec2(uRes.x/uRes.y, 1.0);
+    vec2 st = uv * asp;
+    // slow self-drift + cursor bias to the traversal direction
+    vec2 drift = vec2(uTime*0.03, uTime*0.021);
+    vec2 bias = (uMouse - 0.5) * 0.9;
+    vec2 q = st*2.2 + drift + bias;
+    // domain-warped fbm => latent-walk feel
+    vec2 warp = vec2(fbm(q + vec2(1.7,9.2)), fbm(q + vec2(8.3,2.8)));
+    float f = fbm(q + 1.6*warp + vec2(0.0, uTime*0.05));
+    // feature-map banding
+    float bands = fbm(q*1.5 + warp);
+    float band = smoothstep(0.35, 0.65, fract(bands*4.0));
+    // color ramp: uv-600 -> ice-400 -> strobe-500
+    vec3 uv6 = vec3(0.478,0.169,1.0);
+    vec3 ice = vec3(0.490,0.906,1.0);
+    vec3 red = vec3(1.0,0.165,0.290);
+    vec3 col = mix(uv6, ice, smoothstep(0.25,0.6,f));
+    col = mix(col, red, smoothstep(0.6,0.92,f));
+    col = mix(col, col*0.55 + ice*0.25, band*0.35);
+    // vignette + darken toward black neon-noir base
+    float vig = smoothstep(1.25, 0.2, length(uv-0.5));
+    col *= 0.28 + 0.72*vig;
+    col = pow(col, vec3(1.15));
+    outColor = vec4(col, 1.0);
+  }`;
+
+  function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s)); return s; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, vert));
+  gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, frag));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes = gl.getUniformLocation(prog, 'uRes');
+  const uTime = gl.getUniformLocation(prog, 'uTime');
+  const uMouse = gl.getUniformLocation(prog, 'uMouse');
+
+  let mouse = [0.5, 0.5], target = [0.5, 0.5];
+  window.addEventListener('pointermove', (e) => {
+    const r = canvas.getBoundingClientRect();
+    target = [(e.clientX - r.left)/r.width, 1.0 - (e.clientY - r.top)/r.height];
+  });
+
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const w = canvas.clientWidth * dpr, h = canvas.clientHeight * dpr;
+    if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; gl.viewport(0,0,w,h); }
+  }
+  window.addEventListener('resize', resize);
+
+  let running = true;
+  document.addEventListener('visibilitychange', () => { running = !document.hidden; if(running) loop(last=performance.now()); });
+
+  const FPS = 30, FRAME = 1000/FPS; let last = performance.now(), acc = 0, t0 = performance.now();
+  function loop(now){
+    if(!running) return;
+    requestAnimationFrame(loop);
+    const dt = now - last; last = now; acc += dt;
+    if(acc < FRAME) return; acc = 0;
+    // ease mouse toward target
+    mouse[0] += (target[0]-mouse[0])*0.06; mouse[1] += (target[1]-mouse[1])*0.06;
+    resize();
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, (now - t0)/1000);
+    gl.uniform2f(uMouse, mouse[0], mouse[1]);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+  resize(); requestAnimationFrame(loop);
+})();
+
+/* ============================================================
+   2) Deterministic generative card thumbnails (seed = title hash)
+   ============================================================ */
+function strHash(str){ let h = 2166136261 >>> 0; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+// draw a deterministic purple field for a given numeric seed
+function drawField(ctx, w, h, seed){
+  const rnd = mulberry32(seed);
+  ctx.clearRect(0,0,w,h);
+  // base
+  ctx.fillStyle = '#0b0713'; ctx.fillRect(0,0,w,h);
+  // accent blobs (uv palette)
+  const hues = [ [122,43,255], [176,75,255], [199,125,255], [125,231,255] ];
+  const n = 5 + Math.floor(rnd()*4);
+  for(let i=0;i<n;i++){
+    const cx = rnd()*w, cy = rnd()*h, r = (0.2+rnd()*0.5)*Math.min(w,h);
+    const c = hues[Math.floor(rnd()*hues.length)];
+    const g = ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+    const a = 0.30 + rnd()*0.35;
+    g.addColorStop(0, `rgba(${c[0]},${c[1]},${c[2]},${a})`);
+    g.addColorStop(1, `rgba(${c[0]},${c[1]},${c[2]},0)`);
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+  }
+  // feature-map banding lines
+  ctx.globalAlpha = 0.10;
+  ctx.strokeStyle = '#C77DFF'; ctx.lineWidth = 1;
+  const bands = 6 + Math.floor(rnd()*8);
+  for(let i=0;i<bands;i++){
+    const y = rnd()*h; ctx.beginPath();
+    for(let x=0;x<=w;x+=8){ const yy = y + Math.sin((x*0.03)+(rnd()*6))*10; x===0?ctx.moveTo(x,yy):ctx.lineTo(x,yy); }
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+  // subtle grain
+  ctx.globalAlpha = 0.05;
+  for(let i=0;i<220;i++){ ctx.fillStyle = rnd()>0.5?'#fff':'#000'; ctx.fillRect(rnd()*w, rnd()*h, 1, 1); }
+  ctx.globalAlpha = 1;
+}
+
+document.querySelectorAll('.work-card').forEach((card) => {
+  const canvas = card.querySelector('.gen-thumb');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  const baseSeed = strHash(card.dataset.seed);
+  drawField(ctx, w, h, baseSeed);
+
+  if (REDUCED) return;
+  // hover: brief "re-seed" glitch -> traverse to a nearby seed, ease back (spring-snap-ish)
+  let raf = null, t = 0;
+  card.addEventListener('pointerenter', () => {
+    cancelAnimationFrame(raf); t = 0;
+    const near = baseSeed + 1 + Math.floor(Math.random()*3);
+    const start = performance.now(); const DUR = 320;
+    (function step(now){
+      const k = Math.min(1, (now-start)/DUR);
+      // glitch: rapidly alternate seeds early, settle to `near` then back to base
+      if (k < 0.6){ drawField(ctx, w, h, near + Math.floor(k*40)); }
+      else { drawField(ctx, w, h, baseSeed); return; }
+      raf = requestAnimationFrame(step);
+    })(start);
+  });
+  card.addEventListener('pointerleave', () => { cancelAnimationFrame(raf); drawField(ctx, w, h, baseSeed); });
+});
+</script>
+</body>
+</html>
