@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Model Internals: Research cover</title>
+  <desc id="desc">Abstract neon diagram of reference images becoming a continuous control for image generation.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#1b2f3a"/>
+      <stop offset="48%" stop-color="#12141d"/>
+      <stop offset="100%" stop-color="#07080d"/>
+    </radialGradient>
+    <linearGradient id="ice" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7de7ff"/>
+      <stop offset="100%" stop-color="#b04bff"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g opacity="0.18" stroke="#7de7ff" stroke-width="1">
+    <path d="M120 150h960M120 250h960M120 350h960M120 450h960M120 550h960M120 650h960"/>
+    <path d="M180 100v600M320 100v600M460 100v600M600 100v600M740 100v600M880 100v600M1020 100v600"/>
+  </g>
+  <g fill="none" stroke="url(#ice)" stroke-width="4" stroke-linecap="round" filter="url(#glow)">
+    <path d="M185 245c110-80 180-72 260-18s156 52 255-8 200-72 322 12"/>
+    <path d="M185 402c105 42 179 36 268-20s158-62 245 0 188 70 324 6" opacity="0.8"/>
+    <path d="M185 560c128-30 218-22 300 22s150 44 220 0 174-65 317-28" opacity="0.65"/>
+  </g>
+  <g>
+    <rect x="128" y="122" width="210" height="150" rx="18" fill="#101622" stroke="#7de7ff" stroke-opacity="0.45"/>
+    <rect x="158" y="152" width="68" height="68" rx="12" fill="#7de7ff" fill-opacity="0.2"/>
+    <rect x="246" y="152" width="62" height="22" rx="11" fill="#b04bff" fill-opacity="0.4"/>
+    <rect x="246" y="190" width="42" height="22" rx="11" fill="#ffd26a" fill-opacity="0.35"/>
+  </g>
+  <g>
+    <circle cx="600" cy="400" r="132" fill="#090b12" stroke="#7de7ff" stroke-opacity="0.5" stroke-width="2"/>
+    <circle cx="600" cy="400" r="88" fill="none" stroke="#7de7ff" stroke-opacity="0.35"/>
+    <circle cx="600" cy="400" r="44" fill="none" stroke="#7de7ff" stroke-opacity="0.25"/>
+    <path d="M600 268v264M468 400h264" stroke="#7de7ff" stroke-opacity="0.25"/>
+    <circle cx="684" cy="332" r="14" fill="#ffd26a" filter="url(#glow)"/>
+  </g>
+  <g>
+    <rect x="862" y="498" width="210" height="150" rx="18" fill="#101622" stroke="#b04bff" stroke-opacity="0.45"/>
+    <rect x="894" y="532" width="146" height="10" rx="5" fill="#7de7ff" fill-opacity="0.25"/>
+    <rect x="894" y="572" width="146" height="10" rx="5" fill="#7de7ff" fill-opacity="0.25"/>
+    <circle cx="996" cy="537" r="17" fill="#7de7ff"/>
+    <circle cx="934" cy="577" r="17" fill="#b04bff"/>
+  </g>
+</svg>
