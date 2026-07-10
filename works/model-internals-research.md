@@ -5,13 +5,12 @@ date: 2026-06-19
 type: "Research"
 year: 2026
 cover: "/assets/works/model-internals-research/cover.svg"
-excerpt: "A one-week pilot on synthesized image-generation controls: what worked, what failed, and why the failure is the useful part."
+excerpt: "Can we parameterize visual qualities, that people can recognize but can't put into words? i.e. more of this vibe?"
 featured: false
 draft: false
 badgeType: "research"
 memberOf:
   - model-internals-research
-  - artificial-creativity
 ---
 [Read the original Thinking Machines grant proposal PDF](/assets/works/model-internals-research/tm-interactivity-grant-proposal.pdf).
 
