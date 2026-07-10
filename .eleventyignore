@@ -1,0 +1,6 @@
+AGENTS.md
+CLAUDE.md
+tmp/
+tmp_*/
+node_modules/
+_site/
