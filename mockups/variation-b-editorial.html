@@ -7,19 +7,40 @@
 <!--
   VARIATION B — Restrained Editorial (revision pass, per docs/VARIATION_B_FEEDBACK.md)
   Thesis: the work is the color; the site is the gallery.
-  Revisions applied:
-   1. Newsreader cut — Fraunces is the only serif (Fraunces / Inter / JetBrains Mono).
+  Revisions applied (rounds 1-2):
+   1. Newsreader cut — one serif only.
    2. WONK 1 restricted to the hero h1; collection h2 is WONK 0 and steps down.
    3. Hero frame is a real still in grayscale that gains color on hover (no neon gradient).
    4. All mono unified into a single .meta utility (one size/tracking, no uppercase).
    5. Curator's note = serif pull-quote (1.4rem) + Inter remainder at body size; no mid-quote shrink.
    6. Cards keep native ratio (16/10 landscape screenshots); grid align-items:start; full-color art at rest.
    7. h1 line-height 1.05; body opsz setting removed; resting desaturation removed.
+
+  ROUND 3 — type-identity sync with the Labs light mode (light-cool-mono-
+  specimen.html + type-pairing-labs.html). The challenger A/B there resolved
+  to Source Serif 4 + IBM Plex Mono; per that comparison's own stated
+  constraint ("whichever wins gets adopted by dark mode too — one type
+  identity, not two"), the same swap lands here:
+   - Fraunces -> Source Serif 4 (display + pull-quote only). WONK/SOFT were
+     Fraunces-only axes; Source Serif 4 doesn't have them, so every
+     font-variation-settings("opsz"...,"WONK"...) below is replaced with
+     font-optical-sizing:auto (registered property, size drives opsz).
+   - JetBrains Mono -> IBM Plex Mono (evidence/meta voice, less coder-
+     flavored). .meta floor raised 0.72rem -> 0.75rem (11.5px measured too
+     small; same fix already made on the light side).
+   - Hero weight 400 -> 340, collection h2 400 -> 450, to match the light
+     mode's weight-carries-hierarchy system, not just its font names.
+   - work-card h3 moved from serif to Inter 600 — small-size serif card
+     titles were flagged as muddy in round 3 of the light-mode work
+     regardless of typeface; leaving it serif here while fixing it in light
+     mode would just be shipping the same defect in one of two places.
+  -webkit-font-smoothing:antialiased is correct here and untouched — it
+  compensates for dark backgrounds, which this is.
   Standalone mockup. Does not touch production files.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,0,0;0,9..144,300..600,0,1;1,9..144,300..500,0,0;1,9..144,400,0,1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,400..500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   color-scheme: dark;
@@ -31,8 +52,8 @@
 
   /* Three families, three jobs. No second serif. */
   --font-body: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Fraunces', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 
   --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px;
   --space-2xl: 48px; --space-3xl: 64px; --page-padding: 24px;
@@ -46,12 +67,13 @@
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg); color: var(--text);
-  font-family: var(--font-body); -webkit-font-smoothing: antialiased; line-height: 1.5;
+  font-family: var(--font-body); font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased; line-height: 1.5;
 }
 
 /* ---- single mono metadata style (one size, one tracking, one color, no uppercase) ---- */
 .meta {
-  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em;
   color: var(--text-600); text-transform: none;
 }
 
@@ -60,7 +82,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 24px var(--page-padding); border-bottom: 1px solid var(--border);
 }
-.wordmark { font-family: var(--font-serif); font-weight: 500; font-size: 1.1rem; font-variation-settings: "opsz" 40, "WONK" 0; }
+.wordmark { font-family: var(--font-serif); font-optical-sizing: auto; font-weight: 500; font-size: 1.1rem; }
 .nav-links { display: flex; gap: var(--space-xl); }
 .nav-links a { color: var(--text-muted); text-decoration: none; }
 .nav-links a:hover { color: var(--text-100); }
@@ -73,16 +95,14 @@ body {
 }
 .hero-text .kicker { margin-bottom: var(--space-xl); }
 .hero h1 {
-  font-family: var(--font-serif); font-weight: 400;
-  font-variation-settings: "opsz" 144, "WONK" 1, "SOFT" 0;   /* wonk lives here, and only here */
-  font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1.05; letter-spacing: -0.02em;
+  font-family: var(--font-serif); font-optical-sizing: auto; font-weight: 340; font-style: normal;
+  font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1.05; letter-spacing: -0.01em;
   max-width: 15ch;
 }
-.hero h1 em { font-style: italic; color: var(--text-200); font-variation-settings: "opsz" 144, "WONK" 1; }
+.hero h1 em { font-style: italic; color: var(--text-200); }
 .hero .tagline {
-  font-family: var(--font-serif); font-style: italic;
-  font-variation-settings: "opsz" 24, "WONK" 0;
-  font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400;
+  font-family: var(--font-serif); font-optical-sizing: auto; font-style: italic; font-weight: 400;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
   color: var(--text-400); margin-top: var(--space-xl); max-width: 40ch; line-height: 1.5;
 }
 /* small "artwork in a frame" — a real still, grayscale at rest, color on hover */
@@ -111,8 +131,7 @@ body {
 .collection-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: var(--space-sm); }
 .collection-head .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
 .collection-head h2 {
-  font-family: var(--font-serif); font-weight: 400;
-  font-variation-settings: "opsz" 72, "WONK" 0;   /* quieter than hero: no wonk, stepped down */
+  font-family: var(--font-serif); font-optical-sizing: auto; font-weight: 450; font-style: normal;
   font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height: 1.05; letter-spacing: -0.01em;
 }
 .collection-meta { margin-bottom: var(--space-3xl); }
@@ -125,8 +144,7 @@ body {
 }
 .curators-note .label { margin-bottom: var(--space-md); }
 .curators-note .lead {
-  font-family: var(--font-serif); font-style: italic;
-  font-variation-settings: "opsz" 40, "WONK" 0;
+  font-family: var(--font-serif); font-optical-sizing: auto; font-style: italic; font-weight: 400;
   font-size: 1.6rem; line-height: 1.4; color: var(--text-200);   /* x-height matched: dominates the Inter body */
 }
 .curators-note .body {
@@ -141,8 +159,8 @@ body {
 .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; filter: none; transition: filter var(--spring-smooth); }
 .work-card:hover .work-thumb img { filter: brightness(1.05); }
 .work-card h3 {
-  font-family: var(--font-serif); font-weight: 500; font-variation-settings: "opsz" 60, "WONK" 0;
-  font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.01em;
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 1.05rem; line-height: 1.2; letter-spacing: -0.005em;
   display: inline; background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
   transition: background-size var(--spring-smooth); padding-bottom: 2px;

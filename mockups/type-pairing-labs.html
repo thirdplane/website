@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Type Pairing Challenger — Labs (A/B)</title>
+<!--
+  CHALLENGER COMPARISON — same content, twice, only the serif + mono swap.
+  A) Fraunces, recast per light-cool-mono-specimen.html round 3: WONK 0,
+     weight 340/450, no italic outside pull-quotes. The continuity pick —
+     shares a family with the Studios/Variation-B identity.
+  B) Source Serif 4 (display + pull-quotes) — sober, opsz-variable, the
+     closest Google-Fonts match to the Claude-docs reference feel — paired
+     with IBM Plex Mono instead of JetBrains Mono for evidence/mono text.
+     JetBrains Mono reads coder-flavored and rounded; Plex Mono is the
+     more institutional voice for hashes and receipts.
+  Inter stays constant across both columns (body/UI text, including card
+  titles) — it isn't part of what's being tested. Weight numbers (340 for
+  the hero, 450 for h2-tier) are held identical between A and B on purpose:
+  isolate the typeface variable, not the weight choice.
+  Decision rule: pick the column a stranger would call "a lab report
+  you'd trust," not "a beautiful portfolio." Whichever wins gets adopted
+  by dark mode too — ship one type identity, not two.
+
+  RESOLVED: B — Source Serif 4 + IBM Plex Mono. Applied to
+  light-cool-mono-specimen.html and re-cut into variation-b-editorial.html
+  (dark mode), including weight harmonization (hero 340, h2-tier 450) and
+  moving work-card titles from serif to Inter — not just the font-family
+  swap, the same type system in both modes.
+  Standalone; does not touch production files or tokens.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400..500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,400..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper-hi:#F7F8FA; --paper:#EDEFF2; --paper-lo:#E2E5EA; --paper-edge:#D3D8DF;
+  --ink-900:#1A1D22; --ink-700:#3A3F47; --ink-500:#5B6169;
+  --line:rgba(26,29,34,0.14); --line-strong:rgba(26,29,34,0.30);
+  --flag-600:#D9002C;
+  --step-0:0.75rem; --step-1:0.9rem; --step-2:1.05rem; --step-3:1.35rem; --step-4:2.1rem;
+  --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px; --sp-6:64px;
+  --r-card:8px; --r-btn:6px;
+  --font-body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink-700);font-family:var(--font-body);font-optical-sizing:auto;line-height:1.5;
+  padding:var(--sp-6) clamp(var(--sp-3),6vw,80px);max-width:1240px;margin:0 auto;}
+.meta{font-family:'JetBrains Mono',monospace;font-size:var(--step-0);letter-spacing:0.04em;color:var(--ink-500);}
+
+.page-head{border-bottom:1px solid var(--line);padding-bottom:var(--sp-4);margin-bottom:var(--sp-5);max-width:76ch;}
+.page-head h1{font-family:var(--font-body);font-weight:600;font-size:var(--step-4);color:var(--ink-900);letter-spacing:-0.01em;margin:14px 0 12px;text-wrap:balance;}
+.page-head p{font-size:var(--step-2);color:var(--ink-500);}
+
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);}
+.pair{border:1px solid var(--line);border-radius:var(--r-card);background:var(--paper-hi);padding:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-3);}
+.pair-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:var(--sp-2);margin-bottom:var(--sp-1);}
+.pair-head .tag{font-family:'JetBrains Mono',monospace;font-size:var(--step-0);letter-spacing:0.04em;color:var(--ink-900);font-weight:500;}
+.pair-head .stack{font-family:'JetBrains Mono',monospace;font-size:var(--step-0);color:var(--ink-500);text-align:right;}
+
+.pair h2{font-optical-sizing:auto;font-weight:340;font-style:normal;letter-spacing:-0.01em;
+  font-size:clamp(2rem,3.4vw,2.6rem);line-height:1.08;color:var(--ink-900);text-wrap:balance;}
+.pair .standfirst{font-family:var(--font-body);font-weight:400;font-size:var(--step-2);color:var(--ink-500);max-width:42ch;}
+.pair .pullquote{font-optical-sizing:auto;font-style:italic;font-weight:400;font-size:var(--step-3);line-height:1.4;
+  color:var(--ink-900);border-left:2px solid var(--line-strong);padding-left:var(--sp-3);max-width:44ch;}
+.pair .cardtitle{font-family:var(--font-body);font-weight:600;font-size:var(--step-2);color:var(--ink-900);letter-spacing:-0.005em;}
+
+.pair .evidence{background:var(--paper-lo);border:1px solid var(--paper-edge);border-radius:var(--r-btn);padding:var(--sp-3);font-size:var(--step-1);line-height:1.75;color:var(--ink-700);font-variant-numeric:tabular-nums lining-nums;}
+.pair .evidence .k{color:var(--ink-500);}
+.pair table{width:100%;border-collapse:collapse;font-family:var(--font-body);font-size:var(--step-1);margin-top:var(--sp-2);font-variant-numeric:tabular-nums lining-nums;}
+.pair table th,.pair table td{padding:var(--sp-1) var(--sp-2);text-align:left;border-bottom:1px solid var(--paper-edge);}
+.pair table thead th{font-size:var(--step-0);letter-spacing:0.04em;color:var(--ink-500);font-weight:500;}
+.pair table td{color:var(--ink-700);}
+.pair table td[data-flag="miss"]{position:relative;}
+.pair table td[data-flag="miss"]::after{content:"";position:absolute;top:50%;right:8px;width:6px;height:6px;border-radius:50%;transform:translateY(-50%);background:var(--flag-600);}
+
+.optA h2,.optA .pullquote{font-family:'Fraunces',Georgia,serif;}
+.optA .evidence,.optA table{font-family:'JetBrains Mono',monospace;}
+
+.optB h2,.optB .pullquote{font-family:'Source Serif 4',Georgia,serif;}
+.optB .evidence,.optB table{font-family:'IBM Plex Mono',monospace;}
+.optB table th,.optB table td{font-family:'IBM Plex Mono',monospace;}
+
+.decision{margin-top:var(--sp-5);border-top:1px solid var(--line);padding-top:var(--sp-4);max-width:68ch;}
+.decision p{font-size:var(--step-2);color:var(--ink-700);line-height:1.6;}
+.decision p + p{margin-top:var(--sp-2);}
+
+@media (max-width:900px){.pairs{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="meta">Type pairing challenger · Labs identity · resolved: B</div>
+  <h1>Fraunces, recast — or Source Serif 4?</h1>
+  <p>Identical content, twice. Only the display/pull-quote serif and the evidence mono swap between columns; Inter and every weight/size number stay fixed so the only variable is the typeface itself.</p>
+</div>
+
+<div class="pairs">
+
+  <div class="pair optA">
+    <div class="pair-head">
+      <span class="tag">A — continuity pick</span>
+      <span class="stack">Fraunces · Inter · JetBrains Mono</span>
+    </div>
+    <h2>The judge that grades the judges.</h2>
+    <p class="standfirst">An independent audit of automated image judges — measured against a blind human panel, six models at a time.</p>
+    <p class="pullquote">The judge is the steering wheel. If it's wrong, the model is trained to be wrong with confidence.</p>
+    <div>
+      <div class="cardtitle">Intent Configuration Interface</div>
+      <div class="evidence" style="margin-top:8px;">
+        <div><span class="k">run:</span> c0-resort-2026-07-08</div>
+        <div><span class="k">kappa (human, n=1, measured):</span> 0.81</div>
+      </div>
+      <table>
+        <thead><tr><th scope="col">Judge</th><th scope="col">Composition</th><th scope="col">Color grade</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">GPT-4o-as-judge</th><td>92%</td><td data-flag="miss">58%</td></tr>
+          <tr><th scope="row">PickScore</th><td data-flag="miss">61%</td><td>94%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pair optB">
+    <div class="pair-head">
+      <span class="tag">B — sober / docs-native</span>
+      <span class="stack">Source Serif 4 · Inter · IBM Plex Mono</span>
+    </div>
+    <h2>The judge that grades the judges.</h2>
+    <p class="standfirst">An independent audit of automated image judges — measured against a blind human panel, six models at a time.</p>
+    <p class="pullquote">The judge is the steering wheel. If it's wrong, the model is trained to be wrong with confidence.</p>
+    <div>
+      <div class="cardtitle">Intent Configuration Interface</div>
+      <div class="evidence" style="margin-top:8px;">
+        <div><span class="k">run:</span> c0-resort-2026-07-08</div>
+        <div><span class="k">kappa (human, n=1, measured):</span> 0.81</div>
+      </div>
+      <table>
+        <thead><tr><th scope="col">Judge</th><th scope="col">Composition</th><th scope="col">Color grade</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">GPT-4o-as-judge</th><td>92%</td><td data-flag="miss">58%</td></tr>
+          <tr><th scope="row">PickScore</th><td data-flag="miss">61%</td><td>94%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="decision">
+  <p><strong>Decision rule:</strong> pick the version a stranger would describe as "a lab report you'd trust," not "a beautiful portfolio." Read the two h2s and pull-quotes at a glance, away from this note, before deciding.</p>
+  <p>Constraint: whatever wins here gets adopted by the dark mode (Variation B) too — this is a one-time fork, not a per-mode choice. If B wins, Variation B's current Fraunces hero and JetBrains Mono receipts get re-cut to match, and the Studios/Labs split becomes a real typographic split, not just a palette one.</p>
+</div>
+
+</body>
+</html>
