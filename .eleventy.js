@@ -22,6 +22,12 @@ module.exports = function(eleventyConfig) {
   // Pass through any images in collections
   eleventyConfig.addPassthroughCopy("collections/**/*.{jpg,jpeg,png,gif,svg,webp}");
 
+  // Pass through the public Labs landing page and its assets. Research drafts
+  // live under labs/ too, but stay out of the production output until ready.
+  eleventyConfig.addPassthroughCopy("labs/index.html");
+  eleventyConfig.addPassthroughCopy("labs/assets");
+  eleventyConfig.ignores.add("labs/**");
+
   // ============================================
   // COLLECTIONS
   // ============================================
@@ -233,6 +239,8 @@ module.exports = function(eleventyConfig) {
   // Ignore project config files
   eleventyConfig.ignores.add("CLAUDE.md");
   eleventyConfig.ignores.add("README.md");
+  eleventyConfig.ignores.add(".claude/**");
+  eleventyConfig.ignores.add(".agents/**");
 
   // Ignore mockup files
   eleventyConfig.ignores.add("mockups/**");

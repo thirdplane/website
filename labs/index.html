@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>thirdplane labs: independent assessment of AI evaluation claims</title>
+<meta name="description" content="Evidence-limited independent assessment for consequential AI evaluation claims: preserve evidence, test defined failure modes, and state what the result does and does not support.">
+<link rel="canonical" href="https://www.thirdplane.io/labs/">
+<link rel="icon" href="/labs/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/labs/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/labs/assets/apple-touch-icon-180.png">
+<meta name="theme-color" content="#FAF8F4">
+<meta property="og:title" content="thirdplane labs: independent assessment of AI evaluation claims">
+<meta property="og:description" content="Evidence-limited independent assessment for consequential AI evaluation claims.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.thirdplane.io/labs/">
+<meta property="og:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
+<!--
+  LABS LANDING: v0, structure per docs/LABS_LANDING_BRIEF.md.
+  Design system copied verbatim from mockups/light-cool-mono-specimen.html
+  (round 4): cool paper/ink scale, hairlines, spacing/type token grids,
+  Charter / Inter / IBM Plex Mono. Strict monochrome: the data
+  accent (--flag-600) is commented out below, reserved for the data
+  components deferred to publication launch (§7 of the brief).
+
+  COPY: superseded 2026-07-16 by ideo-g-exp/docs/website-positioning.md,
+  which is now the source of truth for site copy (thirdplane-positioning.md
+  stays the third-person/investor register; don't pull from it here). Per
+  that doc's v0 page inventory ("nothing else"): hero + subline, the
+  three-sentence method block, the one-line credibility disqualifier, the
+  research note as the single proof artifact, and the door. The old
+  "What we audit" three-service breakdown, "Why independence," and "Who"
+  sections are cut for v0: the independence line is folded into the
+  subline, and the founder bio doesn't ship until it's decided where it
+  goes. The disqualifier line reuses the page's one serif-italic pull-quote
+  slot (p.flourish) per the design system's italic-is-rare rule.
+  Not the publication site: no blind test, no divergence table, no
+  receipts, no fabricated numbers. One page, one door.
+
+  2026-07-19: retinted to the warm brand system (logo-design-brief-2026-07-18.md §8d): cream paper, Charter serif stack, verdict orange replaces red as the reserved accent; tripod mark added to masthead. Wordmark corrected to sans (Inter 600/400 split) per brief §4: serif is reserved for headlines.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+
+  /* ---- Cool paper scale (porcelain / blue-grey) ---- */
+  --paper-hi:   #FFFEFB;
+  --paper:      #FAF8F4;
+  --paper-lo:   #F2EEE7;
+  --paper-edge: #E4E0D8;
+
+  /* ---- Ink scale (neutral, cool-adjacent near-black; no brown) ---- */
+  --ink-900: #14161A;  /* display headings: 17.1:1 on paper */
+  --ink-700: #43464C;  /* body text: 8.9:1 on paper */
+  --ink-500: #66696F;  /* secondary / captions / meta: 5.2:1 on paper */
+
+  /* ---- Hairlines (ink at low alpha) ---- */
+  --line:        rgba(20,22,26,0.14);
+  --line-strong: rgba(20,22,26,0.30);
+
+  /* ---- Data accent: verdict orange, adopted 2026-07-19. Activated
+     for the divergence illustration (abstract, no numbers: iconography,
+     not evidence). The data components proper (blind test, divergence
+     table, receipts) still wait for publication launch. See brief §7. ---- */
+  --flag-600: #E04E2A;
+
+  /* ---- Type scale: six steps + a hero clamp ---- */
+  --step-0: 0.75rem;
+  --step-1: 0.9rem;
+  --step-2: 1.05rem;
+  --step-3: 1.35rem;
+  --step-4: 2.1rem;
+  --step-5: 3.3rem;
+  --hero: clamp(2.6rem, 7vw, 4.2rem);
+
+  /* ---- Spacing: 8px grid ---- */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 48px;
+  --sp-6: 64px;
+  --sp-7: 80px;
+
+  /* ---- Radii: three tiers ---- */
+  --r-card:  8px;
+  --r-btn:   6px;
+  --r-thumb: 4px;
+
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-serif:Charter,'Bitstream Charter','Sitka Text',Cambria,Georgia,serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--paper); color:var(--ink-700);
+  font-family:var(--font-body); font-optical-sizing:auto; line-height:1.6;
+  padding:var(--sp-6) clamp(var(--sp-3),6vw,var(--sp-7));
+}
+.wrap{max-width:1160px;margin:0 auto;}
+.meta{font-family:var(--font-mono);font-size:var(--step-0);letter-spacing:0.04em;color:var(--ink-500);}
+h1,h2,h3{text-wrap:balance;}
+
+/* ---- masthead ---- */
+.masthead{border-bottom:1px solid var(--line);padding-bottom:var(--sp-3);margin-bottom:var(--sp-6);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-2);}
+.brand{display:flex;align-items:center;gap:12px;}
+.wordmark{font-family:var(--font-body);font-weight:600;
+  font-size:var(--step-3);color:var(--ink-900);letter-spacing:-0.01em;}
+.wordmark .labs{font-weight:400;color:var(--ink-700);}
+.masthead-actions{display:flex;align-items:center;gap:var(--sp-3);}
+.masthead-cta{font-size:var(--step-0);white-space:nowrap;}
+
+/* ---- hero ---- */
+.hero{max-width:780px;margin-bottom:var(--sp-7);}
+.hero-copy{max-width:760px;}
+.hero h1{
+  font-family:var(--font-serif);font-weight:400;font-style:normal;
+  font-size:var(--hero);line-height:1.08;letter-spacing:-0.01em;
+  color:var(--ink-900);max-width:17ch;margin-bottom:var(--sp-4);
+}
+.hero .standfirst{
+  font-family:var(--font-body);font-weight:500;font-size:var(--step-2);
+  color:var(--ink-900);max-width:58ch;letter-spacing:-0.005em;
+}
+.hero-focus{font-size:var(--step-1);line-height:1.55;max-width:62ch;margin-top:var(--sp-4);}
+.hero-focus .meta{display:block;margin-bottom:var(--sp-1);}
+
+/* ---- section rhythm ---- */
+section{margin-bottom:var(--sp-6);}
+.subhead{font-family:var(--font-body);font-weight:600;font-size:var(--step-2);color:var(--ink-900);
+  letter-spacing:-0.005em;border-top:1px solid var(--line);padding-top:var(--sp-2);margin-bottom:var(--sp-3);}
+
+/* ---- landing-page argument: a small number of coherent bands ---- */
+.decision-context{max-width:900px;border-top:1px solid var(--line);}
+.decision-context > h2{font-family:var(--font-body);font-size:var(--step-2);font-weight:600;color:var(--ink-900);letter-spacing:-0.005em;padding-top:var(--sp-2);}
+.decision-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:var(--sp-3);border-bottom:1px solid var(--line);padding:var(--sp-3) 0;}
+.decision-row > p:last-child{font-size:var(--step-1);line-height:1.6;max-width:62ch;}
+.decision-row > p.flourish{font-size:var(--step-2);line-height:1.45;color:var(--ink-900);}
+p.flourish{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--ink-900);}
+
+/* ---- qualification, bounded offer, and proof ---- */
+.outcome{max-width:900px;border-top:1px solid var(--line);padding-top:var(--sp-2);}
+.outcome > .subhead{border:0;padding:0;}
+.outcome-statement{font-family:var(--font-serif);font-size:var(--step-3);line-height:1.4;color:var(--ink-900);max-width:38ch;margin-top:var(--sp-3);}
+.outcome-boundary{display:grid;grid-template-columns:170px minmax(0,1fr);gap:var(--sp-3);border-top:1px solid var(--line);padding-top:var(--sp-2);margin-top:var(--sp-4);}
+.outcome-boundary p:not(.meta){font-size:var(--step-1);line-height:1.55;max-width:62ch;}
+.comparison{max-width:900px;border-top:1px solid var(--line);padding-top:var(--sp-2);}
+.comparison h2{font-family:var(--font-body);font-size:var(--step-2);font-weight:600;color:var(--ink-900);letter-spacing:-0.005em;margin-bottom:var(--sp-3);}
+.comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.comparison-panel{padding:var(--sp-3) var(--sp-4) var(--sp-3) 0;}
+.comparison-panel + .comparison-panel{border-left:1px solid var(--line);padding-left:var(--sp-4);}
+.comparison-panel h3{font-family:var(--font-serif);font-weight:400;font-size:var(--step-3);line-height:1.35;color:var(--ink-900);margin-top:var(--sp-2);min-height:2.7em;}
+.comparison-panel ul{list-style:none;margin-top:var(--sp-3);}
+.comparison-panel li{border-top:1px solid var(--line);font-size:var(--step-1);line-height:1.5;padding:var(--sp-2) 0;}
+.practice{max-width:900px;border-top:1px solid var(--line);padding-top:var(--sp-2);}
+.practice > .subhead{border:0;padding:0;}
+.practice > p{font-size:var(--step-1);line-height:1.6;max-width:64ch;}
+.method{border-top:1px solid var(--line);padding-top:var(--sp-2);margin-top:var(--sp-4);}
+.method-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-3);margin-bottom:var(--sp-3);}
+.method-head h3{font-family:var(--font-body);font-size:var(--step-2);font-weight:600;color:var(--ink-900);letter-spacing:-0.005em;}
+.method-strip{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.method-strip li{font-size:var(--step-1);line-height:1.45;padding:var(--sp-2) var(--sp-3) var(--sp-2) 0;color:var(--ink-900);}
+.method-strip li + li{border-left:1px solid var(--line);padding-left:var(--sp-3);}
+.background{max-width:900px;border-top:1px solid var(--line);padding-top:var(--sp-2);}
+.background > .subhead{border:0;padding:0;}
+.background-copy{max-width:62ch;}
+.background-copy p{font-size:var(--step-1);line-height:1.6;margin-top:var(--sp-3);}
+.background-copy p + p{margin-top:var(--sp-2);}
+.research-proof{max-width:900px;border-top:1px solid var(--line);padding-top:var(--sp-2);}
+.research-proof .subhead{border:0;padding:0;}
+.research-proof p{font-size:var(--step-1);max-width:64ch;}
+.research-proof p + p{margin-top:var(--sp-2);}
+.research-study{border-left:1px solid var(--line-strong);padding-left:var(--sp-2);margin-top:var(--sp-3)!important;}
+.research-study .meta{display:block;margin-bottom:var(--sp-1);}
+
+.door{max-width:900px;border-top:1px solid var(--line);padding-top:var(--sp-3);margin-top:var(--sp-7);}
+.door p{font-size:var(--step-1);max-width:60ch;}
+.action-row{margin-top:var(--sp-3);font-size:var(--step-1);}
+
+/* ---- links + focus ---- */
+a.inline{color:var(--ink-900);text-decoration-color:var(--line-strong);text-underline-offset:3px;text-decoration-thickness:1px;}
+a.inline:hover{text-decoration-color:var(--ink-900);}
+a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
+.link-forward::after{content:" →";}
+@media (prefers-reduced-motion: no-preference){
+  a.inline{transition:text-decoration-color .2s ease;}
+}
+
+/* ---- footer ---- */
+.foot{border-top:1px solid var(--line);padding-top:var(--sp-3);margin-top:var(--sp-6);}
+@media (max-width:800px){
+  .hero{margin-bottom:var(--sp-7);}
+  section{margin-bottom:var(--sp-7);}
+  .outcome-boundary{grid-template-columns:1fr;gap:var(--sp-1);max-width:620px;}
+  .comparison-grid{grid-template-columns:1fr;}
+  .comparison-panel,.comparison-panel + .comparison-panel{padding:var(--sp-3) 0;border-left:0;}
+  .comparison-panel h3{min-height:0;}
+  .method-strip{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .method-strip li:nth-child(odd){border-left:0;padding-left:0;}
+  .method-strip li:nth-child(even){border-left:1px solid var(--line);padding-left:var(--sp-3);}
+  .method-strip li:nth-child(n+3){border-top:1px solid var(--line);}
+}
+@media (max-width:600px){
+  body{padding-top:var(--sp-3);}
+  .masthead{margin-bottom:var(--sp-5);}
+  .masthead-actions{width:100%;flex-wrap:wrap;align-items:flex-start;justify-content:flex-start;gap:var(--sp-1) var(--sp-3);}
+  .masthead-actions .meta{flex:0 0 100%;}
+  .hero h1{max-width:13ch;}
+  .decision-row{grid-template-columns:1fr;gap:var(--sp-1);}
+  .method-strip{grid-template-columns:1fr;}
+  .method-strip li + li{border-left:0;border-top:1px solid var(--line);padding-left:0;}
+  .method-strip li:nth-child(even){border-left:0;padding-left:0;}
+  .method-strip li{padding:var(--sp-2) 0;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="brand">
+    <!-- The mark is the one place orange legitimately renders on the v0 page: it's the brand mark, not a data component. -->
+    <svg width="30" height="30" viewBox="90 60 390 420" aria-hidden="true"><path d="M152,418 L282,196 L413,418" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round" stroke-linejoin="round"/><path d="M282,214 L282,443" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round"/><path d="M210,186 Q261,82 344,156" fill="none" stroke="#E04E2A" stroke-width="34" stroke-linecap="round"/></svg>
+    <div class="wordmark">thirdplane <span class="labs">labs</span></div>
+  </div>
+  <div class="masthead-actions">
+    <p class="meta">independent evidence for AI measurement claims</p>
+    <a class="inline masthead-cta" href="#request-research">Request a conversation</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Can your measurement system support the claim you are making?</h1>
+      <p class="standfirst">Thirdplane produces dated, evidence-limited assessments of the judges, verifiers, reward signals, labels, and selection policies behind consequential AI claims.</p>
+      <p class="action-row"><a class="inline" href="#request-research">Request a research conversation</a></p>
+      <p class="hero-focus"><span class="meta">INITIAL FOCUS</span>Teams selling RL environments, training data, or evaluation systems that another organization must rely on.</p>
+    </div>
+  </section>
+
+  <section class="decision-context" aria-labelledby="claim-title">
+    <h2 id="claim-title">The claim at stake</h2>
+    <div class="decision-row">
+      <p class="meta">THE RISK</p>
+      <p>Scores train, rank, and sell AI systems. But once a model or vendor optimizes against a score, it can stop measuring the outcome a customer relies on.</p>
+    </div>
+    <div class="decision-row">
+      <p class="meta">WHEN IT MATTERS</p>
+      <p>When a customer, procurement team, or counterparty must trust a claim; when a release, training, purchase, or public decision depends on it; and when ordinary tests cannot fully settle the human or semantic outcome at stake.</p>
+    </div>
+    <div class="decision-row">
+      <p class="meta">THE LIMIT</p>
+      <p class="flourish">If a claim is fully and objectively checkable, such as whether a date was extracted correctly or a test passed, you may not need us.</p>
+    </div>
+  </section>
+
+  <section class="outcome" aria-labelledby="outcome-title">
+    <h2 class="subhead" id="outcome-title">What Thirdplane can establish</h2>
+    <p class="outcome-statement">A dated, evidence-limited assessment of whether a specified measurement system supports the claim being made, including where it does not.</p>
+    <aside class="outcome-boundary">
+      <p class="meta">THE BOUNDARY</p>
+      <p>It is not a certificate, a claim of universal trust, or a substitute for a buyer’s own judgment.</p>
+    </aside>
+  </section>
+
+  <section class="comparison" aria-labelledby="comparison-title">
+    <h2 id="comparison-title">The evidence path changes</h2>
+    <div class="comparison-grid">
+      <div class="comparison-panel">
+        <p class="meta">WITHOUT INDEPENDENT REVIEW</p>
+        <h3>The claim rests on the system owner’s evidence.</h3>
+        <ul>
+          <li>The owner defines the task, evidence, and success rule.</li>
+          <li>The boundary of what the score supports is left to inference.</li>
+          <li>A buyer has no separate path to inspect scope or limits.</li>
+        </ul>
+      </div>
+      <div class="comparison-panel">
+        <p class="meta">WITH INDEPENDENT REVIEW</p>
+        <h3>A specified claim has an inspectable evidence path.</h3>
+        <ul>
+          <li>A dated record identifies the version and evidence reviewed.</li>
+          <li>Tests and a separate reference path are defined for one claim.</li>
+          <li>Findings state both the evidence of support and the limits.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="practice" aria-labelledby="systems-title">
+    <h2 class="subhead" id="systems-title">What we examine</h2>
+    <p>Judges, verifiers, reward signals, label sets, and selection policies are different parts of the same measurement system. The relevant question is whether that specified system supports a specified claim for the population and decision at hand.</p>
+    <div class="method" aria-labelledby="method-title">
+      <div class="method-head">
+        <h3 id="method-title">How we work</h3>
+      </div>
+      <ol class="method-strip">
+        <li>Freeze the version.</li>
+        <li>Define the test.</li>
+        <li>Compare against an independent reference.</li>
+        <li>State the limits.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="background" aria-labelledby="background-title">
+    <h2 class="subhead" id="background-title">Why this work</h2>
+    <div class="background-copy">
+      <p>Thirdplane Labs is led by Jasmine Poon, who spent nearly five years at <a class="inline" href="https://www.ontra.ai/" target="_blank" rel="noopener noreferrer">Ontra</a> across AI/ML product, platform, and infrastructure.</p>
+      <p>She built retrieval, evaluation, and LLM-as-a-judge systems for Ontra’s AI organization. That experience made the measurement problem practical.</p>
+    </div>
+  </section>
+
+  <section class="research-proof" aria-labelledby="essay-title">
+    <h2 class="subhead" id="essay-title">Research in progress</h2>
+    <p><strong>Who checks the judge? The missing layer in AI evaluation.</strong></p>
+    <p class="meta">ESSAY IN DEVELOPMENT</p>
+    <p>Why scores need evidence beyond self-attestation when people optimize against them.</p>
+    <p class="research-study"><span class="meta">BOUNDED STUDY</span>We are assessing whether public Terminal Bench artifacts can support a dated, reproducible study. It would not certify the benchmark.</p>
+  </section>
+
+  <section class="door" id="request-research">
+    <h2 class="subhead">Tell us what the score is meant to measure.</h2>
+    <p>We are conducting a small number of 20-minute research conversations with teams whose customers or counterparties rely on an evaluation claim. This is not an automated sales funnel or a commitment to an engagement.</p>
+    <p class="action-row"><a class="inline" href="mailto:j@thirdplane.io?subject=Thirdplane%20Labs%20research%20conversation">Request a research conversation: j@thirdplane.io</a></p>
+  </section>
+</main>
+
+<footer class="foot meta">
+  © 2026 thirdplane labs · <a class="inline link-forward" href="/">studio work</a>
+</footer>
+
+</div>
+</body>
+</html>
