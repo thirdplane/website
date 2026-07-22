@@ -13,6 +13,16 @@ module.exports = function(eleventyConfig) {
   // Pass through assets directory (for future use)
   eleventyConfig.addPassthroughCopy("assets");
 
+  // Publish the site mark at the conventional root paths browsers request for
+  // tabs, bookmarks, and installed shortcuts.
+  eleventyConfig.addPassthroughCopy({
+    "assets/favicon.svg": "favicon.svg",
+    "assets/favicon-32.png": "favicon-32.png",
+    "assets/favicon-16.png": "favicon-16.png",
+    "assets/favicon.ico": "favicon.ico",
+    "assets/apple-touch-icon-180.png": "apple-touch-icon.png"
+  });
+
   // Pass through CSS partials directory
   eleventyConfig.addPassthroughCopy("_includes/styles");
 
