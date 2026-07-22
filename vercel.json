@@ -4,6 +4,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/labs",
+      "destination": "/labs/",
+      "permanent": true
+    },
+    {
       "source": "/mindreader",
       "destination": "https://docs.google.com/presentation/d/1Y87IkV7AYUV72fjJ36Kbc1aQxfRxdNiPsm7tOhV-3yw/edit?usp=sharing",
       "permanent": false

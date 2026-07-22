@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#FAF8F4"/>
+<rect x="6" y="6" width="1188" height="618" fill="none" stroke="#E4E0D8" stroke-width="2"/>
+<g transform="translate(457.3,69.3) scale(0.505)"><path d="M152,418 L282,196 L413,418" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M282,214 L282,443" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round"/>
+<path d="M210,186 Q261,82 344,156" fill="none" stroke="#E04E2A" stroke-width="34" stroke-linecap="round"/></g>
+<text x="377" y="418" font-family="Inter" font-size="62" font-weight="700" fill="#14161A" letter-spacing="-0.5">thirdplane</text>
+<text x="702" y="418" font-family="Inter" font-size="62" font-weight="400" fill="#44474D">labs</text>
+<text x="600" y="484" text-anchor="middle" font-family="Inter" font-size="25" fill="#6B6E74" letter-spacing="1">independent audits of AI training judgment</text>
+</svg>

@@ -1,5 +1,7 @@
 AGENTS.md
 CLAUDE.md
+.claude/**
+.agents/**
 tmp/
 tmp_*/
 node_modules/
