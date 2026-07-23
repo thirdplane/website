@@ -69,6 +69,10 @@ h1,h2,h3{text-wrap:balance;}
 .article-head{grid-column:2 / 4;max-width:860px;margin-bottom:var(--sp-7);}
 .article-head h1{font-family:var(--font-serif);font-weight:400;font-style:normal;font-size:var(--hero);line-height:1.08;letter-spacing:-0.01em;color:var(--ink-900);max-width:15ch;margin:var(--sp-3) 0 var(--sp-4);}
 .standfirst{font-family:var(--font-body);font-weight:500;font-size:var(--step-2);color:var(--ink-900);max-width:58ch;letter-spacing:-0.005em;}
+.article-tldr{border-top:1px solid var(--line);margin-top:var(--sp-4);max-width:58ch;padding-top:var(--sp-2);}
+.article-tldr .meta{margin-bottom:var(--sp-2);}
+.article-tldr ul{list-style:none;border-top:1px solid var(--line);}
+.article-tldr li{border-bottom:1px solid var(--line);font-size:var(--step-1);line-height:1.5;padding:var(--sp-2) 0;}
 .article-toc{grid-column:1;position:sticky;top:var(--sp-4);padding-top:var(--sp-1);}
 .toc-label{margin-bottom:var(--sp-2);}
 .article-toc ol{list-style:none;border-top:1px solid var(--line);}
@@ -77,6 +81,7 @@ h1,h2,h3{text-wrap:balance;}
 .article-toc a:hover{color:var(--ink-900);}
 .article-body{grid-column:2;min-width:0;}
 .article-body h2{font-family:var(--font-body);font-weight:600;font-size:var(--step-2);color:var(--ink-900);letter-spacing:-0.005em;border-top:1px solid var(--line);padding-top:var(--sp-2);margin:var(--sp-6) 0 var(--sp-3);}
+.article-body h3{font-family:var(--font-serif);font-size:var(--step-3);font-weight:400;line-height:1.35;color:var(--ink-900);margin:var(--sp-5) 0 var(--sp-3);}
 .article-body p{font-size:var(--step-2);line-height:1.68;margin-bottom:var(--sp-3);}
 .article-body ol{padding-left:1.35rem;margin:0 0 var(--sp-3);font-size:var(--step-2);line-height:1.6;}
 .article-body li{padding-left:var(--sp-1);margin-bottom:var(--sp-2);}
@@ -125,6 +130,14 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
     <p class="meta">INDEPENDENT EVALUATION ASSURANCE</p>
     <h1>Who checks the judge?</h1>
     <p class="standfirst">AI systems increasingly use verifiers, judges, reward models, and labels to turn a messy outcome into a score. Those tools can be useful. But once people optimize against a score, its blind spots can become targets. An independent review is a way to test that risk—and state its limits—rather than argue about it.</p>
+    <section class="article-tldr" aria-labelledby="tldr-title">
+      <p class="meta" id="tldr-title">TL;DR</p>
+      <ul>
+        <li>Designed <em>Steering by Recognition</em>, an experimental inference-time interface for Ideogram 4.0. It asked whether a qualitative visual target, such as a “vibe,” could be recognized, parameterized, and transferred through activation steering.</li>
+        <li>Developed a blind two-alternative forced-choice evaluation that separated user preference from model-output presentation and tested whether an intervention improved perceived target alignment.</li>
+        <li>Explored a local-geometry lens for steering: whether directions in activation space could act as distinct controls, and where that approximation became unstable or entangled. This is related to, but distinct from, Anthropic’s later J-space analysis.</li>
+      </ul>
+    </section>
   </header>
   <nav class="article-toc" aria-label="On this page">
     <p class="meta toc-label">ON THIS PAGE</p>
@@ -134,6 +147,7 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
       <li><a href="#integrity">Integrity checks</a></li>
       <li><a href="#review">Independent review</a></li>
       <li><a href="#reference">Human reference</a></li>
+      <li><a href="#jacobian">Jacobian lens</a></li>
       <li><a href="#study">A bounded study</a></li>
       <li><a href="#next">What to check next</a></li>
     </ol>
@@ -170,6 +184,10 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
     <h2 id="reference">Why a human reference sometimes matters</h2>
     <p>Thirdplane’s earlier visual research raised this problem in a concrete form. An initial pilot asked whether vision-language models could reproduce a blinded visual judgment that people could recognize but could not fully state as a verbal rubric. One model appeared to track a crop artifact that people barely registered.</p>
     <p>The pilot had only partial construct stability, and a related comparison was confounded. It does not establish a limitation of every vision model or every visual task. Its narrower lesson is that, where a score is meant to stand in for a human judgment beyond the available rubric, an independent human reference may be necessary. The visual study’s methods and limits are documented separately in <a class="inline" href="/works/model-internals-research/">the research note</a>.</p>
+    <h3 id="jacobian">The Jacobian lens</h3>
+    <p>Anthropic’s July 2026 <a class="inline" href="https://www.anthropic.com/research/global-workspace">research on the Jacobian lens</a> offers a related reason not to treat a model’s explanation as a full account of its judgment. Applied across a language model’s layers, the lens identifies representations associated with words the model could say if asked. Anthropic calls the resulting J-space small: the component modeled this way accounted for less than a tenth of activation variance. In its experiments, the J-space supported report, deliberate control, and some multistep reasoning. The authors also describe the lens as incomplete and token-anchored, not a map of all model cognition.</p>
+    <p>The visual pilot makes a narrower, behavioral point. Two independent VLM judges, working only from an expert’s written description, could not reproduce that expert’s blinded sort much better than chance. The description was not enough to transfer the boundary that guided the judgment. This is not evidence that people and language models share a mechanism.</p>
+    <p>For a model judge, an explanation should therefore be treated as one artifact of the measurement system, not its full audit trail. Whether a better prompt or rubric repairs a particular error is an empirical question. For a consequential claim, the check remains behavioral: compare blinded judgments against an independent reference, hold plausible confounds fixed, and show that the score tracks the outcome it is meant to represent.</p>
     <h2 id="study">A bounded public study can still be useful</h2>
     <p>Thirdplane Labs is first assessing whether the public Terminal Bench artifacts can support a limited, reproducible study. No study should begin until the accessible evidence can be preserved as a dated snapshot and shown to support the stated population.</p>
     <p>If that feasibility gate is met, the study would inspect defined task and verifier defects, examine trace evidence under a pre-specified exploit-use rule, and test a small, stated set of exploit patterns. It would not certify the whole benchmark. Public evidence for passing trials is not automatically complete evidence for all failures, and planted patterns establish detection only for the patterns tested. Those limits belong in the report, not in the footnotes.</p>
