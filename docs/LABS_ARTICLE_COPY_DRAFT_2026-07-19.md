@@ -4,12 +4,6 @@
 
 **Standfirst:** AI systems increasingly use verifiers, judges, reward models, and labels to turn a messy outcome into a score. Those tools can be useful. But once people optimize against a score, its blind spots can become targets. An independent review is a way to test that risk—and state its limits—rather than argue about it.
 
-## TL;DR
-
-- Designed *Steering by Recognition*, an experimental inference-time interface for Ideogram 4.0. It asked whether a qualitative visual target, such as a “vibe,” could be recognized, parameterized, and transferred through activation steering.
-- Developed a blind two-alternative forced-choice evaluation that separated user preference from model-output presentation and tested whether an intervention improved perceived target alignment.
-- Explored a local-geometry lens for steering: whether directions in activation space could act as distinct controls, and where that approximation became unstable or entangled. This is related to, but distinct from, Anthropic’s later J-space analysis.
-
 ---
 
 An AI benchmark score can look like a fact: an accuracy rate, a pass rate, a reward-hack rate, or a claim that a training environment produces an improvement.
@@ -69,14 +63,6 @@ Thirdplane’s earlier visual research raised this problem in a concrete form. A
 
 The pilot had only partial construct stability, and a related comparison was confounded. It does not establish a limitation of every vision model or every visual task. Its narrower lesson is that, where a score is meant to stand in for a human judgment beyond the available rubric, an independent human reference may be necessary. The visual study’s methods and limits are documented separately in [the research note](/works/model-internals-research/).
 
-### The Jacobian lens
-
-Anthropic’s July 2026 [research on the Jacobian lens](https://www.anthropic.com/research/global-workspace) offers a related reason not to treat a model’s explanation as a full account of its judgment. Applied across a language model’s layers, the lens identifies representations associated with words the model could say if asked. Anthropic calls the resulting J-space small: the component modeled this way accounted for less than a tenth of activation variance. In its experiments, the J-space supported report, deliberate control, and some multistep reasoning. The authors also describe the lens as incomplete and token-anchored, not a map of all model cognition.
-
-The visual pilot makes a narrower, behavioral point. Two independent VLM judges, working only from an expert’s written description, could not reproduce that expert’s blinded sort much better than chance. The description was not enough to transfer the boundary that guided the judgment. This is not evidence that people and language models share a mechanism.
-
-For a model judge, an explanation should therefore be treated as one artifact of the measurement system, not its full audit trail. Whether a better prompt or rubric repairs a particular error is an empirical question. For a consequential claim, the check remains behavioral: compare blinded judgments against an independent reference, hold plausible confounds fixed, and show that the score tracks the outcome it is meant to represent.
-
 ## A bounded public study can still be useful
 
 Thirdplane Labs is first assessing whether the public Terminal Bench artifacts can support a limited, reproducible study. No study should begin until the accessible evidence can be preserved as a dated snapshot and shown to support the stated population.
@@ -104,7 +90,6 @@ An evaluation claim is stronger when the person making it is not the only person
 - [Terminal Bench leaderboard](https://www.tbench.ai/leaderboard)
 - [Agno, “Preference data for RLHF”](https://docs.agno.com/use-cases/data-labeling/preference-data)
 - [Agno, “Quality pipeline”](https://docs.agno.com/use-cases/data-labeling/quality-pipeline)
-- [Anthropic, “A global workspace in language models” (6 July 2026)](https://www.anthropic.com/research/global-workspace)
 
 ## Editorial checks before publishing
 
