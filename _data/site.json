@@ -7,12 +7,12 @@
   "email": "j@thirdplane.io",
   "social": {
     "github": "https://github.com/jasminepoon",
-    "twitter": ""
+    "twitter": "https://x.com/thirdplane_ai"
   },
   "nav": [
     { "title": "Collections", "url": "/collections/" },
-    { "title": "Thoughts", "url": "/thoughts/", "wip": true },
-    { "title": "About", "url": "/about/", "wip": true }
+    { "title": "Labs", "url": "https://www.thirdplane.io/labs", "external": true },
+    { "title": "About", "url": "https://www.linkedin.com/in/jasmine-poon/", "external": true }
   ],
   "copyright": {
     "year": 2026,
