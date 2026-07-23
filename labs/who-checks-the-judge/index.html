@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who checks the judge? — thirdplane labs</title>
+<meta name="description" content="The missing layer in AI evaluation: independent evidence for consequential scores produced by judges, verifiers, reward models, and label sets.">
+<link rel="canonical" href="https://www.thirdplane.io/labs/who-checks-the-judge/">
+<link rel="icon" href="/labs/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/labs/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/labs/assets/apple-touch-icon-180.png">
+<meta name="theme-color" content="#FAF8F4">
+<meta property="og:title" content="Who checks the judge? — thirdplane labs">
+<meta property="og:description" content="The missing layer in AI evaluation: independent evidence for consequential scores produced by judges, verifiers, reward models, and label sets.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.thirdplane.io/labs/who-checks-the-judge/">
+<meta property="og:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --paper-hi: #FFFEFB;
+  --paper: #FAF8F4;
+  --paper-lo: #F2EEE7;
+  --paper-edge: #E4E0D8;
+  --ink-900: #14161A;
+  --ink-700: #43464C;
+  --ink-500: #66696F;
+  --line: rgba(20,22,26,0.14);
+  --line-strong: rgba(20,22,26,0.30);
+  --flag-600: #E04E2A;
+  --step-0: 0.75rem;
+  --step-1: 0.9rem;
+  --step-2: 1.05rem;
+  --step-3: 1.35rem;
+  --step-4: 2.1rem;
+  --step-5: 3.3rem;
+  --hero: clamp(2.6rem, 7vw, 4.2rem);
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 48px;
+  --sp-6: 64px;
+  --sp-7: 80px;
+  --r-card: 8px;
+  --r-btn: 6px;
+  --r-thumb: 4px;
+  --font-body: 'Inter',system-ui,sans-serif;
+  --font-serif: Charter,'Bitstream Charter','Sitka Text',Cambria,Georgia,serif;
+  --font-mono: 'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink-700);font-family:var(--font-body);font-optical-sizing:auto;line-height:1.6;padding:var(--sp-6) clamp(var(--sp-3),6vw,var(--sp-7));}
+.wrap{max-width:1280px;margin:0 auto;}
+.meta{font-family:var(--font-mono);font-size:var(--step-0);letter-spacing:0.04em;color:var(--ink-500);}
+h1,h2,h3{text-wrap:balance;}
+.masthead{border-bottom:1px solid var(--line);padding-bottom:var(--sp-3);margin-bottom:var(--sp-6);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-2);}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.wordmark{font-family:var(--font-body);font-weight:600;font-size:var(--step-3);color:var(--ink-900);letter-spacing:-0.01em;}
+.wordmark .labs{font-weight:400;color:var(--ink-700);}
+.essay{--toc:176px;--body:690px;display:grid;grid-template-columns:var(--toc) minmax(0,var(--body)) minmax(180px,1fr);column-gap:clamp(var(--sp-4),5vw,var(--sp-7));align-items:start;}
+.article-head{grid-column:2 / 4;max-width:860px;margin-bottom:var(--sp-7);}
+.article-head h1{font-family:var(--font-serif);font-weight:400;font-style:normal;font-size:var(--hero);line-height:1.08;letter-spacing:-0.01em;color:var(--ink-900);max-width:15ch;margin:var(--sp-3) 0 var(--sp-4);}
+.standfirst{font-family:var(--font-body);font-weight:500;font-size:var(--step-2);color:var(--ink-900);max-width:58ch;letter-spacing:-0.005em;}
+.article-toc{grid-column:1;position:sticky;top:var(--sp-4);padding-top:var(--sp-1);}
+.toc-label{margin-bottom:var(--sp-2);}
+.article-toc ol{list-style:none;border-top:1px solid var(--line);}
+.article-toc li{border-bottom:1px solid var(--line);}
+.article-toc a{display:block;padding:10px 0;color:var(--ink-700);font-size:var(--step-0);line-height:1.35;text-decoration:none;}
+.article-toc a:hover{color:var(--ink-900);}
+.article-body{grid-column:2;min-width:0;}
+.article-body h2{font-family:var(--font-body);font-weight:600;font-size:var(--step-2);color:var(--ink-900);letter-spacing:-0.005em;border-top:1px solid var(--line);padding-top:var(--sp-2);margin:var(--sp-6) 0 var(--sp-3);}
+.article-body p{font-size:var(--step-2);line-height:1.68;margin-bottom:var(--sp-3);}
+.article-body ol{padding-left:1.35rem;margin:0 0 var(--sp-3);font-size:var(--step-2);line-height:1.6;}
+.article-body li{padding-left:var(--sp-1);margin-bottom:var(--sp-2);}
+.callout{border-left:2px solid var(--flag-600);padding:var(--sp-2) 0 var(--sp-2) var(--sp-3);color:var(--ink-900);margin:var(--sp-4) 0;font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:var(--step-3);line-height:1.4;}
+.article-notes{grid-column:3;position:sticky;top:var(--sp-4);border-top:1px solid var(--line);padding-top:var(--sp-2);}
+.article-notes > * + *{margin-top:var(--sp-3);}
+.article-notes p:not(.meta){font-size:var(--step-0);line-height:1.5;color:var(--ink-700);}
+.foot{border-top:1px solid var(--line);padding-top:var(--sp-3);margin-top:var(--sp-6);}
+a.inline{color:var(--ink-900);text-decoration-color:var(--line-strong);text-underline-offset:3px;text-decoration-thickness:1px;}
+a.inline:hover{text-decoration-color:var(--ink-900);}
+a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
+@media (prefers-reduced-motion:no-preference){a.inline{transition:text-decoration-color .2s ease;}}
+@media (max-width:1050px){
+  .wrap{max-width:760px;}
+  .essay{display:block;}
+  .article-head{max-width:720px;}
+  .article-toc{position:static;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--sp-2) 0;margin:0 0 var(--sp-5);}
+  .article-toc ol{display:flex;flex-wrap:wrap;gap:0 var(--sp-2);border:0;}
+  .article-toc li{border:0;}
+  .article-toc a{padding:4px 0;}
+  .article-notes{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-3);margin-top:var(--sp-6);}
+  .article-notes > * + *{margin-top:0;}
+}
+@media (max-width:600px){
+  body{padding-top:var(--sp-3);}
+  .masthead{margin-bottom:var(--sp-5);}
+  .article-head{margin-bottom:var(--sp-5);}
+  .article-head h1{max-width:13ch;}
+  .article-body p,.article-body ol{font-size:1rem;}
+  .article-notes{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+  <a class="brand" href="/labs/" aria-label="Thirdplane Labs home">
+    <svg width="30" height="30" viewBox="90 60 390 420" aria-hidden="true"><path d="M152,418 L282,196 L413,418" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round" stroke-linejoin="round"/><path d="M282,214 L282,443" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round"/><path d="M210,186 Q261,82 344,156" fill="none" stroke="#E04E2A" stroke-width="34" stroke-linecap="round"/></svg>
+    <span class="wordmark">thirdplane <span class="labs">labs</span></span>
+  </a>
+  <p class="meta">ESSAY / JULY 2026</p>
+</header>
+<main>
+<article class="essay">
+  <header class="article-head">
+    <p class="meta">INDEPENDENT EVALUATION ASSURANCE</p>
+    <h1>Who checks the judge?</h1>
+    <p class="standfirst">AI systems increasingly use verifiers, judges, reward models, and labels to turn a messy outcome into a score. Those tools can be useful. But once people optimize against a score, its blind spots can become targets. An independent review is a way to test that risk—and state its limits—rather than argue about it.</p>
+  </header>
+  <nav class="article-toc" aria-label="On this page">
+    <p class="meta toc-label">ON THIS PAGE</p>
+    <ol>
+      <li><a href="#optimization">Optimization changes the problem</a></li>
+      <li><a href="#training-data">The score upstream</a></li>
+      <li><a href="#integrity">Integrity checks</a></li>
+      <li><a href="#review">Independent review</a></li>
+      <li><a href="#reference">Human reference</a></li>
+      <li><a href="#study">A bounded study</a></li>
+      <li><a href="#next">What to check next</a></li>
+    </ol>
+  </nav>
+  <div class="article-body">
+    <p>An AI benchmark score can look like a fact: an accuracy rate, a pass rate, a reward-hack rate, or a claim that a training environment produces an improvement.</p>
+    <p>But every score rests on a measurement system. Someone chose the task, the verifier, the judge, the data, and the rule for deciding what counts as success. A score can be useful while its measurement system still has blind spots.</p>
+    <p>Some claims are directly checkable. A date was extracted correctly. A program passed its test suite. A required action happened. In those cases, the outcome and the measurement may be close enough that a separate review adds little.</p>
+    <p>Other claims use a score to stand in for a harder human or semantic question: was the answer useful, did the agent complete the task in the way a customer needs, or would an expert trust the result? An automated judge can apply its rubric consistently and still miss the outcome the score is meant to represent.</p>
+    <p class="callout">The reasonable question is simple: <strong>who checked the measurement?</strong></p>
+    <h2 id="optimization">Optimization changes the problem</h2>
+    <p>The risk becomes sharper when a model is trained, ranked, or selected against a score. Optimization searches for the things a measurement rewards, including places where that measurement has stopped tracking the underlying outcome.</p>
+    <p>This is not an argument against automated evaluation. Verifiers, judges, and labels make many kinds of work possible. It is an argument for treating them as part of the system under review when a score carries a consequential decision: a training run, a procurement decision, a release gate, or a public claim.</p>
+    <p>For a buyer, the relevant question is not only whether the score is high. It is whether the score still means what the buyer has been asked to believe it means.</p>
+    <h2 id="training-data">The score can sit upstream in the training data</h2>
+    <p>A score does not only appear on a benchmark or release dashboard. A preference-data or reward pipeline can turn raw or synthetic model outputs into selected training examples: a rubric ranks responses, a jury chooses a winner, and the resulting labels train a model to reproduce those preferences.</p>
+    <p>Controls such as multiple model providers, swapped answer order, confidence thresholds, and human escalation can improve that process. They do not, by agreement alone, establish that the selected preference tracks the outcome a customer cares about. Once a model is optimized against that signal, a small systematic shortcut can become trained behavior. Agno's public preference-data and quality-pipeline examples illustrate both the operational controls and their limit: agreement is not proof that a label is correct. <a class="inline" href="https://docs.agno.com/use-cases/data-labeling/preference-data">Preference-data guidance</a> · <a class="inline" href="https://docs.agno.com/use-cases/data-labeling/quality-pipeline">Quality-pipeline guidance</a></p>
+    <p>The question is therefore not only “were the labels produced consistently?” It is “does this frozen selection system provide credible evidence for the capability or quality claim being sold?”</p>
+    <h2 id="integrity">Automated integrity checks are progress</h2>
+    <p>Terminal Bench offers a useful public example. In its April 2026 integrity update, the project documented cheating and reward-hacking incidents and added new measures: trajectories are required for passing trials, and an agent judge reviews passing trials for reward hacking. Submitters can challenge claims. <a class="inline" href="https://www.tbench.ai/news/leaderboard-integrity-update">Terminal Bench describes the policy here.</a></p>
+    <p>That is valuable work. It creates a defined evidence path for passing trials, catches some problems that ordinary task verifiers miss, and creates a process for reviewing a flag.</p>
+    <p>But the automated judge is itself part of the measurement system. A false positive has a natural path to scrutiny because the submitter has a reason to appeal. A false negative needs a deliberate path of its own: a way to look for shortcuts the judge did not flag and to distinguish them from a task defect or an unsupported inference.</p>
+    <p>Without that path, a published hack rate documents cases the system found. It does not, by itself, estimate the cases it missed.</p>
+    <p>This is not a claim that Terminal Bench’s integrity process is inadequate or that any particular submission used a shortcut. It is the general measurement question: what independent evidence would be needed to characterize performance on a defined set of possible misses?</p>
+    <h2 id="review">What an independent review adds</h2>
+    <p>An independent review should not be another AI model simply agreeing with the first one. It should create a separate evidence path.</p>
+    <ol>
+      <li><strong>Freeze the evidence.</strong> Record the exact task, dataset, and split version; relevant source or synthetic-data lineage; verifier or judge configuration; rubric, prompt, and model version; selection rule; traces; and date being reviewed.</li>
+      <li><strong>Define the tests before looking at the result.</strong> State which failure modes will be checked and how a finding will be counted.</li>
+      <li><strong>Use a genuinely separate review path.</strong> Inspect task design and traces, test known failure modes, and have qualified reviewers assess a defined sample without seeing the original verdict.</li>
+      <li><strong>Publish the limits with the findings.</strong> Say which population was examined, what evidence was unavailable, and what the result does not establish.</li>
+    </ol>
+    <p>This is less glamorous than declaring a benchmark trustworthy or broken. It is more useful. A buyer can see what was checked and decide whether the evidence is sufficient for the decision at hand.</p>
+    <h2 id="reference">Why a human reference sometimes matters</h2>
+    <p>Thirdplane’s earlier visual research raised this problem in a concrete form. An initial pilot asked whether vision-language models could reproduce a blinded visual judgment that people could recognize but could not fully state as a verbal rubric. One model appeared to track a crop artifact that people barely registered.</p>
+    <p>The pilot had only partial construct stability, and a related comparison was confounded. It does not establish a limitation of every vision model or every visual task. Its narrower lesson is that, where a score is meant to stand in for a human judgment beyond the available rubric, an independent human reference may be necessary. The visual study’s methods and limits are documented separately in <a class="inline" href="/works/model-internals-research/">the research note</a>.</p>
+    <h2 id="study">A bounded public study can still be useful</h2>
+    <p>Thirdplane Labs is first assessing whether the public Terminal Bench artifacts can support a limited, reproducible study. No study should begin until the accessible evidence can be preserved as a dated snapshot and shown to support the stated population.</p>
+    <p>If that feasibility gate is met, the study would inspect defined task and verifier defects, examine trace evidence under a pre-specified exploit-use rule, and test a small, stated set of exploit patterns. It would not certify the whole benchmark. Public evidence for passing trials is not automatically complete evidence for all failures, and planted patterns establish detection only for the patterns tested. Those limits belong in the report, not in the footnotes.</p>
+    <p>The point is to demonstrate a method: preserve the evidence, test the measurement system, and produce a report that someone outside the system can inspect.</p>
+    <h2 id="next">What should be checked next?</h2>
+    <p>If your team sells an RL environment, preference-data, reward-model, synthetic-data, or evaluation system that a customer must rely on, consider three questions:</p>
+    <ol>
+      <li>What outcome is this score meant to represent?</li>
+      <li>Who is optimizing for or relying on it?</li>
+      <li>What evidence would a person outside the system need to believe it?</li>
+    </ol>
+    <p>Thirdplane Labs is conducting a small number of research conversations. If a consequential score is carrying a decision for your customer or counterparty, <a class="inline" href="/labs/#request-research">request a 20-minute research conversation</a>.</p>
+  </div>
+  <aside class="article-notes" aria-label="Essay details">
+    <div>
+      <p class="meta">READING TIME</p>
+      <p>About 8 minutes</p>
+    </div>
+    <div>
+      <p class="meta">SCOPE</p>
+      <p>This is a position essay. It proposes a method; it does not report an audit finding or certify a system.</p>
+    </div>
+  </aside>
+</article>
+<footer class="foot meta">© 2026 thirdplane labs · <a class="inline" href="/">studio work →</a></footer>
+</div>
+</body>
+</html>
