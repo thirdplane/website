@@ -8,6 +8,8 @@
       {% for item in site.nav %}
         {% if item.wip %}
           <span class="nav-link--wip" aria-disabled="true">{{ item.title }}</span>
+        {% elif item.external %}
+          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
         {% else %}
           <a href="{{ item.url }}"{% if page.url == item.url or (page.url and page.url.startsWith(item.url | replace('.html', '/'))) %} class="nav-link--active"{% endif %}>{{ item.title }}</a>
         {% endif %}
