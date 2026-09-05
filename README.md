@@ -375,7 +375,7 @@ The `writings/` to `/thoughts/` remap is defined in `writings/writings.json`:
 | `description` | No       | string   | --      | Excerpt for listing pages                |
 | `tags`        | No       | string[] | --      | Display tags (the `writing` tag is auto-added) |
 | `excerpt`     | No       | string   | --      | Used in About page timeline cards. If omitted, `description` is used as fallback. |
-| `draft`       | No       | boolean  | `false` | Field exists in directory data but filtering is not currently implemented for writings. |
+| `draft`       | No       | boolean  | `false` | Exclude the page and collection entries from production builds. |
 
 ### Vignettes (`vignettes/*.md`)
 
@@ -392,6 +392,7 @@ The `writings/` to `/thoughts/` remap is defined in `writings/writings.json`:
 | `memberOf`  | No       | string[] | --      | Collection slugs                         |
 | `badgeType` | No       | string   | --      | Type badge for collection pages          |
 | `excerpt`   | No       | string   | --      | Short description for cards and timeline |
+| `draft`     | No       | boolean  | `false` | Exclude the page and collection entries from production builds. |
 
 ### Collections (`collections/*.md`)
 
@@ -430,7 +431,9 @@ npm run build        # Standard build
 npm run build:prod   # Production: excludes draft content
 ```
 
-Draft filtering is implemented for works only. A work with `draft: true` is hidden in production builds. Writings and vignettes do not currently support draft filtering.
+Content with `draft: true` is excluded from production builds before rendering: it has no generated page and does not appear in collections, listings, or previous/next navigation. This applies to works, writings, and vignettes. Development and standard builds include drafts for local preview. Assets are still copied independently, so draft images are not private.
+
+Run `npm test` to verify draft visibility in production, development, and standard builds.
 
 ---
 
