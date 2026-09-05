@@ -7,6 +7,7 @@ This branch implements the three directions developed in the design review.
 | A — Studio notebook | `/` |
 | B — Live workbench | `/directions/workbench/` |
 | C — Research journal | `/directions/journal/` |
+| D — Open studio (existing Neon Noir style) | `/directions/open-studio/` |
 
 Run `npm run dev` and use the preview switcher at the top of each page.
 
@@ -27,3 +28,9 @@ and collection pages retain their own content and styling.
 Validation: production Eleventy build, existing draft-visibility tests, JavaScript
 syntax, and desktop/mobile browser checks in both color schemes. Preview routes,
 image loading, field-note open/close behavior, and halo controls were checked.
+
+Direction D preserves the existing Neon Noir tokens, shared navigation and
+footer, and original Nova Halo shaders. Its layout brings a personal
+introduction, selected projects, and field notes onto one continuous page.
+The halo pauses when offscreen, respects reduced motion, and has an explicit
+pause control. It uses separate page styles rather than the A–C restyle.
