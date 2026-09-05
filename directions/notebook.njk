@@ -1,0 +1,27 @@
+---
+permalink: /directions/notebook/
+title: Studio notebook
+description: "Experiments and field notes by Jasmine Poon on creative tools, human–AI interaction, and taste."
+studioDirection: a
+---
+{% extends "layouts/base.njk" %}
+{% block navigation %}{% endblock %}
+{% block styles %}<style>{% include "styles/studio-directions.css" %}</style>{% endblock %}
+{% block content %}
+{% include "components/studio-direction-nav.njk" %}
+<div id="tp-directions">
+    <div class="tp-site tp-notebook" aria-label="Studio notebook design">
+      <header class="tp-mast"><a href="/" class="tp-wordmark" aria-label="Third Plane Studios home">thirdplane<span> / Jasmine Poon</span></a><nav aria-label="Notebook navigation"><a href="#tp-a-work">Experiments</a><a href="#tp-a-notes">Notes</a><a href="#tp-a-about">About</a><a href="/collections/">Collections</a></nav></header>
+      <div class="tp-hero-a"><span class="tp-meta">A personal studio for building, observing & trying again</span><h1>I build things to<br>figure things <em>out.</em></h1><div class="tp-intro-row"><p>Experiments in creative tools, human–AI interaction, and the gap between what we mean and what machines make.</p><span class="tp-margin-note">Prototypes, small studies,<br>and the notes they leave behind.</span></div></div>
+      <section id="tp-a-work" class="tp-projects"><div class="tp-section-title"><h2>On the worktable</h2><span class="tp-meta">Selected experiments / 2026</span></div>
+        <div class="tp-project-grid"><article class="tp-feature"><a href="/works/generative-remix/" class="tp-image-button" data-open="remix" aria-label="Open Generative Remix field note"><img src="/assets/studio-directions/remix.jpg" alt="Generative Remix interface with a luminous halo and adjustable controls"></a><div class="tp-project-label"><span class="tp-meta">01 / Interface prototype</span><span class="tp-meta">Feb 2026</span></div><a href="/works/generative-remix/" class="tp-title-link" data-open="remix">Generative Remix ↗</a><p>What if AI built the knobs, and you supplied the taste?</p></article>
+        <article class="tp-secondary"><a href="/works/holovibes/" class="tp-image-button" data-open="holo" aria-label="Open Holovibes field note"><img src="/assets/studio-directions/holovibes.jpg" alt="Holovibes material playground showing a holographic street scene"></a><div class="tp-project-label"><span class="tp-meta">02 / Material study</span><span class="tp-meta">Aug 2026</span></div><a href="/works/holovibes/" class="tp-title-link" data-open="holo">Holovibes ↗</a><p>A photograph, made responsive to light and movement.</p></article></div>
+        <a href="/works/taste-score/" class="tp-index-row" data-open="intent"><span class="tp-meta">03 / Interface prototype</span><span>Intent Configuration Interface</span><span>Inspect what the model heard ↗</span></a>
+      </section>
+      <section id="tp-a-notes" class="tp-notes"><div><span class="tp-meta">From the notebook</span><h2>The questions<br>outlive the demo.</h2></div><div><a href="/works/model-internals-research/" class="tp-note-link" data-open="research"><span class="tp-meta">Research note / Jun 2026</span><h3>Steering an image model toward a quality: show not tell</h3><p>A one-week pilot did not establish a dependable control for taste. The mismatch between human and AI judgment became the next question.</p><span class="tp-text-action">Read the field note ↗</span></a><blockquote>“You can't prompt taste, but you can curate it.”<cite>From Generative Remix</cite></blockquote></div></section>
+      <section class="tp-footer" id="tp-a-about"><p>I'm Jasmine. Third Plane Studios is where I build, test, and write about these ideas.</p><a href="/labs/" target="_blank" rel="noopener">Evaluation work at Thirdplane Labs ↗</a></section>
+    </div>
+{% include "components/studio-field-note.njk" %}
+</div>
+{% endblock %}
+{% block scripts %}<script>{% include "scripts/studio-directions.js" %}</script>{% endblock %}

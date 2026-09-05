@@ -1,10 +1,13 @@
 ---
-permalink: /index.html
+permalink: /
+description: "Experiments and writing by Jasmine Poon on creative tools, human intent, and machine interpretation."
+studioHaloAtTop: true
 ---
 {% extends "layouts/base.njk" %}
 
 {% block styles %}
 <style>
+{% include "styles/open-studio.css" %}
   /* ============================================
      HOMEPAGE-SPECIFIC STYLES
      ============================================ */
@@ -33,8 +36,7 @@ permalink: /index.html
   /* ============================================
      VOID / STATEMENT LAYOUT
      ============================================ */
-  .void-section,
-  .statement-section {
+  .void-section {
     min-height: 100vh;
     position: relative;
     display: flex;
@@ -80,20 +82,6 @@ permalink: /index.html
     pointer-events: none;
   }
 
-  .statement-section {
-    background: var(--ink-900);
-    padding: 200px 0 160px;
-  }
-
-  .statement-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-soul);
-    opacity: 1;
-    pointer-events: none;
-  }
-
   .void-divider {
     position: absolute;
     left: 20%;
@@ -111,47 +99,31 @@ permalink: /index.html
     box-shadow: 0 0 18px rgba(214, 230, 255, 0.18);
   }
 
-  .statement-text {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 6vw, 56px);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    color: var(--text-100);
-    text-align: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  .return-indicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    color: var(--text-600);
-    animation: returnBounce 2s ease-in-out infinite;
-    opacity: 0.6;
-    text-decoration: none;
-    transition: color var(--transition-fast), opacity var(--transition-fast);
-    z-index: 2;
-  }
-
-  .return-indicator:hover {
-    color: var(--ice-400);
-    opacity: 1;
-  }
-
-  @keyframes returnBounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-12px); }
-  }
-
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .scroll-indicator {
       animation: none;
       opacity: 0.6;
     }
+  }
+  /* The former statement screen now opens into the studio content. */
+  .home-studio { scroll-margin-top: 70px; }
+  .home-studio .open-hero {
+    grid-template-columns: 1fr;
+    padding-top: 80px;
+    padding-bottom: 48px;
+    scroll-margin-top: 90px;
+  }
+  .home-studio .open-intro h1 { max-width: 25ch; }
+  .home-studio .open-intro p { max-width: 70ch; }
+  .home-studio .open-work,
+  .home-studio .open-notes { scroll-margin-top: 90px; }
+  @media (max-width: 600px) {
+    .nav-container { flex-wrap: wrap; gap: 8px 20px; }
+    .home-studio,
+    .home-studio .open-work,
+    .home-studio .open-notes { scroll-margin-top: 110px; }
+    .home-studio .open-hero { padding-top: 48px; padding-bottom: 32px; }
   }
 </style>
 {% endblock %}
@@ -163,14 +135,11 @@ permalink: /index.html
     <div class="void-canvas-wrap">
       <canvas class="nova-canvas" data-halo-preset="endpoint-a"></canvas>
     </div>
-    <a href="#statement" class="scroll-indicator" aria-label="Scroll to statement">&#8595;</a>
+    <a href="#statement" class="scroll-indicator" aria-label="Explore the studio">&#8595;</a>
   </section>
 
-  <!-- Screen 2: Statement -->
-  <section class="statement-section" id="statement">
-    <h1 class="statement-text">The curation of latent space.</h1>
-    <a href="#void" class="return-indicator" aria-label="Return to void">&#8593;</a>
-  </section>
+  <!-- Below the halo: introduction, experiments, and field notes. -->
+  {% include "components/open-studio-content.njk" %}
 {% endblock %}
 
 {% block scripts %}
@@ -181,7 +150,7 @@ permalink: /index.html
 
       const nav = document.getElementById('nav');
       const voidSection = document.querySelector('.void-section');
-      const statementSection = document.querySelector('.statement-section');
+      const statementSection = document.querySelector('.home-studio .open-hero');
       const canvas = document.querySelector('.nova-canvas');
       if (!voidSection || !statementSection || !canvas) return;
 
@@ -191,11 +160,7 @@ permalink: /index.html
 
       const updateNavState = () => {
         if (!nav) return;
-        if (statementInView) {
-          nav.classList.remove('scrolled');
-        } else {
-          nav.classList.toggle('scrolled', window.scrollY > 50);
-        }
+        nav.classList.toggle('scrolled', window.scrollY > 50);
       };
       updateNavState();
       window.addEventListener('scroll', updateNavState, { passive: true });
@@ -618,7 +583,9 @@ permalink: /index.html
 
       const picked = pickPalette();
       const renderer = new HaloRenderer(canvas, picked ? picked.colors : palettePresets['endpoint-a']());
-      if (!renderer.gl || prefersReducedMotion) return;
+      if (!renderer.gl || !renderer.program) return;
+      renderer.render(0);
+      if (prefersReducedMotion) return;
 
       let activePresetName = picked ? picked.name : 'endpoint-a';
       let animationId = null;

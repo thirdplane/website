@@ -1,0 +1,23 @@
+---
+permalink: /directions/journal/
+title: Research journal
+description: "Experiments and field notes by Jasmine Poon on creative tools, human–AI interaction, and taste."
+studioDirection: c
+---
+{% extends "layouts/base.njk" %}
+{% block navigation %}{% endblock %}
+{% block styles %}<style>{% include "styles/studio-directions.css" %}</style>{% endblock %}
+{% block content %}
+{% include "components/studio-direction-nav.njk" %}
+<div id="tp-directions">
+    <div class="tp-site tp-journal" aria-label="Research journal design">
+      <header class="tp-mast"><a href="/" class="tp-wordmark" aria-label="Third Plane Studios home">thirdplane<span> / studio journal</span></a><nav aria-label="Journal navigation"><a href="#tp-c-inquiry">Inquiries</a><a href="#tp-c-studies">Studies</a><a href="#tp-c-author">Jasmine Poon</a><a href="/collections/">Collections</a></nav></header>
+      <div class="tp-journal-hero"><span class="tp-meta">Interfaces, taste, and the limits of measurement</span><h1>How do we know<br>what the model<br><em>understood?</em></h1><p>Prototypes and field notes on making human intent visible—and testing what happens next.</p></div>
+      <section class="tp-lead-story" id="tp-c-inquiry"><div class="tp-story-marker"><span class="tp-meta">Lead inquiry</span><span class="tp-meta">Research pilot<br>June 2026</span><span class="tp-verdict">An inconclusive control.<br>A useful next question.</span></div><div><h2>Steering an image model toward a quality: show not tell</h2><p>A one-week, $25 pilot asked whether an image model could learn a control for a visual quality that a person could recognize but struggle to name.</p><p>The pilot did not establish that control. It redirected attention toward the gap between human judgment and AI evaluation.</p><a href="/works/model-internals-research/" class="tp-text-button" data-open="research">Read the experiment and its limits ↗</a></div></section>
+      <section id="tp-c-studies" class="tp-studies"><div class="tp-section-title"><h2>Related studies</h2><span class="tp-meta">Building the question</span></div><div class="tp-journal-grid"><article><span class="tp-meta">01 / Expressing taste</span><h3>Generative Remix</h3><p>Start with an artifact. Let AI expose its adjustable parameters.</p><a href="/works/generative-remix/" class="tp-text-button" data-open="remix">Explore the prototype ↗</a></article><article><span class="tp-meta">02 / Inspecting intent</span><h3>Intent Configuration Interface</h3><p>Make the model's interpretation something you can inspect and edit.</p><a href="/works/taste-score/" class="tp-text-button" data-open="intent">Explore the prototype ↗</a></article><article><span class="tp-meta">03 / Exploring materials</span><h3>Holovibes</h3><p>Turn flat artwork into a responsive holographic surface.</p><a href="/works/holovibes/" class="tp-text-button" data-open="holo">Explore the material study ↗</a></article></div></section>
+      <section class="tp-footer" id="tp-c-author"><p>Independent experiments and writing by Jasmine Poon.</p><a href="/labs/" target="_blank" rel="noopener">Current evaluation practice at Labs ↗</a></section>
+    </div>
+{% include "components/studio-field-note.njk" %}
+</div>
+{% endblock %}
+{% block scripts %}<script>{% include "scripts/studio-directions.js" %}</script>{% endblock %}

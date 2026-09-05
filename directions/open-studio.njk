@@ -1,0 +1,24 @@
+---
+permalink: /directions/open-studio/
+title: Open studio
+description: "Experiments and writing by Jasmine Poon on creative tools, human intent, and machine interpretation."
+studioDirection: d
+---
+{% extends "layouts/base.njk" %}
+
+{% block navigation %}
+{% include "components/studio-direction-nav.njk" %}
+{% include "components/nav.njk" %}
+{% endblock %}
+
+{% block styles %}
+<style>{% include "styles/open-studio.css" %}</style>
+{% endblock %}
+
+{% block content %}
+{% include "components/open-studio-content.njk" %}
+{% endblock %}
+
+{% block scripts %}
+<script>{% include "scripts/open-studio-halo.js" %}</script>
+{% endblock %}
