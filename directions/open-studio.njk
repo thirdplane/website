@@ -16,74 +16,7 @@ studioDirection: d
 {% endblock %}
 
 {% block content %}
-<div class="open-studio">
-  <section class="open-hero container" aria-labelledby="open-title">
-    <div class="open-intro">
-      <span class="open-label">Jasmine Poon / Third Plane Studios</span>
-      <h1 id="open-title">I build tools for the things we can't quite put into words.</h1>
-      <p>Experiments in how we express taste, make things with AI, and understand what the model understood. I build a prototype, try it, and write down what I find.</p>
-      <div class="open-actions">
-        <a class="open-primary" href="#experiments">Explore the experiments <span aria-hidden="true">↓</span></a>
-        <a href="#notes">Read the field notes <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-    <figure class="open-halo">
-      <div class="open-halo-stage">
-        <img class="open-halo-fallback" src="/assets/studio-directions/remix.jpg" alt="The Nova Halo in the Generative Remix workbench">
-        <canvas id="open-halo-canvas" aria-label="The original Nova Halo, a luminous ring with an orbiting highlight" role="img"></canvas>
-      </div>
-      <figcaption>
-        <div><span class="open-label">The curation of latent space.</span><a href="/works/generative-remix/">Nova Halo / part of Generative Remix ↗</a></div>
-        <button id="open-motion" type="button" hidden aria-pressed="false">Pause motion</button>
-      </figcaption>
-    </figure>
-  </section>
-
-  <section class="open-work container" id="experiments" aria-labelledby="open-work-title">
-    <div class="open-section-heading">
-      <div><span class="open-label">Selected experiments</span><h2 id="open-work-title">A question, made tangible.</h2></div>
-      <a href="/collections/">Explore collections ↗</a>
-    </div>
-    <div class="open-work-grid">
-      <a class="open-card" href="/works/generative-remix/">
-        <div class="open-card-media"><img src="/assets/studio-directions/remix.jpg" alt="Generative Remix showing a halo and AI-generated controls" width="900" height="547"><span class="open-badge" data-type="prototype">Prototype</span></div>
-        <div class="open-card-content"><span class="open-label">Feb 2026</span><h3>Generative Remix</h3><p>What if AI built the knobs, and you supplied the taste?</p><span class="open-card-action">Explore the prototype ↗</span></div>
-      </a>
-      <a class="open-card" href="/works/taste-score/">
-        <div class="open-card-media"><img src="/assets/studio-directions/intent.jpg" alt="Intent Configuration Interface showing an editable preference score" width="800" height="486"><span class="open-badge" data-type="prototype">Prototype</span></div>
-        <div class="open-card-content"><span class="open-label">Mar 2026</span><h3>Intent Configuration Interface</h3><p>What if you could edit what the model thought you meant?</p><span class="open-card-action">Inspect the interpretation ↗</span></div>
-      </a>
-      <a class="open-card" href="/works/holovibes/">
-        <div class="open-card-media"><img src="/assets/studio-directions/holovibes.jpg" alt="Holovibes material playground with a holographic street scene" width="900" height="547"><span class="open-badge" data-type="generative">Material study</span></div>
-        <div class="open-card-content"><span class="open-label">Aug 2026</span><h3>Holovibes</h3><p>How much of a physical surface's pleasure can live on a screen?</p><span class="open-card-action">Explore the material ↗</span></div>
-      </a>
-    </div>
-  </section>
-
-  <section class="open-notes container" id="notes" aria-labelledby="open-notes-title">
-    <div class="open-section-heading"><div><span class="open-label">Field notes</span><h2 id="open-notes-title">What the experiments leave behind.</h2></div></div>
-    <div class="open-notes-grid">
-      <a class="open-research" href="/works/model-internals-research/">
-        <span class="open-label">Research pilot / June 2026</span>
-        <h3>Steering an image model toward a quality: show not tell</h3>
-        <p>A one-week pilot asked whether a visual quality could become a dependable control. It didn't establish that control. The gap between human and AI judgment became the next question.</p>
-        <span class="open-card-action">Read the experiment and its limits ↗</span>
-      </a>
-      <div class="open-fragment">
-        <span class="open-label">From Generative Remix</span>
-        <blockquote>“Most people can recognize taste but can't articulate it.”</blockquote>
-        <p>The question that connects the work: how can an interface make that recognition useful?</p>
-        <a href="/works/generative-remix/#the-thesis">Read the thinking behind it ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="open-about container" aria-label="About the studio">
-    <span class="open-label">An ongoing practice</span>
-    <p>I'm Jasmine. Third Plane Studios is where I build, test, and write about these ideas—from small visual experiments to questions about how we evaluate AI.</p>
-    <a href="/labs/">Current evaluation work at Thirdplane Labs ↗</a>
-  </section>
-</div>
+{% include "components/open-studio-content.njk" %}
 {% endblock %}
 
 {% block scripts %}
