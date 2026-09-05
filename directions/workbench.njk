@@ -1,0 +1,24 @@
+---
+permalink: /directions/workbench/
+title: Live workbench
+description: "Experiments and field notes by Jasmine Poon on creative tools, human–AI interaction, and taste."
+studioDirection: b
+---
+{% extends "layouts/base.njk" %}
+{% block navigation %}{% endblock %}
+{% block styles %}<style>{% include "styles/studio-directions.css" %}</style>{% endblock %}
+{% block content %}
+{% include "components/studio-direction-nav.njk" %}
+<div id="tp-directions">
+    <div class="tp-site tp-workbench" aria-label="Live workbench design">
+      <header class="tp-mast"><a href="/" class="tp-wordmark" aria-label="Third Plane Studios home">thirdplane<span> / experimental interfaces</span></a><nav aria-label="Workbench navigation"><a href="#tp-b-projects">Index</a><a href="#tp-b-notes">Field notes</a><a href="/collections/">Collections</a></nav></header>
+      <div class="tp-b-intro"><span class="tp-meta">Jasmine Poon / creative technology</span><h1>Less describing.<br><em>More discovering.</em></h1><p>I make tools for expressing intent, exploring materials, and questioning what AI understands.</p></div>
+      <section class="tp-live"><div class="tp-halo-stage" role="img" aria-label="Illustrative halo responding to the color and softness controls"><div class="tp-orbit"></div><span class="tp-meta">Interactive sketch / inspired by Generative Remix</span></div><div class="tp-controls"><span class="tp-meta">Try a small interaction</span><h2>A feeling.<br>A few knobs.</h2><label>Color <input type="range" min="0" max="360" value="245" data-halo="hue"></label><label>Softness <input type="range" min="0" max="16" value="3" data-halo="softness"></label><p>Illustrative control sketch. The original project generates its controls with AI.</p><a href="/works/generative-remix/" class="tp-solid-button" data-open="remix">How Generative Remix works ↗</a></div></section>
+      <section id="tp-b-projects" class="tp-projects"><div class="tp-section-title"><h2>Experiment index</h2><span class="tp-meta">Interfaces / materials / evaluation</span></div><a href="/works/taste-score/" class="tp-index-row" data-open="intent"><span class="tp-meta">01 / Prototype</span><span>Intent Configuration Interface</span><span>Make interpretation editable ↗</span></a><a href="/works/holovibes/" class="tp-index-row" data-open="holo"><span class="tp-meta">02 / Creative coding</span><span>Holovibes</span><span>Give artwork a material ↗</span></a><a href="/works/model-internals-research/" class="tp-index-row" data-open="research"><span class="tp-meta">03 / Research pilot</span><span>Steering by Recognition</span><span>Test the control itself ↗</span></a></section>
+      <section class="tp-b-note" id="tp-b-notes"><span class="tp-meta">A note from the work</span><blockquote>“Most people can recognize taste but can't articulate it.”<cite>Generative Remix / The thesis</cite></blockquote><a href="/works/generative-remix/" class="tp-text-button" data-open="remix">Read the thinking behind the prototype ↗</a></section>
+      <section class="tp-footer"><span>Third Plane Studios / Jasmine Poon</span><a href="/labs/" target="_blank" rel="noopener">Thirdplane Labs ↗</a></section>
+    </div>
+{% include "components/studio-field-note.njk" %}
+</div>
+{% endblock %}
+{% block scripts %}<script>{% include "scripts/studio-directions.js" %}</script>{% endblock %}

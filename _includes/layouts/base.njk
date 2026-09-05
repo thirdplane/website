@@ -5,7 +5,7 @@
   {% block styles %}{% endblock %}
 </head>
 <body>
-  {% include "components/nav.njk" %}
+  {% block navigation %}{% include "components/nav.njk" %}{% endblock %}
 
   <main>
     {% block content %}{% endblock %}
