@@ -3,6 +3,14 @@ const markdownItAnchor = require("markdown-it-anchor");
 const markdownItAttrs = require("markdown-it-attrs");
 
 module.exports = function(eleventyConfig) {
+  // Exclude drafts before rendering so they cannot be reached by direct URL
+  // or included in any collection in production builds.
+  eleventyConfig.addPreprocessor("drafts", "md,njk,html,liquid", (data) => {
+    if (process.env.ELEVENTY_ENV === "production" && data.draft) {
+      return false;
+    }
+  });
+
   // ============================================
   // PASSTHROUGH COPIES
   // ============================================
