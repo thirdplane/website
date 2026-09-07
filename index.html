@@ -68,6 +68,7 @@ studioHaloAtTop: true
   .void-canvas-wrap {
     position: relative;
     width: clamp(300px, 64vw, 840px);
+    max-width: calc(100% - 32px);
     height: clamp(300px, 46vh, 420px);
     max-height: 460px;
     margin: 0 auto;
@@ -259,7 +260,8 @@ studioHaloAtTop: true
 
         void main(){
           vec2 uv=(v_uv-0.5)*2.0;
-          uv.x*=iResolution.x/iResolution.y;
+          // Fit the full circle to the shorter canvas dimension, including portrait screens.
+          uv*=iResolution/min(iResolution.x,iResolution.y);
           uv=rot2(uSpin)*uv;
           float hover=uHover;
           uv.x+=hover*uHoverIntensity*0.1*sin(uv.y*10.0+iTime);

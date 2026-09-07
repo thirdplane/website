@@ -144,8 +144,18 @@
 }
 
 @media (max-width: 600px) {
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+
+  .nav-logo {
+    flex-shrink: 0;
+  }
+
   .nav-links {
     gap: 20px;
+    flex-wrap: wrap;
   }
   .nav-links a {
     font-size: 13px;
