@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="940" viewBox="0 0 1120 940" role="img" aria-labelledby="title description">
+  <title id="title">Toward dependable evaluation</title>
+  <desc id="description">A conceptual two-by-two matrix. Consistency of judgments increases to the right. Evidence for the intended outcome increases upward. Upper left: useful evidence, uneven judgments; calibrate reviewers and clarify criteria. Upper right, the target: dependable evaluation, with consistent judgments supported by independent outcome evidence. Lower left: unclear signal; investigate criteria and the review process. Lower right: consistent blind spot; validate the score against independent evidence. Agent–agent, agent–human, and human–human disagreement are diagnostic routes, not positions on the matrix. Legitimate differences in judgment may remain.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 6 3.5 0 7" fill="none" stroke="#66696F" stroke-width="1.1"/></marker>
+    <style>
+      text{font-family:Inter,Arial,sans-serif;fill:#43464C}
+      .serif{font-family:Charter,Georgia,serif;fill:#14161A}
+      .meta{font-family:'IBM Plex Mono','Courier New',monospace;font-size:12px;letter-spacing:1.3px;fill:#66696F}
+      .body{font-size:18px}
+      .action{font-size:15px;fill:#14161A}
+      .axis{font-size:15px;fill:#43464C}
+      .tick{font-size:12px;fill:#66696F}
+    </style>
+  </defs>
+  <rect width="1120" height="940" fill="#FAF8F4"/>
+  <text x="48" y="42" class="meta">THIRDPLANE LABS / EVALUATION FRAMEWORK</text>
+  <text x="48" y="94" class="serif" font-size="36">Toward dependable evaluation.</text>
+  <text x="48" y="127" font-size="17">Assess how consistently judgments track the outcome that matters.</text>
+
+  <!-- Matrix: increasing consistency rightward; stronger outcome evidence upward. -->
+  <rect x="148" y="176" width="438" height="232" fill="#FFFEFB" stroke="#DAD7D1"/>
+  <rect x="598" y="176" width="438" height="232" fill="#14161A"/>
+  <rect x="598" y="176" width="438" height="3" fill="#E04E2A"/>
+  <rect x="148" y="420" width="438" height="232" fill="#FFFEFB" stroke="#DAD7D1"/>
+  <rect x="598" y="420" width="438" height="232" fill="#F2EEE7" stroke="#DAD7D1"/>
+
+  <text x="176" y="211" class="meta">CALIBRATE</text>
+  <text x="176" y="247" class="serif" font-size="27">Useful evidence,</text>
+  <text x="176" y="278" class="serif" font-size="27">uneven judgments.</text>
+  <text x="176" y="315" class="body">The evidence is useful; reviewers</text>
+  <text x="176" y="342" class="body">apply it inconsistently.</text>
+  <text x="176" y="382" class="action">Calibrate reviewers. Clarify criteria.</text>
+
+  <circle cx="631" cy="207" r="4" fill="#E04E2A"/>
+  <text x="644" y="211" class="meta" style="fill:#E4E0D8">TARGET STATE</text>
+  <text x="626" y="260" class="serif" font-size="27" style="fill:#FFFEFB">Dependable evaluation.</text>
+  <text x="626" y="315" class="body" style="fill:#E4E0D8">Consistent judgments, supported</text>
+  <text x="626" y="342" class="body" style="fill:#E4E0D8">by independent outcome evidence.</text>
+  <text x="626" y="382" class="action" style="fill:#FFFEFB">Revalidate as the system changes.</text>
+
+  <text x="176" y="455" class="meta">INVESTIGATE</text>
+  <text x="176" y="504" class="serif" font-size="27">Unclear signal.</text>
+  <text x="176" y="559" class="body">Judgments vary, and their link</text>
+  <text x="176" y="586" class="body">to the intended outcome is unclear.</text>
+  <text x="176" y="626" class="action">Investigate criteria and the review process.</text>
+
+  <text x="626" y="455" class="meta">VALIDATE</text>
+  <text x="626" y="504" class="serif" font-size="27">Consistent blind spot.</text>
+  <text x="626" y="559" class="body">Reviewers agree, but the score</text>
+  <text x="626" y="586" class="body">may reward the wrong outcome.</text>
+  <text x="626" y="626" class="action">Check against independent evidence.</text>
+
+  <path d="M119 652V178" fill="none" stroke="#66696F" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text transform="translate(62 414) rotate(-90)" class="axis" text-anchor="middle">Evidence for the intended outcome</text>
+  <text x="105" y="190" class="tick" text-anchor="end">Stronger</text>
+  <text x="105" y="651" class="tick" text-anchor="end">Weaker</text>
+  <text x="148" y="680" class="tick">Less consistent</text>
+  <text x="1036" y="680" class="tick" text-anchor="end">More consistent</text>
+  <path d="M148 697H1034" fill="none" stroke="#66696F" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="592" y="726" class="axis" text-anchor="middle">Consistency of judgments</text>
+
+  <path d="M48 763H1072" stroke="#DAD7D1"/>
+  <text x="48" y="792" class="meta">DIAGNOSE THE DISAGREEMENT</text>
+  <text x="48" y="827" font-size="17" style="fill:#14161A">Agent–agent</text>
+  <text x="48" y="853" font-size="15">Test evaluator variability and bias.</text>
+  <path d="M383 816V858" stroke="#DAD7D1"/>
+  <text x="411" y="827" font-size="17" style="fill:#14161A">Agent–human</text>
+  <text x="411" y="853" font-size="15">Inspect mismatches. Calibrate review.</text>
+  <path d="M746 816V858" stroke="#DAD7D1"/>
+  <text x="774" y="827" font-size="17" style="fill:#14161A">Human–human</text>
+  <text x="774" y="853" font-size="15">Clarify criteria. Adjudicate disputes.</text>
+  <text x="48" y="899" font-size="12" style="fill:#66696F">Conceptual framework, not measured results. Pairings are diagnostic routes, not maturity levels.</text>
+  <text x="48" y="920" font-size="12" style="fill:#66696F">Seek consistency where a shared verdict is justified; preserve legitimate differences in judgment.</text>
+</svg>
