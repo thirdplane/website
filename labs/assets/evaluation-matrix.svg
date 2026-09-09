@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="940" viewBox="0 0 1120 940" role="img" aria-labelledby="title description">
+  <title id="title">Consistency needs evidence</title>
+  <desc id="description">A conceptual two-by-two matrix. Consistency of judgments increases to the right. Evidence for the intended outcome increases upward. Upper left: useful evidence, uneven judgments; check how reviewers interpret evidence and criteria. Upper right, the target: dependable evaluation, with consistent judgments supported by independent outcome evidence; revalidate as the system changes. Lower left: unclear signal; review criteria, evidence, and scoring. Lower right: consistent but unvalidated; test against independent outcome evidence. AI–AI, AI–human, and human–human disagreement are places to investigate, not positions on the chart. Agreement alone does not establish correctness.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 6 3.5 0 7" fill="none" stroke="#66696F" stroke-width="1.1"/></marker>
+    <style>
+      text{font-family:Inter,Arial,sans-serif;fill:#43464C}
+      .serif{font-family:Charter,Georgia,serif;fill:#14161A}
+      .meta{font-family:'IBM Plex Mono','Courier New',monospace;font-size:12px;letter-spacing:1.3px;fill:#66696F}
+      .body{font-size:18px}
+      .action{font-size:15px;fill:#14161A}
+      .axis{font-size:15px;fill:#43464C}
+      .tick{font-size:12px;fill:#66696F}
+    </style>
+  </defs>
+  <rect width="1120" height="940" fill="#FAF8F4"/>
+  <text x="48" y="42" class="meta">THIRDPLANE LABS / EVALUATION FRAMEWORK</text>
+  <text x="48" y="94" class="serif" font-size="36">Consistency needs evidence.</text>
+  <text x="48" y="127" font-size="17">Compare the consistency of judgments with the evidence supporting them.</text>
+
+  <!-- Matrix: increasing consistency rightward; stronger outcome evidence upward. -->
+  <rect x="148" y="176" width="438" height="232" fill="#FFFEFB" stroke="#DAD7D1"/>
+  <rect x="598" y="176" width="438" height="232" fill="#14161A"/>
+  <rect x="598" y="176" width="438" height="3" fill="#E04E2A"/>
+  <rect x="148" y="420" width="438" height="232" fill="#FFFEFB" stroke="#DAD7D1"/>
+  <rect x="598" y="420" width="438" height="232" fill="#F2EEE7" stroke="#DAD7D1"/>
+
+  <text x="176" y="211" class="meta">CALIBRATE</text>
+  <text x="176" y="247" class="serif" font-size="27">Useful evidence,</text>
+  <text x="176" y="278" class="serif" font-size="27">uneven judgments.</text>
+  <text x="176" y="315" class="body">Judgments vary despite useful</text>
+  <text x="176" y="342" class="body">outcome evidence.</text>
+  <text x="176" y="367" class="action">Check how reviewers interpret</text>
+  <text x="176" y="389" class="action">the evidence and criteria.</text>
+
+  <circle cx="631" cy="207" r="4" fill="#E04E2A"/>
+  <text x="644" y="211" class="meta" style="fill:#E4E0D8">TARGET STATE</text>
+  <text x="626" y="260" class="serif" font-size="27" style="fill:#FFFEFB">Dependable evaluation.</text>
+  <text x="626" y="315" class="body" style="fill:#E4E0D8">Consistent judgments, supported</text>
+  <text x="626" y="342" class="body" style="fill:#E4E0D8">by independent outcome evidence.</text>
+  <text x="626" y="382" class="action" style="fill:#FFFEFB">Revalidate as the system changes.</text>
+
+  <text x="176" y="455" class="meta">INVESTIGATE</text>
+  <text x="176" y="504" class="serif" font-size="27">Unclear signal.</text>
+  <text x="176" y="559" class="body">Judgments vary, and their link</text>
+  <text x="176" y="586" class="body">to the intended outcome is unclear.</text>
+  <text x="176" y="626" class="action">Review the criteria, evidence, and scoring process.</text>
+
+  <text x="626" y="455" class="meta">VALIDATE</text>
+  <text x="626" y="489" class="serif" font-size="27">Consistent,</text>
+  <text x="626" y="520" class="serif" font-size="27">but unvalidated.</text>
+  <text x="626" y="549" class="body">Judgments agree; their connection to</text>
+  <text x="626" y="574" class="body">the intended outcome is still uncertain.</text>
+  <text x="626" y="626" class="action">Test against independent outcome evidence.</text>
+
+  <path d="M119 652V178" fill="none" stroke="#66696F" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text transform="translate(62 414) rotate(-90)" class="axis" text-anchor="middle">Evidence for the intended outcome</text>
+  <text x="105" y="190" class="tick" text-anchor="end">Stronger</text>
+  <text x="105" y="651" class="tick" text-anchor="end">Weaker</text>
+  <text x="148" y="680" class="tick">Less consistent</text>
+  <text x="1036" y="680" class="tick" text-anchor="end">More consistent</text>
+  <path d="M148 697H1034" fill="none" stroke="#66696F" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="592" y="726" class="axis" text-anchor="middle">Consistency of judgments</text>
+
+  <path d="M48 763H1072" stroke="#DAD7D1"/>
+  <text x="48" y="792" class="meta">WHERE DISAGREEMENT OCCURS</text>
+  <text x="48" y="827" font-size="17" style="fill:#14161A">AI–AI</text>
+  <text x="48" y="853" font-size="15">Examine variability and bias.</text>
+  <path d="M383 816V858" stroke="#DAD7D1"/>
+  <text x="411" y="827" font-size="17" style="fill:#14161A">AI–human</text>
+  <text x="411" y="853" font-size="15">Inspect mismatches and calibrate review.</text>
+  <path d="M746 816V858" stroke="#DAD7D1"/>
+  <text x="774" y="827" font-size="17" style="fill:#14161A">Human–human</text>
+  <text x="774" y="853" font-size="15">Clarify criteria and investigate</text>
+  <text x="774" y="875" font-size="15">disputed evidence.</text>
+  <text x="48" y="899" font-size="12" style="fill:#66696F">A conceptual framework for the task and cases examined, not measured results.</text>
+  <text x="48" y="920" font-size="12" style="fill:#66696F">Agreement alone does not establish correctness; some differences in judgment are legitimate.</text>
+</svg>
