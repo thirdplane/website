@@ -1,5 +1,7 @@
 # Thirdplane Labs: research, positioning, and editorial context
 
+> Current editorial reference: [consolidated live-page comparison and proposed copy](LABS_COPY_REVIEW_2026-09-09.md). The consolidated revision is now approved and implemented for branch preview. This document preserves earlier context; its public-copy/layout recommendations and verification statements describe their respective earlier iterations.
+
 9 September 2026. Internal context for the Labs website and future service conversations. This document preserves the reasoning behind the copy, including useful material removed from the landing page. It is not public marketing copy or evidence of completed client engagements.
 
 ## Current status and the length correction

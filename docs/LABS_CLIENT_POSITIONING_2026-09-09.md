@@ -1,5 +1,7 @@
 # Labs: client positioning and public copy
 
+> Current editorial reference: [consolidated live-page comparison and proposed copy](LABS_COPY_REVIEW_2026-09-09.md). The consolidated revision is now approved and implemented for branch preview. This document preserves earlier context; its public-copy/layout recommendations and verification statements describe their respective earlier iterations.
+
 9 September 2026. Current copy reference for `labs/index.html`. Supersedes the public landing-page recommendations in `LABS_SERVICES_POSITIONING_2026-09-09.md`; that document retains the internal capability catalogue.
 
 **Editorial status:** This records the implemented short iteration. The user subsequently questioned its brevity. See [strategy context](LABS_STRATEGY_CONTEXT_2026-09-09.md) for the preserved research, rationale, tradeoffs, and unresolved questions; shortness is not a permanent requirement.

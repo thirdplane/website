@@ -1,5 +1,7 @@
 # Labs: disagreement framework
 
+> Current editorial reference: [consolidated live-page comparison and proposed copy](LABS_COPY_REVIEW_2026-09-09.md). The consolidated revision is now approved and implemented for branch preview. This document preserves earlier context; its public-copy/layout recommendations and verification statements describe their respective earlier iterations.
+
 9 September 2026. Research and design rationale for the comparison added to `labs/index.html`, following the shorter client-facing copy. This document supplements the positioning documents; it does not replace their copy.
 
 ## Why this belongs in the offer

@@ -1,5 +1,7 @@
 # Thirdplane Labs: services positioning and landing-page copy
 
+> Current editorial reference: [consolidated live-page comparison and proposed copy](LABS_COPY_REVIEW_2026-09-09.md). The consolidated revision is now approved and implemented for branch preview. This document preserves earlier context; its public-copy/layout recommendations and verification statements describe their respective earlier iterations.
+
 9 September 2026. Historical service catalogue and internal capability reference. Public copy is now governed by `LABS_CLIENT_POSITIONING_2026-09-09.md`, following the approved shorter direction. Earlier version: Supersedes the July landing-page copy and page-inventory recommendations for this route. Earlier research and strategy documents remain historical context.
 
 ## Positioning

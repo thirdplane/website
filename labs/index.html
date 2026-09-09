@@ -3,23 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thirdplane Labs — Evaluation for AI products</title>
-<meta name="description" content="Find quality gaps, evaluate changes, and build more reliable review workflows for your AI product with Thirdplane Labs.">
+<title>Thirdplane Labs — AI evaluation design and review</title>
+<meta name="description" content="Evaluation design and review for AI product teams: investigate misleading scores, compare changes, and build practical review workflows.">
 <link rel="canonical" href="https://www.thirdplane.io/labs/">
 <link rel="icon" href="/labs/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/labs/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/labs/assets/apple-touch-icon-180.png">
 <meta name="theme-color" content="#FAF8F4">
-<meta property="og:title" content="Thirdplane Labs — Evaluation for AI products">
-<meta property="og:description" content="Find quality gaps, evaluate changes, and build more reliable review workflows for your AI product with Thirdplane Labs.">
+<meta property="og:title" content="Thirdplane Labs — AI evaluation design and review">
+<meta property="og:description" content="Evaluation design and review for AI product teams: investigate misleading scores, compare changes, and build practical review workflows.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.thirdplane.io/labs/">
 <meta property="og:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thirdplane Labs — AI evaluation design and review">
+<meta name="twitter:image:alt" content="Thirdplane Labs — AI evaluation design and review">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
-<!-- Copy and positioning: docs/LABS_CLIENT_POSITIONING_2026-09-09.md.
+<!-- Copy and positioning: docs/LABS_COPY_REVIEW_2026-09-09.md.
      Labs keeps its standalone cream/ink design and existing asset paths. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,6 +127,8 @@ section{margin-bottom:var(--sp-6);}
 .detail-section .subhead{border:0;padding:0;margin:0;}
 .detail-section p,.situations{font-size:var(--step-2);max-width:58ch;}
 .situations{list-style:none;}
+.situations h3{font-size:var(--step-2);font-weight:600;color:var(--ink-900);text-wrap:pretty;}
+.situations p{font-size:var(--step-1);margin-top:var(--sp-1);}
 .situations li{padding:var(--sp-3) 0;border-bottom:1px solid var(--line);}
 .situations li:first-child{padding-top:0;}
 .situations li:last-child{padding-bottom:0;border:0;}
@@ -155,19 +159,16 @@ section{margin-bottom:var(--sp-6);}
 .matrix-coordinates{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
 .matrix-x{grid-column:2;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--sp-1);font-size:var(--step-0);}
 .matrix-x strong{flex:0 0 100%;border-top:1px solid var(--ink-500);padding-top:var(--sp-1);text-align:center;font-size:var(--step-1);font-weight:500;}
-.diagnostic-heading{font-size:var(--step-1);font-weight:600;color:var(--ink-900);margin-top:var(--sp-4);}
-.diagnostic-routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-3);list-style:none;margin-top:var(--sp-2);}
-.diagnostic-routes li{border-top:1px solid var(--line);padding-top:var(--sp-2);font-size:var(--step-1);}
-.diagnostic-routes strong{display:block;font-weight:500;color:var(--ink-900);margin-bottom:var(--sp-1);}
 .disagreement-caption{font-size:var(--step-0);color:var(--ink-500);margin-top:var(--sp-2);max-width:88ch;}
 .disagreement-sources{margin-top:var(--sp-2);font-size:var(--step-0);color:var(--ink-500);}
+.disagreement-sources p{margin-top:var(--sp-2);max-width:85ch;}
 .disagreement-sources summary{cursor:pointer;width:fit-content;text-underline-offset:3px;}
 .disagreement-sources summary:hover{text-decoration:underline;}
 .disagreement-sources summary:focus-visible{outline:2px solid var(--ink-900);outline-offset:4px;}
 .disagreement-sources ul{padding-left:var(--sp-3);margin-top:var(--sp-2);max-width:85ch;}
 .disagreement-sources li + li{margin-top:var(--sp-1);}
 @media (max-width:720px){
-  .evaluation-matrix,.matrix-grid,.diagnostic-routes{grid-template-columns:minmax(0,1fr);}
+  .evaluation-matrix,.matrix-grid{grid-template-columns:minmax(0,1fr);}
   .matrix-y,.matrix-x{display:none;}
   .matrix-coordinates{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;
     display:block;font-size:var(--step-0);margin-bottom:var(--sp-2);}
@@ -199,7 +200,7 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
 
 <header class="masthead">
   <div class="brand">
-    <!-- The mark is the one place orange legitimately renders on the v0 page: it's the brand mark, not a data component. -->
+    <!-- Brand mark; orange also identifies the conceptual target state below. -->
     <svg width="30" height="30" viewBox="90 60 390 420" aria-hidden="true"><path d="M152,418 L282,196 L413,418" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round" stroke-linejoin="round"/><path d="M282,214 L282,443" fill="none" stroke="#14161A" stroke-width="47" stroke-linecap="round"/><path d="M210,186 Q261,82 344,156" fill="none" stroke="#E04E2A" stroke-width="34" stroke-linecap="round"/></svg>
     <div class="wordmark">thirdplane <span class="labs">labs</span></div>
   </div>
@@ -212,24 +213,24 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
 <main>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <h1 id="hero-title">Know what to improve in your AI product.</h1>
-      <p class="standfirst">Thirdplane Labs helps AI teams find quality gaps, evaluate changes, and build more reliable review workflows.</p>
+      <h1 id="hero-title">Does your AI evaluation measure what matters?</h1>
+      <p class="standfirst">Thirdplane Labs provides evaluation design and review for teams building AI products.</p>
       <p class="action-row"><a class="inline link-forward" href="#request-research">Discuss a project</a></p>
     </div>
   </section>
 
   <section class="detail-section" aria-labelledby="situations-title">
-    <h2 class="subhead" id="situations-title">When to bring me in</h2>
+    <h2 class="subhead" id="situations-title">Where I can help</h2>
     <ul class="situations" role="list">
-      <li>Your scores look good, but important failures still get through.</li>
-      <li>Your team can’t reliably tell whether a change is better.</li>
-      <li>Manual review is slowing development.</li>
+      <li><h3>Your scores look good, but important failures still get through.</h3><p>An assessment of what the evaluation misses, with supporting examples and priorities for correction.</p></li>
+      <li><h3>Your team can’t reliably tell whether a change is better.</h3><p>A working evaluation with relevant cases and criteria for comparing models, prompts, or workflows.</p></li>
+      <li><h3>Manual review is slowing development.</h3><p>A workflow that automates suitable checks and routes uncertain cases, with supporting evidence, to human review.</p></li>
     </ul>
   </section>
 
   <section class="disagreement" id="disagreement" aria-labelledby="disagreement-title">
-    <h2 class="subhead" id="disagreement-title">Toward dependable evaluation</h2>
-    <p class="disagreement-intro">Assess how consistently judgments track the outcome that matters.</p>
+    <h2 class="subhead" id="disagreement-title">Consistency needs evidence</h2>
+    <p class="disagreement-intro">Two questions guide the work: are judgments consistent under comparable conditions, and does evidence connect them to the intended outcome?</p>
     <figure aria-labelledby="disagreement-title" aria-describedby="disagreement-caption">
       <div class="evaluation-matrix">
         <div class="matrix-y" aria-hidden="true"><span>Stronger ↑</span><strong>Evidence for the intended outcome</strong><span>Weaker</span></div>
@@ -238,8 +239,8 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
             <span class="meta">Calibrate</span>
             <span class="matrix-coordinates">Stronger evidence · Less consistent judgments</span>
             <h3>Useful evidence, uneven judgments.</h3>
-            <p>The evidence is useful; reviewers apply it inconsistently.</p>
-            <p class="matrix-action">Calibrate reviewers. Clarify criteria.</p>
+            <p>Judgments vary despite useful outcome evidence.</p>
+            <p class="matrix-action">Check how reviewers interpret the evidence and criteria.</p>
           </li>
           <li class="matrix-cell matrix-cell--target">
             <span class="meta">Target state</span>
@@ -253,45 +254,41 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
             <span class="matrix-coordinates">Weaker evidence · Less consistent judgments</span>
             <h3>Unclear signal.</h3>
             <p>Judgments vary, and their link to the intended outcome is unclear.</p>
-            <p class="matrix-action">Investigate criteria and the review process.</p>
+            <p class="matrix-action">Review the criteria, evidence, and scoring process.</p>
           </li>
           <li class="matrix-cell matrix-cell--blind">
             <span class="meta">Validate</span>
             <span class="matrix-coordinates">Weaker evidence · More consistent judgments</span>
-            <h3>Consistent blind spot.</h3>
-            <p>Reviewers agree, but the score may reward the wrong outcome.</p>
-            <p class="matrix-action">Check against independent evidence.</p>
+            <h3>Consistent, but unvalidated.</h3>
+            <p>Judgments agree; their connection to the intended outcome is still uncertain.</p>
+            <p class="matrix-action">Test against independent outcome evidence.</p>
           </li>
         </ul>
         <div class="matrix-x" aria-hidden="true"><span>Less consistent</span><span>More consistent →</span><strong>Consistency of judgments</strong></div>
       </div>
-      <h3 class="diagnostic-heading">Diagnose the disagreement</h3>
-      <ul class="diagnostic-routes" role="list">
-        <li><strong>Agent–agent</strong>Test evaluator variability and bias.</li>
-        <li><strong>Agent–human</strong>Inspect mismatches. Calibrate review.</li>
-        <li><strong>Human–human</strong>Clarify criteria. Adjudicate disputes.</li>
-      </ul>
-      <figcaption class="disagreement-caption" id="disagreement-caption">Conceptual framework, not measured results. Agent means AI evaluator; the pairings are diagnostic routes, not maturity levels. Seek consistency where a shared verdict is justified; preserve legitimate differences in judgment.</figcaption>
+      <figcaption class="disagreement-caption" id="disagreement-caption">A conceptual framework for the task and cases examined, not measured results. Agreement alone does not establish correctness; some differences in judgment are legitimate.</figcaption>
       <p class="disagreement-caption"><a class="inline" href="/labs/assets/evaluation-matrix.svg">View the full-size diagram</a></p>
     </figure>
     <details class="disagreement-sources">
-      <summary>Research behind the framework</summary>
+      <summary>How to read the framework</summary>
+      <p>Disagreement may occur between AI evaluators, between AI and human reviewers, or between people. These are places to investigate, not positions on the chart.</p>
       <ul>
-        <li><a class="inline" href="https://arxiv.org/abs/2306.05685">Zheng et al., 2023</a>: LLM judge biases and agreement with human preferences.</li>
-        <li><a class="inline" href="https://aclanthology.org/2022.tacl-1.78/">Jiang &amp; de Marneffe, 2022</a>: sources of human disagreement in natural language inference.</li>
-        <li><a class="inline" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Anthropic, 2026</a>: combining direct checks, model graders, and human review. This framework is Thirdplane Labs’ synthesis.</li>
+        <li>AI–AI: examine variability and bias.</li>
+        <li>AI–human: inspect mismatches and calibrate review.</li>
+        <li>Human–human: clarify criteria and investigate disputed evidence.</li>
       </ul>
+      <p>The framework is Thirdplane Labs’ synthesis, informed by <a class="inline" href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> on model-judge biases, <a class="inline" href="https://aclanthology.org/2022.tacl-1.78/">Jiang and de Marneffe</a> on human disagreement, and <a class="inline" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Anthropic</a> on complementary evaluation methods.</p>
     </details>
   </section>
 
   <section class="detail-section" aria-labelledby="engagement-title">
-    <h2 class="subhead" id="engagement-title">A focused engagement</h2>
-    <p>Start with one product question. Get an assessment, a working evaluation or review workflow, and clear next steps—depending on what the problem needs.</p>
+    <h2 class="subhead" id="engagement-title">How an engagement works</h2>
+    <p>We start with one decision your team needs to make, then agree on the scope, relevant examples, and a useful deliverable. I work with your existing product and evaluation setup, and hand over the agreed work with findings, limitations, and next steps.</p>
   </section>
 
   <section class="door" id="request-research" aria-labelledby="contact-title">
-    <h2 class="subhead" id="contact-title">What are you trying to improve?</h2>
-    <p>Tell me what you’re building and where judging quality gets difficult.</p>
+    <h2 class="subhead" id="contact-title">What decision are you working toward?</h2>
+    <p>Tell me what you’re building, what you need to decide, and where your current evaluation falls short.</p>
     <p class="action-row"><a class="inline link-forward" href="mailto:j@thirdplane.io?subject=Thirdplane%20Labs%20project%20inquiry">Discuss a project</a></p>
   </section>
 </main>
