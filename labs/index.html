@@ -104,7 +104,7 @@ h1,h2,h3{text-wrap:balance;}
 .masthead-cta{font-size:var(--step-0);white-space:nowrap;}
 
 /* ---- hero ---- */
-.hero{max-width:780px;margin-bottom:var(--sp-7);}
+.hero{max-width:780px;margin-bottom:var(--sp-5);}
 .hero-copy{max-width:760px;}
 .hero h1{
   font-family:var(--font-serif);font-weight:400;font-style:normal;
@@ -115,6 +115,8 @@ h1,h2,h3{text-wrap:balance;}
   font-family:var(--font-body);font-weight:500;font-size:var(--step-2);
   color:var(--ink-900);max-width:58ch;letter-spacing:-0.005em;
 }
+
+.hero .hero-detail{font-size:var(--step-2);max-width:58ch;margin-top:var(--sp-2);}
 
 /* ---- section rhythm ---- */
 section{margin-bottom:var(--sp-6);}
@@ -137,6 +139,19 @@ section{margin-bottom:var(--sp-6);}
 .door p{font-size:var(--step-1);max-width:60ch;}
 .action-row{margin-top:var(--sp-3);font-size:var(--step-1);}
 
+/* ---- featured argument ---- */
+.writing-link{display:block;padding:clamp(var(--sp-3),4vw,var(--sp-4));
+  background:var(--paper-lo);border-left:3px solid var(--flag-600);color:var(--ink-700);text-decoration:none;}
+.writing-link .meta{display:block;margin-bottom:var(--sp-2);}
+.writing-link h2{font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;
+  line-height:1.2;color:var(--ink-900);max-width:32ch;margin-bottom:var(--sp-2);}
+.writing-link p{font-size:var(--step-1);max-width:72ch;}
+.writing-cta{display:inline-block;margin-top:var(--sp-3);font-size:var(--step-1);font-weight:500;
+  color:var(--ink-900);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:4px;}
+.writing-link:hover .writing-cta{text-decoration-color:var(--ink-900);}
+.writing-link:hover h2{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;}
+.writing-link:focus-visible{outline:2px solid var(--ink-900);outline-offset:4px;}
+
 /* ---- disagreement comparison: docs/LABS_DISAGREEMENT_FRAMEWORK_2026-09-09.md ---- */
 .disagreement-intro{font-size:var(--step-2);max-width:68ch;margin-bottom:var(--sp-4);}
 .disagreement-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4);list-style:none;}
@@ -151,10 +166,6 @@ section{margin-bottom:var(--sp-6);}
 .human-review p{font-size:var(--step-1);}
 .framework-title{font-family:var(--font-serif);font-size:var(--step-4);font-weight:400;line-height:1.2;color:var(--ink-900);margin-bottom:var(--sp-2);}
 .framework-intro{font-size:var(--step-1);max-width:72ch;margin-bottom:var(--sp-3);}
-.diagram-disclosure > summary{display:none;cursor:pointer;font-size:var(--step-1);color:var(--ink-900);padding:var(--sp-2) 0;}
-.diagram-disclosure > summary:focus-visible{outline:2px solid var(--ink-900);outline-offset:4px;}
-.diagram-disclosure[open] .diagram-show,.diagram-disclosure:not([open]) .diagram-hide{display:none;}
-.diagram-full-size{display:none;}
 .evaluation-matrix{display:grid;grid-template-columns:76px minmax(0,1fr);gap:var(--sp-2);}
 .matrix-y{display:flex;flex-direction:column;align-items:center;justify-content:space-between;
   border-right:1px solid var(--ink-500);padding-right:var(--sp-1);font-size:var(--step-0);}
@@ -183,9 +194,6 @@ section{margin-bottom:var(--sp-6);}
 .disagreement-sources summary:focus-visible{outline:2px solid var(--ink-900);outline-offset:4px;}
 @media (max-width:720px){
   .disagreement-pairs{grid-template-columns:minmax(0,1fr);}
-  .diagram-disclosure > summary{display:list-item;list-style-position:inside;}
-  .diagram-disclosure[open] > summary{margin-bottom:var(--sp-2);}
-  .diagram-full-size{display:block;}
   .evaluation-matrix,.matrix-grid{grid-template-columns:minmax(0,1fr);}
   .matrix-y,.matrix-x{display:none;}
   .matrix-coordinates{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;
@@ -224,7 +232,7 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
   </div>
   <div class="masthead-actions">
     <p class="meta">AI evaluation services</p>
-    <a class="inline masthead-cta" href="#request-research">Discuss a project</a>
+    <a class="inline masthead-cta" href="#request-research">Contact</a>
   </div>
 </header>
 
@@ -232,9 +240,18 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
       <h1 id="hero-title">Does your AI evaluation measure what matters?</h1>
-      <p class="standfirst">Thirdplane Labs provides evaluation design and review for teams building AI products. I investigate where AI and human judgments diverge, so your team can decide what to trust, what to improve, and what needs review.</p>
-      <p class="action-row"><a class="inline link-forward" href="#request-research">Discuss a project</a></p>
+      <p class="standfirst">Thirdplane Labs provides evaluation design and review for teams building AI products.</p>
+      <p class="hero-detail">I investigate where AI and human judgments diverge, so your team can decide what to trust, what to improve, and what needs review.</p>
     </div>
+  </section>
+
+  <section class="related-writing" aria-labelledby="writing-question">
+    <a class="writing-link" href="https://www.thirdplane.io/thoughts/perception-values-and-power/" aria-labelledby="writing-question writing-title writing-action">
+      <span class="meta" id="writing-title">AI Swarms: Perception, Values, and Power</span>
+      <h2 id="writing-question">Recursive self-improvement: what counts as better, and who decides?</h2>
+      <p>Can swarms recognize useful judgment and pass it on so future generations become better at evaluating and changing how they work? How can inherited values remain understandable and open to challenge?</p>
+      <span class="writing-cta" id="writing-action">Explore the argument <span aria-hidden="true">→</span></span>
+    </a>
   </section>
 
   <section class="detail-section" aria-labelledby="situations-title">
@@ -246,9 +263,14 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
     </ul>
   </section>
 
+  <section class="detail-section" aria-labelledby="engagement-title">
+    <h2 class="subhead" id="engagement-title">How an engagement works</h2>
+    <p>We start with one decision your team needs to make, then agree on the scope, relevant examples, and a useful deliverable. I work with your existing product and evaluation setup, and hand over the agreed work with findings, limitations, and next steps.</p>
+  </section>
+
   <section class="disagreement" id="disagreement" aria-labelledby="disagreement-title">
     <h2 class="subhead" id="disagreement-title">Different disagreements call for different checks</h2>
-    <p class="disagreement-intro">When AI evaluators disagree with each other, investigate how the evaluation behaves. When AI and people disagree, investigate how their judgments connect to the task. The value is in finding what needs to change, not simply making the scores agree.</p>
+    <p class="disagreement-intro">The value is in finding what needs to change, not simply making the scores agree.</p>
     <ul class="disagreement-pairs" role="list">
       <li class="disagreement-pair">
         <h3>AI–AI</h3>
@@ -267,10 +289,9 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
       <h3>Human–human</h3>
       <p>People can disagree too. Clarify criteria and investigate disputed evidence; preserve defensible differences where the task allows them. Human review needs a clear standard of its own.</p>
     </div>
-    <h3 class="framework-title" id="framework-title">Consistency needs evidence</h3>
-    <p class="framework-intro">Any of these disagreements can reveal where to investigate. For each, ask: are judgments consistent under comparable conditions, and does independent evidence connect them to the intended outcome?</p>
-    <details class="diagram-disclosure" open>
-      <summary><span class="diagram-show">Show the evaluation diagram</span><span class="diagram-hide">Hide the evaluation diagram</span></summary>
+    <div class="evaluation-framework">
+      <h3 class="framework-title" id="framework-title">Consistency needs evidence</h3>
+      <p class="framework-intro">Any of these disagreements can reveal where to investigate. For each, ask: are judgments consistent under comparable conditions, and does independent evidence connect them to the intended outcome?</p>
       <figure aria-labelledby="framework-title" aria-describedby="disagreement-caption">
       <div class="evaluation-matrix">
         <div class="matrix-y" aria-hidden="true"><span>Stronger ↑</span><strong>Evidence for the intended outcome</strong><span>Weaker</span></div>
@@ -309,22 +330,17 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
       <figcaption class="disagreement-caption" id="disagreement-caption">A conceptual framework for the task and cases examined, not measured results. Agreement alone does not establish correctness; some differences in judgment are legitimate.</figcaption>
       <p class="disagreement-caption diagram-full-size"><a class="inline" href="/labs/assets/evaluation-matrix.svg">Open the full-size diagram</a></p>
       </figure>
-    </details>
-    <details class="disagreement-sources">
-      <summary>Sources behind the framework</summary>
-      <p>The framework is Thirdplane Labs’ synthesis, informed by <a class="inline" href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> on model-judge biases, <a class="inline" href="https://aclanthology.org/2022.tacl-1.78/">Jiang and de Marneffe</a> on human disagreement, and <a class="inline" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Anthropic</a> on complementary evaluation methods.</p>
-    </details>
-  </section>
-
-  <section class="detail-section" aria-labelledby="engagement-title">
-    <h2 class="subhead" id="engagement-title">How an engagement works</h2>
-    <p>We start with one decision your team needs to make, then agree on the scope, relevant examples, and a useful deliverable. I work with your existing product and evaluation setup, and hand over the agreed work with findings, limitations, and next steps.</p>
+      <details class="disagreement-sources">
+        <summary>Sources behind the framework</summary>
+        <p>The framework is Thirdplane Labs’ synthesis, informed by <a class="inline" href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> on model-judge biases, <a class="inline" href="https://aclanthology.org/2022.tacl-1.78/">Jiang and de Marneffe</a> on human disagreement, and <a class="inline" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Anthropic</a> on complementary evaluation methods.</p>
+      </details>
+    </div>
   </section>
 
   <section class="door" id="request-research" aria-labelledby="contact-title">
     <h2 class="subhead" id="contact-title">What decision are you working toward?</h2>
     <p>Tell me what you’re building, what you need to decide, and where your current evaluation falls short.</p>
-    <p class="action-row"><a class="inline link-forward" href="mailto:j@thirdplane.io?subject=Thirdplane%20Labs%20project%20inquiry">Discuss a project</a></p>
+    <p class="action-row"><a class="inline link-forward" href="mailto:j@thirdplane.io?subject=Thirdplane%20Labs%20project%20inquiry">Email j@thirdplane.io</a></p>
   </section>
 </main>
 
@@ -333,23 +349,5 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
 </footer>
 
 </div>
-<script>
-  // Keep the full diagram visible on desktop; remember the reader's mobile choice.
-  // Without JavaScript the diagram stays open and the mobile disclosure still works.
-  const diagram = document.querySelector('.diagram-disclosure');
-  const mobileLayout = window.matchMedia('(max-width: 720px)');
-  let mobileDiagramOpen = false;
-  function syncDiagram() {
-    diagram.open = !mobileLayout.matches || mobileDiagramOpen;
-  }
-  diagram.querySelector('summary').addEventListener('click', (event) => {
-    if (!mobileLayout.matches) return;
-    event.preventDefault();
-    mobileDiagramOpen = !diagram.open;
-    syncDiagram();
-  });
-  mobileLayout.addEventListener('change', syncDiagram);
-  syncDiagram();
-</script>
 </body>
 </html>
