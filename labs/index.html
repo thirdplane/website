@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thirdplane Labs — AI evaluation design and review</title>
+<title>Thirdplane Labs -- AI evaluation design and review</title>
 <meta name="description" content="Evaluation design and review for AI product teams: investigate misleading scores, compare changes, and build practical review workflows.">
 <link rel="canonical" href="https://www.thirdplane.io/labs/">
 <link rel="icon" href="/labs/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/labs/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/labs/assets/apple-touch-icon-180.png">
 <meta name="theme-color" content="#FAF8F4">
-<meta property="og:title" content="Thirdplane Labs — AI evaluation design and review">
+<meta property="og:title" content="Thirdplane Labs -- AI evaluation design and review">
 <meta property="og:description" content="Evaluation design and review for AI product teams: investigate misleading scores, compare changes, and build practical review workflows.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.thirdplane.io/labs/">
 <meta property="og:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Thirdplane Labs — AI evaluation design and review">
-<meta name="twitter:image:alt" content="Thirdplane Labs — AI evaluation design and review">
+<meta property="og:image:alt" content="Thirdplane Labs -- AI evaluation design and review">
+<meta name="twitter:image:alt" content="Thirdplane Labs -- AI evaluation design and review">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.thirdplane.io/labs/assets/og-labs.png">
 <!-- Copy and positioning: docs/LABS_COPY_REVIEW_2026-09-09.md.
@@ -138,7 +138,23 @@ section{margin-bottom:var(--sp-6);}
 .action-row{margin-top:var(--sp-3);font-size:var(--step-1);}
 
 /* ---- disagreement comparison: docs/LABS_DISAGREEMENT_FRAMEWORK_2026-09-09.md ---- */
-.disagreement-intro{font-size:var(--step-1);max-width:62ch;margin-bottom:var(--sp-3);}
+.disagreement-intro{font-size:var(--step-2);max-width:68ch;margin-bottom:var(--sp-4);}
+.disagreement-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4);list-style:none;}
+.disagreement-pair{border-top:2px solid var(--ink-900);padding-top:var(--sp-2);}
+.disagreement-pair h3{font-family:var(--font-mono);font-size:var(--step-1);font-weight:500;color:var(--ink-900);margin-bottom:var(--sp-2);}
+.disagreement-question{font-family:var(--font-serif);font-size:1.65rem;line-height:1.2;color:var(--ink-900);margin-bottom:var(--sp-2);text-wrap:balance;}
+.disagreement-pair p:not(.disagreement-question){font-size:var(--step-1);}
+.disagreement-pair .disagreement-action{margin-top:var(--sp-2);color:var(--ink-900);font-weight:500;}
+.human-review{display:grid;grid-template-columns:var(--detail-columns);gap:var(--sp-2) var(--detail-gap);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--sp-3) 0;margin:var(--sp-4) 0;}
+.human-review h3{font-family:var(--font-mono);font-size:var(--step-1);font-weight:500;color:var(--ink-900);}
+.human-review p{font-size:var(--step-1);}
+.framework-title{font-family:var(--font-serif);font-size:var(--step-4);font-weight:400;line-height:1.2;color:var(--ink-900);margin-bottom:var(--sp-2);}
+.framework-intro{font-size:var(--step-1);max-width:72ch;margin-bottom:var(--sp-3);}
+.diagram-disclosure > summary{display:none;cursor:pointer;font-size:var(--step-1);color:var(--ink-900);padding:var(--sp-2) 0;}
+.diagram-disclosure > summary:focus-visible{outline:2px solid var(--ink-900);outline-offset:4px;}
+.diagram-disclosure[open] .diagram-show,.diagram-disclosure:not([open]) .diagram-hide{display:none;}
+.diagram-full-size{display:none;}
 .evaluation-matrix{display:grid;grid-template-columns:76px minmax(0,1fr);gap:var(--sp-2);}
 .matrix-y{display:flex;flex-direction:column;align-items:center;justify-content:space-between;
   border-right:1px solid var(--ink-500);padding-right:var(--sp-1);font-size:var(--step-0);}
@@ -146,12 +162,12 @@ section{margin-bottom:var(--sp-6);}
 .matrix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-1);list-style:none;}
 .matrix-cell{display:flex;flex-direction:column;padding:var(--sp-3);border:1px solid var(--line);background:var(--paper-hi);}
 .matrix-cell .meta{display:block;margin-bottom:var(--sp-2);}
-.matrix-cell h3{font-family:var(--font-serif);font-size:1.65rem;font-weight:400;
+.matrix-cell h4{font-family:var(--font-serif);font-size:1.65rem;font-weight:400;text-wrap:balance;
   line-height:1.2;color:var(--ink-900);margin-bottom:var(--sp-2);}
 .matrix-cell p{font-size:var(--step-1);line-height:1.6;}
 .matrix-cell .matrix-action{padding-top:var(--sp-3);margin-top:auto;color:var(--ink-900);font-weight:500;}
 .matrix-cell--target{background:var(--ink-900);border-top:3px solid var(--flag-600);}
-.matrix-cell--target h3,.matrix-cell--target .matrix-action{color:var(--paper-hi);}
+.matrix-cell--target h4,.matrix-cell--target .matrix-action{color:var(--paper-hi);}
 .matrix-cell--target p,.matrix-cell--target .meta,.matrix-cell--target .matrix-coordinates{color:var(--paper-edge);}
 .matrix-cell--target .meta::before{content:"";display:inline-block;width:6px;height:6px;
   background:var(--flag-600);border-radius:50%;margin-right:var(--sp-1);}
@@ -165,9 +181,11 @@ section{margin-bottom:var(--sp-6);}
 .disagreement-sources summary{cursor:pointer;width:fit-content;text-underline-offset:3px;}
 .disagreement-sources summary:hover{text-decoration:underline;}
 .disagreement-sources summary:focus-visible{outline:2px solid var(--ink-900);outline-offset:4px;}
-.disagreement-sources ul{padding-left:var(--sp-3);margin-top:var(--sp-2);max-width:85ch;}
-.disagreement-sources li + li{margin-top:var(--sp-1);}
 @media (max-width:720px){
+  .disagreement-pairs{grid-template-columns:minmax(0,1fr);}
+  .diagram-disclosure > summary{display:list-item;list-style-position:inside;}
+  .diagram-disclosure[open] > summary{margin-bottom:var(--sp-2);}
+  .diagram-full-size{display:block;}
   .evaluation-matrix,.matrix-grid{grid-template-columns:minmax(0,1fr);}
   .matrix-y,.matrix-x{display:none;}
   .matrix-coordinates{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;
@@ -214,7 +232,7 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
       <h1 id="hero-title">Does your AI evaluation measure what matters?</h1>
-      <p class="standfirst">Thirdplane Labs provides evaluation design and review for teams building AI products.</p>
+      <p class="standfirst">Thirdplane Labs provides evaluation design and review for teams building AI products. I investigate where AI and human judgments diverge, so your team can decide what to trust, what to improve, and what needs review.</p>
       <p class="action-row"><a class="inline link-forward" href="#request-research">Discuss a project</a></p>
     </div>
   </section>
@@ -229,37 +247,59 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
   </section>
 
   <section class="disagreement" id="disagreement" aria-labelledby="disagreement-title">
-    <h2 class="subhead" id="disagreement-title">Consistency needs evidence</h2>
-    <p class="disagreement-intro">Two questions guide the work: are judgments consistent under comparable conditions, and does evidence connect them to the intended outcome?</p>
-    <figure aria-labelledby="disagreement-title" aria-describedby="disagreement-caption">
+    <h2 class="subhead" id="disagreement-title">Different disagreements call for different checks</h2>
+    <p class="disagreement-intro">When AI evaluators disagree with each other, investigate how the evaluation behaves. When AI and people disagree, investigate how their judgments connect to the task. The value is in finding what needs to change, not simply making the scores agree.</p>
+    <ul class="disagreement-pairs" role="list">
+      <li class="disagreement-pair">
+        <h3>AI–AI</h3>
+        <p class="disagreement-question">Can you rely on the evaluator?</p>
+        <p>Different AI judges -- or repeated runs of the same judge -- may score the same work differently. Examine variability and bias: is the verdict sensitive to the model, prompt, or answer order?</p>
+        <p class="disagreement-action">Identify unstable judgments and test the evaluator against task evidence.</p>
+      </li>
+      <li class="disagreement-pair">
+        <h3>AI–human</h3>
+        <p class="disagreement-question">Does the evaluator reflect what matters?</p>
+        <p>An AI verdict may differ from a human review because of missing context, different criteria, or an error on either side. Inspect the mismatches before treating either judgment as the reference.</p>
+        <p class="disagreement-action">Calibrate review with concrete examples and define which cases need human judgment.</p>
+      </li>
+    </ul>
+    <div class="human-review">
+      <h3>Human–human</h3>
+      <p>People can disagree too. Clarify criteria and investigate disputed evidence; preserve defensible differences where the task allows them. Human review needs a clear standard of its own.</p>
+    </div>
+    <h3 class="framework-title" id="framework-title">Consistency needs evidence</h3>
+    <p class="framework-intro">Any of these disagreements can reveal where to investigate. For each, ask: are judgments consistent under comparable conditions, and does independent evidence connect them to the intended outcome?</p>
+    <details class="diagram-disclosure" open>
+      <summary><span class="diagram-show">Show the evaluation diagram</span><span class="diagram-hide">Hide the evaluation diagram</span></summary>
+      <figure aria-labelledby="framework-title" aria-describedby="disagreement-caption">
       <div class="evaluation-matrix">
         <div class="matrix-y" aria-hidden="true"><span>Stronger ↑</span><strong>Evidence for the intended outcome</strong><span>Weaker</span></div>
         <ul class="matrix-grid" role="list">
           <li class="matrix-cell">
             <span class="meta">Calibrate</span>
             <span class="matrix-coordinates">Stronger evidence · Less consistent judgments</span>
-            <h3>Useful evidence, uneven judgments.</h3>
+            <h4>Useful evidence, uneven judgments.</h4>
             <p>Judgments vary despite useful outcome evidence.</p>
             <p class="matrix-action">Check how reviewers interpret the evidence and criteria.</p>
           </li>
           <li class="matrix-cell matrix-cell--target">
             <span class="meta">Target state</span>
             <span class="matrix-coordinates">Stronger evidence · More consistent judgments</span>
-            <h3>Dependable evaluation.</h3>
+            <h4>Dependable evaluation.</h4>
             <p>Consistent judgments, supported by independent outcome evidence.</p>
             <p class="matrix-action">Revalidate as the system changes.</p>
           </li>
           <li class="matrix-cell">
             <span class="meta">Investigate</span>
             <span class="matrix-coordinates">Weaker evidence · Less consistent judgments</span>
-            <h3>Unclear signal.</h3>
+            <h4>Unclear signal.</h4>
             <p>Judgments vary, and their link to the intended outcome is unclear.</p>
             <p class="matrix-action">Review the criteria, evidence, and scoring process.</p>
           </li>
           <li class="matrix-cell matrix-cell--blind">
             <span class="meta">Validate</span>
             <span class="matrix-coordinates">Weaker evidence · More consistent judgments</span>
-            <h3>Consistent, but unvalidated.</h3>
+            <h4>Consistent, but unvalidated.</h4>
             <p>Judgments agree; their connection to the intended outcome is still uncertain.</p>
             <p class="matrix-action">Test against independent outcome evidence.</p>
           </li>
@@ -267,16 +307,11 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
         <div class="matrix-x" aria-hidden="true"><span>Less consistent</span><span>More consistent →</span><strong>Consistency of judgments</strong></div>
       </div>
       <figcaption class="disagreement-caption" id="disagreement-caption">A conceptual framework for the task and cases examined, not measured results. Agreement alone does not establish correctness; some differences in judgment are legitimate.</figcaption>
-      <p class="disagreement-caption"><a class="inline" href="/labs/assets/evaluation-matrix.svg">View the full-size diagram</a></p>
-    </figure>
+      <p class="disagreement-caption diagram-full-size"><a class="inline" href="/labs/assets/evaluation-matrix.svg">Open the full-size diagram</a></p>
+      </figure>
+    </details>
     <details class="disagreement-sources">
-      <summary>How to read the framework</summary>
-      <p>Disagreement may occur between AI evaluators, between AI and human reviewers, or between people. These are places to investigate, not positions on the chart.</p>
-      <ul>
-        <li>AI–AI: examine variability and bias.</li>
-        <li>AI–human: inspect mismatches and calibrate review.</li>
-        <li>Human–human: clarify criteria and investigate disputed evidence.</li>
-      </ul>
+      <summary>Sources behind the framework</summary>
       <p>The framework is Thirdplane Labs’ synthesis, informed by <a class="inline" href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> on model-judge biases, <a class="inline" href="https://aclanthology.org/2022.tacl-1.78/">Jiang and de Marneffe</a> on human disagreement, and <a class="inline" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Anthropic</a> on complementary evaluation methods.</p>
     </details>
   </section>
@@ -298,5 +333,23 @@ a.inline:focus-visible{outline:2px solid var(--ink-900);outline-offset:3px;}
 </footer>
 
 </div>
+<script>
+  // Keep the full diagram visible on desktop; remember the reader's mobile choice.
+  // Without JavaScript the diagram stays open and the mobile disclosure still works.
+  const diagram = document.querySelector('.diagram-disclosure');
+  const mobileLayout = window.matchMedia('(max-width: 720px)');
+  let mobileDiagramOpen = false;
+  function syncDiagram() {
+    diagram.open = !mobileLayout.matches || mobileDiagramOpen;
+  }
+  diagram.querySelector('summary').addEventListener('click', (event) => {
+    if (!mobileLayout.matches) return;
+    event.preventDefault();
+    mobileDiagramOpen = !diagram.open;
+    syncDiagram();
+  });
+  mobileLayout.addEventListener('change', syncDiagram);
+  syncDiagram();
+</script>
 </body>
 </html>
