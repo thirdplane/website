@@ -15,6 +15,12 @@ body:has(.open-studio-preview) > .nav { position:relative; }
 .open-actions { display:flex; flex-wrap:wrap; align-items:center; gap:24px; margin-top:28px; font-size:14px; }
 .open-actions a { min-height:44px; display:inline-flex; align-items:center; gap:12px; }
 .open-primary { color:var(--ice-400); }
+.open-latest-writing { display:block; max-width:58ch; margin-top:28px; padding-top:22px; border-top:1px solid var(--border); }
+.open-latest-writing .open-label { color:var(--sun-400); }
+.open-latest-title { display:block; margin-top:8px; font-family:var(--font-display); font-size:20px; line-height:1.35; color:var(--text-100); }
+.open-latest-summary { display:block; margin-top:8px; font-size:14px; line-height:1.6; color:var(--text-400); }
+.open-latest-writing:hover .open-latest-title { color:var(--sun-400); }
+.open-latest-writing:focus-visible,.open-research:focus-visible { outline:2px solid var(--ice-400); outline-offset:6px; }
 .open-actions a:hover,.open-section-heading>a:hover,.open-fragment>a:hover,.open-about>a:hover { color:var(--ice-400); }
 .open-halo { min-width:0; margin:0; }
 .open-halo-stage { position:relative; width:100%; height:320px; }
@@ -47,10 +53,12 @@ body:has(.open-studio-preview) > .nav { position:relative; }
 .open-card--featured .open-card-media { aspect-ratio:auto; height:100%; min-height:280px; }
 .open-card--featured .open-card-content { padding:32px; }
 .open-card--featured h3 { font-size:clamp(25px,3vw,36px); }
-.open-notes-grid { display:grid; grid-template-columns:1.35fr 1fr; gap:40px; align-items:start; }
+.open-notes-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; align-items:stretch; }
 .open-research { display:block; background:var(--surface); padding:30px; border:1px solid var(--border); border-radius:12px; transition:border-color .2s ease,box-shadow .2s ease; }
 .open-research:hover { border-color:rgba(125,231,255,.3); box-shadow:var(--glow-ice); }
 .open-research>.open-label { color:var(--ice-400); }
+.open-essay>.open-label,.open-essay .open-card-action { color:var(--sun-400); }
+.open-essay:hover { border-color:var(--sun-400); box-shadow:none; }
 .open-research h3 { font-family:var(--font-display); font-size:27px; line-height:1.2; font-weight:500; margin:16px 0; }
 .open-research p,.open-fragment p { font-size:16px; color:var(--text-400); line-height:1.7; }
 .open-fragment { padding:28px 0; }

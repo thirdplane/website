@@ -1,125 +1,161 @@
 ---
-title: "Steering an image model toward a quality: show not tell"
-subtitle: "A one-week, $25 pilot on synthesized controls"
+title: "Steering by recognition: can an image model learn a quality we struggle to describe?"
+subtitle: "An experiment in visual recognition, activation steering, and the limits of evaluation"
 date: 2026-06-19
 type: "Research"
 year: 2026
 cover: "/assets/works/model-internals-research/cover.svg"
-excerpt: "Can we parameterize visual qualities, that people can recognize but can't put into words? i.e. more of this vibe?"
+excerpt: "Can examples turn a recognizable visual quality into a model control? An activation-steering experiment became an inquiry into the relationship between perception, description, and judgment."
+description: "A research account of activation steering from visual references, human and AI judgment, and the Jacobian lens as a perspective on representation and report."
 featured: false
 draft: false
 badgeType: "research"
 memberOf:
   - model-internals-research
 ---
-[Read the original Thinking Machines grant proposal PDF](/assets/works/model-internals-research/tm-interactivity-grant-proposal.pdf).
+In creative work, recognition often precedes explanation. I can see that a group of images belongs together before I can articulate what connects them. The resemblance may cross subject matter, composition, and medium; the words I reach for describe parts of it, yet leave something unresolved.
 
-*June 2026 - Author's Note*
+This experiment began with a question about making that recognition operational. Could a set of examples define a visual quality precisely enough to become a continuous control inside an image model? Instead of asking for another interpretation of a written prompt, could I steer by pointing to what I meant?
+
+I explored this through activation steering: deriving a direction from the model's internal responses to reference images and applying it during generation. The intervention produced visible changes, but the pilot did not establish a dependable relationship between those changes and the quality I intended.
+
+That result brought the problem of judgment into the experiment itself. To assess the control, I needed an account of what it was meant to preserve or intensify. A rubric built from my description only weakly recovered my selections in the scores I could verify, while my own recognition proved partly consistent across repeated sorting, with a shifting boundary.
+
+The difficulty therefore extended beyond finding a useful direction inside the model. It concerned how a perceptual distinction becomes a reference, a description, and eventually a measure of success - and what is lost at each step.
+
+## Recognition as a starting point
+
+Creation is a loop between intention and encounter. I make something, respond to it, and discover more precisely what I wanted through that response. Reference images participate in this process: they allow a quality to be demonstrated while its description is still taking shape.
+
+For an image model, however, an example is an ambiguous instruction. An empty room offers architecture, lighting, texture, composition, and associations. Which of these matters to the person who selected it? The attraction of a reference set is that several images might make the intended relationship more apparent than any individual example. The difficulty is establishing what, exactly, they share.
+
+Reve's References interface makes this ambiguity concrete. It lets users assign examples roles such as Style, Person, or Place and add written instructions. Yet selecting “Style” still leaves the intended relationship underspecified. In a [user report cited in the original proposal](https://x.com/0xnichy/status/2062790808080617947), the complaint was that references were reproduced too literally as collages, rather than interpreted through their lighting, composition, texture, or style. The user wanted to “say why a reference matters and what should be extracted from it.” That distinction between supplying an example and specifying its relevance sits at the center of this experiment.
+
+<figure>
+  <a href="/assets/works/model-internals-research/reve_references_style_copy.png"><img src="/assets/works/model-internals-research/reve_references_style_copy.png" alt="Reve's reference editor with three images, Style selected as their role, and a field for additional instructions." loading="lazy" decoding="async"></a>
+  <figcaption>Reve's reference editor, captured during the research: examples are assigned a role, with written instructions available to qualify how they should be used.</figcaption>
+</figure>
+
+I began by sorting a mixed pool of photographs and generated images into groups. Some resolved into familiar categories of subject or style. Others resisted a satisfactory description. One suggested a stillness with something slightly wrong about it; “quiet foreboding” became its working name. The phrase helped me refer to the group, but naming it did not settle the criteria for belonging to it.
+
+<figure>
+  <a href="/assets/works/model-internals-research/cluster_c.png"><img src="/assets/works/model-internals-research/cluster_c.png" alt="An early reference group containing portraits, empty rooms, night scenes, and illustrations." loading="lazy" decoding="async"></a>
+  <figcaption>An early reference group assembled by recognition, before the target was refined. Open the image to inspect the references.</figcaption>
+</figure>
+
+<figure>
+  <a href="/assets/works/model-internals-research/cluster_g.png"><img src="/assets/works/model-internals-research/cluster_g.png" alt="A second early reference group of 14 images, including landscapes, objects, a snake, and abstract forms, with provisional descriptive words entered above the images." loading="lazy" decoding="async"></a>
+  <figcaption>A second early grouping, spanning objects, landscapes, and abstract forms. The provisional descriptions record an attempt to articulate a resemblance already perceived. Open the image to inspect the references.</figcaption>
+</figure>
+
+## From references to an intervention
+
+Activation steering changes a model's internal activity during generation without retraining its weights. [Ostermann et al. (2026)](https://arxiv.org/abs/2604.14090) situate it as a form of model adaptation through interventions in activation space. In this pilot, I averaged the model's activations over images where I recognized the target quality, then subtracted the average over a comparison set. I attempted to match subject matter across the sets to reduce the chance that the resulting direction would simply distinguish, for example, interiors from portraits.
+
+I applied this difference during generation, scaled by an intervention strength, α. The hypothesis was that movement along the direction would correspond to movement in the perceived quality.
+
+I imagined the control as a *synthesized adjective*: a visual quality learned from examples, whose intensity could be adjusted without first finding the words for it.
+
+The closest methodological precedent is [SHIFT: Steering Hidden Intermediates in Flow Transformers](https://arxiv.org/abs/2604.09213) (Konovalova et al., 2026), which constructs steering directions from contrasting activations and applies them during image generation. Here, I used curated visual references to define the target and assessed the resulting control against recognition. The initial pilot used Ideogram-4's open weights on a rented RTX 4090, over about a week and roughly $25 in hosted compute. Curation and follow-up analysis extended beyond that initial run.
+
+I set out criteria before reviewing the outputs: the intervention should produce a perceptible change, preserve the subject, and carry a consistent meaning across new subjects. Image sequences were shuffled and their settings withheld during review.
+
+## Visible movement and the problem of transfer
+
+The generated sequences showed changes in light, color, and texture. Within a limited range, some images retained a recognizable subject and composition; at stronger settings, visible degradation became prominent.
+
+<figure>
+  <a href="/assets/works/model-internals-research/qf_l24_sweep.png"><img src="/assets/works/model-internals-research/qf_l24_sweep.png" alt="Three rows of generated images: a street, a portrait, and a fruit bowl. Four intervention settings change their lighting and color, with visible distortion in the left column." loading="lazy" decoding="async"></a>
+  <figcaption>Selected pilot outputs, with prompt and random seed held fixed within each row. The labels indicate intervention strength, not measured amounts of the target quality. The leftmost setting visibly degrades the images.</figcaption>
+</figure>
+
+The ambition was to give a person distinct aesthetic controls: the ability to intensify one quality while preserving others they wanted to keep. I treated that independence as a local approximation to test, since a direction associated with one quality might also change several others.
+
+In my blind reviews, the perceived direction changed across subjects. Descriptions of the changes centered on photographic properties such as warmth, saturation, and grain. A subsequent intervention that removed warmth and saturation directions still failed the specified consistency test across subjects.
+
+This failure of transfer matters for the interface. If increasing a setting means something different in a portrait than in a street scene, the user must rediscover the control's meaning each time.
+
+Analysis of the saved activations suggested several possible contributors: overlapping reference directions, differences between representations of real and generated images, and a gap between separating reference sets and controlling generation. Their relative contributions remained unresolved.
+
+## Description and construct validity
+
+Alongside the steering tests, I examined whether a verbal account could recover my grouping. My description, recorded on June 12, was:
+
+> “nothing's 'wrong' per se with these clusters, they just have the same energy / vibe. soft light. center aligned. one directional light.”
+
+Two AI judges then scored 62 interiors separately on the three named features, using a 0–2 scale and without seeing my selections. The analysis tested whether the individual scores and their sum recovered my grouping.
+
+Only one judge's individual scores could be recovered and checked; the complete instructions sent to the judges could not be located in the available archive. In those recoverable scores, the sum of the three features only weakly distinguished the images I had included from those I had excluded. A single directional light was more informative on its own. Soft light, despite appearing in my description, pointed in the opposite direction to my selections.
+
+This raised a question of *construct validity*: how well did the measurement represent the quality I intended to study? Scoring the features I had named was only useful insofar as those features captured the basis of my recognition.
+
+The test concerned a particular translation of recognition into measurement: three named features, scored separately and combined by addition. What mattered may have included relationships between those features, other qualities I had not articulated, or distinctions the scoring rubric did not preserve. The experiment exposed a mismatch without locating where in that translation it arose. The stability of the grouping itself also needed examination.
+
+## The stability of recognition
+
+Human judgment was also an instrument in this experiment. The author alone selected the reference groups, so the target depended on the consistency of those selections.
+
+In a July follow-up, I re-sorted the same 128 generated images with their previous labels hidden. Most decisions repeated, although most images had originally been excluded. Of the 24 I had included, I selected 16 again, while the total number included rose to 31.
+
+Recognition was partly reproducible, with meaningful movement at the boundary. That result complicates the interpretation of the steering failure. A mismatch could arise in the model's representation, the intervention, or the definition of the target supplied to it. Repeated human judgments help distinguish these possibilities by making the target's own variability observable.
+
+I also investigated whether I was responding to characteristics of generated imagery. In two small tests of interiors without people, I selected similar proportions of real photographs and generated images - approximately 16% of each. This weakened simple recognition of AI origin as an explanation in those pools. Equal selection rates do not establish an identical percept across sources, however, and a later comparison was confounded by different image-selection procedures.
+
+## The Jacobian lens: representation and report {id="the-jacobian-lens"}
+
+Anthropic's July 2026 research on the **Jacobian lens**, or J-lens, offers a useful perspective on these questions. The technique identifies representations associated with what a language model could verbalize, including concepts absent from its actual response. Anthropic calls this collection *J-space* and reports that it supports deliberate modulation, flexible reasoning, and verbal report, alongside a much larger body of processing. [A global workspace in language models](https://www.anthropic.com/research/global-workspace).
+
+A revealing example concerns a Spanish passage. Changing its language representation from Spanish to French in J-space changed the model's answer when asked to identify the language, yet left its continuation of the passage in Spanish unaffected. The same input informed several behaviors through different computational routes. [Full paper](https://transformer-circuits.pub/2026/workspace/index.html).
+
+I read this as a reason to distinguish the information a system uses, the information it can report, and the information an intervention can make available to other tasks. The connection to this pilot is interpretive: I did not measure J-space in the image model or inspect the internal processes of the AI judges.
+
+What the lens sharpens is the question of access. A description may make certain features available for explicit judgment while leaving other distinctions inadequately represented. A direction that separates reference sets may reveal a regularity in the model without providing the control a person intended. In this experiment, the reference set, verbal rubric, and steering direction each expressed an approximation of the target; their correspondence had to be tested.
+
+That makes interpretability and evaluation complementary. Interpretability can help investigate which representations influence a decision and how they are used. Evaluation must still ask whether the resulting behavior preserves the distinction that motivated the intervention. An intelligible account of a system's activity is valuable, but its relevance to the intended judgment remains an empirical question.
+
+## From steering to evaluation {id="how-to-interpret-these-findings"}
+
+I began with an interface problem: how might a person guide an image model through recognition? The work led me toward a measurement problem embedded within it. A control learned from examples needs an account of what those examples mean, and an evaluator needs evidence that its judgments remain connected to that meaning.
+
+A useful continuation would compare verbal descriptions with example-based judgments, repeat the author's selections, and ask whether other people recognize the same distinction. The steering method would then be assessed on subjects outside the reference set. Together, these tests could help separate a communication failure from an unstable target or an intervention that fails to transfer.
+
+I remain interested in the possibility that a judgment can become usable before it is fully explainable. The practical question is how much of it survives being expressed in another form: a group of references, a rubric, a model representation, or a score. Each can support a different kind of action. Each also introduces choices about which distinctions to preserve.
+
+That is what connects this experiment to my interest in AI evaluation. When a judge's scores guide selection, training, or another agent's decisions, agreement and apparent coherence are only part of the evidence we need. We also need to understand what the judgment carries forward - and whether it remains responsive to the quality we meant to capture.
 
 ---
-## TL;DR
 
-- Designed *Steering by Recognition*, an experimental inference-time interface for Ideogram 4.0. It asked whether a qualitative visual target, such as a “vibe,” could be recognized, parameterized, and transferred through activation steering.
-- Developed a blind two-alternative forced-choice (2AFC) evaluation that separated the rater’s preference from model-output presentation and tested whether an intervention improved perceived target alignment.
-- Framed steering as a local-control problem: whether directions in activation space could behave as distinct aesthetic controls, and where that approximation became unstable or entangled. This is adjacent to, not an application of, Anthropic’s later J-lens research.
+*June 2026 pilot; July follow-up; account revised September 2026.*
 
----
-Can we parameterize visual qualities, that people can recognize but can't put into words? i.e. "more of this vibe"?
+[Original grant proposal](/assets/works/model-internals-research/tm-interactivity-grant-proposal.pdf)
 
-To tackle this question, I ran an independent research program to implement a "steering" technique that uses model activations as controls. The technique is based on a [new research paper](https://arxiv.org/abs/2604.14090) (*From Weights to Activations: Is Steering the Next Frontier of Adaptation? by Ostermann et al.*). This is an interface challenge that top image AI labs (Reve, Ideogram) are tackling with their new image generation models (Reve 2.1 and Ideogram 4.0) but the product features lack specificity (see proposal linked above). The apparatus is an activation-steering harness inside a diffusion model's internals, blind-rating servers with sealed answer keys, confound-controlled reference sets. However, the results showed that a human rater’s judgment of “taste” was statistically no better than a coin flip, and a frontier VLM that is commonly used as a judge, did not provide any correlation with human judgment on visual qualities or taste. 
+<details class="research-methods" id="methods-and-results">
+<summary><strong>Methods and supporting references</strong></summary>
 
-While the experiment failed to produce “controllable parameters of taste”, I discovered that *the gap* between actual human ratings, and VLM and AI-as-a-judge ratings, specifically for unverifiable tasks, is a ripe area to explore and solve problems in. This project began as an attempt to give people a control for visual qualities they can recognize but cannot reliably put into words. It did not produce that control with the technique applied. The pilot did not establish the mechanism that would make such a control dependable. It did, however, produce a useful lesson: when used as a judge, an AI system can make outputs that look coherent while measuring the wrong thing. That lesson now informs my current work on how AI evaluation systems are tested.
+### Methodological lineage
 
+The difference-of-means construction has a precedent in language-model steering: [Contrastive Activation Addition](https://arxiv.org/abs/2312.06681) averages activation differences between positive and negative examples, then adds the resulting vector during inference. SHIFT extends this family of interventions to image generation in FLUX, steering text-token representations and pooled text embeddings. This pilot instead derived its direction from image references and intervened at image-token positions.
 
----
-## The question
-Creation is a loop: you make something, see it, and discover what you wanted by reacting to what you got. Image generation collapses that loop into prompt-and-reroll. The problem isn't that intent is unclear - it's that language is imprecise. You can recognize the right result on sight and still not put the deciding quality into words. For nameable properties ("golden hour," "35mm film") prompting works fine. It is much harder when someone can recognize the deciding quality in a group of images but cannot give it a description that reliably reproduces the group.
+[Concept Sliders](https://arxiv.org/abs/2311.12092) (Gandikota et al., 2023) provides a related precedent for continuous visual controls learned from prompts or example images. Its controls use trained low-rank weight adapters; the pilot used additive activation changes with the model's weights fixed. Ostermann et al. provide the broader conceptual framing for steering as adaptation.
 
-I wanted to replicate this intuitive mechanism that we humans so instincitively reach for in the creative process. Instead of naming the quality, could a
-person point to examples of it and obtain a continuous control inside an image model?
+### Scope and steering protocol
 
-Sample Image Clusters (a mix of generated and real images:)
-![Image Clusters](/assets/works/model-internals-research/cluster_c.png)
-![Image Clusters](/assets/works/model-internals-research/cluster_g.png)
+The author defined the reference groupings. The steering method compared average internal activations for reference and comparison images, then applied a scaled difference during generation. The initial pilot used Ideogram-4 open weights on an RTX 4090; the later analyses examined the saved activations and repeated the human sorting.
 
+Initial steering reviews used shuffled image strips with intervention settings hidden from the author. Review tasks included ordering the images and describing their changes. Two candidate controls were assessed across five subjects. The follow-up removed warmth and saturation directions; a proposed grain control failed its preliminary check and was excluded from that removal.
 
-*Reve has a product feature called "References" where users can upload images and the model will generate images that are similar to the uploaded images. However, it doesn't work too well. A Reve user (post retweeted by Reve, 5 June 2026) reports it "reproduces my references too literally and made collages of them rather than applying qualities, like the lighting, composition, textures, or style," and asks to "say why a reference matters and what should be extracted from it."*
-![reve user report](/assets/works/model-internals-research/reve_references_style_copy.png)
+The follow-up record does not unambiguously identify an independent human reviewer, limiting claims about agreement across observers.
 
-## The mechanism
+### Reconstructing the grouping from named features
 
-The technique was to take reference images that share a quality, extract the quality as a continuous control - a *synthesized adjective*, learned from images rather than stated in language. The mechanics are established (the CASteer / Concept Sliders family) and training-free:
+The feature analysis compared each score, and the sum of the three scores, with the author's inclusion decisions. It measured how often an included image ranked above an excluded image, counting tied scores as half a correct ranking. This tests the ranking produced by the stated rubric on this sample; it does not test every possible combination of features or description of the quality.
 
-- Average the model's internal activations over the reference images.
-- Subtract the average over a content-matched neutral set.
-- Inject the difference during generation, scaled by a knob alpha.
+### Real photographs and generated images
 
-The hypothesis was that we could construct a direction from model activations, then add or subtract that direction during generation. My contribution was not the
-arithmetic. It was the source of the direction from a person’s reference images and the attempt to test whether the resulting control changed the quality the
-person actually recognized. I ran it on Ideogram-4's open weights, on a rented RTX 4090, in a week, for about $25 in hosted compute.
+The two source comparisons used neutral interiors without people. A later comparison mixed generated images prompted toward the target with real photographs obtained through neutral queries. Different selection procedures confounded that comparison, so its source difference cannot resolve whether rendering artifacts contributed to recognition.
 
-## Methodology
+### Figure selection
 
-1. A layman assembled a reference set around a visual quality they could recognize, then wrote the best available description of the grouping or cluster.
-2. I used content-matched neutral images as a comparison set, so the direction would not merely encode subject matter.
-3. I averaged image-model activations for the two sets, subtracted the averages, and injected the resulting direction at several strengths during
-   generation.
-4. Before looking at results, I used a blind two-alternative forced-choice (2AFC) protocol, sealed answer keys, and written decision rules to reduce the chance that an appealing image
-   sequence would become a post-hoc success story.
+The article's output grid shows three subjects at four intervention settings: −0.7, −0.3, 0, and +0.3. The cover uses three unchanged fruit-bowl outputs at −0.3, 0, and +0.3, selected for retaining a recognizable subject.
 
-The experiment asked three separate questions. Keeping them separate matters:
-
-| Question | Test | What the result can establish |
-| --- | --- | --- |
-| Can the written description transmit the intended quality? | Independent VLM judges classified images using the description only. | Whether the description was sufficient for those judges on this task. |
-| Is the reference quality merely an AI-image artifact? | The expert sorted a blinded mix of generated images and real photographs. | Whether the selected examples appeared in both sources. |
-| Does the activation direction control the intended quality? | Fixed-subject α sweeps, assessed without revealing the intended dose or original labels. | Whether the direction changed images consistently and in the intended way. |
-
----
-
-## Observations
-
-**1. Description doesn't transmit the quality.** An expert sorted images by a quality they could see instantly, then wrote down what it was. Two independent VLM judges, given only the description, could not reproduce the described sort - it indicated that sorting was near chance.
-They agreed with *each other*, so there was artificial consensus; but artifical vision did not correlate with human perception. Human words described a cluster without capturing a machine-readable boundary.
-
-**2. The quality is real, and it lives in scenes - not in AI artifacts.** Mixed blind with real photographs, the user's picks landed about equally in real and generated images (~16% each). Human sorting indicates that the selected "vibe" was a property of the world the generator sometimes hits.
-
-**3. The mechanism produces a coherent control - but an unaimed one.** A single synthesized dial moved the image coherently and monotonically while holding the subject fixed. That part works. But what moved tracked the model's *default color grade*, not the target quality, and it didn't transfer across subjects.
-
-*Figure: Pilot across control α-sweep: a single synthesized control levels α = −0.7 t → +0.3 (left → right). The image moves coherently and monotonically with the subject's own color grade rather than the target quality.*
-![alpha sweep](/assets/works/model-internals-research/qf_l24_sweep.png)
-
-## The Jacobian lens
-
-In July 2026, Anthropic published [“A global workspace in language models”](https://www.anthropic.com/research/global-workspace), introducing the Jacobian lens, or J-lens. It reads a limited set of representations in Claude that are positioned to influence what the model could report if asked. Anthropic calls that collection J-space. In its experiments, Anthropic found that J-space supported verbal report, deliberate control, and some multistep reasoning while accounting for only a small share of the model’s internal activity.
-
-This is not a mechanism claim about this pilot. Anthropic studied a language model; this experiment steered an image model. The pilot neither measured J-space nor established what the VLM judge used internally. The connection is methodological: an explanation, rubric, or apparently interpretable activation direction is a partial observable, not proof of what determines a verdict. Here, a person could recognize a visual quality but could not write a description that let independent VLM judges reproduce the sort. The activation control also moved images coherently, but not toward that intended quality. Better prompts may help when language is the missing link, but they cannot be assumed to fix an unmeasured proxy. Blind, sealed-key comparisons remain the test: did the intervention change the outcome the person recognizes?
-
----
-
-## Caveats 
-
-The observations show that a small, pre-specified evaluation can catch a compelling but misleading proxy. It also shows why a smooth model control or agreement between
-automated judges is not enough evidence that a system tracks a perceptive quality used by human judgment. 
-
-It does not show that activation steering cannot work, that VLMs cannot judge visual work, or that one small study establishes a general theory of taste. The
-study used one model, one experimental design, and a limited set of reviewers.
-
-## How to interpret these findings
-
-I began this project to make image-generation controls more responsive to human recognition. I left it with a more general question: when an automated
-evaluation looks convincing, how do we know it is measuring the intended thing rather than a convenient proxy?
-
-That question now guides my work on AI evaluation systems. Before an AI company uses a judge, verifier, or reward model to support training or an
-accuracy claim, the measurement chain should be tested independently: freeze the evidence, define failure tests before seeing results, use independent human review where judgment is necessary, and publish the scope and limits of the conclusion.
-
----
-## Methods and limits
-
-The pilot used sealed answer keys, blinded presentation, content-matched comparison sets, and pre-written decision rules. Those controls reduced the
-risk of fitting the conclusion to attractive outputs; they did not eliminate the limitations of a small study.
-
-The original proposal describes the intended control design and research
-context: [read the grant proposal](</assets/works/model-internals-research/tm-interactivity-grant-proposal.pdf>).
-
-*For a fuller public version of this note, I would add the complete protocol, the judge prompts and model versions, the sample counts, the blinded results table, and a reproducible artifact bundle. Until then, this page should be read as a transparent pilot report, not a general benchmark or product claim.*
+</details>

@@ -131,7 +131,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--text-600);
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.06em;
 }
 

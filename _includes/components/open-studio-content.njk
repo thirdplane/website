@@ -1,13 +1,18 @@
 <div class="open-studio{% if studioHaloAtTop %} home-studio{% else %} open-studio-preview{% endif %}"{% if studioHaloAtTop %} id="statement"{% endif %}>
   <section class="open-hero container" aria-labelledby="open-title">
     <div class="open-intro">
-      <span class="open-label">Jasmine Poon / Third Plane Studios</span>
-      <h1 id="open-title">I build tools for the things we can't quite put into words.</h1>
-      <p>Experiments in how we express taste, make things with AI, and understand what the model understood. I build a prototype, try it, and write down what I find.</p>
+      <span class="open-label">Jasmine Poon</span>
+      <h1 id="open-title">I build, test, and write about how human judgment shapes AI.</h1>
+      <p>Recent work includes interfaces for expressing taste, experiments in steering image models, and essays on values and power.</p>
       <div class="open-actions">
-        <a class="open-primary" href="#experiments">Explore the experiments <span aria-hidden="true">↓</span></a>
-        <a href="#notes">Read the field notes <span aria-hidden="true">↗</span></a>
+        <a class="open-primary" href="#experiments">Explore the projects <span aria-hidden="true">↓</span></a>
+        <a href="#notes">Read the research and essays <span aria-hidden="true">↓</span></a>
       </div>
+      <a class="open-latest-writing" href="/thoughts/perception-values-and-power/?from=judgment-values-and-power">
+        <span class="open-label">Latest essay / Sep 2026</span>
+        <span class="open-latest-title">AI Swarms: Perception, Values, and Power <span aria-hidden="true">↗</span></span>
+        <span class="open-latest-summary">Whose judgments should an AI swarm inherit?</span>
+      </a>
     </div>
     {% if not studioHaloAtTop %}
     <figure class="open-halo">
@@ -26,16 +31,16 @@
   <section class="open-work container" id="experiments" aria-labelledby="open-work-title">
     <div class="open-section-heading">
       <div>
-        <span class="open-label">Selected experiments</span>
-        <h2 id="open-work-title">A question, made tangible.</h2>
-        <p class="open-work-intro">Built across hackathons, these experiments explore how new tools can extend what we imagine, express, and do. Each starts with a question and becomes something you can try.</p>
+        <span class="open-label">Selected projects</span>
+        <h2 id="open-work-title">Tools, games, and visual experiments.</h2>
+        <p class="open-work-intro">These hackathon builds explore what happens when people can shape the output, inspect an interpretation, or make decisions with an AI companion.</p>
       </div>
       <a href="/collections/">Explore collections ↗</a>
     </div>
     <div class="open-work-grid">
       <a class="open-card open-card--featured" href="/works/astralogy/">
         <div class="open-card-media"><img src="/assets/works/astralogy/cover.jpg" alt="Earth fills the Astralogy viewport as the ship arrives home" width="1440" height="830" loading="lazy"><span class="open-badge" data-type="prototype">OpenAI hackathon</span></div>
-        <div class="open-card-content"><span class="open-label">New / Sep 2026</span><h3>Astralogy: how far can we go with AI?</h3><p>A playful space adventure exploring how human judgment and AI can work together to find a way home.</p><span class="open-card-action">Read the story &amp; watch the demo ↗</span></div>
+        <div class="open-card-content"><span class="open-label">Sep 2026</span><h3>Astralogy: how far can we go with AI?</h3><p>A playful space adventure where you find your bearings, shape a route, and work with an AI companion to get home.</p><span class="open-card-action">Read the story &amp; watch the demo ↗</span></div>
       </a>
       <a class="open-card" href="/works/generative-remix/">
         <div class="open-card-media"><img src="/assets/studio-directions/remix.jpg" alt="Generative Remix showing a halo and AI-generated controls" width="900" height="547"><span class="open-badge" data-type="prototype">Claude hackathon</span></div>
@@ -43,36 +48,36 @@
       </a>
       <a class="open-card" href="/works/taste-score/">
         <div class="open-card-media"><img src="/assets/studio-directions/intent.jpg" alt="Intent Configuration Interface showing an editable preference score" width="800" height="486"><span class="open-badge" data-type="prototype">Figma hackathon</span></div>
-        <div class="open-card-content"><span class="open-label">Mar 2026</span><h3>Intent Configuration Interface</h3><p>An editable map of how AI reads your preferences, giving you control over what it creates.</p><span class="open-card-action">Inspect the interpretation ↗</span></div>
+        <div class="open-card-content"><span class="open-label">Mar 2026</span><h3>Intent Configuration Interface</h3><p>An editable map of how AI reads your preferences, so you can adjust its interpretation before it generates an output.</p><span class="open-card-action">Explore the interface ↗</span></div>
       </a>
       <a class="open-card" href="/works/holovibes/">
         <div class="open-card-media"><img src="/assets/studio-directions/holovibes.jpg" alt="Holovibes material playground with a holographic street scene" width="900" height="547"><span class="open-badge" data-type="generative">Cursor hackathon</span></div>
-        <div class="open-card-content"><span class="open-label">Aug 2026</span><h3>Holovibes</h3><p>Digital souvenirs from San Francisco, with holographic foil and depth that respond to your movement.</p><span class="open-card-action">Explore the material ↗</span></div>
+        <div class="open-card-content"><span class="open-label">Aug 2026</span><h3>Holovibes</h3><p>Digital souvenirs from San Francisco, with holographic foil and depth that respond to your movement.</p><span class="open-card-action">Explore the project ↗</span></div>
       </a>
     </div>
   </section>
 
   <section class="open-notes container" id="notes" aria-labelledby="open-notes-title">
-    <div class="open-section-heading"><div><span class="open-label">Field notes</span><h2 id="open-notes-title">What the experiments leave behind.</h2></div></div>
+    <div class="open-section-heading"><div><span class="open-label">Research and essays</span><h2 id="open-notes-title">What AI learns, and how we judge it.</h2></div></div>
     <div class="open-notes-grid">
+      <a class="open-research open-essay" href="/thoughts/perception-values-and-power/?from=judgment-values-and-power">
+        <span class="open-label">Essay / Sep 2026</span>
+        <h3>AI Swarms: Perception, Values, and Power</h3>
+        <p>When AI agents learn from one another, whose judgments do they inherit - and who gets to challenge them?</p>
+        <span class="open-card-action">Read the essay ↗</span>
+      </a>
       <a class="open-research" href="/works/model-internals-research/">
         <span class="open-label">Research pilot / June 2026</span>
-        <h3>Steering an image model toward a quality: show not tell</h3>
-        <p>A one-week pilot asked whether a visual quality could become a dependable control. It didn't establish that control. The gap between human and AI judgment became the next question.</p>
+        <h3>Steering by recognition: can an image model learn a quality we struggle to describe?</h3>
+        <p>I tested whether visual examples could define a quality and become a control inside an image model. The outputs changed, but establishing whether they captured the intended quality proved harder.</p>
         <span class="open-card-action">Read the experiment and its limits ↗</span>
       </a>
-      <div class="open-fragment">
-        <span class="open-label">From Generative Remix</span>
-        <blockquote>“Most people can recognize taste but can't articulate it.”</blockquote>
-        <p>The question that connects the work: how can an interface make that recognition useful?</p>
-        <a href="/works/generative-remix/#the-thesis">Read the thinking behind it ↗</a>
-      </div>
     </div>
   </section>
 
-  <section class="open-about container" aria-label="About the studio">
-    <span class="open-label">An ongoing practice</span>
-    <p>I'm Jasmine. Third Plane Studios is where I build, test, and write about these ideas—from small visual experiments to questions about how we evaluate AI.</p>
-    <a href="/labs/">Current evaluation work at Thirdplane Labs ↗</a>
+  <section class="open-about container" aria-label="Evaluation work at Thirdplane Labs">
+    <span class="open-label">Evaluation in practice</span>
+    <p>These questions also shape my work at Thirdplane Labs, where I design and review evaluations for AI products. I investigate where AI and human judgments diverge, and what those differences mean for the task.</p>
+    <a href="/labs/">Explore evaluation work at Thirdplane Labs ↗</a>
   </section>
 </div>
