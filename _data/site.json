@@ -1,8 +1,8 @@
 {
-  "name": "Third Plane Studios",
+  "name": "thirdplane studios",
   "url": "https://www.thirdplane.io",
   "tagline": "The curation of latent space.",
-  "description": "Third Plane Studios - Where computation and creativity converge.",
+  "description": "Prototypes, research, and essays by Jasmine Poon exploring how human judgment shapes AI, from creative intent to evaluation, values, and power.",
   "themeColor": "#05060A",
   "email": "j@thirdplane.io",
   "social": {
@@ -16,6 +16,6 @@
   ],
   "copyright": {
     "year": 2026,
-    "holder": "Third Plane Studios"
+    "holder": "thirdplane studios"
   }
 }
