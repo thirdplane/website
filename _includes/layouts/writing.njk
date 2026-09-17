@@ -11,12 +11,18 @@
 <main class="writing-page">
 
   <!-- Back Link: Simple, beautiful text arrow -->
+  {% set parentCollection = false %}
+  {% for collection in collections.thematicCollections %}
+    {% if not parentCollection and memberOf and collection.data.slug in memberOf %}
+      {% set parentCollection = collection %}
+    {% endif %}
+  {% endfor %}
   <div class="back-link-wrapper">
-    <a href="/thoughts/" class="back-link js-back-link">
+    <a href="{% if parentCollection %}{{ parentCollection.url }}{% else %}/thoughts/{% endif %}" class="back-link js-back-link">
       <svg class="back-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
-      <span class="js-back-link-text">Thoughts</span>
+      <span class="js-back-link-text">{% if parentCollection %}{{ parentCollection.data.title }}{% else %}Thoughts{% endif %}</span>
     </a>
   </div>
   <script>
@@ -43,6 +49,9 @@
     <header class="article-header">
       <div class="article-meta">
         <time datetime="{{ date | isoDate }}" class="article-date">{{ date | formatDate }}</time>
+        {% if lastRevised %}
+        <span class="article-date">Last revised <time datetime="{{ lastRevised | isoDate }}">{{ lastRevised | formatDate }}</time></span>
+        {% endif %}
         <span class="article-reading-time">{{ content | readingTime }}</span>
       </div>
 
@@ -55,6 +64,9 @@
         <span class="tag{% if loop.first %} tag--accent{% endif %}">{{ tag }}</span>
         {% endfor %}
       </div>
+      {% endif %}
+      {% if authorTwitter %}
+        {% include "components/author-twitter.njk" %}
       {% endif %}
     </header>
 

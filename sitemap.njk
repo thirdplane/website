@@ -10,4 +10,20 @@ eleventyExcludeFromCollections: true
   <url>
     <loc>{{ site.url }}/labs/</loc>
   </url>
+  <url>
+    <loc>{{ site.url }}/thoughts/</loc>
+  </url>
+  {% for writing in collections.writings %}
+  <url>
+    <loc>{{ site.url }}{{ writing.url }}</loc>
+  </url>
+  {% endfor %}
+  <url>
+    <loc>{{ site.url }}/collections/</loc>
+  </url>
+  {% for collection in collections.thematicCollections %}
+  <url>
+    <loc>{{ site.url }}{{ collection.url }}</loc>
+  </url>
+  {% endfor %}
 </urlset>
